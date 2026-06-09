@@ -89,6 +89,54 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
 
+  val startup :: loadTitleScreen :: idle :: done :: Nil = Enum(4)
+  val mainStateReg = RegInit(startup)
+  
+  val titleScreenLoader = Module(new TitleScreenLoader(BackTileNumber))
+  val titleScreenLoadReg = RegInit(false.B)
+  titleScreenLoader.io.load := titleScreenLoadReg
+
+  val backBufferWriteDataReg = RegInit(0.U(6.W))
+  val backBufferWriteAddressReg = RegInit(0.U(11.W))
+  val backBufferWriteEnableReg = RegInit(false.B)
+  io.backBufferWriteData := backBufferWriteDataReg
+  io.backBufferWriteAddress := backBufferWriteAddressReg
+  io.backBufferWriteEnable := backBufferWriteEnableReg
+  
+
+  //Player FSMD switch
+  switch(mainStateReg) {
+    is(startup) {
+      when(io.newFrame) {
+        titleScreenLoadReg := true.B
+        mainStateReg := loadTitleScreen
+      }
+    }
+
+    is(loadTitleScreen) {
+      backBufferWriteDataReg := titleScreenLoader.io.backBufferWriteData
+      backBufferWriteAddressReg := titleScreenLoader.io.backBufferWriteAddress
+      backBufferWriteEnableReg := titleScreenLoader.io.backBufferWriteEnable
+      when(titleScreenLoader.io.done) {
+        titleScreenLoadReg := false.B
+        backBufferWriteEnableReg := false.B
+        io.frameUpdateDone := true.B
+        mainStateReg := idle
+      }
+    }
+
+    is(idle) {
+      when(io.newFrame) {
+        mainStateReg := done
+      }
+    }
+
+    is(done) {
+      io.frameUpdateDone := true.B
+      mainStateReg := idle
+    }
+  }
+
   // Just forwarding the newFrame into the frameUpdateDone with a 2 clock cycle delay
   // frameUpdateDone will need to be driven by your game logic FSMs
   io.frameUpdateDone := RegNext(RegNext(io.newFrame))
