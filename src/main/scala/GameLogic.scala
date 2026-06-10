@@ -89,57 +89,176 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
 
-  val startup :: loadTitleScreen :: idle :: done :: Nil = Enum(4)
-  val mainStateReg = RegInit(startup)
+
+
+  val idle :: inputHandling :: computePos :: done :: Nil = Enum(4)
+  val stateReg = RegInit(idle)
+
+  // Position, Hastighed, Vinkel (Q16 format)
+  val sprite0XReg = RegInit((32.S << 16).asSInt)
+  val sprite0YReg = RegInit(((360 - 32).S << 16).asSInt)
+  val sprite0SpeedReg = RegInit(0.S(32.W))
+  val sprite0AngleReg = RegInit(0.U(8.W))
+
+  val cosReg = RegInit(0.S(16.W))
+  val sinReg = RegInit(0.S(16.W))
+  //val velXReg = RegInit(0.S(32.W))
+  //val velYReg = RegInit(0.S(32.W))
+
+  // Tuning
+  val accelRate = 1000.S(32.W)
+  val brakeRate = 1500.S(32.W)
+  val maxSpeed  = 500000.S(32.W) 
+  val turnSpeed = 1.U(8.W)
+  val friction = 400.S(32.W)
+
+  // LUTs for vinkler
+  val cos_lut = VecInit(Seq.tabulate(256)(i => (Math.cos(i * 2.0 * Math.PI / 256.0) * 256.0).toInt.S(16.W)))
+  val sin_lut = VecInit(Seq.tabulate(256)(i => (Math.sin(i * 2.0 * Math.PI / 256.0) * 256.0).toInt.S(16.W)))
   
-  val titleScreenLoader = Module(new TitleScreenLoader(BackTileNumber))
-  val titleScreenLoadReg = RegInit(false.B)
-  titleScreenLoader.io.load := titleScreenLoadReg
+  //sprite registers
+  val sprite0FlipHorizontalReg = RegInit(false.B)
+  val sprite0FlipVerticalReg = RegInit(false.B)
+  val sprite1FlipHorizontalReg = RegInit(false.B)
+  val sprite1FlipVerticalReg = RegInit(false.B)
+  val sprite0Visible = RegInit(true.B)
+  val sprite1Visible = RegInit(false.B)
 
-  val backBufferWriteDataReg = RegInit(0.U(6.W))
-  val backBufferWriteAddressReg = RegInit(0.U(11.W))
-  val backBufferWriteEnableReg = RegInit(false.B)
-  io.backBufferWriteData := backBufferWriteDataReg
-  io.backBufferWriteAddress := backBufferWriteAddressReg
-  io.backBufferWriteEnable := backBufferWriteEnableReg
-  
+  io.spriteVisible(0)        := sprite0Visible
+  io.spriteXPosition(0)      := (sprite0XReg >> 16).asSInt
+  io.spriteYPosition(0)      := (sprite0YReg >> 16).asSInt
+  io.spriteFlipHorizontal(0) := sprite0FlipHorizontalReg
+  io.spriteFlipVertical(0) := sprite0FlipVerticalReg
 
-  //Player FSMD switch
-  switch(mainStateReg) {
-    is(startup) {
-      when(io.newFrame) {
-        titleScreenLoadReg := true.B
-        mainStateReg := loadTitleScreen
-      }
-    }
+  io.spriteVisible(1)        := sprite1Visible
+  io.spriteXPosition(1)      := (sprite0XReg >> 16).asSInt
+  io.spriteYPosition(1)      := (sprite0YReg >> 16).asSInt
+  io.spriteFlipHorizontal(1) := sprite1FlipHorizontalReg
+  io.spriteFlipVertical(1) := sprite1FlipVerticalReg
 
-    is(loadTitleScreen) {
-      backBufferWriteDataReg := titleScreenLoader.io.backBufferWriteData
-      backBufferWriteAddressReg := titleScreenLoader.io.backBufferWriteAddress
-      backBufferWriteEnableReg := titleScreenLoader.io.backBufferWriteEnable
-      when(titleScreenLoader.io.done) {
-        titleScreenLoadReg := false.B
-        backBufferWriteEnableReg := false.B
-        io.frameUpdateDone := true.B
-        mainStateReg := idle
-      }
-    }
 
+
+  // FSMD logik
+  switch(stateReg) {
     is(idle) {
-      when(io.newFrame) {
-        mainStateReg := done
+      when(io.newFrame){
+        stateReg := inputHandling
+      } 
+    }
+    is(inputHandling) {
+      // Hastigheds- og styringslogik
+      when(io.btnD){
+        when(sprite0SpeedReg > -maxSpeed){
+          sprite0SpeedReg := sprite0SpeedReg - brakeRate
+        }
+      } .elsewhen(io.btnU){
+        when(sprite0SpeedReg < maxSpeed){
+          sprite0SpeedReg := sprite0SpeedReg + accelRate 
+        }
+      }.otherwise {
+        when(sprite0SpeedReg > friction) {
+          sprite0SpeedReg := sprite0SpeedReg - friction
+        }.elsewhen(sprite0SpeedReg < -friction) {
+          sprite0SpeedReg := sprite0SpeedReg + friction
+        }.otherwise {
+          sprite0SpeedReg := 0.S
+        }
       }
+
+      when(io.btnR) { 
+        sprite0AngleReg := sprite0AngleReg + turnSpeed
+      }.elsewhen(io.btnL){
+        sprite0AngleReg := sprite0AngleReg - turnSpeed 
+      }
+
+      // retning af sprite:
+      // venstre:
+      when( sprite0AngleReg >= 113.U && sprite0AngleReg <= 144.U){
+          sprite0Visible := true.B
+          sprite1Visible := false.B
+          sprite0FlipHorizontalReg := false.B
+          sprite0FlipVerticalReg := false.B
+      }
+      // skråt op venstre:
+      .elsewhen(sprite0AngleReg >= 145.U && sprite0AngleReg <= 176.U){
+          sprite0Visible := false.B
+          sprite1Visible := true.B
+
+          sprite1FlipHorizontalReg := false.B
+          sprite1FlipVerticalReg := false.B
+      }  
+      // opad:
+      .elsewhen(sprite0AngleReg >= 177.U && sprite0AngleReg <= 208.U){
+          sprite0Visible := true.B
+          sprite1Visible := false.B
+
+          sprite0FlipHorizontalReg := false.B
+          sprite0FlipVerticalReg := true.B
+      } 
+      //skråt op højre:
+      .elsewhen(sprite0AngleReg >= 209.U && sprite0AngleReg <= 240.U){
+          sprite0Visible := false.B
+          sprite1Visible := true.B
+
+          sprite1FlipHorizontalReg := true.B
+          sprite1FlipVerticalReg := false.B
+      }
+      // Højre:
+      .elsewhen((sprite0AngleReg >= 241.U && sprite0AngleReg <= 255.U) || (sprite0AngleReg >= 0.U && sprite0AngleReg <= 16.U)){
+          sprite0Visible := true.B
+          sprite1Visible := false.B
+          
+          sprite0FlipHorizontalReg := true.B
+          sprite0FlipVerticalReg := false.B
+      }
+      // skråt ned højre
+      .elsewhen(sprite0AngleReg >= 17.U && sprite0AngleReg <= 48.U){
+          sprite0Visible := false.B
+          sprite1Visible := true.B
+
+          sprite1FlipHorizontalReg := true.B
+          sprite1FlipVerticalReg := true.B
+      }
+      // nedad:
+      .elsewhen(sprite0AngleReg >= 49.U && sprite0AngleReg <= 80.U){
+          sprite0Visible := true.B
+          sprite1Visible := false.B
+
+          sprite0FlipHorizontalReg := true.B
+          sprite0FlipVerticalReg := true.B
+      }
+      // skråt ned venstre:
+      .elsewhen(sprite0AngleReg >= 81.U && sprite0AngleReg <= 112.U){
+          sprite0Visible := false.B
+          sprite1Visible := true.B
+
+          sprite1FlipHorizontalReg := true.B
+          sprite1FlipVerticalReg := false.B
+      }
+
+      cosReg := cos_lut(sprite0AngleReg)
+      sinReg := sin_lut(sprite0AngleReg)
+
+      stateReg := computePos
+
+
+    }
+
+    is(computePos){
+      //velXReg := (sprite0SpeedReg * cosReg)(39, 8).asSInt
+      //velYReg := (sprite0SpeedReg * sinReg)(39, 8).asSInt
+
+      sprite0XReg := sprite0XReg + ((sprite0SpeedReg * cosReg) >> 8)
+      sprite0YReg := sprite0YReg + ((sprite0SpeedReg * sinReg) >> 8)
+
+      stateReg := done
     }
 
     is(done) {
       io.frameUpdateDone := true.B
-      mainStateReg := idle
+      stateReg := idle
     }
   }
-
-  // Just forwarding the newFrame into the frameUpdateDone with a 2 clock cycle delay
-  // frameUpdateDone will need to be driven by your game logic FSMs
-  io.frameUpdateDone := RegNext(RegNext(io.newFrame))
 
 }
 

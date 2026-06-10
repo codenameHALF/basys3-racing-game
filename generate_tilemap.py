@@ -52,13 +52,13 @@ def generate_tilemap_loader(image_path, loader_name, output_path):
     tileset_folder = "memory_init/"
     tilemap = generate_tilemap(image_path, tileset_folder)
     output = ""
-    output = '''
+    output = """
 import chisel3._
 import chisel3.util._
 
-class TitleScreenLoader'''
+class TitleScreenLoader"""
     output += loader_name
-    output += '''(BackTileNumber: Int, screenSize: Int = 1200) extends Module {
+    output += """(BackTileNumber: Int, screenSize: Int = 1200) extends Module {
     val addrWidth = 11
     val tileWidth = 6
 
@@ -71,14 +71,20 @@ class TitleScreenLoader'''
         val backBufferWriteEnable = Output(Bool())
     })
     
-    val rom = VecInit(Seq(\n'''
-    for row in tilemap:
-        for i in range(len(row)):
-            if i >= len(row) - 1:
-                output += '''       ''' + str(row[i]) + ".U(tileWidth.W)\n"
+    val rom = VecInit(Seq(\n"""
+    for row_idx in range(len(tilemap)):
+        for col_idx in range(len(tilemap[row_idx])):
+            if col_idx >= len(tilemap[row_idx]) - 1 and row_idx >= len(tilemap) - 1:
+                output += (
+                    """       """ + str(tilemap[row_idx][col_idx]) + ".U(tileWidth.W)\n"
+                )
             else:
-                output += '''       ''' + str(row[i]) + ".U(tileWidth.W),\n"
-    output += '''   ))
+                output += (
+                    """       """
+                    + str(tilemap[row_idx][col_idx])
+                    + ".U(tileWidth.W),\n"
+                )
+    output += """   ))
     val address = RegInit(0.U(addrWidth.W))
     val running = RegInit(false.B)
 
@@ -103,7 +109,7 @@ class TitleScreenLoader'''
         }
     }
 }
-    '''
+    """
 
     f = open(output_path, "w")
     f.write(output)

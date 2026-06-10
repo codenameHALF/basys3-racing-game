@@ -55,7 +55,7 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
+       36.U(tileWidth.W),
        38.U(tileWidth.W),
        38.U(tileWidth.W),
        38.U(tileWidth.W),
@@ -95,7 +95,7 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        38.U(tileWidth.W),
        38.U(tileWidth.W),
        38.U(tileWidth.W),
-       38.U(tileWidth.W)
+       38.U(tileWidth.W),
        37.U(tileWidth.W),
        37.U(tileWidth.W),
        37.U(tileWidth.W),
@@ -135,7 +135,7 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        37.U(tileWidth.W),
        37.U(tileWidth.W),
        37.U(tileWidth.W),
-       37.U(tileWidth.W)
+       37.U(tileWidth.W),
        37.U(tileWidth.W),
        3.U(tileWidth.W),
        19.U(tileWidth.W),
@@ -175,7 +175,7 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        37.U(tileWidth.W),
        37.U(tileWidth.W),
        37.U(tileWidth.W),
-       37.U(tileWidth.W)
+       37.U(tileWidth.W),
        37.U(tileWidth.W),
        18.U(tileWidth.W),
        20.U(tileWidth.W),
@@ -215,7 +215,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        37.U(tileWidth.W),
        37.U(tileWidth.W),
        37.U(tileWidth.W),
-       37.U(tileWidth.W)
        37.U(tileWidth.W),
        37.U(tileWidth.W),
        37.U(tileWidth.W),
@@ -255,7 +254,8 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        37.U(tileWidth.W),
        37.U(tileWidth.W),
        37.U(tileWidth.W),
-       37.U(tileWidth.W)
+       37.U(tileWidth.W),
+       37.U(tileWidth.W),
        54.U(tileWidth.W),
        54.U(tileWidth.W),
        54.U(tileWidth.W),
@@ -295,7 +295,7 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        54.U(tileWidth.W),
        54.U(tileWidth.W),
        54.U(tileWidth.W),
-       54.U(tileWidth.W)
+       54.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
@@ -335,7 +335,7 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
+       36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
@@ -375,7 +375,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
@@ -415,7 +414,8 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
+       36.U(tileWidth.W),
+       36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
@@ -455,7 +455,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
@@ -495,7 +494,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
@@ -535,7 +533,9 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
+       36.U(tileWidth.W),
+       36.U(tileWidth.W),
+       36.U(tileWidth.W),
        36.U(tileWidth.W),
        6.U(tileWidth.W),
        17.U(tileWidth.W),
@@ -575,7 +575,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        3.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
@@ -615,7 +614,8 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        36.U(tileWidth.W),
        36.U(tileWidth.W),
        36.U(tileWidth.W),
-       36.U(tileWidth.W)
+       36.U(tileWidth.W),
+       36.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -655,7 +655,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -695,7 +694,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -735,7 +733,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -775,7 +772,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -815,7 +811,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -855,7 +850,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -895,7 +889,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -935,7 +928,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -975,7 +967,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1015,7 +1006,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1055,7 +1045,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1095,7 +1084,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1135,7 +1123,6 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1175,7 +1162,20 @@ class TitleScreenLoaderTitleScreenLoader(BackTileNumber: Int, screenSize: Int = 
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),

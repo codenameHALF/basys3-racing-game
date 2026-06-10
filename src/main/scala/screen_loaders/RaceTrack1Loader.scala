@@ -55,7 +55,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -95,7 +95,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -135,7 +135,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -175,7 +175,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -215,7 +215,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -255,7 +255,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -295,7 +295,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -335,7 +335,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -375,7 +375,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -415,7 +415,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -455,7 +455,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -495,7 +495,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -535,7 +535,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        42.U(tileWidth.W),
@@ -575,7 +575,7 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
        52.U(tileWidth.W),
        52.U(tileWidth.W),
        40.U(tileWidth.W),
@@ -615,7 +615,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -655,7 +654,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -695,7 +693,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -735,7 +732,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -775,7 +771,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -815,7 +810,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -855,7 +849,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -895,7 +888,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -935,7 +927,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -975,7 +966,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1015,7 +1005,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1055,7 +1044,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1095,7 +1083,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1135,7 +1122,6 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
@@ -1175,7 +1161,21 @@ class TitleScreenLoaderRaceTrack1Loader(BackTileNumber: Int, screenSize: Int = 1
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
-       55.U(tileWidth.W)
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
+       55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
        55.U(tileWidth.W),
