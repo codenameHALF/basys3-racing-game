@@ -13,51 +13,28 @@ class CollisionSystem(borderX: Int, borderY: Int) extends Module {
     
   })
 
-    val collisionTileMap = VecInit(300, UInt(1.W))
-    val entityTileIndex = UInt(9.W)
+    val collisionTileMap = VecInit(1200, UInt(1.W))
 
     //  getCollisionTileMap func or just logic outside func
+    // 
 
-    
 /* Declare where and when intializing a Collision system for the player
     io.entityX := GameLogic.io.spriteXPosition(PLAYER)
     io.entityY := GameLogic.io.spriteYPosition(PLAYER)
  */
+    val EntityTileIndex := (borderX + entityX)/32 + 40 * ((borderY + entityY)/32)
 
-    // FSM Vals
-    val idle :: collisionDetectedState :: computeEntityTileIndexState :: compareState :: Nil = Enum(4)
-    val collisionStateReg = RegInit(idle)
-
-    switch(collisionStateReg){
-        is(idle){
-            // Out of bounds detection
-            when(io.entityX <= borderX || io.entityX >= borderX || io.entityY <= borderY || io.entityY >= borderY){
-                io.ollisionStateReg := collisionState
-            }.otherwise{
-                io.collisionDetected := true.B   
-            }
-
-            collisionStateReg := computeEntityTileIndexState
-        }
-        is(collisionDetectedState){
-            io.collisionDetected := true.B   
-            collisionStateReg := idle
-        }
-
-        is(computeEntityTileIndexState){
-            // May not work lol
-            EntityTileIndex := (borderX + entityX)/32 + 40 * ((borderY + entityY)/32)
-            collisionStateReg := compareState
-        }
-        is(compareState){
-           when(collisionTileMap(entityTileIndex) === 1){
-                collisionStateReg := collisionDetectedState
-            }.otherwise{
-                io.collisionDetected := false.B
-                collisionStateReg := idle
-            }
-
-        }
-        
+    // Out of bounds detection
+    when(io.entityX <= borderX || io.entityX >= borderX || io.entityY <= borderY || io.entityY >= borderY){
+        io.collisionDetected := true.B   
+    }.otherwise{
+        io.collisionDetected := false.B   
     }
+
+    when(collisionTileMap(entityTileIndex) === 1){
+        io.collisionDetected := true.B   
+    }.otherwise{
+        io.collisionDetected := false.B
+    }
+
 }
