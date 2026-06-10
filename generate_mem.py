@@ -32,6 +32,8 @@ def save_data(path, data):
     f.close()
 
 
-for png_file in folder.glob("*.png"):
-    data = read_data(png_file)
-    save_data(str(png_file.with_suffix("")) + ".mem", data)
+def generate_mem():
+    for png_file in folder.glob("*.png"):
+        if "backtile_init_" in str(png_file) or "sprite_init_" in str(png_file):
+            data = read_data(png_file)
+            save_data(str(png_file.with_suffix("")) + ".mem", data)

@@ -48,16 +48,63 @@ def generate_tilemap(image_path, tileset_folder):
     return tilemap
 
 
-image_path = "memory_init/title_screen.png"
-tileset_folder = "memory_init/"
-tilemap = generate_tilemap(image_path, tileset_folder)
-output = ""
-output = "val rom = VecInit(Seq(\n"
-for row in tilemap:
-    for item in row:
-        output += " " + str(item) + ".U(tileWidth.W),\n"
-output += "))"
+def generate_tilemap_loader(image_path, loader_name, output_path):
+    tileset_folder = "memory_init/"
+    tilemap = generate_tilemap(image_path, tileset_folder)
+    output = ""
+    output = '''
+import chisel3._
+import chisel3.util._
 
-f = open("tilemap_output.txt", "w")
-f.write(output)
-f.close()
+class TitleScreenLoader'''
+    output += loader_name
+    output += '''(BackTileNumber: Int, screenSize: Int = 1200) extends Module {
+    val addrWidth = 11
+    val tileWidth = 6
+
+    val io = IO(new Bundle {
+        val load = Input(Bool())
+        val done = Output(Bool())
+
+        val backBufferWriteData = Output(UInt(tileWidth.W))
+        val backBufferWriteAddress = Output(UInt(addrWidth.W))
+        val backBufferWriteEnable = Output(Bool())
+    })
+    
+    val rom = VecInit(Seq(\n'''
+    for row in tilemap:
+        for i in range(len(row)):
+            if i >= len(row) - 1:
+                output += '''       ''' + str(row[i]) + ".U(tileWidth.W)\n"
+            else:
+                output += '''       ''' + str(row[i]) + ".U(tileWidth.W),\n"
+    output += '''   ))
+    val address = RegInit(0.U(addrWidth.W))
+    val running = RegInit(false.B)
+
+    io.backBufferWriteData := rom(address)
+    io.backBufferWriteAddress := address
+    io.backBufferWriteEnable := false.B
+    io.done := false.B
+
+    when(io.load && !running) {
+        running := true.B
+        address := 0.U
+    }
+
+    when(running) {
+        io.backBufferWriteEnable := true.B
+        io.backBufferWriteData := rom(address)
+        io.backBufferWriteAddress := address
+        address := address + 1.U
+        when(address === (screenSize - 1).U) {
+            running := false.B
+            io.done := true.B
+        }
+    }
+}
+    '''
+
+    f = open(output_path, "w")
+    f.write(output)
+    f.close()
