@@ -2,32 +2,46 @@
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Memory.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Memory.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScreenManager.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RegPipeline$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RegPipeline$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$3.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Memory$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameLogic.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GameLogic.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RaceManager$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GraphicEngineVGA$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TitleScreenLoader$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/TitleScreenLoader$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TitleScreenLoader.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/TitleScreenLoader.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TitleScreenLoader$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/TitleScreenLoader$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScreenManager$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Top.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamInitSpWf$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RamSpWf$$anon$2.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamSpWf$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RaceManager.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.v[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamSpWf.v[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RegPipeline.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RegPipeline.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Top$delayedInit$body.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	screen_loaders[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/screen_loaders[0m
+[0m[[0m[0mdebug[0m] [0m[0m	screen_loaders/RaceTrack1Loader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/screen_loaders/RaceTrack1Loader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	screen_loaders/RaceTrack1Loader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/screen_loaders/RaceTrack1Loader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	screen_loaders/MenuLoader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/screen_loaders/MenuLoader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	screen_loaders/RaceTrack1Loader$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/screen_loaders/RaceTrack1Loader$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	screen_loaders/MenuLoader$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/screen_loaders/MenuLoader$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	screen_loaders/MenuLoader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/screen_loaders/MenuLoader.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GameTop.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GameTop.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree.class[0m
@@ -46,8 +60,6 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamInitSpWf.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GameTop$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameLogic$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GameLogic$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Top$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

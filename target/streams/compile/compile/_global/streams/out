@@ -1,6 +1,4 @@
-[0m[[0m[33mwarn[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/GameLogic.scala:99:43: Passing an Int to .U is usually a mistake: It does *not* set the width but does a bit extract.[0m
-[0m[[0m[33mwarn[0m] [0m[0mDid you mean .U(6.W)?[0m
-[0m[[0m[33mwarn[0m] [0m[0mIf you do want bit extraction, use .U.extract(6) instead.[0m
-[0m[[0m[33mwarn[0m] [0m[0m  val backBufferWriteDataReg = RegInit(0.U(6))[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                          ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/RaceManager.scala:73:14: not found: value enable[0m
+[0m[[0m[31merror[0m] [0m[0m        when(enable){[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

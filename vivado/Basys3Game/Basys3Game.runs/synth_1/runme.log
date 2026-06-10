@@ -7,7 +7,7 @@
   **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
   **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
   **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-  **** Start of session at: Wed Jun 10 09:02:54 2026
+  **** Start of session at: Wed Jun 10 12:28:17 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -19,12 +19,12 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 15687
+INFO: [Synth 8-7075] Helper process launched with PID 160064
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2131.926 ; gain = 232.066 ; free physical = 169 ; free virtual = 2564
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2115.676 ; gain = 227.941 ; free physical = 266 ; free virtual = 2407
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'Top' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:6086]
-INFO: [Synth 8-6157] synthesizing module 'GameTop' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:5955]
+INFO: [Synth 8-6157] synthesizing module 'Top' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:7565]
+INFO: [Synth 8-6157] synthesizing module 'GameTop' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:7372]
 INFO: [Synth 8-6157] synthesizing module 'GraphicEngineVGA' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:2202]
 INFO: [Synth 8-6157] synthesizing module 'Memory' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1]
 INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
@@ -551,36 +551,36 @@ INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_14.mem' is read
 	Parameter DATA_WIDTH bound to: 7 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/sprite_init_15.mem - type: string 
 INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_15.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3706]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3919]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3708]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3928]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3710]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3937]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3712]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3946]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3714]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3955]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3716]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3964]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3718]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3973]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3720]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3982]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3722]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3991]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3724]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4000]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3726]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4009]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3728]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4018]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3730]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4027]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3732]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4036]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3734]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4045]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3715]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3938]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3717]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3947]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3719]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3956]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3721]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3965]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3723]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3974]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3725]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3983]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3727]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3992]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3729]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4001]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3731]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4010]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3733]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4019]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3735]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4028]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3737]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4037]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3739]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4046]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3741]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4055]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3743]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4064]
 WARNING: [Synth 8-3917] design Top has port io_led_0 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_1 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_2 driven by constant 0
@@ -589,8 +589,6 @@ WARNING: [Synth 8-3917] design Top has port io_led_4 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_5 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_6 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_7 driven by constant 0
-WARNING: [Synth 8-3917] design Top has port io_viewBoxOutOfRangeError driven by constant 0
-WARNING: [Synth 8-7129] Port io_btnC in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_btnU in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_btnL in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_btnR in module Top is either unconnected or has no load
@@ -604,18 +602,18 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2271.863 ; gain = 372.004 ; free physical = 135 ; free virtual = 2448
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2281.613 ; gain = 393.879 ; free physical = 163 ; free virtual = 2261
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2280.770 ; gain = 380.910 ; free physical = 137 ; free virtual = 2450
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2293.488 ; gain = 405.754 ; free physical = 163 ; free virtual = 2261
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2280.770 ; gain = 380.910 ; free physical = 137 ; free virtual = 2450
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2293.488 ; gain = 405.754 ; free physical = 163 ; free virtual = 2261
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2280.770 ; gain = 0.000 ; free physical = 133 ; free virtual = 2447
+Netlist sorting complete. Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2293.488 ; gain = 0.000 ; free physical = 163 ; free virtual = 2261
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -626,72 +624,86 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2388.508 ; gain = 0.000 ; free physical = 128 ; free virtual = 2454
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2401.289 ; gain = 0.000 ; free physical = 144 ; free virtual = 2253
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 lscpu: bad usage
 Try 'lscpu --help' for more information.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2388.543 ; gain = 0.000 ; free physical = 137 ; free virtual = 2456
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2401.324 ; gain = 0.000 ; free physical = 144 ; free virtual = 2254
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2388.543 ; gain = 488.684 ; free physical = 149 ; free virtual = 2455
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2401.324 ; gain = 513.590 ; free physical = 182 ; free virtual = 2292
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2396.512 ; gain = 496.652 ; free physical = 149 ; free virtual = 2455
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2409.293 ; gain = 521.559 ; free physical = 182 ; free virtual = 2292
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2396.512 ; gain = 496.652 ; free physical = 149 ; free virtual = 2455
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2409.293 ; gain = 521.559 ; free physical = 182 ; free virtual = 2292
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'mainStateReg_reg' in module 'GameLogic'
+DSP Debug: swapped A/B pins for adder 0x662e3140
+DSP Debug: swapped A/B pins for adder 0x662e2600
+INFO: [Synth 8-802] inferred FSM for state register 'screenManagerStateReg_reg' in module 'ScreenManager'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                  iSTATE |                             0001 |                               00
-                 iSTATE0 |                             0010 |                               01
-                 iSTATE1 |                             0100 |                               10
-                 iSTATE2 |                             1000 |                               11
+                 iSTATE0 |                              111 |                              000
+                 iSTATE1 |                              110 |                              001
+                 iSTATE3 |                              000 |                              110
+                 iSTATE4 |                              001 |                              111
+                 iSTATE6 |                              010 |                              100
+                  iSTATE |                              100 |                              101
 *
+                 iSTATE5 |                              011 |                              010
+                 iSTATE2 |                              101 |                              011
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'mainStateReg_reg' using encoding 'one-hot' in module 'GameLogic'
+INFO: [Synth 8-3354] encoded FSM with state register 'screenManagerStateReg_reg' using encoding 'sequential' in module 'ScreenManager'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2396.512 ; gain = 496.652 ; free physical = 211 ; free virtual = 2521
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2409.293 ; gain = 521.559 ; free physical = 184 ; free virtual = 2296
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   11 Bit       Adders := 2     
-	   2 Input   10 Bit       Adders := 2     
+	   2 Input   11 Bit       Adders := 5     
+	   2 Input   10 Bit       Adders := 3     
 	   2 Input    2 Bit       Adders := 1     
 +---Registers : 
-	               11 Bit    Registers := 6     
-	               10 Bit    Registers := 2     
+	               11 Bit    Registers := 8     
+	               10 Bit    Registers := 4     
 	                7 Bit    Registers := 144   
 	                6 Bit    Registers := 24    
 	                4 Bit    Registers := 3     
 	                2 Bit    Registers := 1     
-	                1 Bit    Registers := 98    
+	                1 Bit    Registers := 106   
 +---RAMs : 
 	              12K Bit	(2048 X 6 bit)          RAMs := 3     
 	               7K Bit	(1024 X 7 bit)          RAMs := 80    
 +---ROMs : 
-	                    ROMs := 1     
+	                    ROMs := 2     
 +---Muxes : 
-	   2 Input   11 Bit        Muxes := 3     
-	   2 Input    6 Bit        Muxes := 17    
-	   4 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 4     
+	   7 Input   11 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 1     
+	   7 Input   10 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 18    
+	   7 Input    6 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 3     
 	   2 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 12    
+	   2 Input    1 Bit        Muxes := 29    
+	   6 Input    1 Bit        Muxes := 2     
+	   4 Input    1 Bit        Muxes := 1     
 	   5 Input    1 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 1     
+	   7 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -716,8 +728,6 @@ WARNING: [Synth 8-3917] design Top has port io_led_4 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_5 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_6 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_7 driven by constant 0
-WARNING: [Synth 8-3917] design Top has port io_viewBoxOutOfRangeError driven by constant 0
-WARNING: [Synth 8-7129] Port io_btnC in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_btnU in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_btnL in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_btnR in module Top is either unconnected or has no load
@@ -733,18 +743,19 @@ WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has 
 WARNING: [Synth 8-7257] Removed RAM (gameTop/graphicEngineVGA/backTileMemories_36/ramsSpWf/RAM_reg) due to inactive write enable.
 WARNING: [Synth 8-6014] Unused sequential element gameTop/graphicEngineVGA/backTileMemories_36/ramsSpWf/RAM_reg was removed. 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2396.512 ; gain = 496.652 ; free physical = 185 ; free virtual = 2499
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 2409.293 ; gain = 521.559 ; free physical = 166 ; free virtual = 2286
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 ROM: Preliminary Mapping Report
-+------------+-----------------------------------------------------+---------------+----------------+
-|Module Name | RTL Object                                          | Depth x Width | Implemented As | 
-+------------+-----------------------------------------------------+---------------+----------------+
-|Top         | gameTop/gameLogic/titleScreenLoader/address_reg_rep | 2048x6        | Block RAM      | 
-+------------+-----------------------------------------------------+---------------+----------------+
++------------+----------------------------------------------------+---------------+----------------+
+|Module Name | RTL Object                                         | Depth x Width | Implemented As | 
++------------+----------------------------------------------------+---------------+----------------+
+|Top         | gameTop/gameLogic/menuLoader/address_reg_rep       | 2048x6        | Block RAM      | 
+|Top         | gameTop/gameLogic/raceTrack1Loader/address_reg_rep | 2048x6        | Block RAM      | 
++------------+----------------------------------------------------+---------------+----------------+
 
 
 Block RAM: Preliminary Mapping Report (see note below)
@@ -843,13 +854,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2455.512 ; gain = 555.652 ; free physical = 112 ; free virtual = 2429
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 2444.293 ; gain = 556.559 ; free physical = 146 ; free virtual = 2235
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2494.559 ; gain = 594.699 ; free physical = 119 ; free virtual = 2398
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2487.340 ; gain = 599.605 ; free physical = 121 ; free virtual = 2209
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -950,14 +961,14 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_14/ramsSpWf/RAM_reg' (RAMB18E1_14) to 'gameTop/graphicEngineVGA/backTileMemories_26/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_56/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_56/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_57/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_57/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_58/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_58/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_63/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_56/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_58/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_57/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_57/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_63/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_0/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_1/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_1/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_2/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_2/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_3/ramsSpWf/RAM_reg'
@@ -975,8 +986,10 @@ INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_14/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_15/ramsSpWf/RAM_reg'
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferRestoreMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance gameTop/gameLogic/menuLoader/address_reg_rep (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance gameTop/gameLogic/raceTrack1Loader/address_reg_rep (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2495.566 ; gain = 595.707 ; free physical = 115 ; free virtual = 2394
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 2488.348 ; gain = 600.613 ; free physical = 117 ; free virtual = 2206
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -994,37 +1007,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:32 . Memory (MB): peak = 2656.348 ; gain = 756.488 ; free physical = 120 ; free virtual = 2263
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2646.160 ; gain = 758.426 ; free physical = 115 ; free virtual = 2081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2656.348 ; gain = 756.488 ; free physical = 120 ; free virtual = 2263
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2646.160 ; gain = 758.426 ; free physical = 115 ; free virtual = 2081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2656.348 ; gain = 756.488 ; free physical = 118 ; free virtual = 2263
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2646.160 ; gain = 758.426 ; free physical = 115 ; free virtual = 2081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2656.348 ; gain = 756.488 ; free physical = 118 ; free virtual = 2263
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2646.160 ; gain = 758.426 ; free physical = 115 ; free virtual = 2081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2659.316 ; gain = 759.457 ; free physical = 118 ; free virtual = 2263
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2649.129 ; gain = 761.395 ; free physical = 115 ; free virtual = 2081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2659.316 ; gain = 759.457 ; free physical = 118 ; free virtual = 2263
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2649.129 ; gain = 761.395 ; free physical = 115 ; free virtual = 2081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1058,48 +1071,48 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |BUFG     |     1|
-|2     |CARRY4   |    22|
-|3     |LUT1     |    12|
-|4     |LUT2     |    31|
-|5     |LUT3     |    55|
-|6     |LUT4     |    25|
-|7     |LUT5     |    84|
-|8     |LUT6     |   153|
+|2     |CARRY4   |    30|
+|3     |LUT1     |    16|
+|4     |LUT2     |    35|
+|5     |LUT3     |    84|
+|6     |LUT4     |    44|
+|7     |LUT5     |    99|
+|8     |LUT6     |   181|
 |9     |MUXF7    |    73|
 |10    |MUXF8    |    33|
-|11    |RAMB18E1 |    59|
-|70    |SRL16E   |     4|
-|71    |FDRE     |   241|
-|72    |FDSE     |    17|
-|73    |IBUF     |     2|
-|74    |OBUF     |    25|
+|11    |RAMB18E1 |    60|
+|71    |SRL16E   |     4|
+|72    |FDRE     |   296|
+|73    |FDSE     |    19|
+|74    |IBUF     |     3|
+|75    |OBUF     |    25|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2659.316 ; gain = 759.457 ; free physical = 118 ; free virtual = 2263
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2649.129 ; gain = 761.395 ; free physical = 115 ; free virtual = 2081
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 25 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2659.316 ; gain = 651.684 ; free physical = 118 ; free virtual = 2263
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2659.324 ; gain = 759.457 ; free physical = 118 ; free virtual = 2263
+Synthesis finished with 0 errors, 0 critical warnings and 23 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2649.129 ; gain = 653.559 ; free physical = 115 ; free virtual = 2081
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2649.137 ; gain = 761.395 ; free physical = 115 ; free virtual = 2081
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:03 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2659.324 ; gain = 0.000 ; free physical = 283 ; free virtual = 2429
-INFO: [Netlist 29-17] Analyzing 187 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2649.137 ; gain = 0.000 ; free physical = 284 ; free virtual = 2250
+INFO: [Netlist 29-17] Analyzing 196 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2715.344 ; gain = 0.000 ; free physical = 279 ; free virtual = 2427
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2705.156 ; gain = 0.000 ; free physical = 272 ; free virtual = 2238
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 lscpu: bad usage
 Try 'lscpu --help' for more information.
-Synth Design complete | Checksum: cc0cab2f
+Synth Design complete | Checksum: 6f5d7b9f
 INFO: [Common 17-83] Releasing license: Synthesis
-326 Infos, 77 Warnings, 0 Critical Warnings and 0 Errors encountered.
+328 Infos, 73 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:40 ; elapsed = 00:00:38 . Memory (MB): peak = 2715.379 ; gain = 1166.492 ; free physical = 285 ; free virtual = 2433
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2122.352; main = 2039.791; forked = 326.460
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3507.434; main = 2715.348; forked = 963.863
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2739.355 ; gain = 0.000 ; free physical = 285 ; free virtual = 2433
+synth_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:40 . Memory (MB): peak = 2705.191 ; gain = 1145.617 ; free physical = 272 ; free virtual = 2238
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2085.967; main = 2069.641; forked = 326.146
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3451.203; main = 2705.160; forked = 963.859
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2729.168 ; gain = 0.000 ; free physical = 272 ; free virtual = 2238
 INFO: [Common 17-1381] The checkpoint '/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Jun 10 09:03:39 2026...
+INFO: [Common 17-206] Exiting Vivado at Wed Jun 10 12:29:03 2026...
