@@ -105,14 +105,15 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   val screenManagerStateReg = RegInit(startup)
   val currentScreenReg = RegInit(titleScreen)
   
-  // Background loaders
-  val menuLoader = Module(new MenuLoader(BackTileNumber))
-  val menuLoaderLoadReg = RegInit(false.B)
-  menuLoader.io.load := menuLoaderLoadReg
+  // Loaders and rom
+  val screenLoader = Module(new ScreenLoader())
+  val screenLoaderLoadReg = RegInit(false.B)
+  screenLoader.io.load := screenLoaderLoadReg
 
-  val raceTrack1Loader = Module(new RaceTrack1Loader(BackTileNumber))
-  val raceTrack1LoaderLoadReg = RegInit(false.B)
-  raceTrack1Loader.io.load := raceTrack1LoaderLoadReg
+  val tilemapRom = Module(new TilemapRom())
+  tilemapRom.io.tilemapIdx := 0.U(4.W)
+  tilemapRom.io.tileAddress := 0.U(11.W)
+
 
   // Race manager
   val raceManager = Module(new RaceManager(SpriteNumber, BackTileNumber))
