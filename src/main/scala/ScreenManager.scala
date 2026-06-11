@@ -124,6 +124,8 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   raceManager.io.btnD := io.btnD
   raceManager.io.sw := io.sw
   raceManager.io.newFrame := io.newFrame
+  raceManager.io.tilemapRomTileData := 0.U(6.W)
+  raceManager.io.tilemapRomCollisionData := false.B
 
   // Backbuffer setup
   io.backBufferWriteData := screenLoader.io.backBufferWriteData
@@ -201,7 +203,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       io.frameUpdateDone := raceManager.io.frameUpdateDone
       
       // Give control of TilemapRom
-      tilemapRom.io.tilemapIdx := raceManager.io.tilemapRomTilemapIdx
+      tilemapRom.io.tilemapIdx := 1.U(4.W)
       tilemapRom.io.tileAddress := raceManager.io.tilemapRomTileAddress
       raceManager.io.tilemapRomTileData := tilemapRom.io.tileData
       raceManager.io.tilemapRomCollisionData := tilemapRom.io.collisionData

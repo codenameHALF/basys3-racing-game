@@ -41,9 +41,8 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     val enable = Input(Bool())
 
     //Tilemap rom connections
-    val tilemapRomTilemapIdx = Output(UInt(4.W))
     val tilemapRomTileAddress = Output(UInt(11.W))
-    val tilemapRomTileData = Input(UInt(tileWidth.W))
+    val tilemapRomTileData = Input(UInt(6.W))
     val tilemapRomCollisionData = Input(Bool())
   })
 
@@ -72,6 +71,11 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   // State enums
   val idle :: computeRace :: done :: Nil = Enum(3)
   val raceManagerStateReg = RegInit(idle)
+
+  val playerController = Module(new PlayerController())
+  io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
+  playerController.io.tilemapRomTileData := io.tilemapRomTileData
+  playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
 
 
   switch(raceManagerStateReg) {

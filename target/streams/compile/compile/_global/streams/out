@@ -1,7 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScreenLoader.scala:23:31: not found: value rom[0m
-[0m[[0m[31merror[0m] [0m[0m    io.backBufferWriteData := rom(address)[0m
-[0m[[0m[31merror[0m] [0m[0m                              ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScreenLoader.scala:35:12: value tileIdx is not a member of chisel3.Bundle{val load: chisel3.Bool; val done: chisel3.Bool; val tileAddress: chisel3.UInt; val tileData: chisel3.UInt; val backBufferWriteData: chisel3.UInt; val backBufferWriteAddress: chisel3.UInt; val backBufferWriteEnable: chisel3.Bool}[0m
-[0m[[0m[31merror[0m] [0m[0m        io.tileIdx := address[0m
-[0m[[0m[31merror[0m] [0m[0m           ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/PlayerController.scala:11:5: not found: value tilemapRomTileAddress[0m
+[0m[[0m[31merror[0m] [0m[0m    tilemapRomTileAddress := 0.U(11.W)[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

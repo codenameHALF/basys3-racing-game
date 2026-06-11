@@ -1,4 +1,12 @@
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenLoader.scala 9:16] : [module ScreenLoader]  Reference io is not fully initialized.[0m
-[0m[[0m[31merror[0m] [0m[0m   : io.tileAddress <= mux(running, address, VOID)[0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) firrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenLoader.scala 9:16] : [module ScreenLoader]  Reference io is not fully initialized.[0m
-[0m[[0m[31merror[0m] [0m[0m   : io.tileAddress <= mux(running, address, VOID)[0m
+[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.PassExceptions: [0m
+[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
+[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomCollisionData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.collisionData, VOID))))))[0m
+[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
+[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomTileData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.tileData, VOID))))))[0m
+[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.PassException: 2 errors detected![0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) firrtl.passes.PassExceptions: [0m
+[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
+[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomCollisionData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.collisionData, VOID))))))[0m
+[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
+[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomTileData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.tileData, VOID))))))[0m
+[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.PassException: 2 errors detected![0m
