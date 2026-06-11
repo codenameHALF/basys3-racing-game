@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date         : Thu Jun 11 10:37:11 2026
-| Host         : halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA running 64-bit Linux Mint 22.3
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Thu Jun 11 13:17:16 2026
+| Host         : DESKTOP-0FACVVU running 64-bit major release  (build 9200)
 | Command      : report_drc -file Top_drc_opted.rpt -pb Top_drc_opted.pb -rpx Top_drc_opted.rpx
 | Design       : Top
 | Device       : xc7a35tcpg236-1
@@ -24,12 +24,75 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max checks: <unlimited>
-             Checks found: 0
-+------+----------+-------------+--------+
-| Rule | Severity | Description | Checks |
-+------+----------+-------------+--------+
-+------+----------+-------------+--------+
+             Checks found: 12
++--------+----------+------------------------+--------+
+| Rule   | Severity | Description            | Checks |
++--------+----------+------------------------+--------+
+| DPIP-1 | Warning  | Input pipelining       | 4      |
+| DPOP-1 | Warning  | PREG Output pipelining | 4      |
+| DPOP-2 | Warning  | MREG Output pipelining | 4      |
++--------+----------+------------------------+--------+
 
 2. REPORT DETAILS
 -----------------
+DPIP-1#1 Warning
+Input pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1 input gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#2 Warning
+Input pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1__0 input gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#3 Warning
+Input pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1 input gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#4 Warning
+Input pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1__0 input gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPOP-1#1 Warning
+PREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1 output gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#2 Warning
+PREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1__0 output gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#3 Warning
+PREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1 output gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#4 Warning
+PREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1__0 output gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-2#1 Warning
+MREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1 multiplier stage gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#2 Warning
+MREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1__0 multiplier stage gameTop/gameLogic/raceManager/playerController/_sprite0XReg_T_1__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#3 Warning
+MREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1 multiplier stage gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#4 Warning
+MREG Output pipelining  
+DSP gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1__0 multiplier stage gameTop/gameLogic/raceManager/playerController/_sprite0YReg_T_1__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
 

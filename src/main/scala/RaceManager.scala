@@ -83,6 +83,14 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   playerController.io.btnR := io.btnR
   playerController.io.newFrame := io.newFrame      
 
+  for (i <- 0 until 3) {
+    io.spriteVisible(i)        := playerController.io.spriteVisible(i)
+    io.spriteXPosition(i)      := playerController.io.spriteXPosition(i)
+    io.spriteYPosition(i)      := playerController.io.spriteYPosition(i)
+    io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
+    io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
+  }
+
 
   switch(raceManagerStateReg) {
     is (idle) {
