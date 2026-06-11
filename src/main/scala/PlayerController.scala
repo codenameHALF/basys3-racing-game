@@ -7,7 +7,7 @@ class PlayerController extends Module {
         val tilemapRomTileData = Input(UInt(6.W))
         val tilemapRomCollisionData = Input(Bool())
 
-        //Buttons
+        //Button
         val btnC = Input(Bool())
         val btnU = Input(Bool())
         val btnL = Input(Bool())
@@ -22,9 +22,11 @@ class PlayerController extends Module {
 
         val newFrame = Input(Bool())
         val frameUpdateDone = Output(Bool())
+
+        val enable = Input(Bool())
     })
 
-    io.tilemapRomTileAddress := 0.U(11.W)
+  io.tilemapRomTileAddress := 0.U(11.W)
 
 
     //Setting all sprite control outputs to zero
@@ -42,19 +44,19 @@ class PlayerController extends Module {
 // Player logic:
 /////////////////////////////////////////////
 
-  val idle :: inputHandling :: computePos :: done :: Nil = Enum(4)
+  val idle :: inputHandling :: computePos :: collision :: collisionWait :: done :: Nil = Enum(6)
   val stateReg = RegInit(idle)
 
   // Position, Hastighed, Vinkel (Q16 format)
-  val sprite0XReg = RegInit((32.S << 16).asSInt)
+  val sprite0XReg = RegInit((64.S << 16).asSInt)
   val sprite0YReg = RegInit(((360 - 32).S << 16).asSInt)
   val sprite0SpeedReg = RegInit(0.S(32.W))
   val sprite0AngleReg = RegInit(0.U(8.W))
 
   val cosReg = RegInit(0.S(16.W))
   val sinReg = RegInit(0.S(16.W))
-  //val velXReg = RegInit(0.S(32.W))
-  //val velYReg = RegInit(0.S(32.W))
+  val nextXReg = RegInit(0.S(32.W))
+  val nextYReg = RegInit(0.S(32.W))
 
   // Tuning
   val accelRate = 1000.S(32.W)
@@ -80,6 +82,12 @@ class PlayerController extends Module {
   val sprite1Visible = RegInit(false.B)
   val sprite2Visible = RegInit(false.B)
 
+  val posToAddress = Module(new PositionToAddress)
+  posToAddress.io.posX := 0.U
+  posToAddress.io.posY := 0.U
+
+ 
+
   io.spriteVisible(0)        := sprite0Visible
   io.spriteXPosition(0)      := (sprite0XReg >> 16).asSInt
   io.spriteYPosition(0)      := (sprite0YReg >> 16).asSInt
@@ -97,14 +105,14 @@ class PlayerController extends Module {
   io.spriteYPosition(2)      := (sprite0YReg >> 16).asSInt
   io.spriteFlipVertical(2) := sprite2FlipVerticalReg
 
-
-
   // FSMD logik
   switch(stateReg) {
     is(idle) {
-      when(io.newFrame){
-        stateReg := inputHandling
-      } 
+      when(io.enable){
+        when(io.newFrame){
+          stateReg := inputHandling
+        } 
+      }
     }
     is(inputHandling) {
       // Hastigheds- og styringslogik
@@ -214,10 +222,27 @@ class PlayerController extends Module {
     is(computePos){
       //velXReg := (sprite0SpeedReg * cosReg)(39, 8).asSInt
       //velYReg := (sprite0SpeedReg * sinReg)(39, 8).asSInt
+      nextXReg := sprite0XReg + ((sprite0SpeedReg * cosReg) >> 8)
+      nextYReg := sprite0YReg + ((sprite0SpeedReg * sinReg) >> 8)
 
-      sprite0XReg := sprite0XReg + ((sprite0SpeedReg * cosReg) >> 8)
-      sprite0YReg := sprite0YReg + ((sprite0SpeedReg * sinReg) >> 8)
+      stateReg := collisionWait
 
+    }
+    is(collisionWait){
+        posToAddress.io.posX := (nextXReg >> 16).asUInt
+        posToAddress.io.posY := (nextYReg >> 16).asUInt
+        io.tilemapRomTileAddress := posToAddress.io.address
+        stateReg := collision
+    }
+
+    is(collision){
+      when(io.tilemapRomCollisionData) {
+        sprite0XReg := (64.S << 16).asSInt
+        sprite0YReg := ((360 - 32).S << 16).asSInt
+        } .otherwise {
+        sprite0XReg := nextXReg
+        sprite0YReg := nextYReg
+        }
       stateReg := done
     }
 
@@ -226,5 +251,4 @@ class PlayerController extends Module {
       stateReg := idle
     }
   }
-
 }

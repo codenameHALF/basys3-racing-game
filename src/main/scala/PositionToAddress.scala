@@ -15,3 +15,12 @@ class PositionToAddress extends Module {
   io.address := 0.U(11.W) + (xIdx) + (yIdx << 5) + (yIdx << 3)
 
 }
+
+/*
+ def posToAddress(posX: UInt posY: UInt){
+    val xIdx = (posX >> 5)
+    val yIdx = (posY >> 5)
+    val address = 0.U(11.W) + (xIdx) + (yIdx << 5) + (yIdx << 3)
+    (address)
+  }
+*/

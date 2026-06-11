@@ -1,12 +1,29 @@
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.PassExceptions: [0m
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
-[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomCollisionData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.collisionData, VOID))))))[0m
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
-[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomTileData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.tileData, VOID))))))[0m
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.PassException: 2 errors detected![0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) firrtl.passes.PassExceptions: [0m
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
-[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomCollisionData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.collisionData, VOID))))))[0m
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.CheckInitialization$RefNotInitializedException:  @[src/main/scala/ScreenManager.scala 117:27] : [module ScreenManager]  Reference raceManager is not fully initialized.[0m
-[0m[[0m[31merror[0m] [0m[0m   : raceManager.io.tilemapRomTileData <= mux(_T, VOID, mux(_T_1, VOID, mux(_T_2, VOID, mux(_T_3, VOID, mux(_T_5, VOID, mux(_T_6, tilemapRom.io.tileData, VOID))))))[0m
-[0m[[0m[31merror[0m] [0m[0mfirrtl.passes.PassException: 2 errors detected![0m
+[0m[[0m[31merror[0m] [0m[0mscala.MatchError: List(UInt<3>(0), UInt<3>(1), UInt<3>(2), UInt<3>(3), UInt<3>(4)) (of class scala.collection.immutable.$colon$colon)[0m
+[0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
+[0m[[0m[31merror[0m] [0m[0m	at PlayerController.$anonfun$x$1$1(PlayerController.scala:47)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursivelyProduct(package.scala:48)[0m
+[0m[[0m[31merror[0m] [0m[0m	at PlayerController.<init>(PlayerController.scala:47)[0m
+[0m[[0m[31merror[0m] [0m[0m	at RaceManager.$anonfun$playerController$2(RaceManager.scala:75)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
+[0m[[0m[31merror[0m] [0m[0m	at RaceManager.$anonfun$playerController$1(RaceManager.scala:75)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)[0m
+[0m[[0m[31merror[0m] [0m[0m	at RaceManager.<init>(RaceManager.scala:75)[0m
+[0m[[0m[31merror[0m] [0m[0m	at ScreenManager.$anonfun$raceManager$2(ScreenManager.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
+[0m[[0m[31merror[0m] [0m[0m	at ScreenManager.$anonfun$raceManager$1(ScreenManager.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)[0m
+[0m[[0m[31merror[0m] [0m[0m	at ScreenManager.<init>(ScreenManager.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at GameTop.$anonfun$gameLogic$2(GameTop.scala:47)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
+[0m[[0m[31merror[0m] [0m[0m	at GameTop.$anonfun$gameLogic$1(GameTop.scala:47)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)[0m
+[0m[[0m[31merror[0m] [0m[0m	at GameTop.<init>(GameTop.scala:47)[0m
+[0m[[0m[31merror[0m] [0m[0m	at Top.$anonfun$gameTop$2(Top.scala:41)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
+[0m[[0m[31merror[0m] [0m[0m	at Top.$anonfun$gameTop$1(Top.scala:41)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)[0m
+[0m[[0m[31merror[0m] [0m[0m	at Top.<init>(Top.scala:41)[0m
+[0m[[0m[31merror[0m] [0m[0m	at Top$.$anonfun$new$6(Top.scala:68)[0m
+[0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
+[0m[[0m[31merror[0m] [0m[0m	at ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) scala.MatchError: List(UInt<3>(0), UInt<3>(1), UInt<3>(2), UInt<3>(3), UInt<3>(4)) (of class scala.collection.immutable.$colon$colon)[0m

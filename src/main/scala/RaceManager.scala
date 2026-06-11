@@ -81,7 +81,8 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   playerController.io.btnD := io.btnD
   playerController.io.btnC := io.btnC
   playerController.io.btnR := io.btnR
-  playerController.io.newFrame := io.newFrame      
+  playerController.io.newFrame := io.newFrame
+  playerController.io.enable := io.enable      
 
   for (i <- 0 until 3) {
     io.spriteVisible(i)        := playerController.io.spriteVisible(i)

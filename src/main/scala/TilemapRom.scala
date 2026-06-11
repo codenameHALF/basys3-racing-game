@@ -68,18 +68,18 @@ class TilemapRom() extends Module {
         false.B, // backtile_init_49
         false.B, // backtile_init_50
         false.B, // backtile_init_51
-        false.B, // backtile_init_52
+        true.B, // backtile_init_52
         false.B, // backtile_init_53
         false.B, // backtile_init_54
-        false.B, // backtile_init_55
-        false.B, // backtile_init_56
-        false.B, // backtile_init_57
-        false.B, // backtile_init_58
-        false.B, // backtile_init_59
-        false.B, // backtile_init_60
-        false.B, // backtile_init_61
-        false.B, // backtile_init_62
-        false.B  // backtile_init_63
+        true.B, // backtile_init_55
+        true.B, // backtile_init_56
+        true.B, // backtile_init_57
+        true.B, // backtile_init_58
+        true.B, // backtile_init_59
+        true.B, // backtile_init_60
+        true.B, // backtile_init_61
+        true.B, // backtile_init_62
+        true.B  // backtile_init_63
     ))
 
 

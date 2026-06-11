@@ -8,3 +8,48 @@
     <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="21648" HostCore="16" HostMemory="033618251776">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="2232" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="25560" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="7540" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="3652" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="23916" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="8316" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="20260" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="24592" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="12512" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
