@@ -7,8 +7,6 @@
 
 import chisel3._
 import chisel3.util._
-import screen_loaders.MenuLoader
-import screen_loaders.RaceTrack1Loader
 
 class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   val io = IO(new Bundle {
@@ -105,14 +103,15 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   val screenManagerStateReg = RegInit(startup)
   val currentScreenReg = RegInit(titleScreen)
   
-  // Background loaders
-  val menuLoader = Module(new MenuLoader(BackTileNumber))
-  val menuLoaderLoadReg = RegInit(false.B)
-  menuLoader.io.load := menuLoaderLoadReg
+  // Screen loader and tilemap rom
+  val tilemapRom = Module(new TilemapRom())
+  val screenLoader = Module(new ScreenLoader())
 
-  val raceTrack1Loader = Module(new RaceTrack1Loader(BackTileNumber))
-  val raceTrack1LoaderLoadReg = RegInit(false.B)
-  raceTrack1Loader.io.load := raceTrack1LoaderLoadReg
+  tilemapRom.io.tilemapIdx := 0.U(4.W)
+  tilemapRom.io.tileAddress := screenLoader.io.tileAddress
+  screenLoader.io.load := false.B
+  screenLoader.io.tileData := tilemapRom.io.tileData
+
 
   // Race manager
   val raceManager = Module(new RaceManager(SpriteNumber, BackTileNumber))
@@ -125,39 +124,38 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   raceManager.io.btnD := io.btnD
   raceManager.io.sw := io.sw
   raceManager.io.newFrame := io.newFrame
+  raceManager.io.tilemapRomTileData := 0.U(6.W)
+  raceManager.io.tilemapRomCollisionData := false.B
 
   // Backbuffer setup
-  val backBufferWriteDataReg = RegInit(0.U(6.W))
-  val backBufferWriteAddressReg = RegInit(0.U(11.W))
-  val backBufferWriteEnableReg = RegInit(false.B)
-  io.backBufferWriteData := backBufferWriteDataReg
-  io.backBufferWriteAddress := backBufferWriteAddressReg
-  io.backBufferWriteEnable := backBufferWriteEnableReg
+  io.backBufferWriteData := screenLoader.io.backBufferWriteData
+  io.backBufferWriteAddress := screenLoader.io.backBufferWriteAddress
+  io.backBufferWriteEnable := screenLoader.io.backBufferWriteEnable
   
 
-  //Player FSMD switch
+  //ScreenManager state machine
   switch(screenManagerStateReg) {
+    //Initial state
     is(startup) {
       when(io.newFrame) {
-        menuLoaderLoadReg := true.B
         screenManagerStateReg := loadMenu
       }
     }
 
+    //Load the menu background
     is(loadMenu) {
-      backBufferWriteDataReg := menuLoader.io.backBufferWriteData
-      backBufferWriteAddressReg := menuLoader.io.backBufferWriteAddress
-      backBufferWriteEnableReg := menuLoader.io.backBufferWriteEnable
-      
-      when(menuLoader.io.done) {
-        menuLoaderLoadReg := false.B
-        backBufferWriteEnableReg := false.B
+      screenLoader.io.load := true.B
+      tilemapRom.io.tilemapIdx := 0.U(4.W)
+
+      //When loading is finished go to IDLE
+      when(screenLoader.io.done) {
         io.frameUpdateDone := true.B
         screenManagerStateReg := idle
         currentScreenReg := titleScreen
       }
     }
 
+    //Make the transition animation to the track select screen
     is(transTrackSelect) {
       when(io.newFrame) {
         viewBoxXReg := viewBoxXReg + 8.U
@@ -165,6 +163,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       }
     }
 
+    //Give frameUpdateDone signal to make animation run over multiple frames
     is(transTrackSelectStepDone) {
       io.frameUpdateDone := true.B
       when(viewBoxXReg >= 640.U) {
@@ -175,40 +174,45 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       }
     }
 
+    //Load the selected track background
     is(loadTrack) {
-      backBufferWriteDataReg := raceTrack1Loader.io.backBufferWriteData
-      backBufferWriteAddressReg := raceTrack1Loader.io.backBufferWriteAddress
-      backBufferWriteEnableReg := raceTrack1Loader.io.backBufferWriteEnable
-      
-      when(raceTrack1Loader.io.done) {
-        raceTrack1LoaderLoadReg := false.B
-        backBufferWriteEnableReg := false.B
+      screenLoader.io.load := true.B
+      tilemapRom.io.tilemapIdx := 1.U(4.W)
+
+      // When the background is loaded go to race state
+      when(screenLoader.io.done) {
         io.frameUpdateDone := true.B
         screenManagerStateReg := race
       }
     }
 
+    //RaceManager takes over all logic control
     is(race) {      
+      // Leave control of all IO to RaceManager
       io.led := raceManager.io.led
-
       io.spriteXPosition := raceManager.io.spriteXPosition
       io.spriteYPosition := raceManager.io.spriteYPosition
       io.spriteVisible := raceManager.io.spriteVisible
       io.spriteFlipHorizontal := raceManager.io.spriteFlipHorizontal
       io.spriteFlipVertical := raceManager.io.spriteFlipVertical
-
       io.viewBoxX := raceManager.io.viewBoxX
       io.viewBoxY := raceManager.io.viewBoxY
-
       io.backBufferWriteData := raceManager.io.backBufferWriteData
       io.backBufferWriteAddress := raceManager.io.backBufferWriteAddress
       io.backBufferWriteEnable := raceManager.io.backBufferWriteEnable
-
       io.frameUpdateDone := raceManager.io.frameUpdateDone
+      
+      // Give control of TilemapRom
+      tilemapRom.io.tilemapIdx := 1.U(4.W)
+      tilemapRom.io.tileAddress := raceManager.io.tilemapRomTileAddress
+      raceManager.io.tilemapRomTileData := tilemapRom.io.tileData
+      raceManager.io.tilemapRomCollisionData := tilemapRom.io.collisionData
 
+      // Activate RaceManager
       raceManager.io.enable := true.B
     }
 
+    // Wait for user input on menu screens
     is(idle) {
       when(io.btnC) {
         when(currentScreenReg === titleScreen) {
@@ -218,7 +222,6 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
           screenManagerStateReg := loadTrack
           viewBoxXReg := 0.U;
           viewBoxYReg := 0.U;
-          raceTrack1LoaderLoadReg := true.B
         }
       }
 
@@ -227,6 +230,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       }
     }
 
+    // Give the frameUpdateDone flag
     is(done) {
       io.frameUpdateDone := true.B
       screenManagerStateReg := idle

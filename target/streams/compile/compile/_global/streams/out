@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/RaceManager.scala:73:14: not found: value enable[0m
-[0m[[0m[31merror[0m] [0m[0m        when(enable){[0m
-[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/PlayerController.scala:11:5: not found: value tilemapRomTileAddress[0m
+[0m[[0m[31merror[0m] [0m[0m    tilemapRomTileAddress := 0.U(11.W)[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
