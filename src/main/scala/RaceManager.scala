@@ -39,6 +39,12 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
     //Control flags from ScreenManager
     val enable = Input(Bool())
+
+    //Tilemap rom connections
+    val tilemapRomTilemapIdx = Output(UInt(4.W))
+    val tilemapRomTileAddress = Output(UInt(11.W))
+    val tilemapRomTileData = Input(UInt(tileWidth.W))
+    val tilemapRomCollisionData = Input(Bool())
   })
 
   // Disable all leds

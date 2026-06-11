@@ -10,7 +10,7 @@ class TilemapRom() extends Module {
         val tilemapIdx = Input(UInt(4.W))
         val tileAddress = Input(UInt(addrWidth.W))
         val tileData = Output(UInt(tileWidth.W))
-        val collisionData = Output(Bool)
+        val collisionData = Output(Bool())
     })
 
     
@@ -2496,6 +2496,6 @@ class TilemapRom() extends Module {
     ))
 
 
-    io.tileData := rom(tilemapIdx)(tileAddress)
-    io.collisionData := collisionTable(rom(tilemapIdx)(tileAddress))
+    io.tileData := rom(io.tilemapIdx)(io.tileAddress)
+    io.collisionData := collisionTable(rom(io.tilemapIdx)(io.tileAddress))
 }
