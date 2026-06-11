@@ -16,7 +16,6 @@ class CollisionSystem(borderX: Int, borderY: Int) extends Module {
     val collisionTileMap = VecInit(1200, UInt(1.W))
 
     //  getCollisionTileMap func or just logic outside func
-    // 
 
 /* Declare where and when intializing a Collision system for the player
     io.entityX := GameLogic.io.spriteXPosition(PLAYER)
