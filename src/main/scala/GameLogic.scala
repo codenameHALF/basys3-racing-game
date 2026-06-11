@@ -119,10 +119,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   //sprite registers
   val sprite0FlipHorizontalReg = RegInit(false.B)
   val sprite0FlipVerticalReg = RegInit(false.B)
+
   val sprite1FlipHorizontalReg = RegInit(false.B)
   val sprite1FlipVerticalReg = RegInit(false.B)
+
+  val sprite2FlipVerticalReg = RegInit(false.B)
+
   val sprite0Visible = RegInit(true.B)
   val sprite1Visible = RegInit(false.B)
+  val sprite2Visible = RegInit(false.B)
 
   io.spriteVisible(0)        := sprite0Visible
   io.spriteXPosition(0)      := (sprite0XReg >> 16).asSInt
@@ -135,6 +140,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.spriteYPosition(1)      := (sprite0YReg >> 16).asSInt
   io.spriteFlipHorizontal(1) := sprite1FlipHorizontalReg
   io.spriteFlipVertical(1) := sprite1FlipVerticalReg
+
+  io.spriteVisible(2)        := sprite2Visible
+  io.spriteXPosition(2)      := (sprite0XReg >> 16).asSInt
+  io.spriteYPosition(2)      := (sprite0YReg >> 16).asSInt
+  io.spriteFlipVertical(2) := sprite2FlipVerticalReg
 
 
 
@@ -176,6 +186,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       when( sprite0AngleReg >= 113.U && sprite0AngleReg <= 144.U){
           sprite0Visible := true.B
           sprite1Visible := false.B
+          sprite2Visible := false.B
+
           sprite0FlipHorizontalReg := false.B
           sprite0FlipVerticalReg := false.B
       }
@@ -183,22 +195,24 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       .elsewhen(sprite0AngleReg >= 145.U && sprite0AngleReg <= 176.U){
           sprite0Visible := false.B
           sprite1Visible := true.B
+          sprite2Visible := false.B
 
           sprite1FlipHorizontalReg := false.B
           sprite1FlipVerticalReg := false.B
       }  
       // opad:
       .elsewhen(sprite0AngleReg >= 177.U && sprite0AngleReg <= 208.U){
-          sprite0Visible := true.B
+          sprite0Visible := false.B
           sprite1Visible := false.B
+          sprite2Visible := true.B
 
-          sprite0FlipHorizontalReg := false.B
-          sprite0FlipVerticalReg := true.B
+          sprite2FlipVerticalReg := false.B
       } 
       //skråt op højre:
       .elsewhen(sprite0AngleReg >= 209.U && sprite0AngleReg <= 240.U){
           sprite0Visible := false.B
           sprite1Visible := true.B
+          sprite2Visible := false.B
 
           sprite1FlipHorizontalReg := true.B
           sprite1FlipVerticalReg := false.B
@@ -207,6 +221,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       .elsewhen((sprite0AngleReg >= 241.U && sprite0AngleReg <= 255.U) || (sprite0AngleReg >= 0.U && sprite0AngleReg <= 16.U)){
           sprite0Visible := true.B
           sprite1Visible := false.B
+          sprite2Visible := false.B
           
           sprite0FlipHorizontalReg := true.B
           sprite0FlipVerticalReg := false.B
@@ -215,25 +230,27 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int) extends Module {
       .elsewhen(sprite0AngleReg >= 17.U && sprite0AngleReg <= 48.U){
           sprite0Visible := false.B
           sprite1Visible := true.B
+          sprite2Visible := false.B
 
           sprite1FlipHorizontalReg := true.B
           sprite1FlipVerticalReg := true.B
       }
       // nedad:
       .elsewhen(sprite0AngleReg >= 49.U && sprite0AngleReg <= 80.U){
-          sprite0Visible := true.B
+          sprite0Visible := false.B
           sprite1Visible := false.B
+          sprite2Visible := true.B
 
-          sprite0FlipHorizontalReg := true.B
-          sprite0FlipVerticalReg := true.B
+          sprite2FlipVerticalReg := true.B
       }
       // skråt ned venstre:
       .elsewhen(sprite0AngleReg >= 81.U && sprite0AngleReg <= 112.U){
           sprite0Visible := false.B
           sprite1Visible := true.B
+          sprite2Visible := false.B
 
-          sprite1FlipHorizontalReg := true.B
-          sprite1FlipVerticalReg := false.B
+          sprite1FlipHorizontalReg := false.B
+          sprite1FlipVerticalReg := true.B
       }
 
       cosReg := cos_lut(sprite0AngleReg)
