@@ -310,3 +310,4 @@ dismissDialog("Program Device"); // bk (Program Device Progress)
 // TclEventType: HW_DEVICE_PROBES_CHANGE
 // TclEventType: DEBUG_PROBE_SET_CHANGE
 // TclEventType: HW_DEVICE_PROBES_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,201 MB. GUI used memory: 109 MB. Current time: 6/11/26, 1:27:03 PM CEST
