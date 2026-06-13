@@ -40,11 +40,12 @@ class GameTop extends Module {
 
   val SPRITE_NUMBER = 16
   val BACK_TILE_NUMBER = 64
+  val TILEMAP_NUMBER = 2
   val graphicEngineVGA = Module(new GraphicEngineVGA(SPRITE_NUMBER, BACK_TILE_NUMBER))
 
   //Uncomment one of the following lines to use the module related to the learning tasks
   //Use the module GameLogic to implement your game
-  val gameLogic = Module(new ScreenManager(SPRITE_NUMBER, BACK_TILE_NUMBER))
+  val gameLogic = Module(new ScreenManager(SPRITE_NUMBER, BACK_TILE_NUMBER, TILEMAP_NUMBER))
 
   //Debouncing
   val CLOCK_FREQUENCY_HZ = 100000000 //100 MHz

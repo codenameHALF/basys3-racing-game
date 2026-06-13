@@ -1,6 +1,5 @@
-from generate_mem import generate_mem
-from generate_tilemap import generate_tilemap_loader
+from generate_tile_mem import generate_tile_mem
+from generate_tilemap_mem import generate_tilemap_mem
 
-generate_mem()
-generate_tilemap_loader("graphics_workspace/menu.png", "MenuLoader", "src/main/scala/screen_loaders/MenuLoader.scala")
-generate_tilemap_loader("graphics_workspace/race_track_1.png", "RaceTrack1Loader", "src/main/scala/screen_loaders/RaceTrack1Loader.scala")
+generate_tile_mem()
+generate_tilemap_mem()

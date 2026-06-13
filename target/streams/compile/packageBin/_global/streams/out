@@ -14,12 +14,16 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GraphicEngineVGA$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ScreenManager$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/PositionToAddress$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Top.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamInitSpWf$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/TilemapRom$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/PositionToAddress.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RamSpWf$$anon$2.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamSpWf$$anon$2.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RaceManager.class[0m

@@ -21,7 +21,7 @@ class ScreenLoader()  extends Module {
     val running = RegInit(false.B)
 
     io.backBufferWriteData := io.tileData
-    io.backBufferWriteAddress := address
+    io.backBufferWriteAddress := RegPipeline(address, 2)
     io.backBufferWriteEnable := false.B
     io.done := false.B
     io.tileAddress := address
@@ -33,9 +33,6 @@ class ScreenLoader()  extends Module {
 
     when(running) {
         io.backBufferWriteEnable := true.B
-        io.tileAddress := address
-        io.backBufferWriteData := io.tileData
-        io.backBufferWriteAddress := address
         address := address + 1.U
         when(address === (screenSize - 1).U) {
             running := false.B

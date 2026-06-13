@@ -8,7 +8,7 @@
 import chisel3._
 import chisel3.util._
 
-class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
+class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) extends Module {
   val io = IO(new Bundle {
     //Buttons
     val btnC = Input(Bool())
@@ -104,7 +104,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   val currentScreenReg = RegInit(titleScreen)
   
   // Screen loader and tilemap rom
-  val tilemapRom = Module(new TilemapRom())
+  val tilemapRom = Module(new TilemapRom(BackTileNumber, SpriteNumber, TilemapNumber))
   val screenLoader = Module(new ScreenLoader())
 
   tilemapRom.io.tilemapIdx := 0.U(4.W)

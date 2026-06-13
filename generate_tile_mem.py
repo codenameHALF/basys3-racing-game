@@ -32,7 +32,7 @@ def save_data(path, data):
     f.close()
 
 
-def generate_mem():
+def generate_tile_mem():
     for png_file in folder.glob("*.png"):
         if "backtile_init_" in str(png_file) or "sprite_init_" in str(png_file):
             data = read_data(png_file)

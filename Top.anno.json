@@ -3,29 +3,41 @@
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.735632183908046
+    "index":0.7191011235955056
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_64",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64",
-    "index":0.7413793103448276
+    "index":0.7247191011235955
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf_1",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.7471264367816092
+    "index":0.7303370786516854
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_65",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64",
-    "index":0.7528735632183908
+    "index":0.7359550561797753
   },
   {
     "class":"firrtl.EmitCircuitAnnotation",
     "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxInlineAnno",
+    "target":"Top.RamInitSpWf_82",
+    "name":"RamInitSpWf.v",
+    "text":"//////////////////////////////////////////////////////////////////////////////\n// Authors: Luca Pezzarossa\n// Copyright: Technical University of Denmark - 2025\n// Comments:\n// Single-Port Block RAM Write-First Mode with initialization form MEM file\n// (recommended template from AMD/Xilinx)\n//////////////////////////////////////////////////////////////////////////////\n\n`timescale 1ns / 1ps\n\nmodule RamInitSpWf ( clk,\n                    we,\n                    en,\n                    addr,\n                    di,\n                    dout);\n\n    parameter\n              ADDR_WIDTH = 8,\n              DATA_WIDTH = 8,\n              LOAD_FILE = \"\";\n\n    input clk;\n    input we;\n    input en;\n    input [ADDR_WIDTH-1:0] addr;\n    input [DATA_WIDTH-1:0] di;\n    output [DATA_WIDTH-1:0] dout;\n\n    reg [DATA_WIDTH-1:0] RAM [(2**ADDR_WIDTH)-1:0];\n    reg [DATA_WIDTH-1:0] dout;\n\n    initial begin\n        $readmemb(LOAD_FILE, RAM);\n    end\n\n    always @(posedge clk)\n        begin\n        if (en)\n            begin\n                if (we)\n                    begin\n                    RAM[addr] <= di;\n                    dout <= di;\n                    end\n                else\n                    dout <= RAM[addr];\n            end\n        end\nendmodule\n\n//////////////////////////////////////////////////////////////////////////////\n// End of file\n//////////////////////////////////////////////////////////////////////////////\n"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxInlineAnno",
+    "target":"Top.RamInitSpWf_81",
+    "name":"RamInitSpWf.v",
+    "text":"//////////////////////////////////////////////////////////////////////////////\n// Authors: Luca Pezzarossa\n// Copyright: Technical University of Denmark - 2025\n// Comments:\n// Single-Port Block RAM Write-First Mode with initialization form MEM file\n// (recommended template from AMD/Xilinx)\n//////////////////////////////////////////////////////////////////////////////\n\n`timescale 1ns / 1ps\n\nmodule RamInitSpWf ( clk,\n                    we,\n                    en,\n                    addr,\n                    di,\n                    dout);\n\n    parameter\n              ADDR_WIDTH = 8,\n              DATA_WIDTH = 8,\n              LOAD_FILE = \"\";\n\n    input clk;\n    input we;\n    input en;\n    input [ADDR_WIDTH-1:0] addr;\n    input [DATA_WIDTH-1:0] di;\n    output [DATA_WIDTH-1:0] dout;\n\n    reg [DATA_WIDTH-1:0] RAM [(2**ADDR_WIDTH)-1:0];\n    reg [DATA_WIDTH-1:0] dout;\n\n    initial begin\n        $readmemb(LOAD_FILE, RAM);\n    end\n\n    always @(posedge clk)\n        begin\n        if (en)\n            begin\n                if (we)\n                    begin\n                    RAM[addr] <= di;\n                    dout <= di;\n                    end\n                else\n                    dout <= RAM[addr];\n            end\n        end\nendmodule\n\n//////////////////////////////////////////////////////////////////////////////\n// End of file\n//////////////////////////////////////////////////////////////////////////////\n"
   },
   {
     "class":"firrtl.transforms.BlackBoxInlineAnno",

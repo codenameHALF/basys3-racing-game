@@ -35,7 +35,7 @@
     <Option Name="SimulatorVersionXcelium" Val="24.09.001"/>
     <Option Name="SimulatorVersionVCS" Val="W-2024.09-SP1"/>
     <Option Name="SimulatorVersionRiviera" Val="2024.10"/>
-    <Option Name="SimulatorVersionActiveHdl" Val="13.1"/>
+    <Option Name="SimulatorVersionActiveHdl" Val="15.0"/>
     <Option Name="SimulatorGccVersionXsim" Val="9.3.0"/>
     <Option Name="SimulatorGccVersionModelSim" Val="7.4.0"/>
     <Option Name="SimulatorGccVersionQuesta" Val="7.4.0"/>
