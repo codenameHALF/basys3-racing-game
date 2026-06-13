@@ -12,6 +12,6 @@ class PositionToAddress extends Module {
     val address = Output(UInt(11.W))
   })
 
-  io.address := (((viewBoxX + posX) >> 5) + 40 * ((viewBoxY + posY) >> 5)).U(11.W)
+  io.address := (posX.asUInt >> 5) + 40.U * ((posY.asUInt) >> 5).U(11.W)
 
 }
