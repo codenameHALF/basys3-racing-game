@@ -14,6 +14,9 @@ class PlayerController extends Module {
         val btnR = Input(Bool())
         val btnD = Input(Bool())
 
+        val viewBoxX = Output(UInt(10.W)) //0 to 640
+        val viewBoxY = Output(UInt(9.W)) //0 to 480
+
         val spriteXPosition = Output(Vec(3, SInt(11.W))) //-1024 to 1023
         val spriteYPosition = Output(Vec(3, SInt(10.W))) //-512 to 511
         val spriteVisible = Output(Vec(3, Bool()))
@@ -56,6 +59,9 @@ class PlayerController extends Module {
   val sinReg = RegInit(0.S(16.W))
   val nextXReg = RegInit(0.S(32.W))
   val nextYReg = RegInit(0.S(32.W))
+
+  val viewBoxXReg = RegInit(0.S(11.W))
+  val viewBoxYReg = RegInit(0.S(10.W))
 
   // Tuning
   val accelRate = 1000.S(32.W)

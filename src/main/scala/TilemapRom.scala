@@ -30,13 +30,6 @@ class TilemapRom(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) ext
     }
      val collisionTable = VecInit(Seq(
         true.B, // backtile_init_0
-        true.B, // backtile_init_0
-        true.B, // backtile_init_0
-        true.B, // backtile_init_0
-        true.B, // backtile_init_0
-        true.B, // backtile_init_0
-        true.B, // backtile_init_0
-        true.B, // backtile_init_0
         true.B, // backtile_init_1
         true.B, // backtile_init_2
         true.B, // backtile_init_3

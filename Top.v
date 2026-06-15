@@ -4750,17 +4750,17 @@ module TilemapRom(
   reg [5:0] tilemapMemoryDataRead_1_REG; // @[\\src\\main\\scala\\TilemapRom.scala 29:44]
   wire [6:0] tilemapMemoryDataRead_0 = {{1'd0}, tilemapMemoryDataRead_0_REG}; // @[\\src\\main\\scala\\TilemapRom.scala 23:37 29:34]
   wire [6:0] tilemapMemoryDataRead_1 = {{1'd0}, tilemapMemoryDataRead_1_REG}; // @[\\src\\main\\scala\\TilemapRom.scala 23:37 29:34]
-  wire [6:0] _GEN_1 = io_tilemapIdx ? tilemapMemoryDataRead_1 : tilemapMemoryDataRead_0; // @[\\src\\main\\scala\\TilemapRom.scala 105:{17,17}]
-  reg  io_collisionData_REG; // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-  wire  _GEN_59 = 7'h39 == _GEN_1 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_60 = 7'h3a == _GEN_1 ? 1'h0 : _GEN_59; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_61 = 7'h3b == _GEN_1 ? 1'h0 : _GEN_60; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_62 = 7'h3c == _GEN_1 ? 1'h0 : _GEN_61; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_63 = 7'h3d == _GEN_1 ? 1'h0 : _GEN_62; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_64 = 7'h3e == _GEN_1 ? 1'h0 : _GEN_63; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_65 = 7'h3f == _GEN_1 ? 1'h0 : _GEN_64; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_66 = 7'h40 == _GEN_1 ? 1'h0 : _GEN_65; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
-  wire  _GEN_67 = 7'h41 == _GEN_1 ? 1'h0 : _GEN_66; // @[\\src\\main\\scala\\TilemapRom.scala 106:{32,32}]
+  wire [6:0] _GEN_1 = io_tilemapIdx ? tilemapMemoryDataRead_1 : tilemapMemoryDataRead_0; // @[\\src\\main\\scala\\TilemapRom.scala 98:{17,17}]
+  reg  io_collisionData_REG; // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+  wire  _GEN_52 = 6'h32 == _GEN_1[5:0] ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_53 = 6'h33 == _GEN_1[5:0] ? 1'h0 : _GEN_52; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_54 = 6'h34 == _GEN_1[5:0] ? 1'h0 : _GEN_53; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_55 = 6'h35 == _GEN_1[5:0] ? 1'h0 : _GEN_54; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_56 = 6'h36 == _GEN_1[5:0] ? 1'h0 : _GEN_55; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_57 = 6'h37 == _GEN_1[5:0] ? 1'h0 : _GEN_56; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_58 = 6'h38 == _GEN_1[5:0] ? 1'h0 : _GEN_57; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_59 = 6'h39 == _GEN_1[5:0] ? 1'h0 : _GEN_58; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
+  wire  _GEN_60 = 6'h3a == _GEN_1[5:0] ? 1'h0 : _GEN_59; // @[\\src\\main\\scala\\TilemapRom.scala 99:{32,32}]
   Memory_83 tilemapMemories_0 ( // @[\\src\\main\\scala\\TilemapRom.scala 19:35]
     .clock(tilemapMemories_0_clock),
     .io_address(tilemapMemories_0_io_address),
@@ -4771,8 +4771,8 @@ module TilemapRom(
     .io_address(tilemapMemories_1_io_address),
     .io_dataRead(tilemapMemories_1_io_dataRead)
   );
-  assign io_tileData = _GEN_1[5:0]; // @[\\src\\main\\scala\\TilemapRom.scala 105:17]
-  assign io_collisionData = io_collisionData_REG; // @[\\src\\main\\scala\\TilemapRom.scala 106:22]
+  assign io_tileData = _GEN_1[5:0]; // @[\\src\\main\\scala\\TilemapRom.scala 98:17]
+  assign io_collisionData = io_collisionData_REG; // @[\\src\\main\\scala\\TilemapRom.scala 99:22]
   assign tilemapMemories_0_clock = clock;
   assign tilemapMemories_0_io_address = io_tileAddress; // @[\\src\\main\\scala\\TilemapRom.scala 28:39]
   assign tilemapMemories_1_clock = clock;
@@ -4780,16 +4780,16 @@ module TilemapRom(
   always @(posedge clock) begin
     tilemapMemoryDataRead_0_REG <= tilemapMemories_0_io_dataRead; // @[\\src\\main\\scala\\TilemapRom.scala 29:44]
     tilemapMemoryDataRead_1_REG <= tilemapMemories_1_io_dataRead; // @[\\src\\main\\scala\\TilemapRom.scala 29:44]
-    if (7'h46 == _GEN_1) begin // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-    end else if (7'h45 == _GEN_1) begin // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-    end else if (7'h44 == _GEN_1) begin // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-    end else if (7'h43 == _GEN_1) begin // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
-      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 106:32]
+    if (6'h3f == _GEN_1[5:0]) begin // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+    end else if (6'h3e == _GEN_1[5:0]) begin // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+    end else if (6'h3d == _GEN_1[5:0]) begin // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+    end else if (6'h3c == _GEN_1[5:0]) begin // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
+      io_collisionData_REG <= 1'h0; // @[\\src\\main\\scala\\TilemapRom.scala 99:32]
     end else begin
-      io_collisionData_REG <= 7'h42 == _GEN_1 | _GEN_67;
+      io_collisionData_REG <= 6'h3b == _GEN_1[5:0] | _GEN_60;
     end
   end
 // Register and memory initialization
