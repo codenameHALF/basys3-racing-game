@@ -60,8 +60,14 @@ class PlayerController extends Module {
   val nextXReg = RegInit(0.S(32.W))
   val nextYReg = RegInit(0.S(32.W))
 
-  val viewBoxXReg = RegInit(0.S(11.W))
-  val viewBoxYReg = RegInit(0.S(10.W))
+  val viewBoxXReg = RegInit(0.U(10.W))
+  val viewBoxYReg = RegInit(0.U(9.W))
+
+  io.viewBoxX := viewBoxXReg
+  io.viewBoxY := viewBoxYReg
+
+  val viewBoxXRegTemp = RegInit(0.S(11.W))
+  val viewBoxYRegTemp = RegInit(0.S(10.W))
 
   // Tuning
   val accelRate = 1000.S(32.W)
@@ -234,12 +240,32 @@ class PlayerController extends Module {
       sprite0XReg := sprite0XReg + ((sprite0SpeedReg * cosReg) >> 8)
       sprite0YReg := sprite0YReg + ((sprite0SpeedReg * sinReg) >> 8)
 
+      viewBoxXRegTemp := (sprite0XReg + 16.S) - 320.S
+      viewBoxYRegTemp := (sprite0YReg + 16.S) - 240.S
+
       stateReg := computePos2
 
     }
 
     is(computePos2){
 
+      viewBoxXReg := viewBoxXRegTemp.asUInt
+      viewBoxYReg := viewBoxYRegTemp.asUInt
+
+      when(viewBoxXRegTemp < 0.S){
+        viewBoxXReg := 0.U
+      }
+
+      when(viewBoxYRegTemp < 0.S){
+        viewBoxYReg := 0.U
+      }
+      when(viewBoxXRegTemp > 639.S){
+        viewBoxXReg := 639.U
+      }
+
+      when(viewBoxYRegTemp > 479.S){
+        viewBoxYReg := 479.U
+      }
 
       stateReg := collisionWait
 

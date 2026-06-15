@@ -2216,6 +2216,7 @@ module GraphicEngineVGA(
   input         io_spriteFlipVertical_1, // @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
   input         io_spriteFlipVertical_2, // @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
   input  [9:0]  io_viewBoxX, // @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
+  input  [8:0]  io_viewBoxY, // @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
   input  [5:0]  io_backBufferWriteData, // @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
   input  [10:0] io_backBufferWriteAddress, // @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
   input         io_backBufferWriteEnable, // @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
@@ -2454,6 +2455,7 @@ module GraphicEngineVGA(
   reg [31:0] _RAND_220;
   reg [31:0] _RAND_221;
   reg [31:0] _RAND_222;
+  reg [31:0] _RAND_223;
 `endif // RANDOMIZE_REG_INIT
   wire  backTileMemories_0_clock; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 153:32]
   wire [9:0] backTileMemories_0_io_address; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 153:32]
@@ -2811,20 +2813,23 @@ module GraphicEngineVGA(
   reg  spriteFlipVerticalReg_1; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:40]
   reg  spriteFlipVerticalReg_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:40]
   reg [9:0] viewBoxXReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:30]
+  reg [8:0] viewBoxYReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:30]
   reg  missingFrameErrorReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:37]
   reg  backBufferWriteErrorReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:40]
   reg  viewBoxOutOfRangeErrorReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:42]
   wire [9:0] viewBoxXClipped = viewBoxXReg >= 10'h280 ? 10'h280 : viewBoxXReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 129:28]
+  wire [8:0] viewBoxYClipped = viewBoxYReg >= 9'h1e0 ? 9'h1e0 : viewBoxYReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 130:28]
   wire [10:0] pixelXBack = CounterXReg + viewBoxXClipped; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 131:27]
-  wire [10:0] pixelYBack = {{1'd0}, CounterYReg}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 132:27]
-  wire  _GEN_95 = viewBoxXReg > 10'h280 | viewBoxOutOfRangeErrorReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 133:51 134:31 122:42]
+  wire [9:0] _GEN_204 = {{1'd0}, viewBoxYClipped}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 132:27]
+  wire [10:0] pixelYBack = CounterYReg + _GEN_204; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 132:27]
+  wire  _GEN_95 = viewBoxXReg > 10'h280 | viewBoxYReg > 9'h1e0 | viewBoxOutOfRangeErrorReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 133:51 134:31 122:42]
   reg  newFrameStikyReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 139:33]
   wire  _GEN_96 = io_newFrame | newFrameStikyReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 140:21 141:22 139:33]
   reg  REG; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 143:16]
   wire  _GEN_98 = newFrameStikyReg & io_newFrame | missingFrameErrorReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 146:41 147:26 120:37]
   wire [10:0] _backTileMemories_0_io_address_T_2 = 6'h20 * pixelYBack[4:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 164:75]
-  wire [10:0] _GEN_204 = {{6'd0}, pixelXBack[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 164:62]
-  wire [11:0] _backTileMemories_0_io_address_T_3 = _GEN_204 + _backTileMemories_0_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 164:62]
+  wire [10:0] _GEN_205 = {{6'd0}, pixelXBack[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 164:62]
+  wire [11:0] _backTileMemories_0_io_address_T_3 = _GEN_205 + _backTileMemories_0_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 164:62]
   reg [6:0] backTileMemoryDataRead_0_REG; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 165:41]
   reg [6:0] backTileMemoryDataRead_1_REG; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 165:41]
   reg [6:0] backTileMemoryDataRead_2_REG; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 165:41]
@@ -2905,8 +2910,8 @@ module GraphicEngineVGA(
   reg [5:0] backBufferShadowMemory_io_dataWrite_REG; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 216:106]
   reg [10:0] backBufferMemory_io_address_REG; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 218:61]
   wire [11:0] _backBufferMemory_io_address_T_3 = 6'h28 * pixelYBack[10:5]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 218:130]
-  wire [11:0] _GEN_268 = {{6'd0}, pixelXBack[10:5]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 218:117]
-  wire [12:0] _backBufferMemory_io_address_T_4 = _GEN_268 + _backBufferMemory_io_address_T_3; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 218:117]
+  wire [11:0] _GEN_269 = {{6'd0}, pixelXBack[10:5]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 218:117]
+  wire [12:0] _backBufferMemory_io_address_T_4 = _GEN_269 + _backBufferMemory_io_address_T_3; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 218:117]
   wire [12:0] _backBufferMemory_io_address_T_5 = copyEnabledReg ? {{2'd0}, backBufferMemory_io_address_REG} :
     _backBufferMemory_io_address_T_4; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 218:37]
   wire  _GEN_106 = io_backBufferWriteEnable | backBufferWriteErrorReg; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 226:36 227:31 121:40]
@@ -2980,20 +2985,20 @@ module GraphicEngineVGA(
   wire [11:0] _inSpriteX_0_T_2 = 12'sh1f - $signed(inSpriteXValue); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 252:28]
   wire [11:0] inSpriteX_0 = spriteFlipHorizontalReg_0 ? $signed(_inSpriteX_0_T_2) : $signed(inSpriteXValue); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 251:37 252:20 254:20]
   wire [10:0] _inSpriteYValue_T_1 = {1'h0,CounterYReg}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:47]
-  wire [10:0] _GEN_269 = {{1{spriteYPositionReg_0[9]}},spriteYPositionReg_0}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
-  wire [11:0] inSpriteYValue = $signed(_inSpriteYValue_T_1) - $signed(_GEN_269); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
+  wire [10:0] _GEN_270 = {{1{spriteYPositionReg_0[9]}},spriteYPositionReg_0}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
+  wire [11:0] inSpriteYValue = $signed(_inSpriteYValue_T_1) - $signed(_GEN_270); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
   wire [10:0] inSpriteY_0 = inSpriteYValue[10:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 248:23]
   wire [11:0] inSpriteXValue_1 = $signed(_inSpriteXValue_T_1) - $signed(spriteXPositionReg_1); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:54]
   wire [11:0] _inSpriteX_1_T_2 = 12'sh1f - $signed(inSpriteXValue_1); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 252:28]
   wire [11:0] inSpriteX_1 = spriteFlipHorizontalReg_1 ? $signed(_inSpriteX_1_T_2) : $signed(inSpriteXValue_1); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 251:37 252:20 254:20]
-  wire [10:0] _GEN_271 = {{1{spriteYPositionReg_1[9]}},spriteYPositionReg_1}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
-  wire [11:0] inSpriteYValue_1 = $signed(_inSpriteYValue_T_1) - $signed(_GEN_271); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
+  wire [10:0] _GEN_272 = {{1{spriteYPositionReg_1[9]}},spriteYPositionReg_1}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
+  wire [11:0] inSpriteYValue_1 = $signed(_inSpriteYValue_T_1) - $signed(_GEN_272); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
   wire [11:0] _inSpriteY_1_T_2 = 12'sh1f - $signed(inSpriteYValue_1); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 258:28]
   wire [11:0] _GEN_175 = spriteFlipVerticalReg_1 ? $signed(_inSpriteY_1_T_2) : $signed(inSpriteYValue_1); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 257:35 258:20 260:20]
   wire [10:0] inSpriteY_1 = _GEN_175[10:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 248:23]
   wire [11:0] inSpriteXValue_2 = $signed(_inSpriteXValue_T_1) - $signed(spriteXPositionReg_2); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:54]
-  wire [10:0] _GEN_273 = {{1{spriteYPositionReg_2[9]}},spriteYPositionReg_2}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
-  wire [11:0] inSpriteYValue_2 = $signed(_inSpriteYValue_T_1) - $signed(_GEN_273); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
+  wire [10:0] _GEN_274 = {{1{spriteYPositionReg_2[9]}},spriteYPositionReg_2}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
+  wire [11:0] inSpriteYValue_2 = $signed(_inSpriteYValue_T_1) - $signed(_GEN_274); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
   wire [11:0] _inSpriteY_2_T_2 = 12'sh1f - $signed(inSpriteYValue_2); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 258:28]
   wire [11:0] _GEN_177 = spriteFlipVerticalReg_2 ? $signed(_inSpriteY_2_T_2) : $signed(inSpriteYValue_2); // @[\\src\\main\\scala\\GraphicEngineVGA.scala 257:35 258:20 260:20]
   wire [10:0] inSpriteY_2 = _GEN_177[10:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 248:23]
@@ -3001,17 +3006,17 @@ module GraphicEngineVGA(
   wire [11:0] inSpriteYValue_3 = $signed(_inSpriteYValue_T_1) - 11'sh0; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:54]
   wire [10:0] inSpriteY_3 = inSpriteYValue_3[10:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 248:23]
   wire [10:0] _spriteMemories_0_io_address_T_2 = 6'h20 * inSpriteY_0[4:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:74]
-  wire [10:0] _GEN_288 = {{6'd0}, inSpriteX_0[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
-  wire [10:0] _spriteMemories_0_io_address_T_4 = _GEN_288 + _spriteMemories_0_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _GEN_289 = {{6'd0}, inSpriteX_0[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _spriteMemories_0_io_address_T_4 = _GEN_289 + _spriteMemories_0_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
   wire [10:0] _spriteMemories_1_io_address_T_2 = 6'h20 * inSpriteY_1[4:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:74]
-  wire [10:0] _GEN_289 = {{6'd0}, inSpriteX_1[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
-  wire [10:0] _spriteMemories_1_io_address_T_4 = _GEN_289 + _spriteMemories_1_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _GEN_290 = {{6'd0}, inSpriteX_1[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _spriteMemories_1_io_address_T_4 = _GEN_290 + _spriteMemories_1_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
   wire [10:0] _spriteMemories_2_io_address_T_2 = 6'h20 * inSpriteY_2[4:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:74]
-  wire [10:0] _GEN_290 = {{6'd0}, inSpriteXValue_2[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
-  wire [10:0] _spriteMemories_2_io_address_T_4 = _GEN_290 + _spriteMemories_2_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _GEN_291 = {{6'd0}, inSpriteXValue_2[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _spriteMemories_2_io_address_T_4 = _GEN_291 + _spriteMemories_2_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
   wire [10:0] _spriteMemories_3_io_address_T_2 = 6'h20 * inSpriteY_3[4:0]; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:74]
-  wire [10:0] _GEN_291 = {{6'd0}, inSpriteXValue_3[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
-  wire [10:0] _spriteMemories_3_io_address_T_4 = _GEN_291 + _spriteMemories_3_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _GEN_292 = {{6'd0}, inSpriteXValue_3[4:0]}; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
+  wire [10:0] _spriteMemories_3_io_address_T_4 = _GEN_292 + _spriteMemories_3_io_address_T_2; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 270:62]
   reg [5:0] multiHotPriortyReductionTree_io_dataInput_0_REG; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:60]
   reg  multiHotPriortyReductionTree_io_selectInput_0_pipeReg__0; // @[\\src\\main\\scala\\GameUtilities.scala 21:24]
   reg  multiHotPriortyReductionTree_io_selectInput_0_pipeReg__1; // @[\\src\\main\\scala\\GameUtilities.scala 21:24]
@@ -3924,6 +3929,11 @@ module GraphicEngineVGA(
     end else if (io_newFrame) begin // @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:30]
       viewBoxXReg <= io_viewBoxX; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:30]
     end
+    if (reset) begin // @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:30]
+      viewBoxYReg <= 9'h0; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:30]
+    end else if (io_newFrame) begin // @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:30]
+      viewBoxYReg <= io_viewBoxY; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:30]
+    end
     if (reset) begin // @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:37]
       missingFrameErrorReg <= 1'h0; // @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:37]
     end else begin
@@ -4303,371 +4313,373 @@ initial begin
   _RAND_39 = {1{`RANDOM}};
   viewBoxXReg = _RAND_39[9:0];
   _RAND_40 = {1{`RANDOM}};
-  missingFrameErrorReg = _RAND_40[0:0];
+  viewBoxYReg = _RAND_40[8:0];
   _RAND_41 = {1{`RANDOM}};
-  backBufferWriteErrorReg = _RAND_41[0:0];
+  missingFrameErrorReg = _RAND_41[0:0];
   _RAND_42 = {1{`RANDOM}};
-  viewBoxOutOfRangeErrorReg = _RAND_42[0:0];
+  backBufferWriteErrorReg = _RAND_42[0:0];
   _RAND_43 = {1{`RANDOM}};
-  newFrameStikyReg = _RAND_43[0:0];
+  viewBoxOutOfRangeErrorReg = _RAND_43[0:0];
   _RAND_44 = {1{`RANDOM}};
-  REG = _RAND_44[0:0];
+  newFrameStikyReg = _RAND_44[0:0];
   _RAND_45 = {1{`RANDOM}};
-  backTileMemoryDataRead_0_REG = _RAND_45[6:0];
+  REG = _RAND_45[0:0];
   _RAND_46 = {1{`RANDOM}};
-  backTileMemoryDataRead_1_REG = _RAND_46[6:0];
+  backTileMemoryDataRead_0_REG = _RAND_46[6:0];
   _RAND_47 = {1{`RANDOM}};
-  backTileMemoryDataRead_2_REG = _RAND_47[6:0];
+  backTileMemoryDataRead_1_REG = _RAND_47[6:0];
   _RAND_48 = {1{`RANDOM}};
-  backTileMemoryDataRead_3_REG = _RAND_48[6:0];
+  backTileMemoryDataRead_2_REG = _RAND_48[6:0];
   _RAND_49 = {1{`RANDOM}};
-  backTileMemoryDataRead_4_REG = _RAND_49[6:0];
+  backTileMemoryDataRead_3_REG = _RAND_49[6:0];
   _RAND_50 = {1{`RANDOM}};
-  backTileMemoryDataRead_5_REG = _RAND_50[6:0];
+  backTileMemoryDataRead_4_REG = _RAND_50[6:0];
   _RAND_51 = {1{`RANDOM}};
-  backTileMemoryDataRead_6_REG = _RAND_51[6:0];
+  backTileMemoryDataRead_5_REG = _RAND_51[6:0];
   _RAND_52 = {1{`RANDOM}};
-  backTileMemoryDataRead_7_REG = _RAND_52[6:0];
+  backTileMemoryDataRead_6_REG = _RAND_52[6:0];
   _RAND_53 = {1{`RANDOM}};
-  backTileMemoryDataRead_8_REG = _RAND_53[6:0];
+  backTileMemoryDataRead_7_REG = _RAND_53[6:0];
   _RAND_54 = {1{`RANDOM}};
-  backTileMemoryDataRead_9_REG = _RAND_54[6:0];
+  backTileMemoryDataRead_8_REG = _RAND_54[6:0];
   _RAND_55 = {1{`RANDOM}};
-  backTileMemoryDataRead_10_REG = _RAND_55[6:0];
+  backTileMemoryDataRead_9_REG = _RAND_55[6:0];
   _RAND_56 = {1{`RANDOM}};
-  backTileMemoryDataRead_11_REG = _RAND_56[6:0];
+  backTileMemoryDataRead_10_REG = _RAND_56[6:0];
   _RAND_57 = {1{`RANDOM}};
-  backTileMemoryDataRead_12_REG = _RAND_57[6:0];
+  backTileMemoryDataRead_11_REG = _RAND_57[6:0];
   _RAND_58 = {1{`RANDOM}};
-  backTileMemoryDataRead_13_REG = _RAND_58[6:0];
+  backTileMemoryDataRead_12_REG = _RAND_58[6:0];
   _RAND_59 = {1{`RANDOM}};
-  backTileMemoryDataRead_14_REG = _RAND_59[6:0];
+  backTileMemoryDataRead_13_REG = _RAND_59[6:0];
   _RAND_60 = {1{`RANDOM}};
-  backTileMemoryDataRead_15_REG = _RAND_60[6:0];
+  backTileMemoryDataRead_14_REG = _RAND_60[6:0];
   _RAND_61 = {1{`RANDOM}};
-  backTileMemoryDataRead_16_REG = _RAND_61[6:0];
+  backTileMemoryDataRead_15_REG = _RAND_61[6:0];
   _RAND_62 = {1{`RANDOM}};
-  backTileMemoryDataRead_17_REG = _RAND_62[6:0];
+  backTileMemoryDataRead_16_REG = _RAND_62[6:0];
   _RAND_63 = {1{`RANDOM}};
-  backTileMemoryDataRead_18_REG = _RAND_63[6:0];
+  backTileMemoryDataRead_17_REG = _RAND_63[6:0];
   _RAND_64 = {1{`RANDOM}};
-  backTileMemoryDataRead_19_REG = _RAND_64[6:0];
+  backTileMemoryDataRead_18_REG = _RAND_64[6:0];
   _RAND_65 = {1{`RANDOM}};
-  backTileMemoryDataRead_20_REG = _RAND_65[6:0];
+  backTileMemoryDataRead_19_REG = _RAND_65[6:0];
   _RAND_66 = {1{`RANDOM}};
-  backTileMemoryDataRead_21_REG = _RAND_66[6:0];
+  backTileMemoryDataRead_20_REG = _RAND_66[6:0];
   _RAND_67 = {1{`RANDOM}};
-  backTileMemoryDataRead_22_REG = _RAND_67[6:0];
+  backTileMemoryDataRead_21_REG = _RAND_67[6:0];
   _RAND_68 = {1{`RANDOM}};
-  backTileMemoryDataRead_23_REG = _RAND_68[6:0];
+  backTileMemoryDataRead_22_REG = _RAND_68[6:0];
   _RAND_69 = {1{`RANDOM}};
-  backTileMemoryDataRead_24_REG = _RAND_69[6:0];
+  backTileMemoryDataRead_23_REG = _RAND_69[6:0];
   _RAND_70 = {1{`RANDOM}};
-  backTileMemoryDataRead_25_REG = _RAND_70[6:0];
+  backTileMemoryDataRead_24_REG = _RAND_70[6:0];
   _RAND_71 = {1{`RANDOM}};
-  backTileMemoryDataRead_26_REG = _RAND_71[6:0];
+  backTileMemoryDataRead_25_REG = _RAND_71[6:0];
   _RAND_72 = {1{`RANDOM}};
-  backTileMemoryDataRead_27_REG = _RAND_72[6:0];
+  backTileMemoryDataRead_26_REG = _RAND_72[6:0];
   _RAND_73 = {1{`RANDOM}};
-  backTileMemoryDataRead_28_REG = _RAND_73[6:0];
+  backTileMemoryDataRead_27_REG = _RAND_73[6:0];
   _RAND_74 = {1{`RANDOM}};
-  backTileMemoryDataRead_29_REG = _RAND_74[6:0];
+  backTileMemoryDataRead_28_REG = _RAND_74[6:0];
   _RAND_75 = {1{`RANDOM}};
-  backTileMemoryDataRead_30_REG = _RAND_75[6:0];
+  backTileMemoryDataRead_29_REG = _RAND_75[6:0];
   _RAND_76 = {1{`RANDOM}};
-  backTileMemoryDataRead_31_REG = _RAND_76[6:0];
+  backTileMemoryDataRead_30_REG = _RAND_76[6:0];
   _RAND_77 = {1{`RANDOM}};
-  backTileMemoryDataRead_32_REG = _RAND_77[6:0];
+  backTileMemoryDataRead_31_REG = _RAND_77[6:0];
   _RAND_78 = {1{`RANDOM}};
-  backTileMemoryDataRead_33_REG = _RAND_78[6:0];
+  backTileMemoryDataRead_32_REG = _RAND_78[6:0];
   _RAND_79 = {1{`RANDOM}};
-  backTileMemoryDataRead_34_REG = _RAND_79[6:0];
+  backTileMemoryDataRead_33_REG = _RAND_79[6:0];
   _RAND_80 = {1{`RANDOM}};
-  backTileMemoryDataRead_35_REG = _RAND_80[6:0];
+  backTileMemoryDataRead_34_REG = _RAND_80[6:0];
   _RAND_81 = {1{`RANDOM}};
-  backTileMemoryDataRead_36_REG = _RAND_81[6:0];
+  backTileMemoryDataRead_35_REG = _RAND_81[6:0];
   _RAND_82 = {1{`RANDOM}};
-  backTileMemoryDataRead_37_REG = _RAND_82[6:0];
+  backTileMemoryDataRead_36_REG = _RAND_82[6:0];
   _RAND_83 = {1{`RANDOM}};
-  backTileMemoryDataRead_38_REG = _RAND_83[6:0];
+  backTileMemoryDataRead_37_REG = _RAND_83[6:0];
   _RAND_84 = {1{`RANDOM}};
-  backTileMemoryDataRead_39_REG = _RAND_84[6:0];
+  backTileMemoryDataRead_38_REG = _RAND_84[6:0];
   _RAND_85 = {1{`RANDOM}};
-  backTileMemoryDataRead_40_REG = _RAND_85[6:0];
+  backTileMemoryDataRead_39_REG = _RAND_85[6:0];
   _RAND_86 = {1{`RANDOM}};
-  backTileMemoryDataRead_41_REG = _RAND_86[6:0];
+  backTileMemoryDataRead_40_REG = _RAND_86[6:0];
   _RAND_87 = {1{`RANDOM}};
-  backTileMemoryDataRead_42_REG = _RAND_87[6:0];
+  backTileMemoryDataRead_41_REG = _RAND_87[6:0];
   _RAND_88 = {1{`RANDOM}};
-  backTileMemoryDataRead_43_REG = _RAND_88[6:0];
+  backTileMemoryDataRead_42_REG = _RAND_88[6:0];
   _RAND_89 = {1{`RANDOM}};
-  backTileMemoryDataRead_44_REG = _RAND_89[6:0];
+  backTileMemoryDataRead_43_REG = _RAND_89[6:0];
   _RAND_90 = {1{`RANDOM}};
-  backTileMemoryDataRead_45_REG = _RAND_90[6:0];
+  backTileMemoryDataRead_44_REG = _RAND_90[6:0];
   _RAND_91 = {1{`RANDOM}};
-  backTileMemoryDataRead_46_REG = _RAND_91[6:0];
+  backTileMemoryDataRead_45_REG = _RAND_91[6:0];
   _RAND_92 = {1{`RANDOM}};
-  backTileMemoryDataRead_47_REG = _RAND_92[6:0];
+  backTileMemoryDataRead_46_REG = _RAND_92[6:0];
   _RAND_93 = {1{`RANDOM}};
-  backTileMemoryDataRead_48_REG = _RAND_93[6:0];
+  backTileMemoryDataRead_47_REG = _RAND_93[6:0];
   _RAND_94 = {1{`RANDOM}};
-  backTileMemoryDataRead_49_REG = _RAND_94[6:0];
+  backTileMemoryDataRead_48_REG = _RAND_94[6:0];
   _RAND_95 = {1{`RANDOM}};
-  backTileMemoryDataRead_50_REG = _RAND_95[6:0];
+  backTileMemoryDataRead_49_REG = _RAND_95[6:0];
   _RAND_96 = {1{`RANDOM}};
-  backTileMemoryDataRead_51_REG = _RAND_96[6:0];
+  backTileMemoryDataRead_50_REG = _RAND_96[6:0];
   _RAND_97 = {1{`RANDOM}};
-  backTileMemoryDataRead_52_REG = _RAND_97[6:0];
+  backTileMemoryDataRead_51_REG = _RAND_97[6:0];
   _RAND_98 = {1{`RANDOM}};
-  backTileMemoryDataRead_53_REG = _RAND_98[6:0];
+  backTileMemoryDataRead_52_REG = _RAND_98[6:0];
   _RAND_99 = {1{`RANDOM}};
-  backTileMemoryDataRead_54_REG = _RAND_99[6:0];
+  backTileMemoryDataRead_53_REG = _RAND_99[6:0];
   _RAND_100 = {1{`RANDOM}};
-  backTileMemoryDataRead_55_REG = _RAND_100[6:0];
+  backTileMemoryDataRead_54_REG = _RAND_100[6:0];
   _RAND_101 = {1{`RANDOM}};
-  backTileMemoryDataRead_56_REG = _RAND_101[6:0];
+  backTileMemoryDataRead_55_REG = _RAND_101[6:0];
   _RAND_102 = {1{`RANDOM}};
-  backTileMemoryDataRead_57_REG = _RAND_102[6:0];
+  backTileMemoryDataRead_56_REG = _RAND_102[6:0];
   _RAND_103 = {1{`RANDOM}};
-  backTileMemoryDataRead_58_REG = _RAND_103[6:0];
+  backTileMemoryDataRead_57_REG = _RAND_103[6:0];
   _RAND_104 = {1{`RANDOM}};
-  backTileMemoryDataRead_59_REG = _RAND_104[6:0];
+  backTileMemoryDataRead_58_REG = _RAND_104[6:0];
   _RAND_105 = {1{`RANDOM}};
-  backTileMemoryDataRead_60_REG = _RAND_105[6:0];
+  backTileMemoryDataRead_59_REG = _RAND_105[6:0];
   _RAND_106 = {1{`RANDOM}};
-  backTileMemoryDataRead_61_REG = _RAND_106[6:0];
+  backTileMemoryDataRead_60_REG = _RAND_106[6:0];
   _RAND_107 = {1{`RANDOM}};
-  backTileMemoryDataRead_62_REG = _RAND_107[6:0];
+  backTileMemoryDataRead_61_REG = _RAND_107[6:0];
   _RAND_108 = {1{`RANDOM}};
-  backTileMemoryDataRead_63_REG = _RAND_108[6:0];
+  backTileMemoryDataRead_62_REG = _RAND_108[6:0];
   _RAND_109 = {1{`RANDOM}};
-  backMemoryCopyCounter = _RAND_109[11:0];
+  backTileMemoryDataRead_63_REG = _RAND_109[6:0];
   _RAND_110 = {1{`RANDOM}};
-  copyEnabledReg = _RAND_110[0:0];
+  backMemoryCopyCounter = _RAND_110[11:0];
   _RAND_111 = {1{`RANDOM}};
-  backBufferShadowMemory_io_address_REG = _RAND_111[10:0];
+  copyEnabledReg = _RAND_111[0:0];
   _RAND_112 = {1{`RANDOM}};
-  backBufferShadowMemory_io_address_REG_1 = _RAND_112[10:0];
+  backBufferShadowMemory_io_address_REG = _RAND_112[10:0];
   _RAND_113 = {1{`RANDOM}};
-  backBufferShadowMemory_io_writeEnable_REG = _RAND_113[0:0];
+  backBufferShadowMemory_io_address_REG_1 = _RAND_113[10:0];
   _RAND_114 = {1{`RANDOM}};
-  backBufferShadowMemory_io_writeEnable_REG_1 = _RAND_114[0:0];
+  backBufferShadowMemory_io_writeEnable_REG = _RAND_114[0:0];
   _RAND_115 = {1{`RANDOM}};
-  backBufferShadowMemory_io_dataWrite_REG = _RAND_115[5:0];
+  backBufferShadowMemory_io_writeEnable_REG_1 = _RAND_115[0:0];
   _RAND_116 = {1{`RANDOM}};
-  backBufferMemory_io_address_REG = _RAND_116[10:0];
+  backBufferShadowMemory_io_dataWrite_REG = _RAND_116[5:0];
   _RAND_117 = {1{`RANDOM}};
-  fullBackgroundColor_REG = _RAND_117[5:0];
+  backBufferMemory_io_address_REG = _RAND_117[10:0];
   _RAND_118 = {1{`RANDOM}};
-  pixelColorBack = _RAND_118[5:0];
+  fullBackgroundColor_REG = _RAND_118[5:0];
   _RAND_119 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_0_REG = _RAND_119[5:0];
+  pixelColorBack = _RAND_119[5:0];
   _RAND_120 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_0_pipeReg__0 = _RAND_120[0:0];
+  multiHotPriortyReductionTree_io_dataInput_0_REG = _RAND_120[5:0];
   _RAND_121 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_0_pipeReg__1 = _RAND_121[0:0];
+  multiHotPriortyReductionTree_io_selectInput_0_pipeReg__0 = _RAND_121[0:0];
   _RAND_122 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_0_pipeReg_1_0 = _RAND_122[0:0];
+  multiHotPriortyReductionTree_io_selectInput_0_pipeReg__1 = _RAND_122[0:0];
   _RAND_123 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_0_pipeReg_1_1 = _RAND_123[0:0];
+  multiHotPriortyReductionTree_io_selectInput_0_pipeReg_1_0 = _RAND_123[0:0];
   _RAND_124 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_0_REG = _RAND_124[0:0];
+  multiHotPriortyReductionTree_io_selectInput_0_pipeReg_1_1 = _RAND_124[0:0];
   _RAND_125 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_1_REG = _RAND_125[5:0];
+  multiHotPriortyReductionTree_io_selectInput_0_REG = _RAND_125[0:0];
   _RAND_126 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_1_pipeReg__0 = _RAND_126[0:0];
+  multiHotPriortyReductionTree_io_dataInput_1_REG = _RAND_126[5:0];
   _RAND_127 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_1_pipeReg__1 = _RAND_127[0:0];
+  multiHotPriortyReductionTree_io_selectInput_1_pipeReg__0 = _RAND_127[0:0];
   _RAND_128 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0 = _RAND_128[0:0];
+  multiHotPriortyReductionTree_io_selectInput_1_pipeReg__1 = _RAND_128[0:0];
   _RAND_129 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1 = _RAND_129[0:0];
+  multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0 = _RAND_129[0:0];
   _RAND_130 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_1_REG = _RAND_130[0:0];
+  multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1 = _RAND_130[0:0];
   _RAND_131 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_2_REG = _RAND_131[5:0];
+  multiHotPriortyReductionTree_io_selectInput_1_REG = _RAND_131[0:0];
   _RAND_132 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_2_pipeReg__0 = _RAND_132[0:0];
+  multiHotPriortyReductionTree_io_dataInput_2_REG = _RAND_132[5:0];
   _RAND_133 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_2_pipeReg__1 = _RAND_133[0:0];
+  multiHotPriortyReductionTree_io_selectInput_2_pipeReg__0 = _RAND_133[0:0];
   _RAND_134 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0 = _RAND_134[0:0];
+  multiHotPriortyReductionTree_io_selectInput_2_pipeReg__1 = _RAND_134[0:0];
   _RAND_135 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1 = _RAND_135[0:0];
+  multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0 = _RAND_135[0:0];
   _RAND_136 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_2_REG = _RAND_136[0:0];
+  multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1 = _RAND_136[0:0];
   _RAND_137 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_3_REG = _RAND_137[5:0];
+  multiHotPriortyReductionTree_io_selectInput_2_REG = _RAND_137[0:0];
   _RAND_138 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_3_pipeReg__0 = _RAND_138[0:0];
+  multiHotPriortyReductionTree_io_dataInput_3_REG = _RAND_138[5:0];
   _RAND_139 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_3_pipeReg__1 = _RAND_139[0:0];
+  multiHotPriortyReductionTree_io_selectInput_3_pipeReg__0 = _RAND_139[0:0];
   _RAND_140 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_0 = _RAND_140[0:0];
+  multiHotPriortyReductionTree_io_selectInput_3_pipeReg__1 = _RAND_140[0:0];
   _RAND_141 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_1 = _RAND_141[0:0];
+  multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_0 = _RAND_141[0:0];
   _RAND_142 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_3_REG = _RAND_142[0:0];
+  multiHotPriortyReductionTree_io_selectInput_3_pipeReg_1_1 = _RAND_142[0:0];
   _RAND_143 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_4_REG = _RAND_143[5:0];
+  multiHotPriortyReductionTree_io_selectInput_3_REG = _RAND_143[0:0];
   _RAND_144 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_4_pipeReg__0 = _RAND_144[0:0];
+  multiHotPriortyReductionTree_io_dataInput_4_REG = _RAND_144[5:0];
   _RAND_145 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_4_pipeReg__1 = _RAND_145[0:0];
+  multiHotPriortyReductionTree_io_selectInput_4_pipeReg__0 = _RAND_145[0:0];
   _RAND_146 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0 = _RAND_146[0:0];
+  multiHotPriortyReductionTree_io_selectInput_4_pipeReg__1 = _RAND_146[0:0];
   _RAND_147 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1 = _RAND_147[0:0];
+  multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0 = _RAND_147[0:0];
   _RAND_148 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_4_REG = _RAND_148[0:0];
+  multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1 = _RAND_148[0:0];
   _RAND_149 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_5_REG = _RAND_149[5:0];
+  multiHotPriortyReductionTree_io_selectInput_4_REG = _RAND_149[0:0];
   _RAND_150 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_5_pipeReg__0 = _RAND_150[0:0];
+  multiHotPriortyReductionTree_io_dataInput_5_REG = _RAND_150[5:0];
   _RAND_151 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_5_pipeReg__1 = _RAND_151[0:0];
+  multiHotPriortyReductionTree_io_selectInput_5_pipeReg__0 = _RAND_151[0:0];
   _RAND_152 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0 = _RAND_152[0:0];
+  multiHotPriortyReductionTree_io_selectInput_5_pipeReg__1 = _RAND_152[0:0];
   _RAND_153 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1 = _RAND_153[0:0];
+  multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0 = _RAND_153[0:0];
   _RAND_154 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_5_REG = _RAND_154[0:0];
+  multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1 = _RAND_154[0:0];
   _RAND_155 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_6_REG = _RAND_155[5:0];
+  multiHotPriortyReductionTree_io_selectInput_5_REG = _RAND_155[0:0];
   _RAND_156 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_6_pipeReg__0 = _RAND_156[0:0];
+  multiHotPriortyReductionTree_io_dataInput_6_REG = _RAND_156[5:0];
   _RAND_157 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_6_pipeReg__1 = _RAND_157[0:0];
+  multiHotPriortyReductionTree_io_selectInput_6_pipeReg__0 = _RAND_157[0:0];
   _RAND_158 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0 = _RAND_158[0:0];
+  multiHotPriortyReductionTree_io_selectInput_6_pipeReg__1 = _RAND_158[0:0];
   _RAND_159 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1 = _RAND_159[0:0];
+  multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0 = _RAND_159[0:0];
   _RAND_160 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_6_REG = _RAND_160[0:0];
+  multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1 = _RAND_160[0:0];
   _RAND_161 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_7_REG = _RAND_161[5:0];
+  multiHotPriortyReductionTree_io_selectInput_6_REG = _RAND_161[0:0];
   _RAND_162 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_7_pipeReg__0 = _RAND_162[0:0];
+  multiHotPriortyReductionTree_io_dataInput_7_REG = _RAND_162[5:0];
   _RAND_163 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_7_pipeReg__1 = _RAND_163[0:0];
+  multiHotPriortyReductionTree_io_selectInput_7_pipeReg__0 = _RAND_163[0:0];
   _RAND_164 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_0 = _RAND_164[0:0];
+  multiHotPriortyReductionTree_io_selectInput_7_pipeReg__1 = _RAND_164[0:0];
   _RAND_165 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_1 = _RAND_165[0:0];
+  multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_0 = _RAND_165[0:0];
   _RAND_166 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_7_REG = _RAND_166[0:0];
+  multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_1 = _RAND_166[0:0];
   _RAND_167 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_8_REG = _RAND_167[5:0];
+  multiHotPriortyReductionTree_io_selectInput_7_REG = _RAND_167[0:0];
   _RAND_168 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_8_pipeReg__0 = _RAND_168[0:0];
+  multiHotPriortyReductionTree_io_dataInput_8_REG = _RAND_168[5:0];
   _RAND_169 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_8_pipeReg__1 = _RAND_169[0:0];
+  multiHotPriortyReductionTree_io_selectInput_8_pipeReg__0 = _RAND_169[0:0];
   _RAND_170 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_0 = _RAND_170[0:0];
+  multiHotPriortyReductionTree_io_selectInput_8_pipeReg__1 = _RAND_170[0:0];
   _RAND_171 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_1 = _RAND_171[0:0];
+  multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_0 = _RAND_171[0:0];
   _RAND_172 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_8_REG = _RAND_172[0:0];
+  multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_1 = _RAND_172[0:0];
   _RAND_173 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_9_REG = _RAND_173[5:0];
+  multiHotPriortyReductionTree_io_selectInput_8_REG = _RAND_173[0:0];
   _RAND_174 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_9_pipeReg__0 = _RAND_174[0:0];
+  multiHotPriortyReductionTree_io_dataInput_9_REG = _RAND_174[5:0];
   _RAND_175 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_9_pipeReg__1 = _RAND_175[0:0];
+  multiHotPriortyReductionTree_io_selectInput_9_pipeReg__0 = _RAND_175[0:0];
   _RAND_176 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_0 = _RAND_176[0:0];
+  multiHotPriortyReductionTree_io_selectInput_9_pipeReg__1 = _RAND_176[0:0];
   _RAND_177 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_1 = _RAND_177[0:0];
+  multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_0 = _RAND_177[0:0];
   _RAND_178 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_9_REG = _RAND_178[0:0];
+  multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_1 = _RAND_178[0:0];
   _RAND_179 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_10_REG = _RAND_179[5:0];
+  multiHotPriortyReductionTree_io_selectInput_9_REG = _RAND_179[0:0];
   _RAND_180 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_10_pipeReg__0 = _RAND_180[0:0];
+  multiHotPriortyReductionTree_io_dataInput_10_REG = _RAND_180[5:0];
   _RAND_181 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_10_pipeReg__1 = _RAND_181[0:0];
+  multiHotPriortyReductionTree_io_selectInput_10_pipeReg__0 = _RAND_181[0:0];
   _RAND_182 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_0 = _RAND_182[0:0];
+  multiHotPriortyReductionTree_io_selectInput_10_pipeReg__1 = _RAND_182[0:0];
   _RAND_183 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_1 = _RAND_183[0:0];
+  multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_0 = _RAND_183[0:0];
   _RAND_184 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_10_REG = _RAND_184[0:0];
+  multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_1 = _RAND_184[0:0];
   _RAND_185 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_11_REG = _RAND_185[5:0];
+  multiHotPriortyReductionTree_io_selectInput_10_REG = _RAND_185[0:0];
   _RAND_186 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_11_pipeReg__0 = _RAND_186[0:0];
+  multiHotPriortyReductionTree_io_dataInput_11_REG = _RAND_186[5:0];
   _RAND_187 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_11_pipeReg__1 = _RAND_187[0:0];
+  multiHotPriortyReductionTree_io_selectInput_11_pipeReg__0 = _RAND_187[0:0];
   _RAND_188 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_0 = _RAND_188[0:0];
+  multiHotPriortyReductionTree_io_selectInput_11_pipeReg__1 = _RAND_188[0:0];
   _RAND_189 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_1 = _RAND_189[0:0];
+  multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_0 = _RAND_189[0:0];
   _RAND_190 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_11_REG = _RAND_190[0:0];
+  multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_1 = _RAND_190[0:0];
   _RAND_191 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_12_REG = _RAND_191[5:0];
+  multiHotPriortyReductionTree_io_selectInput_11_REG = _RAND_191[0:0];
   _RAND_192 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_12_pipeReg__0 = _RAND_192[0:0];
+  multiHotPriortyReductionTree_io_dataInput_12_REG = _RAND_192[5:0];
   _RAND_193 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_12_pipeReg__1 = _RAND_193[0:0];
+  multiHotPriortyReductionTree_io_selectInput_12_pipeReg__0 = _RAND_193[0:0];
   _RAND_194 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_0 = _RAND_194[0:0];
+  multiHotPriortyReductionTree_io_selectInput_12_pipeReg__1 = _RAND_194[0:0];
   _RAND_195 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_1 = _RAND_195[0:0];
+  multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_0 = _RAND_195[0:0];
   _RAND_196 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_12_REG = _RAND_196[0:0];
+  multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_1 = _RAND_196[0:0];
   _RAND_197 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_13_REG = _RAND_197[5:0];
+  multiHotPriortyReductionTree_io_selectInput_12_REG = _RAND_197[0:0];
   _RAND_198 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_13_pipeReg__0 = _RAND_198[0:0];
+  multiHotPriortyReductionTree_io_dataInput_13_REG = _RAND_198[5:0];
   _RAND_199 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_13_pipeReg__1 = _RAND_199[0:0];
+  multiHotPriortyReductionTree_io_selectInput_13_pipeReg__0 = _RAND_199[0:0];
   _RAND_200 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_0 = _RAND_200[0:0];
+  multiHotPriortyReductionTree_io_selectInput_13_pipeReg__1 = _RAND_200[0:0];
   _RAND_201 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_1 = _RAND_201[0:0];
+  multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_0 = _RAND_201[0:0];
   _RAND_202 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_13_REG = _RAND_202[0:0];
+  multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_1 = _RAND_202[0:0];
   _RAND_203 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_14_REG = _RAND_203[5:0];
+  multiHotPriortyReductionTree_io_selectInput_13_REG = _RAND_203[0:0];
   _RAND_204 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_14_pipeReg__0 = _RAND_204[0:0];
+  multiHotPriortyReductionTree_io_dataInput_14_REG = _RAND_204[5:0];
   _RAND_205 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_14_pipeReg__1 = _RAND_205[0:0];
+  multiHotPriortyReductionTree_io_selectInput_14_pipeReg__0 = _RAND_205[0:0];
   _RAND_206 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_0 = _RAND_206[0:0];
+  multiHotPriortyReductionTree_io_selectInput_14_pipeReg__1 = _RAND_206[0:0];
   _RAND_207 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_1 = _RAND_207[0:0];
+  multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_0 = _RAND_207[0:0];
   _RAND_208 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_14_REG = _RAND_208[0:0];
+  multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_1 = _RAND_208[0:0];
   _RAND_209 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_dataInput_15_REG = _RAND_209[5:0];
+  multiHotPriortyReductionTree_io_selectInput_14_REG = _RAND_209[0:0];
   _RAND_210 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_15_pipeReg__0 = _RAND_210[0:0];
+  multiHotPriortyReductionTree_io_dataInput_15_REG = _RAND_210[5:0];
   _RAND_211 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_15_pipeReg__1 = _RAND_211[0:0];
+  multiHotPriortyReductionTree_io_selectInput_15_pipeReg__0 = _RAND_211[0:0];
   _RAND_212 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0 = _RAND_212[0:0];
+  multiHotPriortyReductionTree_io_selectInput_15_pipeReg__1 = _RAND_212[0:0];
   _RAND_213 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1 = _RAND_213[0:0];
+  multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0 = _RAND_213[0:0];
   _RAND_214 = {1{`RANDOM}};
-  multiHotPriortyReductionTree_io_selectInput_15_REG = _RAND_214[0:0];
+  multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1 = _RAND_214[0:0];
   _RAND_215 = {1{`RANDOM}};
-  pixelColorSprite = _RAND_215[5:0];
+  multiHotPriortyReductionTree_io_selectInput_15_REG = _RAND_215[0:0];
   _RAND_216 = {1{`RANDOM}};
-  pixelColorSpriteValid = _RAND_216[0:0];
+  pixelColorSprite = _RAND_216[5:0];
   _RAND_217 = {1{`RANDOM}};
-  pixelColourVGA_pipeReg_0 = _RAND_217[0:0];
+  pixelColorSpriteValid = _RAND_217[0:0];
   _RAND_218 = {1{`RANDOM}};
-  pixelColourVGA_pipeReg_1 = _RAND_218[0:0];
+  pixelColourVGA_pipeReg_0 = _RAND_218[0:0];
   _RAND_219 = {1{`RANDOM}};
-  pixelColourVGA_pipeReg_2 = _RAND_219[0:0];
+  pixelColourVGA_pipeReg_1 = _RAND_219[0:0];
   _RAND_220 = {1{`RANDOM}};
-  io_vgaRed_REG = _RAND_220[3:0];
+  pixelColourVGA_pipeReg_2 = _RAND_220[0:0];
   _RAND_221 = {1{`RANDOM}};
-  io_vgaGreen_REG = _RAND_221[3:0];
+  io_vgaRed_REG = _RAND_221[3:0];
   _RAND_222 = {1{`RANDOM}};
-  io_vgaBlue_REG = _RAND_222[3:0];
+  io_vgaGreen_REG = _RAND_222[3:0];
+  _RAND_223 = {1{`RANDOM}};
+  io_vgaBlue_REG = _RAND_223[3:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -4966,6 +4978,8 @@ module PlayerController(
   input         io_btnL, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
   input         io_btnR, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
   input         io_btnD, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
+  output [9:0]  io_viewBoxX, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
+  output [8:0]  io_viewBoxY, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
   output [10:0] io_spriteXPosition_0, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
   output [10:0] io_spriteXPosition_1, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
   output [10:0] io_spriteXPosition_2, // @[\\src\\main\\scala\\PlayerController.scala 5:16]
@@ -4998,790 +5012,832 @@ module PlayerController(
   reg [31:0] _RAND_12;
   reg [31:0] _RAND_13;
   reg [31:0] _RAND_14;
+  reg [31:0] _RAND_15;
+  reg [31:0] _RAND_16;
+  reg [31:0] _RAND_17;
+  reg [31:0] _RAND_18;
 `endif // RANDOMIZE_REG_INIT
-  wire [9:0] posToAddress_io_posX; // @[\\src\\main\\scala\\PlayerController.scala 84:28]
-  wire [8:0] posToAddress_io_posY; // @[\\src\\main\\scala\\PlayerController.scala 84:28]
-  wire [10:0] posToAddress_io_address; // @[\\src\\main\\scala\\PlayerController.scala 84:28]
-  reg [2:0] stateReg; // @[\\src\\main\\scala\\PlayerController.scala 47:25]
-  reg [39:0] sprite0XReg; // @[\\src\\main\\scala\\PlayerController.scala 50:28]
-  reg [39:0] sprite0YReg; // @[\\src\\main\\scala\\PlayerController.scala 51:28]
-  reg [31:0] sprite0SpeedReg; // @[\\src\\main\\scala\\PlayerController.scala 52:32]
-  reg [7:0] sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 53:32]
-  reg [15:0] cosReg; // @[\\src\\main\\scala\\PlayerController.scala 55:23]
-  reg [15:0] sinReg; // @[\\src\\main\\scala\\PlayerController.scala 56:23]
-  reg  sprite0FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 72:41]
-  reg  sprite1FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 75:41]
-  reg  sprite1FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 76:39]
-  reg  sprite2FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 78:39]
-  reg  sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 80:31]
-  reg  sprite1Visible; // @[\\src\\main\\scala\\PlayerController.scala 81:31]
-  reg  sprite2Visible; // @[\\src\\main\\scala\\PlayerController.scala 82:31]
-  wire [23:0] _posToAddress_io_posX_T = sprite0XReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 85:40]
-  wire [23:0] _posToAddress_io_posX_T_1 = sprite0XReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 85:47]
-  wire [23:0] _posToAddress_io_posY_T = sprite0YReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 86:40]
-  wire [23:0] _posToAddress_io_posY_T_1 = sprite0YReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 86:47]
-  reg [10:0] tilemapRomTileAddrReg; // @[\\src\\main\\scala\\PlayerController.scala 88:38]
-  wire [31:0] _T_4 = 32'sh0 - 32'sh7a120; // @[\\src\\main\\scala\\PlayerController.scala 122:32]
-  wire [31:0] _sprite0SpeedReg_T_2 = $signed(sprite0SpeedReg) - 32'sh5dc; // @[\\src\\main\\scala\\PlayerController.scala 123:46]
+  wire [9:0] posToAddress_io_posX; // @[\\src\\main\\scala\\PlayerController.scala 96:28]
+  wire [8:0] posToAddress_io_posY; // @[\\src\\main\\scala\\PlayerController.scala 96:28]
+  wire [10:0] posToAddress_io_address; // @[\\src\\main\\scala\\PlayerController.scala 96:28]
+  reg [2:0] stateReg; // @[\\src\\main\\scala\\PlayerController.scala 50:25]
+  reg [39:0] sprite0XReg; // @[\\src\\main\\scala\\PlayerController.scala 53:28]
+  reg [39:0] sprite0YReg; // @[\\src\\main\\scala\\PlayerController.scala 54:28]
+  reg [31:0] sprite0SpeedReg; // @[\\src\\main\\scala\\PlayerController.scala 55:32]
+  reg [7:0] sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 56:32]
+  reg [15:0] cosReg; // @[\\src\\main\\scala\\PlayerController.scala 58:23]
+  reg [15:0] sinReg; // @[\\src\\main\\scala\\PlayerController.scala 59:23]
+  reg [9:0] viewBoxXReg; // @[\\src\\main\\scala\\PlayerController.scala 63:28]
+  reg [8:0] viewBoxYReg; // @[\\src\\main\\scala\\PlayerController.scala 64:28]
+  reg [10:0] viewBoxXRegTemp; // @[\\src\\main\\scala\\PlayerController.scala 69:32]
+  reg [9:0] viewBoxYRegTemp; // @[\\src\\main\\scala\\PlayerController.scala 70:32]
+  reg  sprite0FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 84:41]
+  reg  sprite1FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 87:41]
+  reg  sprite1FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 88:39]
+  reg  sprite2FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 90:39]
+  reg  sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 92:31]
+  reg  sprite1Visible; // @[\\src\\main\\scala\\PlayerController.scala 93:31]
+  reg  sprite2Visible; // @[\\src\\main\\scala\\PlayerController.scala 94:31]
+  wire [23:0] _posToAddress_io_posX_T = sprite0XReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 97:40]
+  wire [23:0] _posToAddress_io_posX_T_1 = sprite0XReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 97:47]
+  wire [23:0] _posToAddress_io_posY_T = sprite0YReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 98:40]
+  wire [23:0] _posToAddress_io_posY_T_1 = sprite0YReg[39:16]; // @[\\src\\main\\scala\\PlayerController.scala 98:47]
+  reg [10:0] tilemapRomTileAddrReg; // @[\\src\\main\\scala\\PlayerController.scala 100:38]
+  wire [31:0] _T_4 = 32'sh0 - 32'sh7a120; // @[\\src\\main\\scala\\PlayerController.scala 134:32]
+  wire [31:0] _sprite0SpeedReg_T_2 = $signed(sprite0SpeedReg) - 32'sh5dc; // @[\\src\\main\\scala\\PlayerController.scala 135:46]
   wire [31:0] _GEN_2 = $signed(sprite0SpeedReg) > $signed(_T_4) ? $signed(_sprite0SpeedReg_T_2) : $signed(
-    sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 122:42 123:27 52:32]
-  wire [31:0] _sprite0SpeedReg_T_5 = $signed(sprite0SpeedReg) + 32'sh3e8; // @[\\src\\main\\scala\\PlayerController.scala 127:46]
-  wire [31:0] _GEN_3 = $signed(sprite0SpeedReg) < 32'sh7a120 ? $signed(_sprite0SpeedReg_T_5) : $signed(sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 126:41 127:27 52:32]
-  wire [31:0] _sprite0SpeedReg_T_8 = $signed(sprite0SpeedReg) - 32'sh190; // @[\\src\\main\\scala\\PlayerController.scala 131:46]
-  wire [31:0] _T_10 = 32'sh0 - 32'sh190; // @[\\src\\main\\scala\\PlayerController.scala 132:38]
-  wire [31:0] _sprite0SpeedReg_T_11 = $signed(sprite0SpeedReg) + 32'sh190; // @[\\src\\main\\scala\\PlayerController.scala 133:46]
-  wire [31:0] _GEN_4 = $signed(sprite0SpeedReg) < $signed(_T_10) ? $signed(_sprite0SpeedReg_T_11) : $signed(32'sh0); // @[\\src\\main\\scala\\PlayerController.scala 132:49 133:27 135:27]
-  wire [31:0] _GEN_5 = $signed(sprite0SpeedReg) > 32'sh190 ? $signed(_sprite0SpeedReg_T_8) : $signed(_GEN_4); // @[\\src\\main\\scala\\PlayerController.scala 130:42 131:27]
-  wire [31:0] _GEN_6 = io_btnU ? $signed(_GEN_3) : $signed(_GEN_5); // @[\\src\\main\\scala\\PlayerController.scala 125:27]
-  wire [7:0] _sprite0AngleReg_T_1 = sprite0AngleReg + 8'h1; // @[\\src\\main\\scala\\PlayerController.scala 140:44]
-  wire [7:0] _sprite0AngleReg_T_3 = sprite0AngleReg - 8'h1; // @[\\src\\main\\scala\\PlayerController.scala 142:44]
-  wire [7:0] _GEN_8 = io_btnL ? _sprite0AngleReg_T_3 : sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 141:26 142:25 53:32]
-  wire  _GEN_10 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 ? 1'h0 : sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 208:69 209:26 80:31]
-  wire  _GEN_11 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 | sprite1Visible; // @[\\src\\main\\scala\\PlayerController.scala 208:69 210:26 81:31]
-  wire  _GEN_12 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 ? 1'h0 : sprite2Visible; // @[\\src\\main\\scala\\PlayerController.scala 208:69 211:26 82:31]
-  wire  _GEN_13 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 ? 1'h0 : sprite1FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 208:69 213:36 75:41]
-  wire  _GEN_14 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 | sprite1FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 208:69 214:34 76:39]
-  wire  _GEN_15 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? 1'h0 : _GEN_10; // @[\\src\\main\\scala\\PlayerController.scala 200:68 201:26]
-  wire  _GEN_16 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? 1'h0 : _GEN_11; // @[\\src\\main\\scala\\PlayerController.scala 200:68 202:26]
-  wire  _GEN_17 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 | _GEN_12; // @[\\src\\main\\scala\\PlayerController.scala 200:68 203:26]
-  wire  _GEN_18 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 | sprite2FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 200:68 205:34 78:39]
-  wire  _GEN_19 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? sprite1FlipHorizontalReg : _GEN_13; // @[\\src\\main\\scala\\PlayerController.scala 200:68 75:41]
-  wire  _GEN_20 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? sprite1FlipVerticalReg : _GEN_14; // @[\\src\\main\\scala\\PlayerController.scala 200:68 76:39]
-  wire  _GEN_21 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 ? 1'h0 : _GEN_15; // @[\\src\\main\\scala\\PlayerController.scala 191:68 192:26]
-  wire  _GEN_22 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 | _GEN_16; // @[\\src\\main\\scala\\PlayerController.scala 191:68 193:26]
-  wire  _GEN_23 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 ? 1'h0 : _GEN_17; // @[\\src\\main\\scala\\PlayerController.scala 191:68 194:26]
-  wire  _GEN_24 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 | _GEN_19; // @[\\src\\main\\scala\\PlayerController.scala 191:68 196:36]
-  wire  _GEN_25 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 | _GEN_20; // @[\\src\\main\\scala\\PlayerController.scala 191:68 197:34]
-  wire  _GEN_26 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 ? sprite2FlipVerticalReg : _GEN_18; // @[\\src\\main\\scala\\PlayerController.scala 191:68 78:39]
-  wire  _GEN_27 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 | _GEN_21; // @[\\src\\main\\scala\\PlayerController.scala 182:127 183:26]
-  wire  _GEN_28 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? 1'h0 : _GEN_22; // @[\\src\\main\\scala\\PlayerController.scala 182:127 184:26]
-  wire  _GEN_29 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? 1'h0 : _GEN_23; // @[\\src\\main\\scala\\PlayerController.scala 182:127 185:26]
-  wire  _GEN_30 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 | sprite0FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 182:127 187:36 72:41]
-  wire  _GEN_32 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? sprite1FlipHorizontalReg : _GEN_24; // @[\\src\\main\\scala\\PlayerController.scala 182:127 75:41]
-  wire  _GEN_33 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? sprite1FlipVerticalReg : _GEN_25; // @[\\src\\main\\scala\\PlayerController.scala 182:127 76:39]
-  wire  _GEN_34 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? sprite2FlipVerticalReg : _GEN_26; // @[\\src\\main\\scala\\PlayerController.scala 182:127 78:39]
-  wire  _GEN_35 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? 1'h0 : _GEN_27; // @[\\src\\main\\scala\\PlayerController.scala 173:70 174:26]
-  wire  _GEN_36 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 | _GEN_28; // @[\\src\\main\\scala\\PlayerController.scala 173:70 175:26]
-  wire  _GEN_37 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? 1'h0 : _GEN_29; // @[\\src\\main\\scala\\PlayerController.scala 173:70 176:26]
-  wire  _GEN_38 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 | _GEN_32; // @[\\src\\main\\scala\\PlayerController.scala 173:70 178:36]
-  wire  _GEN_39 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? 1'h0 : _GEN_33; // @[\\src\\main\\scala\\PlayerController.scala 173:70 179:34]
-  wire  _GEN_40 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? sprite0FlipHorizontalReg : _GEN_30; // @[\\src\\main\\scala\\PlayerController.scala 173:70 72:41]
-  wire  _GEN_42 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? sprite2FlipVerticalReg : _GEN_34; // @[\\src\\main\\scala\\PlayerController.scala 173:70 78:39]
-  wire  _GEN_43 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? 1'h0 : _GEN_35; // @[\\src\\main\\scala\\PlayerController.scala 165:70 166:26]
-  wire  _GEN_44 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? 1'h0 : _GEN_36; // @[\\src\\main\\scala\\PlayerController.scala 165:70 167:26]
-  wire  _GEN_45 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 | _GEN_37; // @[\\src\\main\\scala\\PlayerController.scala 165:70 168:26]
-  wire  _GEN_46 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? 1'h0 : _GEN_42; // @[\\src\\main\\scala\\PlayerController.scala 165:70 170:34]
-  wire  _GEN_47 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? sprite1FlipHorizontalReg : _GEN_38; // @[\\src\\main\\scala\\PlayerController.scala 165:70 75:41]
-  wire  _GEN_48 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? sprite1FlipVerticalReg : _GEN_39; // @[\\src\\main\\scala\\PlayerController.scala 165:70 76:39]
-  wire  _GEN_49 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? sprite0FlipHorizontalReg : _GEN_40; // @[\\src\\main\\scala\\PlayerController.scala 165:70 72:41]
-  wire  _GEN_51 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_43; // @[\\src\\main\\scala\\PlayerController.scala 156:70 157:26]
-  wire  _GEN_52 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 | _GEN_44; // @[\\src\\main\\scala\\PlayerController.scala 156:70 158:26]
-  wire  _GEN_53 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_45; // @[\\src\\main\\scala\\PlayerController.scala 156:70 159:26]
-  wire  _GEN_54 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_47; // @[\\src\\main\\scala\\PlayerController.scala 156:70 161:36]
-  wire  _GEN_55 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_48; // @[\\src\\main\\scala\\PlayerController.scala 156:70 162:34]
-  wire  _GEN_56 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? sprite2FlipVerticalReg : _GEN_46; // @[\\src\\main\\scala\\PlayerController.scala 156:70 78:39]
-  wire  _GEN_57 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? sprite0FlipHorizontalReg : _GEN_49; // @[\\src\\main\\scala\\PlayerController.scala 156:70 72:41]
-  wire  _GEN_59 = sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90 | _GEN_51; // @[\\src\\main\\scala\\PlayerController.scala 147:66 148:26]
-  wire [15:0] _GEN_68 = 8'h1 == sprite0AngleReg ? $signed(16'shff) : $signed(16'sh100); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_69 = 8'h2 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_68); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_70 = 8'h3 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_69); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_71 = 8'h4 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_70); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_72 = 8'h5 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_71); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_73 = 8'h6 == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_72); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_74 = 8'h7 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_73); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_75 = 8'h8 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_74); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_76 = 8'h9 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_75); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_77 = 8'ha == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_76); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_78 = 8'hb == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_77); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_79 = 8'hc == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_78); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_80 = 8'hd == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_79); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_81 = 8'he == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_80); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_82 = 8'hf == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_81); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_83 = 8'h10 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_82); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_84 = 8'h11 == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_83); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_85 = 8'h12 == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_84); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_86 = 8'h13 == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_85); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_87 = 8'h14 == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_86); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_88 = 8'h15 == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_87); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_89 = 8'h16 == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_88); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_90 = 8'h17 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_89); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_91 = 8'h18 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_90); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_92 = 8'h19 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_91); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_93 = 8'h1a == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_92); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_94 = 8'h1b == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_93); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_95 = 8'h1c == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_94); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_96 = 8'h1d == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_95); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_97 = 8'h1e == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_96); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_98 = 8'h1f == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_97); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_99 = 8'h20 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_98); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_100 = 8'h21 == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_99); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_101 = 8'h22 == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_100); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_102 = 8'h23 == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_101); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_103 = 8'h24 == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_102); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_104 = 8'h25 == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_103); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_105 = 8'h26 == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_104); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_106 = 8'h27 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_105); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_107 = 8'h28 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_106); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_108 = 8'h29 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_107); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_109 = 8'h2a == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_108); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_110 = 8'h2b == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_109); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_111 = 8'h2c == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_110); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_112 = 8'h2d == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_111); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_113 = 8'h2e == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_112); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_114 = 8'h2f == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_113); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_115 = 8'h30 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_114); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_116 = 8'h31 == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_115); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_117 = 8'h32 == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_116); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_118 = 8'h33 == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_117); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_119 = 8'h34 == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_118); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_120 = 8'h35 == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_119); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_121 = 8'h36 == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_120); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_122 = 8'h37 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_121); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_123 = 8'h38 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_122); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_124 = 8'h39 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_123); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_125 = 8'h3a == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_124); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_126 = 8'h3b == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_125); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_127 = 8'h3c == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_126); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_128 = 8'h3d == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_127); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_129 = 8'h3e == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_128); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_130 = 8'h3f == sprite0AngleReg ? $signed(16'sh6) : $signed(_GEN_129); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_131 = 8'h40 == sprite0AngleReg ? $signed(16'sh0) : $signed(_GEN_130); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_132 = 8'h41 == sprite0AngleReg ? $signed(-16'sh6) : $signed(_GEN_131); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_133 = 8'h42 == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_132); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_134 = 8'h43 == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_133); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_135 = 8'h44 == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_134); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_136 = 8'h45 == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_135); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_137 = 8'h46 == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_136); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_138 = 8'h47 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_137); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_139 = 8'h48 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_138); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_140 = 8'h49 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_139); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_141 = 8'h4a == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_140); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_142 = 8'h4b == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_141); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_143 = 8'h4c == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_142); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_144 = 8'h4d == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_143); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_145 = 8'h4e == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_144); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_146 = 8'h4f == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_145); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_147 = 8'h50 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_146); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_148 = 8'h51 == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_147); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_149 = 8'h52 == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_148); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_150 = 8'h53 == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_149); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_151 = 8'h54 == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_150); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_152 = 8'h55 == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_151); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_153 = 8'h56 == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_152); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_154 = 8'h57 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_153); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_155 = 8'h58 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_154); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_156 = 8'h59 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_155); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_157 = 8'h5a == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_156); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_158 = 8'h5b == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_157); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_159 = 8'h5c == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_158); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_160 = 8'h5d == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_159); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_161 = 8'h5e == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_160); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_162 = 8'h5f == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_161); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_163 = 8'h60 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_162); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_164 = 8'h61 == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_163); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_165 = 8'h62 == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_164); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_166 = 8'h63 == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_165); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_167 = 8'h64 == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_166); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_168 = 8'h65 == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_167); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_169 = 8'h66 == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_168); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_170 = 8'h67 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_169); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_171 = 8'h68 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_170); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_172 = 8'h69 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_171); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_173 = 8'h6a == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_172); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_174 = 8'h6b == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_173); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_175 = 8'h6c == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_174); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_176 = 8'h6d == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_175); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_177 = 8'h6e == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_176); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_178 = 8'h6f == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_177); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_179 = 8'h70 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_178); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_180 = 8'h71 == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_179); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_181 = 8'h72 == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_180); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_182 = 8'h73 == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_181); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_183 = 8'h74 == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_182); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_184 = 8'h75 == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_183); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_185 = 8'h76 == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_184); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_186 = 8'h77 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_185); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_187 = 8'h78 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_186); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_188 = 8'h79 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_187); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_189 = 8'h7a == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_188); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_190 = 8'h7b == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_189); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_191 = 8'h7c == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_190); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_192 = 8'h7d == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_191); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_193 = 8'h7e == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_192); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_194 = 8'h7f == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_193); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_195 = 8'h80 == sprite0AngleReg ? $signed(-16'sh100) : $signed(_GEN_194); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_196 = 8'h81 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_195); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_197 = 8'h82 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_196); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_198 = 8'h83 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_197); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_199 = 8'h84 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_198); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_200 = 8'h85 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_199); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_201 = 8'h86 == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_200); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_202 = 8'h87 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_201); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_203 = 8'h88 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_202); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_204 = 8'h89 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_203); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_205 = 8'h8a == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_204); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_206 = 8'h8b == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_205); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_207 = 8'h8c == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_206); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_208 = 8'h8d == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_207); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_209 = 8'h8e == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_208); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_210 = 8'h8f == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_209); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_211 = 8'h90 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_210); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_212 = 8'h91 == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_211); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_213 = 8'h92 == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_212); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_214 = 8'h93 == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_213); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_215 = 8'h94 == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_214); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_216 = 8'h95 == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_215); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_217 = 8'h96 == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_216); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_218 = 8'h97 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_217); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_219 = 8'h98 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_218); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_220 = 8'h99 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_219); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_221 = 8'h9a == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_220); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_222 = 8'h9b == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_221); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_223 = 8'h9c == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_222); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_224 = 8'h9d == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_223); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_225 = 8'h9e == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_224); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_226 = 8'h9f == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_225); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_227 = 8'ha0 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_226); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_228 = 8'ha1 == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_227); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_229 = 8'ha2 == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_228); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_230 = 8'ha3 == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_229); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_231 = 8'ha4 == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_230); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_232 = 8'ha5 == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_231); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_233 = 8'ha6 == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_232); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_234 = 8'ha7 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_233); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_235 = 8'ha8 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_234); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_236 = 8'ha9 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_235); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_237 = 8'haa == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_236); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_238 = 8'hab == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_237); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_239 = 8'hac == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_238); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_240 = 8'had == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_239); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_241 = 8'hae == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_240); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_242 = 8'haf == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_241); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_243 = 8'hb0 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_242); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_244 = 8'hb1 == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_243); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_245 = 8'hb2 == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_244); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_246 = 8'hb3 == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_245); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_247 = 8'hb4 == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_246); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_248 = 8'hb5 == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_247); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_249 = 8'hb6 == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_248); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_250 = 8'hb7 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_249); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_251 = 8'hb8 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_250); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_252 = 8'hb9 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_251); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_253 = 8'hba == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_252); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_254 = 8'hbb == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_253); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_255 = 8'hbc == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_254); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_256 = 8'hbd == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_255); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_257 = 8'hbe == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_256); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_258 = 8'hbf == sprite0AngleReg ? $signed(-16'sh6) : $signed(_GEN_257); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_259 = 8'hc0 == sprite0AngleReg ? $signed(16'sh0) : $signed(_GEN_258); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_260 = 8'hc1 == sprite0AngleReg ? $signed(16'sh6) : $signed(_GEN_259); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_261 = 8'hc2 == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_260); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_262 = 8'hc3 == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_261); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_263 = 8'hc4 == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_262); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_264 = 8'hc5 == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_263); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_265 = 8'hc6 == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_264); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_266 = 8'hc7 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_265); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_267 = 8'hc8 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_266); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_268 = 8'hc9 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_267); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_269 = 8'hca == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_268); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_270 = 8'hcb == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_269); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_271 = 8'hcc == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_270); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_272 = 8'hcd == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_271); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_273 = 8'hce == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_272); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_274 = 8'hcf == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_273); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_275 = 8'hd0 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_274); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_276 = 8'hd1 == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_275); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_277 = 8'hd2 == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_276); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_278 = 8'hd3 == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_277); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_279 = 8'hd4 == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_278); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_280 = 8'hd5 == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_279); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_281 = 8'hd6 == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_280); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_282 = 8'hd7 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_281); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_283 = 8'hd8 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_282); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_284 = 8'hd9 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_283); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_285 = 8'hda == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_284); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_286 = 8'hdb == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_285); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_287 = 8'hdc == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_286); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_288 = 8'hdd == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_287); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_289 = 8'hde == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_288); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_290 = 8'hdf == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_289); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_291 = 8'he0 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_290); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_292 = 8'he1 == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_291); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_293 = 8'he2 == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_292); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_294 = 8'he3 == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_293); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_295 = 8'he4 == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_294); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_296 = 8'he5 == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_295); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_297 = 8'he6 == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_296); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_298 = 8'he7 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_297); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_299 = 8'he8 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_298); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_300 = 8'he9 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_299); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_301 = 8'hea == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_300); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_302 = 8'heb == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_301); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_303 = 8'hec == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_302); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_304 = 8'hed == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_303); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_305 = 8'hee == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_304); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_306 = 8'hef == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_305); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_307 = 8'hf0 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_306); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_308 = 8'hf1 == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_307); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_309 = 8'hf2 == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_308); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_310 = 8'hf3 == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_309); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_311 = 8'hf4 == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_310); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_312 = 8'hf5 == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_311); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_313 = 8'hf6 == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_312); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_314 = 8'hf7 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_313); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_315 = 8'hf8 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_314); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_316 = 8'hf9 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_315); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_317 = 8'hfa == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_316); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_318 = 8'hfb == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_317); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_319 = 8'hfc == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_318); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_320 = 8'hfd == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_319); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_321 = 8'hfe == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_320); // @[\\src\\main\\scala\\PlayerController.scala 217:{14,14}]
-  wire [15:0] _GEN_324 = 8'h1 == sprite0AngleReg ? $signed(16'sh6) : $signed(16'sh0); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_325 = 8'h2 == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_324); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_326 = 8'h3 == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_325); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_327 = 8'h4 == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_326); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_328 = 8'h5 == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_327); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_329 = 8'h6 == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_328); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_330 = 8'h7 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_329); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_331 = 8'h8 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_330); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_332 = 8'h9 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_331); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_333 = 8'ha == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_332); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_334 = 8'hb == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_333); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_335 = 8'hc == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_334); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_336 = 8'hd == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_335); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_337 = 8'he == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_336); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_338 = 8'hf == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_337); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_339 = 8'h10 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_338); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_340 = 8'h11 == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_339); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_341 = 8'h12 == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_340); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_342 = 8'h13 == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_341); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_343 = 8'h14 == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_342); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_344 = 8'h15 == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_343); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_345 = 8'h16 == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_344); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_346 = 8'h17 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_345); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_347 = 8'h18 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_346); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_348 = 8'h19 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_347); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_349 = 8'h1a == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_348); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_350 = 8'h1b == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_349); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_351 = 8'h1c == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_350); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_352 = 8'h1d == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_351); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_353 = 8'h1e == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_352); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_354 = 8'h1f == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_353); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_355 = 8'h20 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_354); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_356 = 8'h21 == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_355); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_357 = 8'h22 == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_356); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_358 = 8'h23 == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_357); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_359 = 8'h24 == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_358); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_360 = 8'h25 == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_359); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_361 = 8'h26 == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_360); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_362 = 8'h27 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_361); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_363 = 8'h28 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_362); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_364 = 8'h29 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_363); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_365 = 8'h2a == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_364); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_366 = 8'h2b == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_365); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_367 = 8'h2c == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_366); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_368 = 8'h2d == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_367); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_369 = 8'h2e == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_368); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_370 = 8'h2f == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_369); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_371 = 8'h30 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_370); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_372 = 8'h31 == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_371); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_373 = 8'h32 == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_372); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_374 = 8'h33 == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_373); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_375 = 8'h34 == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_374); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_376 = 8'h35 == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_375); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_377 = 8'h36 == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_376); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_378 = 8'h37 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_377); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_379 = 8'h38 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_378); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_380 = 8'h39 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_379); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_381 = 8'h3a == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_380); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_382 = 8'h3b == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_381); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_383 = 8'h3c == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_382); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_384 = 8'h3d == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_383); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_385 = 8'h3e == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_384); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_386 = 8'h3f == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_385); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_387 = 8'h40 == sprite0AngleReg ? $signed(16'sh100) : $signed(_GEN_386); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_388 = 8'h41 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_387); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_389 = 8'h42 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_388); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_390 = 8'h43 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_389); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_391 = 8'h44 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_390); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_392 = 8'h45 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_391); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_393 = 8'h46 == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_392); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_394 = 8'h47 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_393); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_395 = 8'h48 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_394); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_396 = 8'h49 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_395); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_397 = 8'h4a == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_396); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_398 = 8'h4b == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_397); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_399 = 8'h4c == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_398); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_400 = 8'h4d == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_399); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_401 = 8'h4e == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_400); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_402 = 8'h4f == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_401); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_403 = 8'h50 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_402); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_404 = 8'h51 == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_403); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_405 = 8'h52 == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_404); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_406 = 8'h53 == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_405); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_407 = 8'h54 == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_406); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_408 = 8'h55 == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_407); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_409 = 8'h56 == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_408); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_410 = 8'h57 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_409); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_411 = 8'h58 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_410); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_412 = 8'h59 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_411); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_413 = 8'h5a == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_412); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_414 = 8'h5b == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_413); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_415 = 8'h5c == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_414); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_416 = 8'h5d == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_415); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_417 = 8'h5e == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_416); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_418 = 8'h5f == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_417); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_419 = 8'h60 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_418); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_420 = 8'h61 == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_419); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_421 = 8'h62 == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_420); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_422 = 8'h63 == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_421); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_423 = 8'h64 == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_422); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_424 = 8'h65 == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_423); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_425 = 8'h66 == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_424); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_426 = 8'h67 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_425); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_427 = 8'h68 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_426); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_428 = 8'h69 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_427); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_429 = 8'h6a == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_428); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_430 = 8'h6b == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_429); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_431 = 8'h6c == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_430); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_432 = 8'h6d == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_431); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_433 = 8'h6e == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_432); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_434 = 8'h6f == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_433); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_435 = 8'h70 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_434); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_436 = 8'h71 == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_435); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_437 = 8'h72 == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_436); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_438 = 8'h73 == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_437); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_439 = 8'h74 == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_438); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_440 = 8'h75 == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_439); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_441 = 8'h76 == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_440); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_442 = 8'h77 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_441); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_443 = 8'h78 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_442); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_444 = 8'h79 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_443); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_445 = 8'h7a == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_444); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_446 = 8'h7b == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_445); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_447 = 8'h7c == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_446); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_448 = 8'h7d == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_447); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_449 = 8'h7e == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_448); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_450 = 8'h7f == sprite0AngleReg ? $signed(16'sh6) : $signed(_GEN_449); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_451 = 8'h80 == sprite0AngleReg ? $signed(16'sh0) : $signed(_GEN_450); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_452 = 8'h81 == sprite0AngleReg ? $signed(-16'sh6) : $signed(_GEN_451); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_453 = 8'h82 == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_452); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_454 = 8'h83 == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_453); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_455 = 8'h84 == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_454); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_456 = 8'h85 == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_455); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_457 = 8'h86 == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_456); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_458 = 8'h87 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_457); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_459 = 8'h88 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_458); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_460 = 8'h89 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_459); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_461 = 8'h8a == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_460); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_462 = 8'h8b == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_461); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_463 = 8'h8c == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_462); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_464 = 8'h8d == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_463); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_465 = 8'h8e == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_464); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_466 = 8'h8f == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_465); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_467 = 8'h90 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_466); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_468 = 8'h91 == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_467); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_469 = 8'h92 == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_468); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_470 = 8'h93 == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_469); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_471 = 8'h94 == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_470); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_472 = 8'h95 == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_471); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_473 = 8'h96 == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_472); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_474 = 8'h97 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_473); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_475 = 8'h98 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_474); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_476 = 8'h99 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_475); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_477 = 8'h9a == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_476); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_478 = 8'h9b == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_477); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_479 = 8'h9c == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_478); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_480 = 8'h9d == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_479); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_481 = 8'h9e == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_480); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_482 = 8'h9f == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_481); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_483 = 8'ha0 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_482); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_484 = 8'ha1 == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_483); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_485 = 8'ha2 == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_484); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_486 = 8'ha3 == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_485); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_487 = 8'ha4 == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_486); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_488 = 8'ha5 == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_487); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_489 = 8'ha6 == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_488); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_490 = 8'ha7 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_489); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_491 = 8'ha8 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_490); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_492 = 8'ha9 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_491); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_493 = 8'haa == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_492); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_494 = 8'hab == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_493); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_495 = 8'hac == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_494); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_496 = 8'had == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_495); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_497 = 8'hae == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_496); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_498 = 8'haf == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_497); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_499 = 8'hb0 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_498); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_500 = 8'hb1 == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_499); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_501 = 8'hb2 == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_500); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_502 = 8'hb3 == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_501); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_503 = 8'hb4 == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_502); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_504 = 8'hb5 == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_503); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_505 = 8'hb6 == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_504); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_506 = 8'hb7 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_505); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_507 = 8'hb8 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_506); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_508 = 8'hb9 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_507); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_509 = 8'hba == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_508); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_510 = 8'hbb == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_509); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_511 = 8'hbc == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_510); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_512 = 8'hbd == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_511); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_513 = 8'hbe == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_512); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_514 = 8'hbf == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_513); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_515 = 8'hc0 == sprite0AngleReg ? $signed(-16'sh100) : $signed(_GEN_514); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_516 = 8'hc1 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_515); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_517 = 8'hc2 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_516); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_518 = 8'hc3 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_517); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_519 = 8'hc4 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_518); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_520 = 8'hc5 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_519); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_521 = 8'hc6 == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_520); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_522 = 8'hc7 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_521); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_523 = 8'hc8 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_522); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_524 = 8'hc9 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_523); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_525 = 8'hca == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_524); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_526 = 8'hcb == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_525); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_527 = 8'hcc == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_526); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_528 = 8'hcd == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_527); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_529 = 8'hce == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_528); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_530 = 8'hcf == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_529); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_531 = 8'hd0 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_530); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_532 = 8'hd1 == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_531); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_533 = 8'hd2 == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_532); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_534 = 8'hd3 == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_533); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_535 = 8'hd4 == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_534); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_536 = 8'hd5 == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_535); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_537 = 8'hd6 == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_536); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_538 = 8'hd7 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_537); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_539 = 8'hd8 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_538); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_540 = 8'hd9 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_539); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_541 = 8'hda == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_540); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_542 = 8'hdb == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_541); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_543 = 8'hdc == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_542); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_544 = 8'hdd == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_543); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_545 = 8'hde == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_544); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_546 = 8'hdf == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_545); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_547 = 8'he0 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_546); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_548 = 8'he1 == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_547); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_549 = 8'he2 == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_548); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_550 = 8'he3 == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_549); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_551 = 8'he4 == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_550); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_552 = 8'he5 == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_551); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_553 = 8'he6 == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_552); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_554 = 8'he7 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_553); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_555 = 8'he8 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_554); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_556 = 8'he9 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_555); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_557 = 8'hea == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_556); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_558 = 8'heb == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_557); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_559 = 8'hec == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_558); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_560 = 8'hed == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_559); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_561 = 8'hee == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_560); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_562 = 8'hef == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_561); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_563 = 8'hf0 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_562); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_564 = 8'hf1 == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_563); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_565 = 8'hf2 == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_564); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_566 = 8'hf3 == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_565); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_567 = 8'hf4 == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_566); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_568 = 8'hf5 == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_567); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_569 = 8'hf6 == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_568); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_570 = 8'hf7 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_569); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_571 = 8'hf8 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_570); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_572 = 8'hf9 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_571); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_573 = 8'hfa == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_572); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_574 = 8'hfb == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_573); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_575 = 8'hfc == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_574); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_576 = 8'hfd == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_575); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [15:0] _GEN_577 = 8'hfe == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_576); // @[\\src\\main\\scala\\PlayerController.scala 218:{14,14}]
-  wire [47:0] _sprite0XReg_T_1 = $signed(sprite0SpeedReg) * $signed(cosReg); // @[\\src\\main\\scala\\PlayerController.scala 228:54]
-  wire [39:0] _sprite0XReg_T_2 = _sprite0XReg_T_1[47:8]; // @[\\src\\main\\scala\\PlayerController.scala 228:64]
-  wire [39:0] _sprite0XReg_T_5 = $signed(sprite0XReg) + $signed(_sprite0XReg_T_2); // @[\\src\\main\\scala\\PlayerController.scala 228:34]
-  wire [47:0] _sprite0YReg_T_1 = $signed(sprite0SpeedReg) * $signed(sinReg); // @[\\src\\main\\scala\\PlayerController.scala 229:54]
-  wire [39:0] _sprite0YReg_T_2 = _sprite0YReg_T_1[47:8]; // @[\\src\\main\\scala\\PlayerController.scala 229:64]
-  wire [39:0] _sprite0YReg_T_5 = $signed(sprite0YReg) + $signed(_sprite0YReg_T_2); // @[\\src\\main\\scala\\PlayerController.scala 229:34]
-  wire [39:0] _GEN_579 = io_tilemapRomCollisionData ? $signed(40'sh2400000) : $signed(sprite0XReg); // @[\\src\\main\\scala\\PlayerController.scala 249:40 250:21 50:28]
-  wire [39:0] _GEN_580 = io_tilemapRomCollisionData ? $signed(40'sha00000) : $signed(sprite0YReg); // @[\\src\\main\\scala\\PlayerController.scala 249:40 251:21 51:28]
-  wire [2:0] _GEN_582 = 3'h6 == stateReg ? 3'h0 : stateReg; // @[\\src\\main\\scala\\PlayerController.scala 111:20 259:16 47:25]
-  wire [39:0] _GEN_583 = 3'h4 == stateReg ? $signed(_GEN_579) : $signed(sprite0XReg); // @[\\src\\main\\scala\\PlayerController.scala 111:20 50:28]
-  wire [39:0] _GEN_584 = 3'h4 == stateReg ? $signed(_GEN_580) : $signed(sprite0YReg); // @[\\src\\main\\scala\\PlayerController.scala 111:20 51:28]
-  wire [2:0] _GEN_585 = 3'h4 == stateReg ? 3'h6 : _GEN_582; // @[\\src\\main\\scala\\PlayerController.scala 111:20 254:16]
-  wire [10:0] _GEN_587 = 3'h5 == stateReg ? posToAddress_io_address : tilemapRomTileAddrReg; // @[\\src\\main\\scala\\PlayerController.scala 111:20 243:31 88:38]
-  wire [2:0] _GEN_588 = 3'h5 == stateReg ? 3'h4 : _GEN_585; // @[\\src\\main\\scala\\PlayerController.scala 111:20 245:18]
-  wire [39:0] _GEN_589 = 3'h5 == stateReg ? $signed(sprite0XReg) : $signed(_GEN_583); // @[\\src\\main\\scala\\PlayerController.scala 111:20 50:28]
-  wire [39:0] _GEN_590 = 3'h5 == stateReg ? $signed(sprite0YReg) : $signed(_GEN_584); // @[\\src\\main\\scala\\PlayerController.scala 111:20 51:28]
-  wire [2:0] _GEN_592 = 3'h3 == stateReg ? 3'h5 : _GEN_588; // @[\\src\\main\\scala\\PlayerController.scala 111:20 238:16]
-  wire [10:0] _GEN_593 = 3'h3 == stateReg ? tilemapRomTileAddrReg : _GEN_587; // @[\\src\\main\\scala\\PlayerController.scala 111:20 88:38]
-  wire [39:0] _GEN_594 = 3'h3 == stateReg ? $signed(sprite0XReg) : $signed(_GEN_589); // @[\\src\\main\\scala\\PlayerController.scala 111:20 50:28]
-  wire [39:0] _GEN_595 = 3'h3 == stateReg ? $signed(sprite0YReg) : $signed(_GEN_590); // @[\\src\\main\\scala\\PlayerController.scala 111:20 51:28]
-  wire  _GEN_604 = 3'h1 == stateReg ? _GEN_59 : sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 111:20 80:31]
-  wire  _GEN_622 = 3'h0 == stateReg ? sprite0Visible : _GEN_604; // @[\\src\\main\\scala\\PlayerController.scala 111:20 80:31]
-  PositionToAddress posToAddress ( // @[\\src\\main\\scala\\PlayerController.scala 84:28]
+    sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 134:42 135:27 55:32]
+  wire [31:0] _sprite0SpeedReg_T_5 = $signed(sprite0SpeedReg) + 32'sh3e8; // @[\\src\\main\\scala\\PlayerController.scala 139:46]
+  wire [31:0] _GEN_3 = $signed(sprite0SpeedReg) < 32'sh7a120 ? $signed(_sprite0SpeedReg_T_5) : $signed(sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 138:41 139:27 55:32]
+  wire [31:0] _sprite0SpeedReg_T_8 = $signed(sprite0SpeedReg) - 32'sh190; // @[\\src\\main\\scala\\PlayerController.scala 143:46]
+  wire [31:0] _T_10 = 32'sh0 - 32'sh190; // @[\\src\\main\\scala\\PlayerController.scala 144:38]
+  wire [31:0] _sprite0SpeedReg_T_11 = $signed(sprite0SpeedReg) + 32'sh190; // @[\\src\\main\\scala\\PlayerController.scala 145:46]
+  wire [31:0] _GEN_4 = $signed(sprite0SpeedReg) < $signed(_T_10) ? $signed(_sprite0SpeedReg_T_11) : $signed(32'sh0); // @[\\src\\main\\scala\\PlayerController.scala 144:49 145:27 147:27]
+  wire [31:0] _GEN_5 = $signed(sprite0SpeedReg) > 32'sh190 ? $signed(_sprite0SpeedReg_T_8) : $signed(_GEN_4); // @[\\src\\main\\scala\\PlayerController.scala 142:42 143:27]
+  wire [31:0] _GEN_6 = io_btnU ? $signed(_GEN_3) : $signed(_GEN_5); // @[\\src\\main\\scala\\PlayerController.scala 137:27]
+  wire [7:0] _sprite0AngleReg_T_1 = sprite0AngleReg + 8'h1; // @[\\src\\main\\scala\\PlayerController.scala 152:44]
+  wire [7:0] _sprite0AngleReg_T_3 = sprite0AngleReg - 8'h1; // @[\\src\\main\\scala\\PlayerController.scala 154:44]
+  wire [7:0] _GEN_8 = io_btnL ? _sprite0AngleReg_T_3 : sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 153:26 154:25 56:32]
+  wire  _GEN_10 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 ? 1'h0 : sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 220:69 221:26 92:31]
+  wire  _GEN_11 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 | sprite1Visible; // @[\\src\\main\\scala\\PlayerController.scala 220:69 222:26 93:31]
+  wire  _GEN_12 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 ? 1'h0 : sprite2Visible; // @[\\src\\main\\scala\\PlayerController.scala 220:69 223:26 94:31]
+  wire  _GEN_13 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 ? 1'h0 : sprite1FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 220:69 225:36 87:41]
+  wire  _GEN_14 = sprite0AngleReg >= 8'h51 & sprite0AngleReg <= 8'h70 | sprite1FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 220:69 226:34 88:39]
+  wire  _GEN_15 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? 1'h0 : _GEN_10; // @[\\src\\main\\scala\\PlayerController.scala 212:68 213:26]
+  wire  _GEN_16 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? 1'h0 : _GEN_11; // @[\\src\\main\\scala\\PlayerController.scala 212:68 214:26]
+  wire  _GEN_17 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 | _GEN_12; // @[\\src\\main\\scala\\PlayerController.scala 212:68 215:26]
+  wire  _GEN_18 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 | sprite2FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 212:68 217:34 90:39]
+  wire  _GEN_19 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? sprite1FlipHorizontalReg : _GEN_13; // @[\\src\\main\\scala\\PlayerController.scala 212:68 87:41]
+  wire  _GEN_20 = sprite0AngleReg >= 8'h31 & sprite0AngleReg <= 8'h50 ? sprite1FlipVerticalReg : _GEN_14; // @[\\src\\main\\scala\\PlayerController.scala 212:68 88:39]
+  wire  _GEN_21 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 ? 1'h0 : _GEN_15; // @[\\src\\main\\scala\\PlayerController.scala 203:68 204:26]
+  wire  _GEN_22 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 | _GEN_16; // @[\\src\\main\\scala\\PlayerController.scala 203:68 205:26]
+  wire  _GEN_23 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 ? 1'h0 : _GEN_17; // @[\\src\\main\\scala\\PlayerController.scala 203:68 206:26]
+  wire  _GEN_24 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 | _GEN_19; // @[\\src\\main\\scala\\PlayerController.scala 203:68 208:36]
+  wire  _GEN_25 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 | _GEN_20; // @[\\src\\main\\scala\\PlayerController.scala 203:68 209:34]
+  wire  _GEN_26 = sprite0AngleReg >= 8'h11 & sprite0AngleReg <= 8'h30 ? sprite2FlipVerticalReg : _GEN_18; // @[\\src\\main\\scala\\PlayerController.scala 203:68 90:39]
+  wire  _GEN_27 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 | _GEN_21; // @[\\src\\main\\scala\\PlayerController.scala 194:127 195:26]
+  wire  _GEN_28 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? 1'h0 : _GEN_22; // @[\\src\\main\\scala\\PlayerController.scala 194:127 196:26]
+  wire  _GEN_29 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? 1'h0 : _GEN_23; // @[\\src\\main\\scala\\PlayerController.scala 194:127 197:26]
+  wire  _GEN_30 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 | sprite0FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 194:127 199:36 84:41]
+  wire  _GEN_32 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? sprite1FlipHorizontalReg : _GEN_24; // @[\\src\\main\\scala\\PlayerController.scala 194:127 87:41]
+  wire  _GEN_33 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? sprite1FlipVerticalReg : _GEN_25; // @[\\src\\main\\scala\\PlayerController.scala 194:127 88:39]
+  wire  _GEN_34 = sprite0AngleReg >= 8'hf1 | sprite0AngleReg <= 8'h10 ? sprite2FlipVerticalReg : _GEN_26; // @[\\src\\main\\scala\\PlayerController.scala 194:127 90:39]
+  wire  _GEN_35 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? 1'h0 : _GEN_27; // @[\\src\\main\\scala\\PlayerController.scala 185:70 186:26]
+  wire  _GEN_36 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 | _GEN_28; // @[\\src\\main\\scala\\PlayerController.scala 185:70 187:26]
+  wire  _GEN_37 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? 1'h0 : _GEN_29; // @[\\src\\main\\scala\\PlayerController.scala 185:70 188:26]
+  wire  _GEN_38 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 | _GEN_32; // @[\\src\\main\\scala\\PlayerController.scala 185:70 190:36]
+  wire  _GEN_39 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? 1'h0 : _GEN_33; // @[\\src\\main\\scala\\PlayerController.scala 185:70 191:34]
+  wire  _GEN_40 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? sprite0FlipHorizontalReg : _GEN_30; // @[\\src\\main\\scala\\PlayerController.scala 185:70 84:41]
+  wire  _GEN_42 = sprite0AngleReg >= 8'hd1 & sprite0AngleReg <= 8'hf0 ? sprite2FlipVerticalReg : _GEN_34; // @[\\src\\main\\scala\\PlayerController.scala 185:70 90:39]
+  wire  _GEN_43 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? 1'h0 : _GEN_35; // @[\\src\\main\\scala\\PlayerController.scala 177:70 178:26]
+  wire  _GEN_44 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? 1'h0 : _GEN_36; // @[\\src\\main\\scala\\PlayerController.scala 177:70 179:26]
+  wire  _GEN_45 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 | _GEN_37; // @[\\src\\main\\scala\\PlayerController.scala 177:70 180:26]
+  wire  _GEN_46 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? 1'h0 : _GEN_42; // @[\\src\\main\\scala\\PlayerController.scala 177:70 182:34]
+  wire  _GEN_47 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? sprite1FlipHorizontalReg : _GEN_38; // @[\\src\\main\\scala\\PlayerController.scala 177:70 87:41]
+  wire  _GEN_48 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? sprite1FlipVerticalReg : _GEN_39; // @[\\src\\main\\scala\\PlayerController.scala 177:70 88:39]
+  wire  _GEN_49 = sprite0AngleReg >= 8'hb1 & sprite0AngleReg <= 8'hd0 ? sprite0FlipHorizontalReg : _GEN_40; // @[\\src\\main\\scala\\PlayerController.scala 177:70 84:41]
+  wire  _GEN_51 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_43; // @[\\src\\main\\scala\\PlayerController.scala 168:70 169:26]
+  wire  _GEN_52 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 | _GEN_44; // @[\\src\\main\\scala\\PlayerController.scala 168:70 170:26]
+  wire  _GEN_53 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_45; // @[\\src\\main\\scala\\PlayerController.scala 168:70 171:26]
+  wire  _GEN_54 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_47; // @[\\src\\main\\scala\\PlayerController.scala 168:70 173:36]
+  wire  _GEN_55 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? 1'h0 : _GEN_48; // @[\\src\\main\\scala\\PlayerController.scala 168:70 174:34]
+  wire  _GEN_56 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? sprite2FlipVerticalReg : _GEN_46; // @[\\src\\main\\scala\\PlayerController.scala 168:70 90:39]
+  wire  _GEN_57 = sprite0AngleReg >= 8'h91 & sprite0AngleReg <= 8'hb0 ? sprite0FlipHorizontalReg : _GEN_49; // @[\\src\\main\\scala\\PlayerController.scala 168:70 84:41]
+  wire  _GEN_59 = sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90 | _GEN_51; // @[\\src\\main\\scala\\PlayerController.scala 159:66 160:26]
+  wire [15:0] _GEN_68 = 8'h1 == sprite0AngleReg ? $signed(16'shff) : $signed(16'sh100); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_69 = 8'h2 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_68); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_70 = 8'h3 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_69); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_71 = 8'h4 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_70); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_72 = 8'h5 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_71); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_73 = 8'h6 == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_72); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_74 = 8'h7 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_73); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_75 = 8'h8 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_74); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_76 = 8'h9 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_75); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_77 = 8'ha == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_76); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_78 = 8'hb == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_77); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_79 = 8'hc == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_78); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_80 = 8'hd == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_79); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_81 = 8'he == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_80); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_82 = 8'hf == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_81); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_83 = 8'h10 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_82); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_84 = 8'h11 == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_83); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_85 = 8'h12 == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_84); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_86 = 8'h13 == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_85); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_87 = 8'h14 == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_86); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_88 = 8'h15 == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_87); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_89 = 8'h16 == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_88); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_90 = 8'h17 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_89); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_91 = 8'h18 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_90); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_92 = 8'h19 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_91); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_93 = 8'h1a == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_92); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_94 = 8'h1b == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_93); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_95 = 8'h1c == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_94); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_96 = 8'h1d == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_95); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_97 = 8'h1e == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_96); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_98 = 8'h1f == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_97); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_99 = 8'h20 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_98); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_100 = 8'h21 == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_99); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_101 = 8'h22 == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_100); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_102 = 8'h23 == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_101); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_103 = 8'h24 == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_102); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_104 = 8'h25 == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_103); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_105 = 8'h26 == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_104); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_106 = 8'h27 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_105); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_107 = 8'h28 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_106); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_108 = 8'h29 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_107); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_109 = 8'h2a == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_108); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_110 = 8'h2b == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_109); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_111 = 8'h2c == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_110); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_112 = 8'h2d == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_111); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_113 = 8'h2e == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_112); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_114 = 8'h2f == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_113); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_115 = 8'h30 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_114); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_116 = 8'h31 == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_115); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_117 = 8'h32 == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_116); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_118 = 8'h33 == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_117); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_119 = 8'h34 == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_118); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_120 = 8'h35 == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_119); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_121 = 8'h36 == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_120); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_122 = 8'h37 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_121); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_123 = 8'h38 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_122); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_124 = 8'h39 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_123); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_125 = 8'h3a == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_124); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_126 = 8'h3b == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_125); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_127 = 8'h3c == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_126); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_128 = 8'h3d == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_127); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_129 = 8'h3e == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_128); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_130 = 8'h3f == sprite0AngleReg ? $signed(16'sh6) : $signed(_GEN_129); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_131 = 8'h40 == sprite0AngleReg ? $signed(16'sh0) : $signed(_GEN_130); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_132 = 8'h41 == sprite0AngleReg ? $signed(-16'sh6) : $signed(_GEN_131); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_133 = 8'h42 == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_132); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_134 = 8'h43 == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_133); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_135 = 8'h44 == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_134); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_136 = 8'h45 == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_135); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_137 = 8'h46 == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_136); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_138 = 8'h47 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_137); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_139 = 8'h48 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_138); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_140 = 8'h49 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_139); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_141 = 8'h4a == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_140); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_142 = 8'h4b == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_141); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_143 = 8'h4c == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_142); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_144 = 8'h4d == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_143); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_145 = 8'h4e == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_144); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_146 = 8'h4f == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_145); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_147 = 8'h50 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_146); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_148 = 8'h51 == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_147); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_149 = 8'h52 == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_148); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_150 = 8'h53 == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_149); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_151 = 8'h54 == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_150); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_152 = 8'h55 == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_151); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_153 = 8'h56 == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_152); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_154 = 8'h57 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_153); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_155 = 8'h58 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_154); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_156 = 8'h59 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_155); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_157 = 8'h5a == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_156); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_158 = 8'h5b == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_157); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_159 = 8'h5c == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_158); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_160 = 8'h5d == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_159); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_161 = 8'h5e == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_160); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_162 = 8'h5f == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_161); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_163 = 8'h60 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_162); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_164 = 8'h61 == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_163); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_165 = 8'h62 == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_164); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_166 = 8'h63 == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_165); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_167 = 8'h64 == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_166); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_168 = 8'h65 == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_167); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_169 = 8'h66 == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_168); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_170 = 8'h67 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_169); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_171 = 8'h68 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_170); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_172 = 8'h69 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_171); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_173 = 8'h6a == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_172); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_174 = 8'h6b == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_173); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_175 = 8'h6c == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_174); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_176 = 8'h6d == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_175); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_177 = 8'h6e == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_176); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_178 = 8'h6f == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_177); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_179 = 8'h70 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_178); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_180 = 8'h71 == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_179); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_181 = 8'h72 == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_180); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_182 = 8'h73 == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_181); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_183 = 8'h74 == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_182); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_184 = 8'h75 == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_183); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_185 = 8'h76 == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_184); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_186 = 8'h77 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_185); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_187 = 8'h78 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_186); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_188 = 8'h79 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_187); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_189 = 8'h7a == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_188); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_190 = 8'h7b == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_189); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_191 = 8'h7c == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_190); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_192 = 8'h7d == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_191); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_193 = 8'h7e == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_192); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_194 = 8'h7f == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_193); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_195 = 8'h80 == sprite0AngleReg ? $signed(-16'sh100) : $signed(_GEN_194); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_196 = 8'h81 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_195); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_197 = 8'h82 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_196); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_198 = 8'h83 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_197); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_199 = 8'h84 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_198); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_200 = 8'h85 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_199); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_201 = 8'h86 == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_200); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_202 = 8'h87 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_201); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_203 = 8'h88 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_202); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_204 = 8'h89 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_203); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_205 = 8'h8a == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_204); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_206 = 8'h8b == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_205); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_207 = 8'h8c == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_206); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_208 = 8'h8d == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_207); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_209 = 8'h8e == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_208); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_210 = 8'h8f == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_209); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_211 = 8'h90 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_210); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_212 = 8'h91 == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_211); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_213 = 8'h92 == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_212); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_214 = 8'h93 == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_213); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_215 = 8'h94 == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_214); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_216 = 8'h95 == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_215); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_217 = 8'h96 == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_216); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_218 = 8'h97 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_217); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_219 = 8'h98 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_218); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_220 = 8'h99 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_219); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_221 = 8'h9a == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_220); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_222 = 8'h9b == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_221); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_223 = 8'h9c == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_222); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_224 = 8'h9d == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_223); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_225 = 8'h9e == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_224); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_226 = 8'h9f == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_225); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_227 = 8'ha0 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_226); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_228 = 8'ha1 == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_227); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_229 = 8'ha2 == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_228); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_230 = 8'ha3 == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_229); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_231 = 8'ha4 == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_230); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_232 = 8'ha5 == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_231); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_233 = 8'ha6 == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_232); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_234 = 8'ha7 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_233); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_235 = 8'ha8 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_234); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_236 = 8'ha9 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_235); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_237 = 8'haa == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_236); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_238 = 8'hab == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_237); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_239 = 8'hac == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_238); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_240 = 8'had == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_239); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_241 = 8'hae == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_240); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_242 = 8'haf == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_241); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_243 = 8'hb0 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_242); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_244 = 8'hb1 == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_243); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_245 = 8'hb2 == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_244); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_246 = 8'hb3 == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_245); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_247 = 8'hb4 == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_246); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_248 = 8'hb5 == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_247); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_249 = 8'hb6 == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_248); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_250 = 8'hb7 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_249); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_251 = 8'hb8 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_250); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_252 = 8'hb9 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_251); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_253 = 8'hba == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_252); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_254 = 8'hbb == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_253); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_255 = 8'hbc == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_254); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_256 = 8'hbd == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_255); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_257 = 8'hbe == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_256); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_258 = 8'hbf == sprite0AngleReg ? $signed(-16'sh6) : $signed(_GEN_257); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_259 = 8'hc0 == sprite0AngleReg ? $signed(16'sh0) : $signed(_GEN_258); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_260 = 8'hc1 == sprite0AngleReg ? $signed(16'sh6) : $signed(_GEN_259); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_261 = 8'hc2 == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_260); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_262 = 8'hc3 == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_261); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_263 = 8'hc4 == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_262); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_264 = 8'hc5 == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_263); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_265 = 8'hc6 == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_264); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_266 = 8'hc7 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_265); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_267 = 8'hc8 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_266); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_268 = 8'hc9 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_267); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_269 = 8'hca == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_268); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_270 = 8'hcb == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_269); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_271 = 8'hcc == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_270); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_272 = 8'hcd == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_271); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_273 = 8'hce == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_272); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_274 = 8'hcf == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_273); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_275 = 8'hd0 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_274); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_276 = 8'hd1 == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_275); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_277 = 8'hd2 == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_276); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_278 = 8'hd3 == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_277); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_279 = 8'hd4 == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_278); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_280 = 8'hd5 == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_279); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_281 = 8'hd6 == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_280); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_282 = 8'hd7 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_281); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_283 = 8'hd8 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_282); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_284 = 8'hd9 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_283); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_285 = 8'hda == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_284); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_286 = 8'hdb == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_285); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_287 = 8'hdc == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_286); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_288 = 8'hdd == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_287); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_289 = 8'hde == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_288); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_290 = 8'hdf == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_289); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_291 = 8'he0 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_290); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_292 = 8'he1 == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_291); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_293 = 8'he2 == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_292); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_294 = 8'he3 == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_293); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_295 = 8'he4 == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_294); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_296 = 8'he5 == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_295); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_297 = 8'he6 == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_296); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_298 = 8'he7 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_297); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_299 = 8'he8 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_298); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_300 = 8'he9 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_299); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_301 = 8'hea == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_300); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_302 = 8'heb == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_301); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_303 = 8'hec == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_302); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_304 = 8'hed == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_303); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_305 = 8'hee == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_304); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_306 = 8'hef == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_305); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_307 = 8'hf0 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_306); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_308 = 8'hf1 == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_307); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_309 = 8'hf2 == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_308); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_310 = 8'hf3 == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_309); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_311 = 8'hf4 == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_310); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_312 = 8'hf5 == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_311); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_313 = 8'hf6 == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_312); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_314 = 8'hf7 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_313); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_315 = 8'hf8 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_314); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_316 = 8'hf9 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_315); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_317 = 8'hfa == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_316); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_318 = 8'hfb == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_317); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_319 = 8'hfc == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_318); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_320 = 8'hfd == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_319); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_321 = 8'hfe == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_320); // @[\\src\\main\\scala\\PlayerController.scala 229:{14,14}]
+  wire [15:0] _GEN_324 = 8'h1 == sprite0AngleReg ? $signed(16'sh6) : $signed(16'sh0); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_325 = 8'h2 == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_324); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_326 = 8'h3 == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_325); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_327 = 8'h4 == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_326); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_328 = 8'h5 == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_327); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_329 = 8'h6 == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_328); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_330 = 8'h7 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_329); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_331 = 8'h8 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_330); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_332 = 8'h9 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_331); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_333 = 8'ha == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_332); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_334 = 8'hb == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_333); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_335 = 8'hc == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_334); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_336 = 8'hd == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_335); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_337 = 8'he == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_336); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_338 = 8'hf == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_337); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_339 = 8'h10 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_338); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_340 = 8'h11 == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_339); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_341 = 8'h12 == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_340); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_342 = 8'h13 == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_341); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_343 = 8'h14 == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_342); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_344 = 8'h15 == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_343); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_345 = 8'h16 == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_344); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_346 = 8'h17 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_345); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_347 = 8'h18 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_346); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_348 = 8'h19 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_347); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_349 = 8'h1a == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_348); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_350 = 8'h1b == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_349); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_351 = 8'h1c == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_350); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_352 = 8'h1d == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_351); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_353 = 8'h1e == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_352); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_354 = 8'h1f == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_353); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_355 = 8'h20 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_354); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_356 = 8'h21 == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_355); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_357 = 8'h22 == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_356); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_358 = 8'h23 == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_357); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_359 = 8'h24 == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_358); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_360 = 8'h25 == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_359); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_361 = 8'h26 == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_360); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_362 = 8'h27 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_361); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_363 = 8'h28 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_362); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_364 = 8'h29 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_363); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_365 = 8'h2a == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_364); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_366 = 8'h2b == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_365); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_367 = 8'h2c == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_366); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_368 = 8'h2d == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_367); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_369 = 8'h2e == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_368); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_370 = 8'h2f == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_369); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_371 = 8'h30 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_370); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_372 = 8'h31 == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_371); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_373 = 8'h32 == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_372); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_374 = 8'h33 == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_373); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_375 = 8'h34 == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_374); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_376 = 8'h35 == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_375); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_377 = 8'h36 == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_376); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_378 = 8'h37 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_377); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_379 = 8'h38 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_378); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_380 = 8'h39 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_379); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_381 = 8'h3a == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_380); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_382 = 8'h3b == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_381); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_383 = 8'h3c == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_382); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_384 = 8'h3d == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_383); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_385 = 8'h3e == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_384); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_386 = 8'h3f == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_385); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_387 = 8'h40 == sprite0AngleReg ? $signed(16'sh100) : $signed(_GEN_386); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_388 = 8'h41 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_387); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_389 = 8'h42 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_388); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_390 = 8'h43 == sprite0AngleReg ? $signed(16'shff) : $signed(_GEN_389); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_391 = 8'h44 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_390); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_392 = 8'h45 == sprite0AngleReg ? $signed(16'shfe) : $signed(_GEN_391); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_393 = 8'h46 == sprite0AngleReg ? $signed(16'shfd) : $signed(_GEN_392); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_394 = 8'h47 == sprite0AngleReg ? $signed(16'shfc) : $signed(_GEN_393); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_395 = 8'h48 == sprite0AngleReg ? $signed(16'shfb) : $signed(_GEN_394); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_396 = 8'h49 == sprite0AngleReg ? $signed(16'shf9) : $signed(_GEN_395); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_397 = 8'h4a == sprite0AngleReg ? $signed(16'shf8) : $signed(_GEN_396); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_398 = 8'h4b == sprite0AngleReg ? $signed(16'shf6) : $signed(_GEN_397); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_399 = 8'h4c == sprite0AngleReg ? $signed(16'shf4) : $signed(_GEN_398); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_400 = 8'h4d == sprite0AngleReg ? $signed(16'shf3) : $signed(_GEN_399); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_401 = 8'h4e == sprite0AngleReg ? $signed(16'shf1) : $signed(_GEN_400); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_402 = 8'h4f == sprite0AngleReg ? $signed(16'shee) : $signed(_GEN_401); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_403 = 8'h50 == sprite0AngleReg ? $signed(16'shec) : $signed(_GEN_402); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_404 = 8'h51 == sprite0AngleReg ? $signed(16'shea) : $signed(_GEN_403); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_405 = 8'h52 == sprite0AngleReg ? $signed(16'she7) : $signed(_GEN_404); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_406 = 8'h53 == sprite0AngleReg ? $signed(16'she4) : $signed(_GEN_405); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_407 = 8'h54 == sprite0AngleReg ? $signed(16'she1) : $signed(_GEN_406); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_408 = 8'h55 == sprite0AngleReg ? $signed(16'shde) : $signed(_GEN_407); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_409 = 8'h56 == sprite0AngleReg ? $signed(16'shdb) : $signed(_GEN_408); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_410 = 8'h57 == sprite0AngleReg ? $signed(16'shd8) : $signed(_GEN_409); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_411 = 8'h58 == sprite0AngleReg ? $signed(16'shd4) : $signed(_GEN_410); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_412 = 8'h59 == sprite0AngleReg ? $signed(16'shd1) : $signed(_GEN_411); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_413 = 8'h5a == sprite0AngleReg ? $signed(16'shcd) : $signed(_GEN_412); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_414 = 8'h5b == sprite0AngleReg ? $signed(16'shc9) : $signed(_GEN_413); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_415 = 8'h5c == sprite0AngleReg ? $signed(16'shc5) : $signed(_GEN_414); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_416 = 8'h5d == sprite0AngleReg ? $signed(16'shc1) : $signed(_GEN_415); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_417 = 8'h5e == sprite0AngleReg ? $signed(16'shbd) : $signed(_GEN_416); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_418 = 8'h5f == sprite0AngleReg ? $signed(16'shb9) : $signed(_GEN_417); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_419 = 8'h60 == sprite0AngleReg ? $signed(16'shb5) : $signed(_GEN_418); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_420 = 8'h61 == sprite0AngleReg ? $signed(16'shb0) : $signed(_GEN_419); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_421 = 8'h62 == sprite0AngleReg ? $signed(16'shab) : $signed(_GEN_420); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_422 = 8'h63 == sprite0AngleReg ? $signed(16'sha7) : $signed(_GEN_421); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_423 = 8'h64 == sprite0AngleReg ? $signed(16'sha2) : $signed(_GEN_422); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_424 = 8'h65 == sprite0AngleReg ? $signed(16'sh9d) : $signed(_GEN_423); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_425 = 8'h66 == sprite0AngleReg ? $signed(16'sh98) : $signed(_GEN_424); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_426 = 8'h67 == sprite0AngleReg ? $signed(16'sh93) : $signed(_GEN_425); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_427 = 8'h68 == sprite0AngleReg ? $signed(16'sh8e) : $signed(_GEN_426); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_428 = 8'h69 == sprite0AngleReg ? $signed(16'sh88) : $signed(_GEN_427); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_429 = 8'h6a == sprite0AngleReg ? $signed(16'sh83) : $signed(_GEN_428); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_430 = 8'h6b == sprite0AngleReg ? $signed(16'sh7e) : $signed(_GEN_429); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_431 = 8'h6c == sprite0AngleReg ? $signed(16'sh78) : $signed(_GEN_430); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_432 = 8'h6d == sprite0AngleReg ? $signed(16'sh73) : $signed(_GEN_431); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_433 = 8'h6e == sprite0AngleReg ? $signed(16'sh6d) : $signed(_GEN_432); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_434 = 8'h6f == sprite0AngleReg ? $signed(16'sh67) : $signed(_GEN_433); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_435 = 8'h70 == sprite0AngleReg ? $signed(16'sh61) : $signed(_GEN_434); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_436 = 8'h71 == sprite0AngleReg ? $signed(16'sh5c) : $signed(_GEN_435); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_437 = 8'h72 == sprite0AngleReg ? $signed(16'sh56) : $signed(_GEN_436); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_438 = 8'h73 == sprite0AngleReg ? $signed(16'sh50) : $signed(_GEN_437); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_439 = 8'h74 == sprite0AngleReg ? $signed(16'sh4a) : $signed(_GEN_438); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_440 = 8'h75 == sprite0AngleReg ? $signed(16'sh44) : $signed(_GEN_439); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_441 = 8'h76 == sprite0AngleReg ? $signed(16'sh3e) : $signed(_GEN_440); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_442 = 8'h77 == sprite0AngleReg ? $signed(16'sh38) : $signed(_GEN_441); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_443 = 8'h78 == sprite0AngleReg ? $signed(16'sh31) : $signed(_GEN_442); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_444 = 8'h79 == sprite0AngleReg ? $signed(16'sh2b) : $signed(_GEN_443); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_445 = 8'h7a == sprite0AngleReg ? $signed(16'sh25) : $signed(_GEN_444); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_446 = 8'h7b == sprite0AngleReg ? $signed(16'sh1f) : $signed(_GEN_445); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_447 = 8'h7c == sprite0AngleReg ? $signed(16'sh19) : $signed(_GEN_446); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_448 = 8'h7d == sprite0AngleReg ? $signed(16'sh12) : $signed(_GEN_447); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_449 = 8'h7e == sprite0AngleReg ? $signed(16'shc) : $signed(_GEN_448); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_450 = 8'h7f == sprite0AngleReg ? $signed(16'sh6) : $signed(_GEN_449); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_451 = 8'h80 == sprite0AngleReg ? $signed(16'sh0) : $signed(_GEN_450); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_452 = 8'h81 == sprite0AngleReg ? $signed(-16'sh6) : $signed(_GEN_451); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_453 = 8'h82 == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_452); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_454 = 8'h83 == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_453); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_455 = 8'h84 == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_454); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_456 = 8'h85 == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_455); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_457 = 8'h86 == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_456); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_458 = 8'h87 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_457); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_459 = 8'h88 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_458); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_460 = 8'h89 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_459); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_461 = 8'h8a == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_460); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_462 = 8'h8b == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_461); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_463 = 8'h8c == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_462); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_464 = 8'h8d == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_463); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_465 = 8'h8e == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_464); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_466 = 8'h8f == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_465); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_467 = 8'h90 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_466); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_468 = 8'h91 == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_467); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_469 = 8'h92 == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_468); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_470 = 8'h93 == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_469); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_471 = 8'h94 == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_470); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_472 = 8'h95 == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_471); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_473 = 8'h96 == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_472); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_474 = 8'h97 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_473); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_475 = 8'h98 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_474); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_476 = 8'h99 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_475); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_477 = 8'h9a == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_476); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_478 = 8'h9b == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_477); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_479 = 8'h9c == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_478); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_480 = 8'h9d == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_479); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_481 = 8'h9e == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_480); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_482 = 8'h9f == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_481); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_483 = 8'ha0 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_482); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_484 = 8'ha1 == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_483); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_485 = 8'ha2 == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_484); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_486 = 8'ha3 == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_485); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_487 = 8'ha4 == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_486); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_488 = 8'ha5 == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_487); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_489 = 8'ha6 == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_488); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_490 = 8'ha7 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_489); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_491 = 8'ha8 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_490); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_492 = 8'ha9 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_491); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_493 = 8'haa == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_492); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_494 = 8'hab == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_493); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_495 = 8'hac == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_494); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_496 = 8'had == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_495); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_497 = 8'hae == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_496); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_498 = 8'haf == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_497); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_499 = 8'hb0 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_498); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_500 = 8'hb1 == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_499); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_501 = 8'hb2 == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_500); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_502 = 8'hb3 == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_501); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_503 = 8'hb4 == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_502); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_504 = 8'hb5 == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_503); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_505 = 8'hb6 == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_504); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_506 = 8'hb7 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_505); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_507 = 8'hb8 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_506); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_508 = 8'hb9 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_507); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_509 = 8'hba == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_508); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_510 = 8'hbb == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_509); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_511 = 8'hbc == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_510); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_512 = 8'hbd == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_511); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_513 = 8'hbe == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_512); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_514 = 8'hbf == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_513); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_515 = 8'hc0 == sprite0AngleReg ? $signed(-16'sh100) : $signed(_GEN_514); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_516 = 8'hc1 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_515); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_517 = 8'hc2 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_516); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_518 = 8'hc3 == sprite0AngleReg ? $signed(-16'shff) : $signed(_GEN_517); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_519 = 8'hc4 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_518); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_520 = 8'hc5 == sprite0AngleReg ? $signed(-16'shfe) : $signed(_GEN_519); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_521 = 8'hc6 == sprite0AngleReg ? $signed(-16'shfd) : $signed(_GEN_520); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_522 = 8'hc7 == sprite0AngleReg ? $signed(-16'shfc) : $signed(_GEN_521); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_523 = 8'hc8 == sprite0AngleReg ? $signed(-16'shfb) : $signed(_GEN_522); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_524 = 8'hc9 == sprite0AngleReg ? $signed(-16'shf9) : $signed(_GEN_523); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_525 = 8'hca == sprite0AngleReg ? $signed(-16'shf8) : $signed(_GEN_524); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_526 = 8'hcb == sprite0AngleReg ? $signed(-16'shf6) : $signed(_GEN_525); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_527 = 8'hcc == sprite0AngleReg ? $signed(-16'shf4) : $signed(_GEN_526); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_528 = 8'hcd == sprite0AngleReg ? $signed(-16'shf3) : $signed(_GEN_527); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_529 = 8'hce == sprite0AngleReg ? $signed(-16'shf1) : $signed(_GEN_528); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_530 = 8'hcf == sprite0AngleReg ? $signed(-16'shee) : $signed(_GEN_529); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_531 = 8'hd0 == sprite0AngleReg ? $signed(-16'shec) : $signed(_GEN_530); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_532 = 8'hd1 == sprite0AngleReg ? $signed(-16'shea) : $signed(_GEN_531); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_533 = 8'hd2 == sprite0AngleReg ? $signed(-16'she7) : $signed(_GEN_532); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_534 = 8'hd3 == sprite0AngleReg ? $signed(-16'she4) : $signed(_GEN_533); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_535 = 8'hd4 == sprite0AngleReg ? $signed(-16'she1) : $signed(_GEN_534); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_536 = 8'hd5 == sprite0AngleReg ? $signed(-16'shde) : $signed(_GEN_535); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_537 = 8'hd6 == sprite0AngleReg ? $signed(-16'shdb) : $signed(_GEN_536); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_538 = 8'hd7 == sprite0AngleReg ? $signed(-16'shd8) : $signed(_GEN_537); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_539 = 8'hd8 == sprite0AngleReg ? $signed(-16'shd4) : $signed(_GEN_538); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_540 = 8'hd9 == sprite0AngleReg ? $signed(-16'shd1) : $signed(_GEN_539); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_541 = 8'hda == sprite0AngleReg ? $signed(-16'shcd) : $signed(_GEN_540); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_542 = 8'hdb == sprite0AngleReg ? $signed(-16'shc9) : $signed(_GEN_541); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_543 = 8'hdc == sprite0AngleReg ? $signed(-16'shc5) : $signed(_GEN_542); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_544 = 8'hdd == sprite0AngleReg ? $signed(-16'shc1) : $signed(_GEN_543); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_545 = 8'hde == sprite0AngleReg ? $signed(-16'shbd) : $signed(_GEN_544); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_546 = 8'hdf == sprite0AngleReg ? $signed(-16'shb9) : $signed(_GEN_545); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_547 = 8'he0 == sprite0AngleReg ? $signed(-16'shb5) : $signed(_GEN_546); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_548 = 8'he1 == sprite0AngleReg ? $signed(-16'shb0) : $signed(_GEN_547); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_549 = 8'he2 == sprite0AngleReg ? $signed(-16'shab) : $signed(_GEN_548); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_550 = 8'he3 == sprite0AngleReg ? $signed(-16'sha7) : $signed(_GEN_549); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_551 = 8'he4 == sprite0AngleReg ? $signed(-16'sha2) : $signed(_GEN_550); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_552 = 8'he5 == sprite0AngleReg ? $signed(-16'sh9d) : $signed(_GEN_551); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_553 = 8'he6 == sprite0AngleReg ? $signed(-16'sh98) : $signed(_GEN_552); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_554 = 8'he7 == sprite0AngleReg ? $signed(-16'sh93) : $signed(_GEN_553); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_555 = 8'he8 == sprite0AngleReg ? $signed(-16'sh8e) : $signed(_GEN_554); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_556 = 8'he9 == sprite0AngleReg ? $signed(-16'sh88) : $signed(_GEN_555); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_557 = 8'hea == sprite0AngleReg ? $signed(-16'sh83) : $signed(_GEN_556); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_558 = 8'heb == sprite0AngleReg ? $signed(-16'sh7e) : $signed(_GEN_557); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_559 = 8'hec == sprite0AngleReg ? $signed(-16'sh78) : $signed(_GEN_558); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_560 = 8'hed == sprite0AngleReg ? $signed(-16'sh73) : $signed(_GEN_559); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_561 = 8'hee == sprite0AngleReg ? $signed(-16'sh6d) : $signed(_GEN_560); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_562 = 8'hef == sprite0AngleReg ? $signed(-16'sh67) : $signed(_GEN_561); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_563 = 8'hf0 == sprite0AngleReg ? $signed(-16'sh61) : $signed(_GEN_562); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_564 = 8'hf1 == sprite0AngleReg ? $signed(-16'sh5c) : $signed(_GEN_563); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_565 = 8'hf2 == sprite0AngleReg ? $signed(-16'sh56) : $signed(_GEN_564); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_566 = 8'hf3 == sprite0AngleReg ? $signed(-16'sh50) : $signed(_GEN_565); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_567 = 8'hf4 == sprite0AngleReg ? $signed(-16'sh4a) : $signed(_GEN_566); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_568 = 8'hf5 == sprite0AngleReg ? $signed(-16'sh44) : $signed(_GEN_567); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_569 = 8'hf6 == sprite0AngleReg ? $signed(-16'sh3e) : $signed(_GEN_568); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_570 = 8'hf7 == sprite0AngleReg ? $signed(-16'sh38) : $signed(_GEN_569); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_571 = 8'hf8 == sprite0AngleReg ? $signed(-16'sh31) : $signed(_GEN_570); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_572 = 8'hf9 == sprite0AngleReg ? $signed(-16'sh2b) : $signed(_GEN_571); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_573 = 8'hfa == sprite0AngleReg ? $signed(-16'sh25) : $signed(_GEN_572); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_574 = 8'hfb == sprite0AngleReg ? $signed(-16'sh1f) : $signed(_GEN_573); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_575 = 8'hfc == sprite0AngleReg ? $signed(-16'sh19) : $signed(_GEN_574); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_576 = 8'hfd == sprite0AngleReg ? $signed(-16'sh12) : $signed(_GEN_575); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [15:0] _GEN_577 = 8'hfe == sprite0AngleReg ? $signed(-16'shc) : $signed(_GEN_576); // @[\\src\\main\\scala\\PlayerController.scala 230:{14,14}]
+  wire [47:0] _sprite0XReg_T_1 = $signed(sprite0SpeedReg) * $signed(cosReg); // @[\\src\\main\\scala\\PlayerController.scala 240:54]
+  wire [39:0] _sprite0XReg_T_2 = _sprite0XReg_T_1[47:8]; // @[\\src\\main\\scala\\PlayerController.scala 240:64]
+  wire [39:0] _sprite0XReg_T_5 = $signed(sprite0XReg) + $signed(_sprite0XReg_T_2); // @[\\src\\main\\scala\\PlayerController.scala 240:34]
+  wire [47:0] _sprite0YReg_T_1 = $signed(sprite0SpeedReg) * $signed(sinReg); // @[\\src\\main\\scala\\PlayerController.scala 241:54]
+  wire [39:0] _sprite0YReg_T_2 = _sprite0YReg_T_1[47:8]; // @[\\src\\main\\scala\\PlayerController.scala 241:64]
+  wire [39:0] _sprite0YReg_T_5 = $signed(sprite0YReg) + $signed(_sprite0YReg_T_2); // @[\\src\\main\\scala\\PlayerController.scala 241:34]
+  wire [39:0] _viewBoxXRegTemp_T_2 = $signed(sprite0XReg) + 40'sh10; // @[\\src\\main\\scala\\PlayerController.scala 243:39]
+  wire [39:0] _viewBoxXRegTemp_T_5 = $signed(_viewBoxXRegTemp_T_2) - 40'sh140; // @[\\src\\main\\scala\\PlayerController.scala 243:47]
+  wire [39:0] _viewBoxYRegTemp_T_2 = $signed(sprite0YReg) + 40'sh10; // @[\\src\\main\\scala\\PlayerController.scala 244:39]
+  wire [39:0] _viewBoxYRegTemp_T_5 = $signed(_viewBoxYRegTemp_T_2) - 40'shf0; // @[\\src\\main\\scala\\PlayerController.scala 244:47]
+  wire [10:0] _GEN_579 = $signed(viewBoxXRegTemp) < 11'sh0 ? 11'h0 : viewBoxXRegTemp; // @[\\src\\main\\scala\\PlayerController.scala 252:19 255:34 256:21]
+  wire [9:0] _GEN_580 = $signed(viewBoxYRegTemp) < 10'sh0 ? 10'h0 : viewBoxYRegTemp; // @[\\src\\main\\scala\\PlayerController.scala 253:19 259:34 260:21]
+  wire [10:0] _GEN_581 = $signed(viewBoxXRegTemp) > 11'sh27f ? 11'h27f : _GEN_579; // @[\\src\\main\\scala\\PlayerController.scala 262:36 263:21]
+  wire [9:0] _GEN_582 = $signed(viewBoxYRegTemp) > 10'sh1df ? 10'h1df : _GEN_580; // @[\\src\\main\\scala\\PlayerController.scala 266:36 267:21]
+  wire [39:0] _GEN_583 = io_tilemapRomCollisionData ? $signed(40'sh2400000) : $signed(sprite0XReg); // @[\\src\\main\\scala\\PlayerController.scala 281:40 282:21 53:28]
+  wire [39:0] _GEN_584 = io_tilemapRomCollisionData ? $signed(40'sha00000) : $signed(sprite0YReg); // @[\\src\\main\\scala\\PlayerController.scala 281:40 283:21 54:28]
+  wire [2:0] _GEN_586 = 3'h6 == stateReg ? 3'h0 : stateReg; // @[\\src\\main\\scala\\PlayerController.scala 123:20 291:16 50:25]
+  wire [39:0] _GEN_587 = 3'h4 == stateReg ? $signed(_GEN_583) : $signed(sprite0XReg); // @[\\src\\main\\scala\\PlayerController.scala 123:20 53:28]
+  wire [39:0] _GEN_588 = 3'h4 == stateReg ? $signed(_GEN_584) : $signed(sprite0YReg); // @[\\src\\main\\scala\\PlayerController.scala 123:20 54:28]
+  wire [2:0] _GEN_589 = 3'h4 == stateReg ? 3'h6 : _GEN_586; // @[\\src\\main\\scala\\PlayerController.scala 123:20 286:16]
+  wire [10:0] _GEN_591 = 3'h5 == stateReg ? posToAddress_io_address : tilemapRomTileAddrReg; // @[\\src\\main\\scala\\PlayerController.scala 123:20 275:31 100:38]
+  wire [2:0] _GEN_592 = 3'h5 == stateReg ? 3'h4 : _GEN_589; // @[\\src\\main\\scala\\PlayerController.scala 123:20 277:18]
+  wire [39:0] _GEN_593 = 3'h5 == stateReg ? $signed(sprite0XReg) : $signed(_GEN_587); // @[\\src\\main\\scala\\PlayerController.scala 123:20 53:28]
+  wire [39:0] _GEN_594 = 3'h5 == stateReg ? $signed(sprite0YReg) : $signed(_GEN_588); // @[\\src\\main\\scala\\PlayerController.scala 123:20 54:28]
+  wire [10:0] _GEN_596 = 3'h3 == stateReg ? _GEN_581 : {{1'd0}, viewBoxXReg}; // @[\\src\\main\\scala\\PlayerController.scala 123:20 63:28]
+  wire [9:0] _GEN_597 = 3'h3 == stateReg ? _GEN_582 : {{1'd0}, viewBoxYReg}; // @[\\src\\main\\scala\\PlayerController.scala 123:20 64:28]
+  wire [2:0] _GEN_598 = 3'h3 == stateReg ? 3'h5 : _GEN_592; // @[\\src\\main\\scala\\PlayerController.scala 123:20 270:16]
+  wire [10:0] _GEN_599 = 3'h3 == stateReg ? tilemapRomTileAddrReg : _GEN_591; // @[\\src\\main\\scala\\PlayerController.scala 123:20 100:38]
+  wire [39:0] _GEN_600 = 3'h3 == stateReg ? $signed(sprite0XReg) : $signed(_GEN_593); // @[\\src\\main\\scala\\PlayerController.scala 123:20 53:28]
+  wire [39:0] _GEN_601 = 3'h3 == stateReg ? $signed(sprite0YReg) : $signed(_GEN_594); // @[\\src\\main\\scala\\PlayerController.scala 123:20 54:28]
+  wire [39:0] _GEN_605 = 3'h2 == stateReg ? $signed(_viewBoxXRegTemp_T_5) : $signed({{29{viewBoxXRegTemp[10]}},
+    viewBoxXRegTemp}); // @[\\src\\main\\scala\\PlayerController.scala 123:20 243:23 69:32]
+  wire [39:0] _GEN_606 = 3'h2 == stateReg ? $signed(_viewBoxYRegTemp_T_5) : $signed({{30{viewBoxYRegTemp[9]}},
+    viewBoxYRegTemp}); // @[\\src\\main\\scala\\PlayerController.scala 123:20 244:23 70:32]
+  wire [10:0] _GEN_608 = 3'h2 == stateReg ? {{1'd0}, viewBoxXReg} : _GEN_596; // @[\\src\\main\\scala\\PlayerController.scala 123:20 63:28]
+  wire [9:0] _GEN_609 = 3'h2 == stateReg ? {{1'd0}, viewBoxYReg} : _GEN_597; // @[\\src\\main\\scala\\PlayerController.scala 123:20 64:28]
+  wire  _GEN_614 = 3'h1 == stateReg ? _GEN_59 : sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 123:20 92:31]
+  wire [39:0] _GEN_627 = 3'h1 == stateReg ? $signed({{29{viewBoxXRegTemp[10]}},viewBoxXRegTemp}) : $signed(_GEN_605); // @[\\src\\main\\scala\\PlayerController.scala 123:20 69:32]
+  wire [39:0] _GEN_628 = 3'h1 == stateReg ? $signed({{30{viewBoxYRegTemp[9]}},viewBoxYRegTemp}) : $signed(_GEN_606); // @[\\src\\main\\scala\\PlayerController.scala 123:20 70:32]
+  wire [10:0] _GEN_629 = 3'h1 == stateReg ? {{1'd0}, viewBoxXReg} : _GEN_608; // @[\\src\\main\\scala\\PlayerController.scala 123:20 63:28]
+  wire [9:0] _GEN_630 = 3'h1 == stateReg ? {{1'd0}, viewBoxYReg} : _GEN_609; // @[\\src\\main\\scala\\PlayerController.scala 123:20 64:28]
+  wire  _GEN_636 = 3'h0 == stateReg ? sprite0Visible : _GEN_614; // @[\\src\\main\\scala\\PlayerController.scala 123:20 92:31]
+  wire [39:0] _GEN_648 = 3'h0 == stateReg ? $signed({{29{viewBoxXRegTemp[10]}},viewBoxXRegTemp}) : $signed(_GEN_627); // @[\\src\\main\\scala\\PlayerController.scala 123:20 69:32]
+  wire [39:0] _GEN_649 = 3'h0 == stateReg ? $signed({{30{viewBoxYRegTemp[9]}},viewBoxYRegTemp}) : $signed(_GEN_628); // @[\\src\\main\\scala\\PlayerController.scala 123:20 70:32]
+  wire [10:0] _GEN_650 = 3'h0 == stateReg ? {{1'd0}, viewBoxXReg} : _GEN_629; // @[\\src\\main\\scala\\PlayerController.scala 123:20 63:28]
+  wire [9:0] _GEN_651 = 3'h0 == stateReg ? {{1'd0}, viewBoxYReg} : _GEN_630; // @[\\src\\main\\scala\\PlayerController.scala 123:20 64:28]
+  wire [10:0] _GEN_653 = reset ? 11'h0 : _GEN_650; // @[\\src\\main\\scala\\PlayerController.scala 63:{28,28}]
+  wire [9:0] _GEN_654 = reset ? 10'h0 : _GEN_651; // @[\\src\\main\\scala\\PlayerController.scala 64:{28,28}]
+  wire [39:0] _GEN_655 = reset ? $signed(40'sh0) : $signed(_GEN_648); // @[\\src\\main\\scala\\PlayerController.scala 69:{32,32}]
+  wire [39:0] _GEN_657 = reset ? $signed(40'sh0) : $signed(_GEN_649); // @[\\src\\main\\scala\\PlayerController.scala 70:{32,32}]
+  PositionToAddress posToAddress ( // @[\\src\\main\\scala\\PlayerController.scala 96:28]
     .io_posX(posToAddress_io_posX),
     .io_posY(posToAddress_io_posY),
     .io_address(posToAddress_io_address)
   );
-  assign io_tilemapRomTileAddress = tilemapRomTileAddrReg; // @[\\src\\main\\scala\\PlayerController.scala 89:28]
-  assign io_spriteXPosition_0 = _posToAddress_io_posX_T[10:0]; // @[\\src\\main\\scala\\PlayerController.scala 94:30]
-  assign io_spriteXPosition_1 = _posToAddress_io_posX_T[10:0]; // @[\\src\\main\\scala\\PlayerController.scala 100:30]
-  assign io_spriteXPosition_2 = _posToAddress_io_posX_T[10:0]; // @[\\src\\main\\scala\\PlayerController.scala 106:30]
-  assign io_spriteYPosition_0 = _posToAddress_io_posY_T[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 95:30]
-  assign io_spriteYPosition_1 = _posToAddress_io_posY_T[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 101:30]
-  assign io_spriteYPosition_2 = _posToAddress_io_posY_T[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 107:30]
-  assign io_spriteVisible_0 = sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 93:30]
-  assign io_spriteVisible_1 = sprite1Visible; // @[\\src\\main\\scala\\PlayerController.scala 99:30]
-  assign io_spriteVisible_2 = sprite2Visible; // @[\\src\\main\\scala\\PlayerController.scala 105:30]
-  assign io_spriteFlipHorizontal_0 = sprite0FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 96:30]
-  assign io_spriteFlipHorizontal_1 = sprite1FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 102:30]
-  assign io_spriteFlipVertical_1 = sprite1FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 103:28]
-  assign io_spriteFlipVertical_2 = sprite2FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 108:28]
-  assign posToAddress_io_posX = _posToAddress_io_posX_T_1[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 85:24]
-  assign posToAddress_io_posY = _posToAddress_io_posY_T_1[8:0]; // @[\\src\\main\\scala\\PlayerController.scala 86:24]
+  assign io_tilemapRomTileAddress = tilemapRomTileAddrReg; // @[\\src\\main\\scala\\PlayerController.scala 101:28]
+  assign io_viewBoxX = viewBoxXReg; // @[\\src\\main\\scala\\PlayerController.scala 66:15]
+  assign io_viewBoxY = viewBoxYReg; // @[\\src\\main\\scala\\PlayerController.scala 67:15]
+  assign io_spriteXPosition_0 = _posToAddress_io_posX_T[10:0]; // @[\\src\\main\\scala\\PlayerController.scala 106:30]
+  assign io_spriteXPosition_1 = _posToAddress_io_posX_T[10:0]; // @[\\src\\main\\scala\\PlayerController.scala 112:30]
+  assign io_spriteXPosition_2 = _posToAddress_io_posX_T[10:0]; // @[\\src\\main\\scala\\PlayerController.scala 118:30]
+  assign io_spriteYPosition_0 = _posToAddress_io_posY_T[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 107:30]
+  assign io_spriteYPosition_1 = _posToAddress_io_posY_T[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 113:30]
+  assign io_spriteYPosition_2 = _posToAddress_io_posY_T[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 119:30]
+  assign io_spriteVisible_0 = sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 105:30]
+  assign io_spriteVisible_1 = sprite1Visible; // @[\\src\\main\\scala\\PlayerController.scala 111:30]
+  assign io_spriteVisible_2 = sprite2Visible; // @[\\src\\main\\scala\\PlayerController.scala 117:30]
+  assign io_spriteFlipHorizontal_0 = sprite0FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 108:30]
+  assign io_spriteFlipHorizontal_1 = sprite1FlipHorizontalReg; // @[\\src\\main\\scala\\PlayerController.scala 114:30]
+  assign io_spriteFlipVertical_1 = sprite1FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 115:28]
+  assign io_spriteFlipVertical_2 = sprite2FlipVerticalReg; // @[\\src\\main\\scala\\PlayerController.scala 120:28]
+  assign posToAddress_io_posX = _posToAddress_io_posX_T_1[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 97:24]
+  assign posToAddress_io_posY = _posToAddress_io_posY_T_1[8:0]; // @[\\src\\main\\scala\\PlayerController.scala 98:24]
   always @(posedge clock) begin
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 47:25]
-      stateReg <= 3'h0; // @[\\src\\main\\scala\\PlayerController.scala 47:25]
-    end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (io_enable) begin // @[\\src\\main\\scala\\PlayerController.scala 113:22]
-        if (io_newFrame) begin // @[\\src\\main\\scala\\PlayerController.scala 114:26]
-          stateReg <= 3'h1; // @[\\src\\main\\scala\\PlayerController.scala 115:20]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 50:25]
+      stateReg <= 3'h0; // @[\\src\\main\\scala\\PlayerController.scala 50:25]
+    end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (io_enable) begin // @[\\src\\main\\scala\\PlayerController.scala 125:22]
+        if (io_newFrame) begin // @[\\src\\main\\scala\\PlayerController.scala 126:26]
+          stateReg <= 3'h1; // @[\\src\\main\\scala\\PlayerController.scala 127:20]
         end
       end
-    end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      stateReg <= 3'h2; // @[\\src\\main\\scala\\PlayerController.scala 220:16]
-    end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      stateReg <= 3'h3; // @[\\src\\main\\scala\\PlayerController.scala 231:16]
+    end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      stateReg <= 3'h2; // @[\\src\\main\\scala\\PlayerController.scala 232:16]
+    end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      stateReg <= 3'h3; // @[\\src\\main\\scala\\PlayerController.scala 246:16]
     end else begin
-      stateReg <= _GEN_592;
+      stateReg <= _GEN_598;
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 50:28]
-      sprite0XReg <= 40'sh2400000; // @[\\src\\main\\scala\\PlayerController.scala 50:28]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-          sprite0XReg <= _sprite0XReg_T_5; // @[\\src\\main\\scala\\PlayerController.scala 228:19]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 53:28]
+      sprite0XReg <= 40'sh2400000; // @[\\src\\main\\scala\\PlayerController.scala 53:28]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+          sprite0XReg <= _sprite0XReg_T_5; // @[\\src\\main\\scala\\PlayerController.scala 240:19]
         end else begin
-          sprite0XReg <= _GEN_594;
+          sprite0XReg <= _GEN_600;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 51:28]
-      sprite0YReg <= 40'sha00000; // @[\\src\\main\\scala\\PlayerController.scala 51:28]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-          sprite0YReg <= _sprite0YReg_T_5; // @[\\src\\main\\scala\\PlayerController.scala 229:19]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 54:28]
+      sprite0YReg <= 40'sha00000; // @[\\src\\main\\scala\\PlayerController.scala 54:28]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+          sprite0YReg <= _sprite0YReg_T_5; // @[\\src\\main\\scala\\PlayerController.scala 241:19]
         end else begin
-          sprite0YReg <= _GEN_595;
+          sprite0YReg <= _GEN_601;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 52:32]
-      sprite0SpeedReg <= 32'sh0; // @[\\src\\main\\scala\\PlayerController.scala 52:32]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (io_btnD) begin // @[\\src\\main\\scala\\PlayerController.scala 121:20]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 55:32]
+      sprite0SpeedReg <= 32'sh0; // @[\\src\\main\\scala\\PlayerController.scala 55:32]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (io_btnD) begin // @[\\src\\main\\scala\\PlayerController.scala 133:20]
           sprite0SpeedReg <= _GEN_2;
         end else begin
           sprite0SpeedReg <= _GEN_6;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 53:32]
-      sprite0AngleReg <= 8'h0; // @[\\src\\main\\scala\\PlayerController.scala 53:32]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (io_btnR) begin // @[\\src\\main\\scala\\PlayerController.scala 139:21]
-          sprite0AngleReg <= _sprite0AngleReg_T_1; // @[\\src\\main\\scala\\PlayerController.scala 140:25]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 56:32]
+      sprite0AngleReg <= 8'h0; // @[\\src\\main\\scala\\PlayerController.scala 56:32]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (io_btnR) begin // @[\\src\\main\\scala\\PlayerController.scala 151:21]
+          sprite0AngleReg <= _sprite0AngleReg_T_1; // @[\\src\\main\\scala\\PlayerController.scala 152:25]
         end else begin
           sprite0AngleReg <= _GEN_8;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 55:23]
-      cosReg <= 16'sh0; // @[\\src\\main\\scala\\PlayerController.scala 55:23]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (8'hff == sprite0AngleReg) begin // @[\\src\\main\\scala\\PlayerController.scala 217:14]
-          cosReg <= 16'shff; // @[\\src\\main\\scala\\PlayerController.scala 217:14]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 58:23]
+      cosReg <= 16'sh0; // @[\\src\\main\\scala\\PlayerController.scala 58:23]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (8'hff == sprite0AngleReg) begin // @[\\src\\main\\scala\\PlayerController.scala 229:14]
+          cosReg <= 16'shff; // @[\\src\\main\\scala\\PlayerController.scala 229:14]
         end else begin
           cosReg <= _GEN_321;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 56:23]
-      sinReg <= 16'sh0; // @[\\src\\main\\scala\\PlayerController.scala 56:23]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (8'hff == sprite0AngleReg) begin // @[\\src\\main\\scala\\PlayerController.scala 218:14]
-          sinReg <= -16'sh6; // @[\\src\\main\\scala\\PlayerController.scala 218:14]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 59:23]
+      sinReg <= 16'sh0; // @[\\src\\main\\scala\\PlayerController.scala 59:23]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (8'hff == sprite0AngleReg) begin // @[\\src\\main\\scala\\PlayerController.scala 230:14]
+          sinReg <= -16'sh6; // @[\\src\\main\\scala\\PlayerController.scala 230:14]
         end else begin
           sinReg <= _GEN_577;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 72:41]
-      sprite0FlipHorizontalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 72:41]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90) begin // @[\\src\\main\\scala\\PlayerController.scala 147:66]
-          sprite0FlipHorizontalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 152:36]
+    viewBoxXReg <= _GEN_653[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 63:{28,28}]
+    viewBoxYReg <= _GEN_654[8:0]; // @[\\src\\main\\scala\\PlayerController.scala 64:{28,28}]
+    viewBoxXRegTemp <= _GEN_655[10:0]; // @[\\src\\main\\scala\\PlayerController.scala 69:{32,32}]
+    viewBoxYRegTemp <= _GEN_657[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 70:{32,32}]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 84:41]
+      sprite0FlipHorizontalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 84:41]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90) begin // @[\\src\\main\\scala\\PlayerController.scala 159:66]
+          sprite0FlipHorizontalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 164:36]
         end else begin
           sprite0FlipHorizontalReg <= _GEN_57;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 75:41]
-      sprite1FlipHorizontalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 75:41]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (!(sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90)) begin // @[\\src\\main\\scala\\PlayerController.scala 147:66]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 87:41]
+      sprite1FlipHorizontalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 87:41]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (!(sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90)) begin // @[\\src\\main\\scala\\PlayerController.scala 159:66]
           sprite1FlipHorizontalReg <= _GEN_54;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 76:39]
-      sprite1FlipVerticalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 76:39]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (!(sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90)) begin // @[\\src\\main\\scala\\PlayerController.scala 147:66]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 88:39]
+      sprite1FlipVerticalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 88:39]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (!(sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90)) begin // @[\\src\\main\\scala\\PlayerController.scala 159:66]
           sprite1FlipVerticalReg <= _GEN_55;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 78:39]
-      sprite2FlipVerticalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 78:39]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (!(sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90)) begin // @[\\src\\main\\scala\\PlayerController.scala 147:66]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 90:39]
+      sprite2FlipVerticalReg <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 90:39]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (!(sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90)) begin // @[\\src\\main\\scala\\PlayerController.scala 159:66]
           sprite2FlipVerticalReg <= _GEN_56;
         end
       end
     end
-    sprite0Visible <= reset | _GEN_622; // @[\\src\\main\\scala\\PlayerController.scala 80:{31,31}]
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 81:31]
-      sprite1Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 81:31]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90) begin // @[\\src\\main\\scala\\PlayerController.scala 147:66]
-          sprite1Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 149:26]
+    sprite0Visible <= reset | _GEN_636; // @[\\src\\main\\scala\\PlayerController.scala 92:{31,31}]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 93:31]
+      sprite1Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 93:31]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90) begin // @[\\src\\main\\scala\\PlayerController.scala 159:66]
+          sprite1Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 161:26]
         end else begin
           sprite1Visible <= _GEN_52;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 82:31]
-      sprite2Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 82:31]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90) begin // @[\\src\\main\\scala\\PlayerController.scala 147:66]
-          sprite2Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 150:26]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 94:31]
+      sprite2Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 94:31]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (sprite0AngleReg >= 8'h71 & sprite0AngleReg <= 8'h90) begin // @[\\src\\main\\scala\\PlayerController.scala 159:66]
+          sprite2Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 162:26]
         end else begin
           sprite2Visible <= _GEN_53;
         end
       end
     end
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 88:38]
-      tilemapRomTileAddrReg <= 11'h0; // @[\\src\\main\\scala\\PlayerController.scala 88:38]
-    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-      if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-        if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 111:20]
-          tilemapRomTileAddrReg <= _GEN_593;
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 100:38]
+      tilemapRomTileAddrReg <= 11'h0; // @[\\src\\main\\scala\\PlayerController.scala 100:38]
+    end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+      if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+        if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 123:20]
+          tilemapRomTileAddrReg <= _GEN_599;
         end
       end
     end
@@ -5837,21 +5893,29 @@ initial begin
   _RAND_6 = {1{`RANDOM}};
   sinReg = _RAND_6[15:0];
   _RAND_7 = {1{`RANDOM}};
-  sprite0FlipHorizontalReg = _RAND_7[0:0];
+  viewBoxXReg = _RAND_7[9:0];
   _RAND_8 = {1{`RANDOM}};
-  sprite1FlipHorizontalReg = _RAND_8[0:0];
+  viewBoxYReg = _RAND_8[8:0];
   _RAND_9 = {1{`RANDOM}};
-  sprite1FlipVerticalReg = _RAND_9[0:0];
+  viewBoxXRegTemp = _RAND_9[10:0];
   _RAND_10 = {1{`RANDOM}};
-  sprite2FlipVerticalReg = _RAND_10[0:0];
+  viewBoxYRegTemp = _RAND_10[9:0];
   _RAND_11 = {1{`RANDOM}};
-  sprite0Visible = _RAND_11[0:0];
+  sprite0FlipHorizontalReg = _RAND_11[0:0];
   _RAND_12 = {1{`RANDOM}};
-  sprite1Visible = _RAND_12[0:0];
+  sprite1FlipHorizontalReg = _RAND_12[0:0];
   _RAND_13 = {1{`RANDOM}};
-  sprite2Visible = _RAND_13[0:0];
+  sprite1FlipVerticalReg = _RAND_13[0:0];
   _RAND_14 = {1{`RANDOM}};
-  tilemapRomTileAddrReg = _RAND_14[10:0];
+  sprite2FlipVerticalReg = _RAND_14[0:0];
+  _RAND_15 = {1{`RANDOM}};
+  sprite0Visible = _RAND_15[0:0];
+  _RAND_16 = {1{`RANDOM}};
+  sprite1Visible = _RAND_16[0:0];
+  _RAND_17 = {1{`RANDOM}};
+  sprite2Visible = _RAND_17[0:0];
+  _RAND_18 = {1{`RANDOM}};
+  tilemapRomTileAddrReg = _RAND_18[10:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -5880,6 +5944,8 @@ module RaceManager(
   output        io_spriteFlipHorizontal_1, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
   output        io_spriteFlipVertical_1, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
   output        io_spriteFlipVertical_2, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
+  output [9:0]  io_viewBoxX, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
+  output [8:0]  io_viewBoxY, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
   input         io_newFrame, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
   input         io_enable, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
   output [10:0] io_tilemapRomTileAddress, // @[\\src\\main\\scala\\RaceManager.scala 5:14]
@@ -5893,6 +5959,8 @@ module RaceManager(
   wire  playerController_io_btnL; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
   wire  playerController_io_btnR; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
   wire  playerController_io_btnD; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
+  wire [9:0] playerController_io_viewBoxX; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
+  wire [8:0] playerController_io_viewBoxY; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
   wire [10:0] playerController_io_spriteXPosition_0; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
   wire [10:0] playerController_io_spriteXPosition_1; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
   wire [10:0] playerController_io_spriteXPosition_2; // @[\\src\\main\\scala\\RaceManager.scala 75:32]
@@ -5917,6 +5985,8 @@ module RaceManager(
     .io_btnL(playerController_io_btnL),
     .io_btnR(playerController_io_btnR),
     .io_btnD(playerController_io_btnD),
+    .io_viewBoxX(playerController_io_viewBoxX),
+    .io_viewBoxY(playerController_io_viewBoxY),
     .io_spriteXPosition_0(playerController_io_spriteXPosition_0),
     .io_spriteXPosition_1(playerController_io_spriteXPosition_1),
     .io_spriteXPosition_2(playerController_io_spriteXPosition_2),
@@ -5933,19 +6003,21 @@ module RaceManager(
     .io_newFrame(playerController_io_newFrame),
     .io_enable(playerController_io_enable)
   );
-  assign io_spriteXPosition_0 = playerController_io_spriteXPosition_0; // @[\\src\\main\\scala\\RaceManager.scala 89:32]
-  assign io_spriteXPosition_1 = playerController_io_spriteXPosition_1; // @[\\src\\main\\scala\\RaceManager.scala 89:32]
-  assign io_spriteXPosition_2 = playerController_io_spriteXPosition_2; // @[\\src\\main\\scala\\RaceManager.scala 89:32]
-  assign io_spriteYPosition_0 = playerController_io_spriteYPosition_0; // @[\\src\\main\\scala\\RaceManager.scala 90:32]
-  assign io_spriteYPosition_1 = playerController_io_spriteYPosition_1; // @[\\src\\main\\scala\\RaceManager.scala 90:32]
-  assign io_spriteYPosition_2 = playerController_io_spriteYPosition_2; // @[\\src\\main\\scala\\RaceManager.scala 90:32]
-  assign io_spriteVisible_0 = playerController_io_spriteVisible_0; // @[\\src\\main\\scala\\RaceManager.scala 88:32]
-  assign io_spriteVisible_1 = playerController_io_spriteVisible_1; // @[\\src\\main\\scala\\RaceManager.scala 88:32]
-  assign io_spriteVisible_2 = playerController_io_spriteVisible_2; // @[\\src\\main\\scala\\RaceManager.scala 88:32]
-  assign io_spriteFlipHorizontal_0 = playerController_io_spriteFlipHorizontal_0; // @[\\src\\main\\scala\\RaceManager.scala 91:32]
-  assign io_spriteFlipHorizontal_1 = playerController_io_spriteFlipHorizontal_1; // @[\\src\\main\\scala\\RaceManager.scala 91:32]
-  assign io_spriteFlipVertical_1 = playerController_io_spriteFlipVertical_1; // @[\\src\\main\\scala\\RaceManager.scala 92:32]
-  assign io_spriteFlipVertical_2 = playerController_io_spriteFlipVertical_2; // @[\\src\\main\\scala\\RaceManager.scala 92:32]
+  assign io_spriteXPosition_0 = playerController_io_spriteXPosition_0; // @[\\src\\main\\scala\\RaceManager.scala 91:32]
+  assign io_spriteXPosition_1 = playerController_io_spriteXPosition_1; // @[\\src\\main\\scala\\RaceManager.scala 91:32]
+  assign io_spriteXPosition_2 = playerController_io_spriteXPosition_2; // @[\\src\\main\\scala\\RaceManager.scala 91:32]
+  assign io_spriteYPosition_0 = playerController_io_spriteYPosition_0; // @[\\src\\main\\scala\\RaceManager.scala 92:32]
+  assign io_spriteYPosition_1 = playerController_io_spriteYPosition_1; // @[\\src\\main\\scala\\RaceManager.scala 92:32]
+  assign io_spriteYPosition_2 = playerController_io_spriteYPosition_2; // @[\\src\\main\\scala\\RaceManager.scala 92:32]
+  assign io_spriteVisible_0 = playerController_io_spriteVisible_0; // @[\\src\\main\\scala\\RaceManager.scala 90:32]
+  assign io_spriteVisible_1 = playerController_io_spriteVisible_1; // @[\\src\\main\\scala\\RaceManager.scala 90:32]
+  assign io_spriteVisible_2 = playerController_io_spriteVisible_2; // @[\\src\\main\\scala\\RaceManager.scala 90:32]
+  assign io_spriteFlipHorizontal_0 = playerController_io_spriteFlipHorizontal_0; // @[\\src\\main\\scala\\RaceManager.scala 93:32]
+  assign io_spriteFlipHorizontal_1 = playerController_io_spriteFlipHorizontal_1; // @[\\src\\main\\scala\\RaceManager.scala 93:32]
+  assign io_spriteFlipVertical_1 = playerController_io_spriteFlipVertical_1; // @[\\src\\main\\scala\\RaceManager.scala 94:32]
+  assign io_spriteFlipVertical_2 = playerController_io_spriteFlipVertical_2; // @[\\src\\main\\scala\\RaceManager.scala 94:32]
+  assign io_viewBoxX = playerController_io_viewBoxX; // @[\\src\\main\\scala\\RaceManager.scala 86:15]
+  assign io_viewBoxY = playerController_io_viewBoxY; // @[\\src\\main\\scala\\RaceManager.scala 87:15]
   assign io_tilemapRomTileAddress = playerController_io_tilemapRomTileAddress; // @[\\src\\main\\scala\\RaceManager.scala 76:28]
   assign playerController_clock = clock;
   assign playerController_reset = reset;
@@ -5979,6 +6051,7 @@ module ScreenManager(
   output        io_spriteFlipVertical_1, // @[\\src\\main\\scala\\ScreenManager.scala 12:14]
   output        io_spriteFlipVertical_2, // @[\\src\\main\\scala\\ScreenManager.scala 12:14]
   output [9:0]  io_viewBoxX, // @[\\src\\main\\scala\\ScreenManager.scala 12:14]
+  output [8:0]  io_viewBoxY, // @[\\src\\main\\scala\\ScreenManager.scala 12:14]
   output [5:0]  io_backBufferWriteData, // @[\\src\\main\\scala\\ScreenManager.scala 12:14]
   output [10:0] io_backBufferWriteAddress, // @[\\src\\main\\scala\\ScreenManager.scala 12:14]
   output        io_backBufferWriteEnable, // @[\\src\\main\\scala\\ScreenManager.scala 12:14]
@@ -6025,6 +6098,8 @@ module ScreenManager(
   wire  raceManager_io_spriteFlipHorizontal_1; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
   wire  raceManager_io_spriteFlipVertical_1; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
   wire  raceManager_io_spriteFlipVertical_2; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
+  wire [9:0] raceManager_io_viewBoxX; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
+  wire [8:0] raceManager_io_viewBoxY; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
   wire  raceManager_io_newFrame; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
   wire  raceManager_io_enable; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
   wire [10:0] raceManager_io_tilemapRomTileAddress; // @[\\src\\main\\scala\\ScreenManager.scala 117:27]
@@ -6060,7 +6135,8 @@ module ScreenManager(
   wire  _GEN_80 = 3'h5 == screenManagerStateReg & raceManager_io_spriteFlipHorizontal_1; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 196:31 72:27]
   wire  _GEN_96 = 3'h5 == screenManagerStateReg & raceManager_io_spriteFlipVertical_1; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 197:29 73:25]
   wire  _GEN_97 = 3'h5 == screenManagerStateReg & raceManager_io_spriteFlipVertical_2; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 197:29 73:25]
-  wire [9:0] _GEN_111 = 3'h5 == screenManagerStateReg ? 10'h0 : viewBoxXReg; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 198:19 99:15]
+  wire [9:0] _GEN_111 = 3'h5 == screenManagerStateReg ? raceManager_io_viewBoxX : viewBoxXReg; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 198:19 99:15]
+  wire [8:0] _GEN_112 = 3'h5 == screenManagerStateReg ? raceManager_io_viewBoxY : 9'h0; // @[\\src\\main\\scala\\ScreenManager.scala 100:15 137:33 199:19]
   wire [5:0] _GEN_113 = 3'h5 == screenManagerStateReg ? 6'h0 : screenLoader_io_backBufferWriteData; // @[\\src\\main\\scala\\ScreenManager.scala 131:26 137:33 200:30]
   wire [10:0] _GEN_114 = 3'h5 == screenManagerStateReg ? 11'h0 : screenLoader_io_backBufferWriteAddress; // @[\\src\\main\\scala\\ScreenManager.scala 132:29 137:33 201:33]
   wire  _GEN_115 = 3'h5 == screenManagerStateReg ? 1'h0 : screenLoader_io_backBufferWriteEnable; // @[\\src\\main\\scala\\ScreenManager.scala 133:28 137:33 202:32]
@@ -6086,6 +6162,7 @@ module ScreenManager(
   wire  _GEN_202 = 3'h4 == screenManagerStateReg ? 1'h0 : _GEN_96; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire  _GEN_203 = 3'h4 == screenManagerStateReg ? 1'h0 : _GEN_97; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire [9:0] _GEN_217 = 3'h4 == screenManagerStateReg ? viewBoxXReg : _GEN_111; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 99:15]
+  wire [8:0] _GEN_218 = 3'h4 == screenManagerStateReg ? 9'h0 : _GEN_112; // @[\\src\\main\\scala\\ScreenManager.scala 100:15 137:33]
   wire [5:0] _GEN_219 = 3'h4 == screenManagerStateReg ? screenLoader_io_backBufferWriteData : _GEN_113; // @[\\src\\main\\scala\\ScreenManager.scala 131:26 137:33]
   wire [10:0] _GEN_220 = 3'h4 == screenManagerStateReg ? screenLoader_io_backBufferWriteAddress : _GEN_114; // @[\\src\\main\\scala\\ScreenManager.scala 132:29 137:33]
   wire  _GEN_221 = 3'h4 == screenManagerStateReg ? screenLoader_io_backBufferWriteEnable : _GEN_115; // @[\\src\\main\\scala\\ScreenManager.scala 133:28 137:33]
@@ -6111,6 +6188,7 @@ module ScreenManager(
   wire  _GEN_306 = 3'h3 == screenManagerStateReg ? 1'h0 : _GEN_202; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire  _GEN_307 = 3'h3 == screenManagerStateReg ? 1'h0 : _GEN_203; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire [9:0] _GEN_321 = 3'h3 == screenManagerStateReg ? viewBoxXReg : _GEN_217; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 99:15]
+  wire [8:0] _GEN_322 = 3'h3 == screenManagerStateReg ? 9'h0 : _GEN_218; // @[\\src\\main\\scala\\ScreenManager.scala 100:15 137:33]
   wire [5:0] _GEN_323 = 3'h3 == screenManagerStateReg ? screenLoader_io_backBufferWriteData : _GEN_219; // @[\\src\\main\\scala\\ScreenManager.scala 131:26 137:33]
   wire [10:0] _GEN_324 = 3'h3 == screenManagerStateReg ? screenLoader_io_backBufferWriteAddress : _GEN_220; // @[\\src\\main\\scala\\ScreenManager.scala 132:29 137:33]
   wire  _GEN_325 = 3'h3 == screenManagerStateReg ? screenLoader_io_backBufferWriteEnable : _GEN_221; // @[\\src\\main\\scala\\ScreenManager.scala 133:28 137:33]
@@ -6134,6 +6212,7 @@ module ScreenManager(
   wire  _GEN_411 = 3'h2 == screenManagerStateReg ? 1'h0 : _GEN_306; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire  _GEN_412 = 3'h2 == screenManagerStateReg ? 1'h0 : _GEN_307; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire [9:0] _GEN_426 = 3'h2 == screenManagerStateReg ? viewBoxXReg : _GEN_321; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 99:15]
+  wire [8:0] _GEN_427 = 3'h2 == screenManagerStateReg ? 9'h0 : _GEN_322; // @[\\src\\main\\scala\\ScreenManager.scala 100:15 137:33]
   wire [5:0] _GEN_428 = 3'h2 == screenManagerStateReg ? screenLoader_io_backBufferWriteData : _GEN_323; // @[\\src\\main\\scala\\ScreenManager.scala 131:26 137:33]
   wire [10:0] _GEN_429 = 3'h2 == screenManagerStateReg ? screenLoader_io_backBufferWriteAddress : _GEN_324; // @[\\src\\main\\scala\\ScreenManager.scala 132:29 137:33]
   wire  _GEN_430 = 3'h2 == screenManagerStateReg ? screenLoader_io_backBufferWriteEnable : _GEN_325; // @[\\src\\main\\scala\\ScreenManager.scala 133:28 137:33]
@@ -6156,6 +6235,7 @@ module ScreenManager(
   wire  _GEN_515 = 3'h1 == screenManagerStateReg ? 1'h0 : _GEN_411; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire  _GEN_516 = 3'h1 == screenManagerStateReg ? 1'h0 : _GEN_412; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   wire [9:0] _GEN_530 = 3'h1 == screenManagerStateReg ? viewBoxXReg : _GEN_426; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 99:15]
+  wire [8:0] _GEN_531 = 3'h1 == screenManagerStateReg ? 9'h0 : _GEN_427; // @[\\src\\main\\scala\\ScreenManager.scala 100:15 137:33]
   wire [5:0] _GEN_532 = 3'h1 == screenManagerStateReg ? screenLoader_io_backBufferWriteData : _GEN_428; // @[\\src\\main\\scala\\ScreenManager.scala 131:26 137:33]
   wire [10:0] _GEN_533 = 3'h1 == screenManagerStateReg ? screenLoader_io_backBufferWriteAddress : _GEN_429; // @[\\src\\main\\scala\\ScreenManager.scala 132:29 137:33]
   wire  _GEN_534 = 3'h1 == screenManagerStateReg ? screenLoader_io_backBufferWriteEnable : _GEN_430; // @[\\src\\main\\scala\\ScreenManager.scala 133:28 137:33]
@@ -6203,6 +6283,8 @@ module ScreenManager(
     .io_spriteFlipHorizontal_1(raceManager_io_spriteFlipHorizontal_1),
     .io_spriteFlipVertical_1(raceManager_io_spriteFlipVertical_1),
     .io_spriteFlipVertical_2(raceManager_io_spriteFlipVertical_2),
+    .io_viewBoxX(raceManager_io_viewBoxX),
+    .io_viewBoxY(raceManager_io_viewBoxY),
     .io_newFrame(raceManager_io_newFrame),
     .io_enable(raceManager_io_enable),
     .io_tilemapRomTileAddress(raceManager_io_tilemapRomTileAddress),
@@ -6222,6 +6304,7 @@ module ScreenManager(
   assign io_spriteFlipVertical_1 = 3'h0 == screenManagerStateReg ? 1'h0 : _GEN_515; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   assign io_spriteFlipVertical_2 = 3'h0 == screenManagerStateReg ? 1'h0 : _GEN_516; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 73:25]
   assign io_viewBoxX = 3'h0 == screenManagerStateReg ? viewBoxXReg : _GEN_530; // @[\\src\\main\\scala\\ScreenManager.scala 137:33 99:15]
+  assign io_viewBoxY = 3'h0 == screenManagerStateReg ? 9'h0 : _GEN_531; // @[\\src\\main\\scala\\ScreenManager.scala 100:15 137:33]
   assign io_backBufferWriteData = 3'h0 == screenManagerStateReg ? screenLoader_io_backBufferWriteData : _GEN_532; // @[\\src\\main\\scala\\ScreenManager.scala 131:26 137:33]
   assign io_backBufferWriteAddress = 3'h0 == screenManagerStateReg ? screenLoader_io_backBufferWriteAddress : _GEN_533; // @[\\src\\main\\scala\\ScreenManager.scala 132:29 137:33]
   assign io_backBufferWriteEnable = 3'h0 == screenManagerStateReg ? screenLoader_io_backBufferWriteEnable : _GEN_534; // @[\\src\\main\\scala\\ScreenManager.scala 133:28 137:33]
@@ -6394,6 +6477,7 @@ module GameTop(
   wire  graphicEngineVGA_io_spriteFlipVertical_1; // @[\\src\\main\\scala\\GameTop.scala 44:32]
   wire  graphicEngineVGA_io_spriteFlipVertical_2; // @[\\src\\main\\scala\\GameTop.scala 44:32]
   wire [9:0] graphicEngineVGA_io_viewBoxX; // @[\\src\\main\\scala\\GameTop.scala 44:32]
+  wire [8:0] graphicEngineVGA_io_viewBoxY; // @[\\src\\main\\scala\\GameTop.scala 44:32]
   wire [5:0] graphicEngineVGA_io_backBufferWriteData; // @[\\src\\main\\scala\\GameTop.scala 44:32]
   wire [10:0] graphicEngineVGA_io_backBufferWriteAddress; // @[\\src\\main\\scala\\GameTop.scala 44:32]
   wire  graphicEngineVGA_io_backBufferWriteEnable; // @[\\src\\main\\scala\\GameTop.scala 44:32]
@@ -6428,6 +6512,7 @@ module GameTop(
   wire  gameLogic_io_spriteFlipVertical_1; // @[\\src\\main\\scala\\GameTop.scala 48:25]
   wire  gameLogic_io_spriteFlipVertical_2; // @[\\src\\main\\scala\\GameTop.scala 48:25]
   wire [9:0] gameLogic_io_viewBoxX; // @[\\src\\main\\scala\\GameTop.scala 48:25]
+  wire [8:0] gameLogic_io_viewBoxY; // @[\\src\\main\\scala\\GameTop.scala 48:25]
   wire [5:0] gameLogic_io_backBufferWriteData; // @[\\src\\main\\scala\\GameTop.scala 48:25]
   wire [10:0] gameLogic_io_backBufferWriteAddress; // @[\\src\\main\\scala\\GameTop.scala 48:25]
   wire  gameLogic_io_backBufferWriteEnable; // @[\\src\\main\\scala\\GameTop.scala 48:25]
@@ -6475,6 +6560,7 @@ module GameTop(
     .io_spriteFlipVertical_1(graphicEngineVGA_io_spriteFlipVertical_1),
     .io_spriteFlipVertical_2(graphicEngineVGA_io_spriteFlipVertical_2),
     .io_viewBoxX(graphicEngineVGA_io_viewBoxX),
+    .io_viewBoxY(graphicEngineVGA_io_viewBoxY),
     .io_backBufferWriteData(graphicEngineVGA_io_backBufferWriteData),
     .io_backBufferWriteAddress(graphicEngineVGA_io_backBufferWriteAddress),
     .io_backBufferWriteEnable(graphicEngineVGA_io_backBufferWriteEnable),
@@ -6511,6 +6597,7 @@ module GameTop(
     .io_spriteFlipVertical_1(gameLogic_io_spriteFlipVertical_1),
     .io_spriteFlipVertical_2(gameLogic_io_spriteFlipVertical_2),
     .io_viewBoxX(gameLogic_io_viewBoxX),
+    .io_viewBoxY(gameLogic_io_viewBoxY),
     .io_backBufferWriteData(gameLogic_io_backBufferWriteData),
     .io_backBufferWriteAddress(gameLogic_io_backBufferWriteAddress),
     .io_backBufferWriteEnable(gameLogic_io_backBufferWriteEnable),
@@ -6541,6 +6628,7 @@ module GameTop(
   assign graphicEngineVGA_io_spriteFlipVertical_1 = gameLogic_io_spriteFlipVertical_1; // @[\\src\\main\\scala\\GameTop.scala 115:42]
   assign graphicEngineVGA_io_spriteFlipVertical_2 = gameLogic_io_spriteFlipVertical_2; // @[\\src\\main\\scala\\GameTop.scala 115:42]
   assign graphicEngineVGA_io_viewBoxX = gameLogic_io_viewBoxX; // @[\\src\\main\\scala\\GameTop.scala 118:32]
+  assign graphicEngineVGA_io_viewBoxY = gameLogic_io_viewBoxY; // @[\\src\\main\\scala\\GameTop.scala 119:32]
   assign graphicEngineVGA_io_backBufferWriteData = gameLogic_io_backBufferWriteData; // @[\\src\\main\\scala\\GameTop.scala 122:43]
   assign graphicEngineVGA_io_backBufferWriteAddress = gameLogic_io_backBufferWriteAddress; // @[\\src\\main\\scala\\GameTop.scala 123:46]
   assign graphicEngineVGA_io_backBufferWriteEnable = gameLogic_io_backBufferWriteEnable; // @[\\src\\main\\scala\\GameTop.scala 124:45]
