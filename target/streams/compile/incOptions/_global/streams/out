@@ -1,11 +1,2 @@
 [0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes.bak[0m
-[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes.bak[0m

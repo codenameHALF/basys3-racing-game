@@ -158,7 +158,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
     //Make the transition animation to the track select screen
     is(transTrackSelect) {
       when(io.newFrame) {
-        viewBoxXReg := viewBoxXReg + 8.U
+        viewBoxXReg := viewBoxXReg + 16.U
         screenManagerStateReg := transTrackSelectStepDone
       }
     }

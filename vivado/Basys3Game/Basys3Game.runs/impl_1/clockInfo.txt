@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2025.1
-| Date         : Sun Jun 14 00:23:37 2026
+| Date         : Sun Jun 14 13:15:16 2026
 | Host         : halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA
 | Design       : design_1
 | Device       : xc7a35t-cpg236-1--

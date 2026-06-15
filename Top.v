@@ -4821,7 +4821,7 @@ module ScreenManager(
   reg [9:0] viewBoxXReg; // @[src/main/scala/ScreenManager.scala 97:28]
   reg [2:0] screenManagerStateReg; // @[src/main/scala/ScreenManager.scala 103:38]
   reg  currentScreenReg; // @[src/main/scala/ScreenManager.scala 104:33]
-  wire [9:0] _viewBoxXReg_T_1 = viewBoxXReg + 10'h8; // @[src/main/scala/ScreenManager.scala 161:36]
+  wire [9:0] _viewBoxXReg_T_1 = viewBoxXReg + 10'h10; // @[src/main/scala/ScreenManager.scala 161:36]
   wire [9:0] _GEN_4 = io_newFrame ? _viewBoxXReg_T_1 : viewBoxXReg; // @[src/main/scala/ScreenManager.scala 160:25 161:21 97:28]
   wire [2:0] _GEN_5 = io_newFrame ? 3'h3 : screenManagerStateReg; // @[src/main/scala/ScreenManager.scala 160:25 162:31 103:38]
   wire [2:0] _GEN_6 = viewBoxXReg >= 10'h280 ? 3'h6 : 3'h2; // @[src/main/scala/ScreenManager.scala 169:34 170:31 173:31]

@@ -4945,7 +4945,7 @@ circuit Top :
         node _T_2 = eq(UInt<3>("h2"), screenManagerStateReg) @[src/main/scala/ScreenManager.scala 137:33]
         when _T_2 : @[src/main/scala/ScreenManager.scala 137:33]
           when io.newFrame : @[src/main/scala/ScreenManager.scala 160:25]
-            node _viewBoxXReg_T = add(viewBoxXReg, UInt<4>("h8")) @[src/main/scala/ScreenManager.scala 161:36]
+            node _viewBoxXReg_T = add(viewBoxXReg, UInt<5>("h10")) @[src/main/scala/ScreenManager.scala 161:36]
             node _viewBoxXReg_T_1 = tail(_viewBoxXReg_T, 1) @[src/main/scala/ScreenManager.scala 161:36]
             viewBoxXReg <= _viewBoxXReg_T_1 @[src/main/scala/ScreenManager.scala 161:21]
             screenManagerStateReg <= UInt<3>("h3") @[src/main/scala/ScreenManager.scala 162:31]

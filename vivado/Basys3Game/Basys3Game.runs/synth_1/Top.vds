@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Sun Jun 14 00:22:07 2026
-# Process ID         : 530564
+# Start of session at: Sun Jun 14 13:13:50 2026
+# Process ID         : 79854
 # Current directory  : /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1
 # Command line       : vivado -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
 # Log file           : /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.vds
@@ -13,13 +13,13 @@
 # Platform           : Linuxmint
 # Operating System   : Linux Mint 22.3
 # Processor Detail   : AMD Ryzen 5 4500U with Radeon Graphics
-# CPU Frequency      : 1622.542 MHz
+# CPU Frequency      : 3992.637 MHz
 # CPU Physical cores : 6
 # CPU Logical cores  : 6
 # Host memory        : 7710 MB
 # Swap memory        : 2147 MB
 # Total Virtual      : 9858 MB
-# Available Virtual  : 3517 MB
+# Available Virtual  : 5118 MB
 #-----------------------------------------------------------
 source Top.tcl -notrace
 Command: synth_design -top Top -part xc7a35tcpg236-1
@@ -29,9 +29,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 530761
+INFO: [Synth 8-7075] Helper process launched with PID 80068
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2116.477 ; gain = 231.973 ; free physical = 285 ; free virtual = 2166
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2115.539 ; gain = 233.004 ; free physical = 236 ; free virtual = 3674
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Top' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:5199]
 INFO: [Synth 8-6157] synthesizing module 'GameTop' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:5006]
@@ -620,18 +620,18 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2230.414 ; gain = 345.910 ; free physical = 158 ; free virtual = 2043
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2232.477 ; gain = 349.941 ; free physical = 146 ; free virtual = 3572
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2245.258 ; gain = 360.754 ; free physical = 158 ; free virtual = 2043
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2247.320 ; gain = 364.785 ; free physical = 245 ; free virtual = 3568
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2245.258 ; gain = 360.754 ; free physical = 158 ; free virtual = 2043
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2247.320 ; gain = 364.785 ; free physical = 245 ; free virtual = 3568
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2245.258 ; gain = 0.000 ; free physical = 177 ; free virtual = 2061
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2247.320 ; gain = 0.000 ; free physical = 248 ; free virtual = 3571
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -642,29 +642,29 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2371.996 ; gain = 0.000 ; free physical = 146 ; free virtual = 2041
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2373.059 ; gain = 0.000 ; free physical = 222 ; free virtual = 3545
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2372.031 ; gain = 0.000 ; free physical = 146 ; free virtual = 2041
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2373.094 ; gain = 0.000 ; free physical = 222 ; free virtual = 3545
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2372.031 ; gain = 487.527 ; free physical = 156 ; free virtual = 2051
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2373.094 ; gain = 490.559 ; free physical = 257 ; free virtual = 3580
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2380.000 ; gain = 495.496 ; free physical = 156 ; free virtual = 2051
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2381.062 ; gain = 498.527 ; free physical = 257 ; free virtual = 3580
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2380.000 ; gain = 495.496 ; free physical = 156 ; free virtual = 2051
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2381.062 ; gain = 498.527 ; free physical = 257 ; free virtual = 3580
 ---------------------------------------------------------------------------------
-DSP Debug: swapped A/B pins for adder 0x31fe0360
-DSP Debug: swapped A/B pins for adder 0x330bf800
+DSP Debug: swapped A/B pins for adder 0x398b05a0
+DSP Debug: swapped A/B pins for adder 0x398eda40
 INFO: [Synth 8-802] inferred FSM for state register 'screenManagerStateReg_reg' in module 'ScreenManager'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
@@ -681,7 +681,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'screenManagerStateReg_reg' 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'screenManagerStateReg_reg' using encoding 'sequential' in module 'ScreenManager'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2380.000 ; gain = 495.496 ; free physical = 157 ; free virtual = 2054
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2381.062 ; gain = 498.527 ; free physical = 257 ; free virtual = 3582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -757,7 +757,7 @@ WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has 
 WARNING: [Synth 8-7257] Removed RAM (gameTop/graphicEngineVGA/backTileMemories_36/ramsSpWf/RAM_reg) due to inactive write enable.
 WARNING: [Synth 8-6014] Unused sequential element gameTop/graphicEngineVGA/backTileMemories_36/ramsSpWf/RAM_reg was removed. 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2380.000 ; gain = 495.496 ; free physical = 137 ; free virtual = 2043
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2381.062 ; gain = 498.527 ; free physical = 243 ; free virtual = 3577
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -822,14 +822,14 @@ Block RAM: Preliminary Mapping Report (see note below)
 |RamInitSpWf__parameterized52: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized53: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized55: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized56: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized57: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized58: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized59: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized60: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized61: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized62: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |Top                           | gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized63: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized64: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -861,13 +861,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 2424.000 ; gain = 539.496 ; free physical = 166 ; free virtual = 2013
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2427.062 ; gain = 544.527 ; free physical = 154 ; free virtual = 3487
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2463.047 ; gain = 578.543 ; free physical = 144 ; free virtual = 1930
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2465.109 ; gain = 582.574 ; free physical = 113 ; free virtual = 3447
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -932,14 +932,14 @@ Block RAM: Final Mapping Report
 |RamInitSpWf__parameterized52: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized53: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized55: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized56: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized57: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized58: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized59: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized60: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized61: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized62: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |Top                           | gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized63: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized64: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -970,33 +970,25 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_14/ramsSpWf/RAM_reg' (RAMB18E1_14) to 'gameTop/graphicEngineVGA/backTileMemories_26/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_56/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_58/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_55/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_57/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_57/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg' (RAMB18E1_53) to 'gameTop/graphicEngineVGA/backTileMemories_63/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_0/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_1/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_1/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_2/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_2/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_3/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_3/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_4/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_4/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_5/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_5/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_6/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_6/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_7/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_7/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_8/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_8/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_9/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_9/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_10/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_10/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_11/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_11/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_12/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_12/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_13/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_13/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_14/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_14/ramsSpWf/RAM_reg' (RAMB18E1_56) to 'gameTop/graphicEngineVGA/spriteMemories_15/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_0/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_1/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_1/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_2/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_2/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_3/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_3/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_4/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_4/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_5/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_5/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_6/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_6/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_7/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_7/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_8/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_8/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_9/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_9/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_10/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_10/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_11/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_11/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_12/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_12/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_13/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_13/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_14/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_14/ramsSpWf/RAM_reg' (RAMB18E1_64) to 'gameTop/graphicEngineVGA/spriteMemories_15/ramsSpWf/RAM_reg'
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferRestoreMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2471.055 ; gain = 586.551 ; free physical = 140 ; free virtual = 1914
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2473.117 ; gain = 590.582 ; free physical = 175 ; free virtual = 3449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1014,37 +1006,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2625.836 ; gain = 741.332 ; free physical = 98 ; free virtual = 1410
+Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2630.930 ; gain = 748.395 ; free physical = 136 ; free virtual = 3301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2625.836 ; gain = 741.332 ; free physical = 106 ; free virtual = 1409
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2630.930 ; gain = 748.395 ; free physical = 136 ; free virtual = 3301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2625.836 ; gain = 741.332 ; free physical = 184 ; free virtual = 1427
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2630.930 ; gain = 748.395 ; free physical = 135 ; free virtual = 3301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2625.836 ; gain = 741.332 ; free physical = 184 ; free virtual = 1427
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2630.930 ; gain = 748.395 ; free physical = 135 ; free virtual = 3301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2628.805 ; gain = 744.301 ; free physical = 184 ; free virtual = 1427
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2634.898 ; gain = 752.363 ; free physical = 135 ; free virtual = 3301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2628.805 ; gain = 744.301 ; free physical = 184 ; free virtual = 1427
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2634.898 ; gain = 752.363 ; free physical = 135 ; free virtual = 3301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1080,44 +1072,44 @@ Report Cell Usage:
 |1     |BUFG     |     1|
 |2     |CARRY4   |    30|
 |3     |LUT1     |    15|
-|4     |LUT2     |    33|
-|5     |LUT3     |    60|
-|6     |LUT4     |    47|
+|4     |LUT2     |    34|
+|5     |LUT3     |    54|
+|6     |LUT4     |    48|
 |7     |LUT5     |    91|
-|8     |LUT6     |   161|
-|9     |MUXF7    |    73|
-|10    |MUXF8    |    33|
-|11    |RAMB18E1 |    60|
-|71    |SRL16E   |     4|
-|72    |FDRE     |   286|
-|73    |FDSE     |    19|
-|74    |IBUF     |     3|
-|75    |OBUF     |    25|
+|8     |LUT6     |   174|
+|9     |MUXF7    |    80|
+|10    |MUXF8    |    40|
+|11    |RAMB18E1 |    68|
+|79    |SRL16E   |     4|
+|80    |FDRE     |   290|
+|81    |FDSE     |    19|
+|82    |IBUF     |     3|
+|83    |OBUF     |    25|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2628.805 ; gain = 744.301 ; free physical = 184 ; free virtual = 1427
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2634.898 ; gain = 752.363 ; free physical = 135 ; free virtual = 3301
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 23 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 2628.805 ; gain = 617.527 ; free physical = 152 ; free virtual = 1396
-Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 2628.812 ; gain = 744.301 ; free physical = 152 ; free virtual = 1396
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2634.898 ; gain = 626.590 ; free physical = 136 ; free virtual = 3301
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2634.906 ; gain = 752.363 ; free physical = 136 ; free virtual = 3302
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2628.812 ; gain = 0.000 ; free physical = 269 ; free virtual = 1500
-INFO: [Netlist 29-17] Analyzing 196 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2634.906 ; gain = 0.000 ; free physical = 298 ; free virtual = 3463
+INFO: [Netlist 29-17] Analyzing 218 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2684.832 ; gain = 0.000 ; free physical = 187 ; free virtual = 1467
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2690.926 ; gain = 0.000 ; free physical = 290 ; free virtual = 3455
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 9fab529a
+Synth Design complete | Checksum: daccedcd
 INFO: [Common 17-83] Releasing license: Synthesis
-328 Infos, 73 Warnings, 0 Critical Warnings and 0 Errors encountered.
+320 Infos, 73 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:00:35 . Memory (MB): peak = 2684.867 ; gain = 1150.336 ; free physical = 186 ; free virtual = 1468
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2045.604; main = 2045.604; forked = 325.730
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3343.863; main = 2684.836; forked = 963.859
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2708.844 ; gain = 0.000 ; free physical = 185 ; free virtual = 1467
+synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:00:34 . Memory (MB): peak = 2690.961 ; gain = 1156.398 ; free physical = 282 ; free virtual = 3448
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1834.306; main = 1834.306; forked = 276.327
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3344.926; main = 2690.930; forked = 963.859
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2714.938 ; gain = 0.000 ; free physical = 282 ; free virtual = 3448
 INFO: [Common 17-1381] The checkpoint '/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jun 14 00:22:48 2026...
+INFO: [Common 17-206] Exiting Vivado at Sun Jun 14 13:14:30 2026...
