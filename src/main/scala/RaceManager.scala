@@ -73,9 +73,65 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   val raceManagerStateReg = RegInit(idle)
 
   val playerController = Module(new PlayerController())
-  io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
-  playerController.io.tilemapRomTileData := io.tilemapRomTileData
-  playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
+val ai = Module(new AI())
+
+val useAI = io.sw(0)
+
+ai.io.gameState := Cat(
+  0.U(12.W),
+  io.tilemapRomCollisionData,
+  roadRightReg,
+  roadMidReg,
+  roadLeftReg
+)
+// AI sensor address
+val carX = playerController.io.xPos.asUInt
+val carY = playerController.io.yPos.asUInt
+
+val tileX = carX >> 4
+val tileY = carY >> 4
+
+val addrMid   = tileY * 40.U + tileX
+val addrLeft  = tileY * 40.U + (tileX - 1.U)
+val addrRight = tileY * 40.U + (tileX + 1.U)
+
+val scanIndex = RegInit(0.U(2.W))
+
+val aiSensorAddress = MuxLookup(scanIndex, addrMid)(Seq(
+  0.U -> addrLeft,
+  1.U -> addrMid,
+  2.U -> addrRight
+))
+
+io.tilemapRomTileAddress := Mux(
+  useAI,
+  aiSensorAddress,
+  playerController.io.tilemapRomTileAddress
+)
+
+playerController.io.tilemapRomTileData := io.tilemapRomTileData
+playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
+
+val roadLeftReg  = RegInit(false.B)
+val roadMidReg   = RegInit(false.B)
+val roadRightReg = RegInit(false.B)
+
+when(useAI) {
+  switch(scanIndex) {
+    is(0.U) {
+      roadLeftReg := !io.tilemapRomCollisionData
+      scanIndex := 1.U
+    }
+    is(1.U) {
+      roadMidReg := !io.tilemapRomCollisionData
+      scanIndex := 2.U
+    }
+    is(2.U) {
+      roadRightReg := !io.tilemapRomCollisionData
+      scanIndex := 0.U
+    }
+  }
+}
 
 
   switch(raceManagerStateReg) {
