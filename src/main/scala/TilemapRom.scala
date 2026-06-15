@@ -28,72 +28,78 @@ class TilemapRom(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) ext
         tilemapMemories(i).io.address := io.tileAddress
         tilemapMemoryDataRead(i) := RegNext(tilemapMemories(i).io.dataRead)
     }
-
-    val collisionTable = VecInit(Seq(
-        false.B, // backtile_init_0
-        false.B, // backtile_init_1
-        false.B, // backtile_init_2
-        false.B, // backtile_init_3
-        false.B, // backtile_init_4
-        false.B, // backtile_init_5
-        false.B, // backtile_init_6
-        false.B, // backtile_init_7
-        false.B, // backtile_init_8
-        false.B, // backtile_init_9
-        false.B, // backtile_init_10
-        false.B, // backtile_init_11
-        false.B, // backtile_init_12
-        false.B, // backtile_init_13
-        false.B, // backtile_init_14
-        false.B, // backtile_init_15
-        false.B, // backtile_init_16
-        false.B, // backtile_init_17
-        false.B, // backtile_init_18
-        false.B, // backtile_init_19
-        false.B, // backtile_init_20
-        false.B, // backtile_init_21
-        false.B, // backtile_init_22
-        false.B, // backtile_init_23
-        false.B, // backtile_init_24
-        false.B, // backtile_init_25
-        false.B, // backtile_init_26
-        false.B, // backtile_init_27
-        false.B, // backtile_init_28
-        false.B, // backtile_init_29
-        false.B, // backtile_init_30
-        false.B, // backtile_init_31
-        false.B, // backtile_init_32
-        false.B, // backtile_init_33
-        false.B, // backtile_init_34
-        false.B, // backtile_init_35
-        false.B, // backtile_init_36
-        false.B, // backtile_init_37
-        false.B, // backtile_init_38
-        false.B, // backtile_init_39
-        false.B, // backtile_init_40
-        false.B, // backtile_init_41
-        false.B, // backtile_init_42
-        false.B, // backtile_init_43
-        false.B, // backtile_init_44
-        false.B, // backtile_init_45
-        false.B, // backtile_init_46
-        false.B, // backtile_init_47
-        false.B, // backtile_init_48
-        false.B, // backtile_init_49
+     val collisionTable = VecInit(Seq(
+        true.B, // backtile_init_0
+        true.B, // backtile_init_0
+        true.B, // backtile_init_0
+        true.B, // backtile_init_0
+        true.B, // backtile_init_0
+        true.B, // backtile_init_0
+        true.B, // backtile_init_0
+        true.B, // backtile_init_0
+        true.B, // backtile_init_1
+        true.B, // backtile_init_2
+        true.B, // backtile_init_3
+        true.B, // backtile_init_4
+        true.B, // backtile_init_5
+        true.B, // backtile_init_6
+        true.B, // backtile_init_7
+        true.B, // backtile_init_8
+        true.B, // backtile_init_9
+        true.B, // backtile_init_10
+        true.B, // backtile_init_11
+        true.B, // backtile_init_12
+        true.B, // backtile_init_13
+        true.B, // backtile_init_14
+        true.B, // backtile_init_15
+        true.B, // backtile_init_16
+        true.B, // backtile_init_17
+        true.B, // backtile_init_18
+        true.B, // backtile_init_19
+        true.B, // backtile_init_20
+        true.B, // backtile_init_21
+        true.B, // backtile_init_22
+        true.B, // backtile_init_23
+        true.B, // backtile_init_24
+        true.B, // backtile_init_25
+        true.B, // backtile_init_26
+        true.B, // backtile_init_27
+        true.B, // backtile_init_28
+        true.B, // backtile_init_29
+        true.B, // backtile_init_30
+        true.B, // backtile_init_31
+        true.B, // backtile_init_32
+        true.B, // backtile_init_33
+        true.B, // backtile_init_34
+        true.B, // backtile_init_35
+        true.B, // backtile_init_36
+        true.B, // backtile_init_37
+        true.B, // backtile_init_38
+        true.B, // backtile_init_39
+        true.B, // backtile_init_40
+        true.B, // backtile_init_41
+        true.B, // backtile_init_42
+        true.B, // backtile_init_43
+        true.B, // backtile_init_44
+        true.B, // backtile_init_45
+        true.B, // backtile_init_46
+        true.B, // backtile_init_47
+        true.B, // backtile_init_48
+        true.B, // backtile_init_49
         false.B, // backtile_init_50
         false.B, // backtile_init_51
-        true.B, // backtile_init_52
+        false.B, // backtile_init_52
         false.B, // backtile_init_53
         false.B, // backtile_init_54
-        true.B, // backtile_init_55
-        true.B, // backtile_init_56
-        true.B, // backtile_init_57
-        true.B, // backtile_init_58
+        false.B, // backtile_init_55
+        false.B, // backtile_init_56
+        false.B, // backtile_init_57
+        false.B, // backtile_init_58
         true.B, // backtile_init_59
-        true.B, // backtile_init_60
-        true.B, // backtile_init_61
-        true.B, // backtile_init_62
-        true.B  // backtile_init_63
+        false.B, // backtile_init_60
+        false.B, // backtile_init_61
+        false.B, // backtile_init_62
+        false.B  // backtile_init_63
     ))
 
     io.tileData := tilemapMemoryDataRead(io.tilemapIdx)

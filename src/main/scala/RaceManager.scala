@@ -76,6 +76,21 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
   playerController.io.tilemapRomTileData := io.tilemapRomTileData
   playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
+  playerController.io.btnU := io.btnU
+  playerController.io.btnL := io.btnL
+  playerController.io.btnD := io.btnD
+  playerController.io.btnC := io.btnC
+  playerController.io.btnR := io.btnR
+  playerController.io.newFrame := io.newFrame
+  playerController.io.enable := io.enable      
+
+  for (i <- 0 until 3) {
+    io.spriteVisible(i)        := playerController.io.spriteVisible(i)
+    io.spriteXPosition(i)      := playerController.io.spriteXPosition(i)
+    io.spriteYPosition(i)      := playerController.io.spriteYPosition(i)
+    io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
+    io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
+  }
 
 
   switch(raceManagerStateReg) {

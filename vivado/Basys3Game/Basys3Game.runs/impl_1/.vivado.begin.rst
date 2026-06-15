@@ -1,10 +1,30 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="50981" HostCore="6" HostMemory="7529964">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="18936" HostCore="16" HostMemory="033618251776">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="80667" HostCore="6" HostMemory="7529964">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="24440" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="26348" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="23220" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="18928" HostCore="16" HostMemory="033618251776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="18776" HostCore="16" HostMemory="033618251776">
     </Process>
 </ProcessHandle>
