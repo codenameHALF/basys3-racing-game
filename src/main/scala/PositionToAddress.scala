@@ -3,8 +3,8 @@ import chisel3.util._
 
 class PositionToAddress extends Module {
   val io = IO(new Bundle {
-    val posX = Input(UInt(10.W))
-    val posY = Input(UInt(9.W))
+    val posX = Input(UInt(11.W))
+    val posY = Input(UInt(10.W))
 
     val address = Output(UInt(11.W))
   })

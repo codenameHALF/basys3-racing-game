@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:{C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc} rfile:../../../Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:{/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc} rfile:../../../Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports clock]
 set_property src_info {type:XDC file:1 line:12 export:INPUT save:INPUT read:READ} [current_design]

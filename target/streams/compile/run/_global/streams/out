@@ -1,6 +1,12 @@
-[0m[[0m[31merror[0m] [0m[0mchisel3.package$ChiselException: Connection between sink (PlayerController.io.viewBoxX: IO[UInt<10>]) and source (RaceManager.io.viewBoxX: IO[UInt<10>]) failed @: io.viewBoxX in PlayerController cannot be written from module RaceManager.[0m
+[0m[[0m[31merror[0m] [0m[0mchisel3.package$ChiselException: Connection between sink (RaceManager.viewBoxXReg: Reg[UInt<10>]) and source (RaceManager.tempViewBoxX: OpResult[SInt<11>]) failed @: Sink (UInt<10>) and Source (SInt<11>) have different types.[0m
 [0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
-[0m[[0m[31merror[0m] [0m[0m	at RaceManager.<init>(RaceManager.scala:86)[0m
+[0m[[0m[31merror[0m] [0m[0m	at RaceManager.$anonfun$new$37(RaceManager.scala:116)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.WhenContext.<init>(When.scala:135)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.WhenContext.elsewhen(When.scala:112)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.util.SwitchContext.is(Conditional.scala:37)[0m
+[0m[[0m[31merror[0m] [0m[0m	at chisel3.util.SwitchContext.is(Conditional.scala:45)[0m
+[0m[[0m[31merror[0m] [0m[0m	at RaceManager.<init>(RaceManager.scala:103)[0m
 [0m[[0m[31merror[0m] [0m[0m	at ScreenManager.$anonfun$raceManager$2(ScreenManager.scala:117)[0m
 [0m[[0m[31merror[0m] [0m[0m	at chisel3.Module$.do_apply(Module.scala:53)[0m
 [0m[[0m[31merror[0m] [0m[0m	at ScreenManager.$anonfun$raceManager$1(ScreenManager.scala:117)[0m
@@ -19,4 +25,4 @@
 [0m[[0m[31merror[0m] [0m[0m	at Top$.$anonfun$new$6(Top.scala:68)[0m
 [0m[[0m[31merror[0m] [0m[0m	at ... ()[0m
 [0m[[0m[31merror[0m] [0m[0m	at ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)[0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) chisel3.package$ChiselException: Connection between sink (PlayerController.io.viewBoxX: IO[UInt<10>]) and source (RaceManager.io.viewBoxX: IO[UInt<10>]) failed @: io.viewBoxX in PlayerController cannot be written from module RaceManager.[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) chisel3.package$ChiselException: Connection between sink (RaceManager.viewBoxXReg: Reg[UInt<10>]) and source (RaceManager.tempViewBoxX: OpResult[SInt<11>]) failed @: Sink (UInt<10>) and Source (SInt<11>) have different types.[0m

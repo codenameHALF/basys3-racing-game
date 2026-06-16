@@ -57,8 +57,10 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
 
   //Setting the viewbox control outputs to zero
-  io.viewBoxX := 0.U
-  io.viewBoxY := 0.U
+  val viewBoxXReg = RegInit(0.U(10.W))
+  val viewBoxYReg = RegInit(0.U(9.W))
+  io.viewBoxX := viewBoxXReg
+  io.viewBoxY := viewBoxYReg
 
   //Setting the background buffer outputs to zero
   io.backBufferWriteData := 0.U
@@ -83,13 +85,16 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   playerController.io.btnR := io.btnR
   playerController.io.newFrame := io.newFrame
   playerController.io.enable := io.enable
-  io.viewBoxX := playerController.io.viewBoxX
-  io.viewBoxY :=  playerController.io.viewBoxY    
+
+  val playerScreenXPosition = Reg(SInt(11.W))
+  val playerScreenYPosition = Reg(SInt(10.W))
+  playerScreenXPosition := (playerController.io.playerXPosition - viewBoxXReg).asSInt
+  playerScreenYPosition := (playerController.io.playerYPosition - viewBoxYReg).asSInt
 
   for (i <- 0 until 3) {
     io.spriteVisible(i)        := playerController.io.spriteVisible(i)
-    io.spriteXPosition(i)      := playerController.io.spriteXPosition(i)
-    io.spriteYPosition(i)      := playerController.io.spriteYPosition(i)
+    io.spriteXPosition(i)      := playerScreenXPosition
+    io.spriteYPosition(i)      := playerScreenYPosition
     io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
     io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
   }
@@ -105,7 +110,29 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     }
 
     is (computeRace) {
-        raceManagerStateReg := done
+      val tempViewBoxX = (playerController.io.playerXPosition + 16.U)
+      val tempViewBoxY = (playerController.io.playerYPosition + 16.U)
+
+      viewBoxXReg := tempViewBoxX - 320.U
+      viewBoxYReg := tempViewBoxY - 240.U
+
+      when(tempViewBoxX < 320.U) {
+        viewBoxXReg := 0.U
+      }
+
+      when(tempViewBoxY < 240.U) {
+        viewBoxYReg := 0.U
+      }
+
+      when(tempViewBoxX > (640 + 320).U) {
+        viewBoxXReg := 640.U
+      }
+
+      when(tempViewBoxY > (480 + 240).U) {
+        viewBoxYReg := 480.U
+      }
+
+      raceManagerStateReg := done
     }
 
     is (done) {

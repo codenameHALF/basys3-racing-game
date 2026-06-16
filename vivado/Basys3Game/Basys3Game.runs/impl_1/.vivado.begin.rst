@@ -1,5 +1,60 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="Mikkel" Host="DESKTOP-0FACVVU" Pid="6928" HostCore="16" HostMemory="033618251776">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="17215" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="26838" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="39769" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="53062" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="63917" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="78250" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="100777" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="118643" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="128900" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="145883" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="156284" HostCore="6" HostMemory="7529960">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="170542" HostCore="6" HostMemory="7529960">
     </Process>
 </ProcessHandle>
