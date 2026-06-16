@@ -44,7 +44,7 @@ class PlayerController extends Module {
 // Checkpoint tile address data
 val checkPointData = VecInit(
 VecInit(644.U(16.W), 645.U(16.W), 977.U(16.W), 1017.U(16.W), 674.U(16.W), 675.U(16.W)),
-VecInit(2.U(16.W), 5.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
+VecInit(604.U(16.W), 605.U(16.W), 502.U(16.W), 542.U(16.W), 714.U(16.W), 715.U(16.W)),
 VecInit(3.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
 VecInit(3.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
 VecInit(3.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
@@ -53,6 +53,18 @@ VecInit(3.U(16.W), 2.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W)))
 // Checkpoint Counter
 val checkPointCntReg = RegInit(0.U(4.W))
 val lapCntReg = RegInit(0.U(4.W))
+val currentTrack = checkPointData(0.U)
+
+val PlayerRespawnCoordinates = VecInit(
+VecInit(160.S(16.W), 512.S(16.W), 544.S(16.W), 800.S(16.W), 1112.S(16.W), 512.S(16.W)),
+VecInit(604.S(16.W), 605.S(16.W), 502.S(16.W), 542.S(16.W), 714.S(16.W), 715.S(16.W)),
+VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
+VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
+VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
+VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
+VecInit(3.S(16.W), 2.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W)))
+
+
 
 //////////////////////////////////////////////
 // Player logic:
@@ -101,7 +113,8 @@ val lapCntReg = RegInit(0.U(4.W))
   val tilemapRomTileAddrReg = RegInit(0.U(11.W))
   io.tilemapRomTileAddress := tilemapRomTileAddrReg
 
-
+  val addressToPosition = Module(new AddressToPosition)
+  addressToPosition.io.address := 0.U(16.W) 
 
   io.playerXPosition := (playerXPositionReg >> 16).asUInt
   io.playerYPosition := (playerYPositionReg >> 16).asUInt
@@ -246,7 +259,7 @@ val lapCntReg = RegInit(0.U(4.W))
     }
     is(computePos2){
       // Loads the indexes of the next checkpoint the player needs to get to.
-      val currentTrack = checkPointData(0.U)
+
 
       // Gets the tile addresses of the current checkpoint
       val tile1Idx = checkPointCntReg * 2.U
@@ -266,6 +279,7 @@ val lapCntReg = RegInit(0.U(4.W))
     }
     
     is(collision){
+     // val currentRespawn = PlayerRespawnCoordinates(0.U)
       when(io.tilemapRomCollisionData) {
         when(checkPointCntReg === 0.U){
           playerXPositionReg := ((576.S << 16).asSInt)
@@ -274,25 +288,28 @@ val lapCntReg = RegInit(0.U(4.W))
           sprite0AngleReg := (128.U(8.W)) 
         }
         when(checkPointCntReg === 1.U){
-          playerXPositionReg := ((160.S << 16).asSInt)
-          playerYPositionReg := ((512.S << 16).asSInt)
+          addressToPosition.io.address := currentTrack(1.U)
+          playerXPositionReg := ((addressToPosition.io.posX << 16).asSInt)
+          playerYPositionReg := ((addressToPosition.io.posY << 16).asSInt)
           sprite0SpeedReg := (0.S(32.W))
           sprite0AngleReg := (64.U(8.W)) 
         }
         when(checkPointCntReg === 2.U){
-          playerXPositionReg := ((544.S << 16).asSInt)
-          playerYPositionReg := ((800.S << 16).asSInt)
+          addressToPosition.io.address := currentTrack(3.U)
+          playerXPositionReg := ((addressToPosition.io.posX << 16).asSInt)
+          playerYPositionReg := ((addressToPosition.io.posY << 16).asSInt)
           sprite0SpeedReg := (0.S(32.W))
           sprite0AngleReg := (0.U(8.W)) 
         }
         when(checkPointCntReg === 3.U){
-          playerXPositionReg := ((1112.S << 16).asSInt)
-          playerYPositionReg := ((512.S << 16).asSInt)
+          addressToPosition.io.address := currentTrack(5.U)
+          playerXPositionReg := ((addressToPosition.io.posX << 16).asSInt)
+          playerYPositionReg := ((addressToPosition.io.posY << 16).asSInt)
           sprite0SpeedReg := (0.S(32.W))
           sprite0AngleReg := (192.U(8.W)) 
         }
         }
-        
+
       stateReg := done
     }
 
