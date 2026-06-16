@@ -1,2 +1,98 @@
-[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes.bak[0m
-[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes.bak[0m

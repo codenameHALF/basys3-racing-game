@@ -243,6 +243,8 @@ class PlayerController extends Module {
       when(io.tilemapRomCollisionData) {
         playerXPositionReg := ((576.S << 16).asSInt)
         playerYPositionReg := ((160.S << 16).asSInt)
+        sprite0SpeedReg := (0.S(32.W))
+        sprite0AngleReg := (128.U(8.W))
         }
         
       stateReg := done
