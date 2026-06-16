@@ -7,10 +7,14 @@
 # Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 # 
 
+echo "This script was generated under a different operating system."
+echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executing this script"
+exit
+
 if [ -z "$PATH" ]; then
-  PATH=/home/halfdan/Installations/Xilinx/2025.1/Vitis/bin:/home/halfdan/Installations/Xilinx/2025.1/Vivado/ids_lite/ISE/bin/lin64:/home/halfdan/Installations/Xilinx/2025.1/Vivado/bin
+  PATH=C:/AMD/2025.1/Vitis/bin;C:/AMD/2025.1/Vivado/ids_lite/ISE/bin/nt64;C:/AMD/2025.1/Vivado/ids_lite/ISE/lib/nt64:C:/AMD/2025.1/Vivado/bin
 else
-  PATH=/home/halfdan/Installations/Xilinx/2025.1/Vitis/bin:/home/halfdan/Installations/Xilinx/2025.1/Vivado/ids_lite/ISE/bin/lin64:/home/halfdan/Installations/Xilinx/2025.1/Vivado/bin:$PATH
+  PATH=C:/AMD/2025.1/Vitis/bin;C:/AMD/2025.1/Vivado/ids_lite/ISE/bin/nt64;C:/AMD/2025.1/Vivado/ids_lite/ISE/lib/nt64:C:/AMD/2025.1/Vivado/bin:$PATH
 fi
 export PATH
 
@@ -21,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1'
+HD_PWD='C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

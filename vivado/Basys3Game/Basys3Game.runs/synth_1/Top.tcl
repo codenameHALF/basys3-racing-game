@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.tcl"
+  variable script "C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,7 +56,7 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 1
+set_param chipscope.maxJobs 4
 set_param general.usePosixSpawnForFork 1
 set_param xicom.use_bs_reader 1
 set_msg_config  -id {Power 33-332}  -string {{WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
@@ -67,70 +67,70 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.cache/wt} [current_project]
-set_property parent.project_path {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.xpr} [current_project]
+set_property webtalk.parent_dir {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.cache/wt} [current_project]
+set_property parent.project_path {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
-set_property ip_output_repo {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.cache/ip} [current_project]
+set_property ip_output_repo {c:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_mem {
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_8.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_27.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_26.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_19.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_7.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_10.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_17.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_6.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_10.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_0.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_9.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_18.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_0.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_11.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_24.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_6.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_9.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_7.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_25.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_12.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_8.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_15.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_13.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_22.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_2.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_3.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_21.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_3.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_30.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_23.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_14.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_1.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_4.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_5.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_14.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_13.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_31.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_29.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_5.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_16.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_1.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_15.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_12.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_28.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_2.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backbuffer_init.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_20.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/backtile_init_4.mem}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/memory_init/sprite_init_11.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_8.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_27.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_26.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_19.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_7.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_10.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_17.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_6.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_10.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_0.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_9.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_18.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_0.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_11.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_24.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_6.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_9.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_7.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_25.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_12.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_8.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_15.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_13.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_22.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_2.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_3.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_21.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_3.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_30.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_23.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_14.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_1.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_4.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_5.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_14.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_13.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_31.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_29.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_5.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_16.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_1.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_15.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_12.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_28.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_2.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backbuffer_init.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_20.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/backtile_init_4.mem}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/memory_init/sprite_init_11.mem}
 }
 read_verilog -library xil_defaultlib {
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamSpWf.v}
-  {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/RamInitSpWf.v}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/RamSpWf.v}
+  {C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/Top.v}
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -141,8 +141,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc}}
-set_property used_in_implementation false [get_files {{/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc}}]
+read_xdc {{C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc}}
+set_property used_in_implementation false [get_files {{C:/Users/Mikkel/Documents/DTU/02113 digital systems design/Racing-game/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
