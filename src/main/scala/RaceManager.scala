@@ -50,49 +50,65 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.led := Seq.fill(8)(false.B)
 
   //Setting all sprite control outputs to zero
-  io.spriteXPosition := Seq.fill(SpriteNumber)(0.S)
-  io.spriteYPosition := Seq.fill(SpriteNumber)(0.S)
-  io.spriteVisible := Seq.fill(SpriteNumber)(false.B)
-  io.spriteFlipHorizontal := Seq.fill(SpriteNumber)(false.B)
-  io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
+// defaults
+io.spriteXPosition := Seq.fill(SpriteNumber)(0.S)
+io.spriteYPosition := Seq.fill(SpriteNumber)(0.S)
+io.spriteVisible := Seq.fill(SpriteNumber)(false.B)
+io.spriteFlipHorizontal := Seq.fill(SpriteNumber)(false.B)
+io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
 
-  //Setting the viewbox control outputs to zero
-  io.viewBoxX := 0.U
-  io.viewBoxY := 0.U
+io.viewBoxX := 0.U
+io.viewBoxY := 0.U
 
-  //Setting the background buffer outputs to zero
-  io.backBufferWriteData := 0.U
-  io.backBufferWriteAddress := 0.U
-  io.backBufferWriteEnable := false.B
+io.backBufferWriteData := 0.U
+io.backBufferWriteAddress := 0.U
+io.backBufferWriteEnable := false.B
 
-  //Setting frame done to zero
-  io.frameUpdateDone := false.B
+io.frameUpdateDone := false.B
 
-  // State enums
-  val idle :: computeRace :: done :: Nil = Enum(3)
-  val raceManagerStateReg = RegInit(idle)
+val idle :: computeRace :: done :: Nil = Enum(3)
+val raceManagerStateReg = RegInit(idle)
 
-  val playerController = Module(new PlayerController())
-  io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
-  playerController.io.tilemapRomTileData := io.tilemapRomTileData
-  playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
-  playerController.io.btnU := io.btnU
-  playerController.io.btnL := io.btnL
-  playerController.io.btnD := io.btnD
-  playerController.io.btnC := io.btnC
-  playerController.io.btnR := io.btnR
-  playerController.io.newFrame := io.newFrame
-  playerController.io.enable := io.enable
-  playerController.io.viewBoxX := io.viewBoxX
-  playerController.io.viewBoxY := io.viewBoxY     
+val playerController = Module(new PlayerController())
+val ai = Module(new AI(BackTileNumber, SpriteNumber, 1))
+ai.io.newFrame := io.newFrame
+ai.io.enable := io.enable
+// HUMAN car
+playerController.io.btnU := io.btnU
+playerController.io.btnL := io.btnL
+playerController.io.btnD := io.btnD
+playerController.io.btnR := io.btnR
+playerController.io.btnC := io.btnC
 
-  for (i <- 0 until 3) {
-    io.spriteVisible(i)        := playerController.io.spriteVisible(i)
-    io.spriteXPosition(i)      := playerController.io.spriteXPosition(i)
-    io.spriteYPosition(i)      := playerController.io.spriteYPosition(i)
-    io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
-    io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
-  }
+playerController.io.newFrame := io.newFrame
+playerController.io.enable := io.enable
+
+// WARNING: one ROM port only, so for now give it to player
+io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
+
+playerController.io.tilemapRomTileData := io.tilemapRomTileData
+playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
+
+io.viewBoxX := playerController.io.viewBoxX
+io.viewBoxY := playerController.io.viewBoxY
+
+// Player sprites: 0,1,2
+for (i <- 0 until 3) {
+  io.spriteVisible(i)        := playerController.io.spriteVisible(i)
+  io.spriteXPosition(i)      := playerController.io.spriteXPosition(i)
+  io.spriteYPosition(i)      := playerController.io.spriteYPosition(i)
+  io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
+}
+
+// AI sprites: 3,4,5
+for (i <- 0 until 3) {
+  io.spriteVisible(i + 3)        := ai.io.spriteVisible(i)
+  io.spriteXPosition(i + 3)      := ai.io.spriteXPosition(i)
+  io.spriteYPosition(i + 3)      := ai.io.spriteYPosition(i)
+  io.spriteFlipHorizontal(i + 3) := ai.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i + 3)   := ai.io.spriteFlipVertical(i)
+}
 
 
   switch(raceManagerStateReg) {
@@ -112,5 +128,6 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
         io.frameUpdateDone := true.B
         raceManagerStateReg := idle
     }
+    
   }
 }

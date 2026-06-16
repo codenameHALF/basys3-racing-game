@@ -42,6 +42,9 @@ class PlayerController extends Module {
   //Setting frame done to zero
   io.frameUpdateDone := false.B
 
+  io.viewBoxX := 0.U
+  io.viewBoxY := 0.U
+
 //////////////////////////////////////////////
 // Player logic:
 /////////////////////////////////////////////
@@ -53,7 +56,7 @@ class PlayerController extends Module {
   val sprite0XReg = RegInit((576.S << 16).asSInt)
   val sprite0YReg = RegInit((160.S << 16).asSInt)
   val sprite0SpeedReg = RegInit(0.S(32.W))
-  val sprite0AngleReg = RegInit(0.U(8.W))
+  val sprite0AngleReg = RegInit(128.U(8.W))
 
   val cosReg = RegInit(0.S(16.W))
   val sinReg = RegInit(0.S(16.W))
