@@ -54,7 +54,7 @@ class PlayerController extends Module {
   val checkPointCntReg = RegInit(0.U(4.W))
   val lapCntReg = RegInit(0.U(4.W))
   val currentTrack = checkPointData(0.U)
-  //lapCntReg := io.lapCnt
+  //io.lapCnt := lapCntReg 
 
 
 //////////////////////////////////////////////
