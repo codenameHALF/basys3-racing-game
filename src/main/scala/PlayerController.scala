@@ -61,7 +61,7 @@ class PlayerController extends Module {
 // Player logic:
 /////////////////////////////////////////////
 
-  val idle :: inputHandling :: computePos :: computeCheckPoint :: collision :: collisionWait :: done :: Nil = Enum(7)
+  val idle :: inputHandling :: computePos :: computeCheckPoint :: collision :: done :: Nil = Enum(6)
   val stateReg = RegInit(idle)
 
   // Position, Hastighed, Vinkel (Q16 format)
@@ -244,15 +244,12 @@ class PlayerController extends Module {
     is(computePos){
       playerXPositionReg := playerXPositionReg + ((sprite0SpeedReg * cosReg) >> 8)
       playerYPositionReg := playerYPositionReg + ((sprite0SpeedReg * sinReg) >> 8)
+      
+      tilemapRomTileAddrReg := posToAddress.io.address
 
-      stateReg := collisionWait
-
+      stateReg := computeCheckPoint
     }
-    is(collisionWait){
-        tilemapRomTileAddrReg := posToAddress.io.address
 
-        stateReg := computeCheckPoint
-    }
     is(computeCheckPoint){
       // Gets the tile addresses of the current checkpoint
       val tile1Idx = checkPointCntReg * 2.U

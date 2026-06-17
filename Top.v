@@ -4975,11 +4975,11 @@ module AddressToPosition(
 );
   wire [26:0] _y_tile_T = io_address * 11'h667; // @[\\src\\main\\scala\\AddressToPosition.scala 11:30]
   wire [10:0] y_tile = _y_tile_T[26:16]; // @[\\src\\main\\scala\\AddressToPosition.scala 11:40]
-  wire [15:0] _x_tile_T = {y_tile, 5'h0}; // @[\\src\\main\\scala\\AddressToPosition.scala 12:44]
-  wire [13:0] _x_tile_T_1 = {y_tile, 3'h0}; // @[\\src\\main\\scala\\AddressToPosition.scala 12:60]
-  wire [15:0] _GEN_0 = {{2'd0}, _x_tile_T_1}; // @[\\src\\main\\scala\\AddressToPosition.scala 12:50]
-  wire [15:0] _x_tile_T_3 = _x_tile_T + _GEN_0; // @[\\src\\main\\scala\\AddressToPosition.scala 12:50]
-  wire [15:0] x_tile = io_address - _x_tile_T_3; // @[\\src\\main\\scala\\AddressToPosition.scala 12:33]
+  wire [15:0] _x_tile_T = {y_tile, 5'h0}; // @[\\src\\main\\scala\\AddressToPosition.scala 12:40]
+  wire [13:0] _x_tile_T_1 = {y_tile, 3'h0}; // @[\\src\\main\\scala\\AddressToPosition.scala 12:56]
+  wire [15:0] _GEN_0 = {{2'd0}, _x_tile_T_1}; // @[\\src\\main\\scala\\AddressToPosition.scala 12:46]
+  wire [15:0] _x_tile_T_3 = _x_tile_T + _GEN_0; // @[\\src\\main\\scala\\AddressToPosition.scala 12:46]
+  wire [15:0] x_tile = io_address - _x_tile_T_3; // @[\\src\\main\\scala\\AddressToPosition.scala 12:29]
   wire [20:0] _io_posX_T = {x_tile, 5'h0}; // @[\\src\\main\\scala\\AddressToPosition.scala 14:23]
   assign io_posX = _io_posX_T[15:0]; // @[\\src\\main\\scala\\AddressToPosition.scala 14:13]
   assign io_posY = {y_tile, 5'h0}; // @[\\src\\main\\scala\\AddressToPosition.scala 13:23]
@@ -5029,7 +5029,7 @@ module PlayerController(
   wire [15:0] addressToPosition_io_posX; // @[\\src\\main\\scala\\PlayerController.scala 107:33]
   wire [15:0] addressToPosition_io_posY; // @[\\src\\main\\scala\\PlayerController.scala 107:33]
   wire [15:0] addressToPosition_io_address; // @[\\src\\main\\scala\\PlayerController.scala 107:33]
-  reg [3:0] checkPointCntReg; // @[\\src\\main\\scala\\PlayerController.scala 54:31]
+  reg [3:0] checkPointCntReg; // @[\\src\\main\\scala\\PlayerController.scala 54:33]
   reg [2:0] stateReg; // @[\\src\\main\\scala\\PlayerController.scala 65:25]
   reg [31:0] playerXPositionReg; // @[\\src\\main\\scala\\PlayerController.scala 68:35]
   reg [31:0] playerYPositionReg; // @[\\src\\main\\scala\\PlayerController.scala 69:35]
@@ -5629,83 +5629,76 @@ module PlayerController(
   wire [39:0] _playerYPositionReg_T_1 = _playerYPositionReg_T[47:8]; // @[\\src\\main\\scala\\PlayerController.scala 246:78]
   wire [39:0] _GEN_614 = {{8{playerYPositionReg[31]}},playerYPositionReg}; // @[\\src\\main\\scala\\PlayerController.scala 246:48]
   wire [39:0] _playerYPositionReg_T_4 = $signed(_GEN_614) + $signed(_playerYPositionReg_T_1); // @[\\src\\main\\scala\\PlayerController.scala 246:48]
-  wire [5:0] tile1Idx = checkPointCntReg * 2'h2; // @[\\src\\main\\scala\\PlayerController.scala 258:39]
-  wire [5:0] tile2Idx = tile1Idx + 6'h1; // @[\\src\\main\\scala\\PlayerController.scala 259:47]
-  wire [15:0] _GEN_580 = 3'h1 == tile1Idx[2:0] ? 16'h285 : 16'h284; // @[\\src\\main\\scala\\PlayerController.scala 262:{34,34}]
-  wire [15:0] _GEN_581 = 3'h2 == tile1Idx[2:0] ? 16'h3d1 : _GEN_580; // @[\\src\\main\\scala\\PlayerController.scala 262:{34,34}]
-  wire [15:0] _GEN_582 = 3'h3 == tile1Idx[2:0] ? 16'h3f9 : _GEN_581; // @[\\src\\main\\scala\\PlayerController.scala 262:{34,34}]
-  wire [15:0] _GEN_583 = 3'h4 == tile1Idx[2:0] ? 16'h2a2 : _GEN_582; // @[\\src\\main\\scala\\PlayerController.scala 262:{34,34}]
-  wire [15:0] _GEN_584 = 3'h5 == tile1Idx[2:0] ? 16'h2a3 : _GEN_583; // @[\\src\\main\\scala\\PlayerController.scala 262:{34,34}]
-  wire [15:0] _GEN_621 = {{5'd0}, tilemapRomTileAddrReg}; // @[\\src\\main\\scala\\PlayerController.scala 262:34]
-  wire [15:0] _GEN_586 = 3'h1 == tile2Idx[2:0] ? 16'h285 : 16'h284; // @[\\src\\main\\scala\\PlayerController.scala 263:{34,34}]
-  wire [15:0] _GEN_587 = 3'h2 == tile2Idx[2:0] ? 16'h3d1 : _GEN_586; // @[\\src\\main\\scala\\PlayerController.scala 263:{34,34}]
-  wire [15:0] _GEN_588 = 3'h3 == tile2Idx[2:0] ? 16'h3f9 : _GEN_587; // @[\\src\\main\\scala\\PlayerController.scala 263:{34,34}]
-  wire [15:0] _GEN_589 = 3'h4 == tile2Idx[2:0] ? 16'h2a2 : _GEN_588; // @[\\src\\main\\scala\\PlayerController.scala 263:{34,34}]
-  wire [15:0] _GEN_590 = 3'h5 == tile2Idx[2:0] ? 16'h2a3 : _GEN_589; // @[\\src\\main\\scala\\PlayerController.scala 263:{34,34}]
-  wire  _T_46 = _GEN_621 == _GEN_590; // @[\\src\\main\\scala\\PlayerController.scala 263:34]
-  wire  _T_47 = _GEN_621 == _GEN_584 | _T_46; // @[\\src\\main\\scala\\PlayerController.scala 262:61]
-  wire [3:0] _checkPointCntReg_T_1 = checkPointCntReg + 4'h1; // @[\\src\\main\\scala\\PlayerController.scala 265:46]
-  wire [3:0] _GEN_591 = _T_47 ? _checkPointCntReg_T_1 : checkPointCntReg; // @[\\src\\main\\scala\\PlayerController.scala 263:62 265:26 54:31]
-  wire  _T_51 = checkPointCntReg == 4'h3; // @[\\src\\main\\scala\\PlayerController.scala 267:105]
+  wire [5:0] tile1Idx = checkPointCntReg * 2'h2; // @[\\src\\main\\scala\\PlayerController.scala 260:39]
+  wire [5:0] tile2Idx = tile1Idx + 6'h1; // @[\\src\\main\\scala\\PlayerController.scala 261:47]
+  wire [15:0] _GEN_580 = 3'h1 == tile1Idx[2:0] ? 16'h285 : 16'h284; // @[\\src\\main\\scala\\PlayerController.scala 264:{34,34}]
+  wire [15:0] _GEN_581 = 3'h2 == tile1Idx[2:0] ? 16'h3d1 : _GEN_580; // @[\\src\\main\\scala\\PlayerController.scala 264:{34,34}]
+  wire [15:0] _GEN_582 = 3'h3 == tile1Idx[2:0] ? 16'h3f9 : _GEN_581; // @[\\src\\main\\scala\\PlayerController.scala 264:{34,34}]
+  wire [15:0] _GEN_583 = 3'h4 == tile1Idx[2:0] ? 16'h2a2 : _GEN_582; // @[\\src\\main\\scala\\PlayerController.scala 264:{34,34}]
+  wire [15:0] _GEN_584 = 3'h5 == tile1Idx[2:0] ? 16'h2a3 : _GEN_583; // @[\\src\\main\\scala\\PlayerController.scala 264:{34,34}]
+  wire [15:0] _GEN_621 = {{5'd0}, tilemapRomTileAddrReg}; // @[\\src\\main\\scala\\PlayerController.scala 264:34]
+  wire [15:0] _GEN_586 = 3'h1 == tile2Idx[2:0] ? 16'h285 : 16'h284; // @[\\src\\main\\scala\\PlayerController.scala 265:{34,34}]
+  wire [15:0] _GEN_587 = 3'h2 == tile2Idx[2:0] ? 16'h3d1 : _GEN_586; // @[\\src\\main\\scala\\PlayerController.scala 265:{34,34}]
+  wire [15:0] _GEN_588 = 3'h3 == tile2Idx[2:0] ? 16'h3f9 : _GEN_587; // @[\\src\\main\\scala\\PlayerController.scala 265:{34,34}]
+  wire [15:0] _GEN_589 = 3'h4 == tile2Idx[2:0] ? 16'h2a2 : _GEN_588; // @[\\src\\main\\scala\\PlayerController.scala 265:{34,34}]
+  wire [15:0] _GEN_590 = 3'h5 == tile2Idx[2:0] ? 16'h2a3 : _GEN_589; // @[\\src\\main\\scala\\PlayerController.scala 265:{34,34}]
+  wire  _T_45 = _GEN_621 == _GEN_590; // @[\\src\\main\\scala\\PlayerController.scala 265:34]
+  wire  _T_46 = _GEN_621 == _GEN_584 | _T_45; // @[\\src\\main\\scala\\PlayerController.scala 264:61]
+  wire [3:0] _checkPointCntReg_T_1 = checkPointCntReg + 4'h1; // @[\\src\\main\\scala\\PlayerController.scala 267:46]
+  wire [3:0] _GEN_591 = _T_46 ? _checkPointCntReg_T_1 : checkPointCntReg; // @[\\src\\main\\scala\\PlayerController.scala 265:62 267:26 54:33]
+  wire  _T_50 = checkPointCntReg == 4'h3; // @[\\src\\main\\scala\\PlayerController.scala 269:105]
   wire [3:0] _GEN_593 = (tilemapRomTileAddrReg == 11'hb1 | tilemapRomTileAddrReg == 11'hd9) & checkPointCntReg == 4'h3
-     ? 4'h0 : _GEN_591; // @[\\src\\main\\scala\\PlayerController.scala 267:113 269:26]
-  wire [31:0] _GEN_594 = checkPointCntReg == 4'h0 ? $signed(32'sh2400000) : $signed(playerXPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 277:39 278:30 68:35]
-  wire [31:0] _GEN_595 = checkPointCntReg == 4'h0 ? $signed(32'sha00000) : $signed(playerYPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 277:39 279:30 69:35]
-  wire [31:0] _GEN_596 = checkPointCntReg == 4'h0 ? $signed(32'sh0) : $signed(sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 277:39 280:27 70:32]
-  wire [7:0] _GEN_597 = checkPointCntReg == 4'h0 ? 8'h80 : sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 277:39 281:27 71:32]
-  wire [15:0] _playerXPositionReg_T_7 = addressToPosition_io_posX - 16'h10; // @[\\src\\main\\scala\\PlayerController.scala 284:62]
-  wire [31:0] _playerXPositionReg_T_9 = {_playerXPositionReg_T_7, 16'h0}; // @[\\src\\main\\scala\\PlayerController.scala 284:77]
-  wire [15:0] _playerYPositionReg_T_7 = addressToPosition_io_posY - 16'h10; // @[\\src\\main\\scala\\PlayerController.scala 285:62]
-  wire [31:0] _playerYPositionReg_T_9 = {_playerYPositionReg_T_7, 16'h0}; // @[\\src\\main\\scala\\PlayerController.scala 285:77]
-  wire [31:0] _GEN_598 = checkPointCntReg == 4'h1 ? $signed(_playerXPositionReg_T_9) : $signed(_GEN_594); // @[\\src\\main\\scala\\PlayerController.scala 283:39 284:30]
-  wire [31:0] _GEN_599 = checkPointCntReg == 4'h1 ? $signed(_playerYPositionReg_T_9) : $signed(_GEN_595); // @[\\src\\main\\scala\\PlayerController.scala 283:39 285:30]
-  wire [31:0] _GEN_600 = checkPointCntReg == 4'h1 ? $signed(32'sh0) : $signed(_GEN_596); // @[\\src\\main\\scala\\PlayerController.scala 283:39 286:27]
-  wire [7:0] _GEN_601 = checkPointCntReg == 4'h1 ? 8'h40 : _GEN_597; // @[\\src\\main\\scala\\PlayerController.scala 283:39 287:27]
-  wire [31:0] _GEN_602 = checkPointCntReg == 4'h2 ? $signed(_playerXPositionReg_T_9) : $signed(_GEN_598); // @[\\src\\main\\scala\\PlayerController.scala 289:39 290:30]
-  wire [31:0] _GEN_603 = checkPointCntReg == 4'h2 ? $signed(_playerYPositionReg_T_9) : $signed(_GEN_599); // @[\\src\\main\\scala\\PlayerController.scala 289:39 291:30]
-  wire [31:0] _GEN_604 = checkPointCntReg == 4'h2 ? $signed(32'sh0) : $signed(_GEN_600); // @[\\src\\main\\scala\\PlayerController.scala 289:39 292:27]
-  wire [7:0] _GEN_605 = checkPointCntReg == 4'h2 ? 8'h0 : _GEN_601; // @[\\src\\main\\scala\\PlayerController.scala 289:39 293:27]
-  wire [31:0] _GEN_606 = _T_51 ? $signed(_playerXPositionReg_T_9) : $signed(_GEN_602); // @[\\src\\main\\scala\\PlayerController.scala 295:39 296:30]
-  wire [31:0] _GEN_607 = _T_51 ? $signed(_playerYPositionReg_T_9) : $signed(_GEN_603); // @[\\src\\main\\scala\\PlayerController.scala 295:39 297:30]
-  wire [31:0] _GEN_608 = _T_51 ? $signed(32'sh0) : $signed(_GEN_604); // @[\\src\\main\\scala\\PlayerController.scala 295:39 298:27]
-  wire [7:0] _GEN_609 = _T_51 ? 8'hc0 : _GEN_605; // @[\\src\\main\\scala\\PlayerController.scala 295:39 299:27]
-  wire [31:0] _GEN_610 = io_tilemapRomCollisionData ? $signed(_GEN_606) : $signed(playerXPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 276:40 68:35]
-  wire [31:0] _GEN_611 = io_tilemapRomCollisionData ? $signed(_GEN_607) : $signed(playerYPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 276:40 69:35]
-  wire [31:0] _GEN_612 = io_tilemapRomCollisionData ? $signed(_GEN_608) : $signed(sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 276:40 70:32]
-  wire [7:0] _GEN_613 = io_tilemapRomCollisionData ? _GEN_609 : sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 276:40 71:32]
-  wire [2:0] _GEN_615 = 3'h6 == stateReg ? 3'h0 : stateReg; // @[\\src\\main\\scala\\PlayerController.scala 131:20 308:16 65:25]
+     ? 4'h0 : _GEN_591; // @[\\src\\main\\scala\\PlayerController.scala 269:113 271:26]
+  wire [31:0] _GEN_594 = checkPointCntReg == 4'h0 ? $signed(32'sh2400000) : $signed(playerXPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 279:39 280:30 68:35]
+  wire [31:0] _GEN_595 = checkPointCntReg == 4'h0 ? $signed(32'sha00000) : $signed(playerYPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 279:39 281:30 69:35]
+  wire [31:0] _GEN_596 = checkPointCntReg == 4'h0 ? $signed(32'sh0) : $signed(sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 279:39 282:27 70:32]
+  wire [7:0] _GEN_597 = checkPointCntReg == 4'h0 ? 8'h80 : sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 279:39 283:27 71:32]
+  wire [15:0] _playerXPositionReg_T_7 = addressToPosition_io_posX - 16'h10; // @[\\src\\main\\scala\\PlayerController.scala 286:62]
+  wire [31:0] _playerXPositionReg_T_9 = {_playerXPositionReg_T_7, 16'h0}; // @[\\src\\main\\scala\\PlayerController.scala 286:77]
+  wire [15:0] _playerYPositionReg_T_7 = addressToPosition_io_posY - 16'h10; // @[\\src\\main\\scala\\PlayerController.scala 287:62]
+  wire [31:0] _playerYPositionReg_T_9 = {_playerYPositionReg_T_7, 16'h0}; // @[\\src\\main\\scala\\PlayerController.scala 287:77]
+  wire [31:0] _GEN_598 = checkPointCntReg == 4'h1 ? $signed(_playerXPositionReg_T_9) : $signed(_GEN_594); // @[\\src\\main\\scala\\PlayerController.scala 285:39 286:30]
+  wire [31:0] _GEN_599 = checkPointCntReg == 4'h1 ? $signed(_playerYPositionReg_T_9) : $signed(_GEN_595); // @[\\src\\main\\scala\\PlayerController.scala 285:39 287:30]
+  wire [31:0] _GEN_600 = checkPointCntReg == 4'h1 ? $signed(32'sh0) : $signed(_GEN_596); // @[\\src\\main\\scala\\PlayerController.scala 285:39 288:27]
+  wire [7:0] _GEN_601 = checkPointCntReg == 4'h1 ? 8'h40 : _GEN_597; // @[\\src\\main\\scala\\PlayerController.scala 285:39 289:27]
+  wire [31:0] _GEN_602 = checkPointCntReg == 4'h2 ? $signed(_playerXPositionReg_T_9) : $signed(_GEN_598); // @[\\src\\main\\scala\\PlayerController.scala 291:39 292:30]
+  wire [31:0] _GEN_603 = checkPointCntReg == 4'h2 ? $signed(_playerYPositionReg_T_9) : $signed(_GEN_599); // @[\\src\\main\\scala\\PlayerController.scala 291:39 293:30]
+  wire [31:0] _GEN_604 = checkPointCntReg == 4'h2 ? $signed(32'sh0) : $signed(_GEN_600); // @[\\src\\main\\scala\\PlayerController.scala 291:39 294:27]
+  wire [7:0] _GEN_605 = checkPointCntReg == 4'h2 ? 8'h0 : _GEN_601; // @[\\src\\main\\scala\\PlayerController.scala 291:39 295:27]
+  wire [31:0] _GEN_606 = _T_50 ? $signed(_playerXPositionReg_T_9) : $signed(_GEN_602); // @[\\src\\main\\scala\\PlayerController.scala 297:39 298:30]
+  wire [31:0] _GEN_607 = _T_50 ? $signed(_playerYPositionReg_T_9) : $signed(_GEN_603); // @[\\src\\main\\scala\\PlayerController.scala 297:39 299:30]
+  wire [31:0] _GEN_608 = _T_50 ? $signed(32'sh0) : $signed(_GEN_604); // @[\\src\\main\\scala\\PlayerController.scala 297:39 300:27]
+  wire [7:0] _GEN_609 = _T_50 ? 8'hc0 : _GEN_605; // @[\\src\\main\\scala\\PlayerController.scala 297:39 301:27]
+  wire [31:0] _GEN_610 = io_tilemapRomCollisionData ? $signed(_GEN_606) : $signed(playerXPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 278:40 68:35]
+  wire [31:0] _GEN_611 = io_tilemapRomCollisionData ? $signed(_GEN_607) : $signed(playerYPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 278:40 69:35]
+  wire [31:0] _GEN_612 = io_tilemapRomCollisionData ? $signed(_GEN_608) : $signed(sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 278:40 70:32]
+  wire [7:0] _GEN_613 = io_tilemapRomCollisionData ? _GEN_609 : sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 278:40 71:32]
+  wire [2:0] _GEN_615 = 3'h5 == stateReg ? 3'h0 : stateReg; // @[\\src\\main\\scala\\PlayerController.scala 131:20 310:16 65:25]
   wire [31:0] _GEN_616 = 3'h4 == stateReg ? $signed(_GEN_610) : $signed(playerXPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 131:20 68:35]
   wire [31:0] _GEN_617 = 3'h4 == stateReg ? $signed(_GEN_611) : $signed(playerYPositionReg); // @[\\src\\main\\scala\\PlayerController.scala 131:20 69:35]
   wire [31:0] _GEN_618 = 3'h4 == stateReg ? $signed(_GEN_612) : $signed(sprite0SpeedReg); // @[\\src\\main\\scala\\PlayerController.scala 131:20 70:32]
   wire [7:0] _GEN_619 = 3'h4 == stateReg ? _GEN_613 : sprite0AngleReg; // @[\\src\\main\\scala\\PlayerController.scala 131:20 71:32]
-  wire [2:0] _GEN_620 = 3'h4 == stateReg ? 3'h6 : _GEN_615; // @[\\src\\main\\scala\\PlayerController.scala 131:20 303:16]
-  wire [3:0] _GEN_622 = 3'h3 == stateReg ? _GEN_593 : checkPointCntReg; // @[\\src\\main\\scala\\PlayerController.scala 131:20 54:31]
-  wire [2:0] _GEN_624 = 3'h3 == stateReg ? 3'h4 : _GEN_620; // @[\\src\\main\\scala\\PlayerController.scala 131:20 271:16]
+  wire [2:0] _GEN_620 = 3'h4 == stateReg ? 3'h5 : _GEN_615; // @[\\src\\main\\scala\\PlayerController.scala 131:20 305:16]
+  wire [3:0] _GEN_622 = 3'h3 == stateReg ? _GEN_593 : checkPointCntReg; // @[\\src\\main\\scala\\PlayerController.scala 131:20 54:33]
+  wire [2:0] _GEN_624 = 3'h3 == stateReg ? 3'h4 : _GEN_620; // @[\\src\\main\\scala\\PlayerController.scala 131:20 273:16]
   wire [31:0] _GEN_625 = 3'h3 == stateReg ? $signed(playerXPositionReg) : $signed(_GEN_616); // @[\\src\\main\\scala\\PlayerController.scala 131:20 68:35]
   wire [31:0] _GEN_626 = 3'h3 == stateReg ? $signed(playerYPositionReg) : $signed(_GEN_617); // @[\\src\\main\\scala\\PlayerController.scala 131:20 69:35]
   wire [31:0] _GEN_627 = 3'h3 == stateReg ? $signed(sprite0SpeedReg) : $signed(_GEN_618); // @[\\src\\main\\scala\\PlayerController.scala 131:20 70:32]
   wire [7:0] _GEN_628 = 3'h3 == stateReg ? sprite0AngleReg : _GEN_619; // @[\\src\\main\\scala\\PlayerController.scala 131:20 71:32]
-  wire [10:0] _GEN_630 = 3'h5 == stateReg ? posToAddress_io_address : tilemapRomTileAddrReg; // @[\\src\\main\\scala\\PlayerController.scala 131:20 252:31 104:38]
-  wire [2:0] _GEN_631 = 3'h5 == stateReg ? 3'h3 : _GEN_624; // @[\\src\\main\\scala\\PlayerController.scala 131:20 254:18]
-  wire [3:0] _GEN_632 = 3'h5 == stateReg ? checkPointCntReg : _GEN_622; // @[\\src\\main\\scala\\PlayerController.scala 131:20 54:31]
-  wire [31:0] _GEN_634 = 3'h5 == stateReg ? $signed(playerXPositionReg) : $signed(_GEN_625); // @[\\src\\main\\scala\\PlayerController.scala 131:20 68:35]
-  wire [31:0] _GEN_635 = 3'h5 == stateReg ? $signed(playerYPositionReg) : $signed(_GEN_626); // @[\\src\\main\\scala\\PlayerController.scala 131:20 69:35]
-  wire [31:0] _GEN_636 = 3'h5 == stateReg ? $signed(sprite0SpeedReg) : $signed(_GEN_627); // @[\\src\\main\\scala\\PlayerController.scala 131:20 70:32]
-  wire [7:0] _GEN_637 = 3'h5 == stateReg ? sprite0AngleReg : _GEN_628; // @[\\src\\main\\scala\\PlayerController.scala 131:20 71:32]
-  wire [39:0] _GEN_639 = 3'h2 == stateReg ? $signed(_playerXPositionReg_T_4) : $signed({{8{_GEN_634[31]}},_GEN_634}); // @[\\src\\main\\scala\\PlayerController.scala 131:20 245:26]
-  wire [39:0] _GEN_640 = 3'h2 == stateReg ? $signed(_playerYPositionReg_T_4) : $signed({{8{_GEN_635[31]}},_GEN_635}); // @[\\src\\main\\scala\\PlayerController.scala 131:20 246:26]
-  wire  _GEN_650 = 3'h1 == stateReg ? _GEN_59 : sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 131:20 96:31]
-  wire [39:0] _GEN_661 = 3'h1 == stateReg ? $signed({{8{playerXPositionReg[31]}},playerXPositionReg}) : $signed(_GEN_639
+  wire [39:0] _GEN_630 = 3'h2 == stateReg ? $signed(_playerXPositionReg_T_4) : $signed({{8{_GEN_625[31]}},_GEN_625}); // @[\\src\\main\\scala\\PlayerController.scala 131:20 245:26]
+  wire [39:0] _GEN_631 = 3'h2 == stateReg ? $signed(_playerYPositionReg_T_4) : $signed({{8{_GEN_626[31]}},_GEN_626}); // @[\\src\\main\\scala\\PlayerController.scala 131:20 246:26]
+  wire  _GEN_641 = 3'h1 == stateReg ? _GEN_59 : sprite0Visible; // @[\\src\\main\\scala\\PlayerController.scala 131:20 96:31]
+  wire [39:0] _GEN_652 = 3'h1 == stateReg ? $signed({{8{playerXPositionReg[31]}},playerXPositionReg}) : $signed(_GEN_630
     ); // @[\\src\\main\\scala\\PlayerController.scala 131:20 68:35]
-  wire [39:0] _GEN_662 = 3'h1 == stateReg ? $signed({{8{playerYPositionReg[31]}},playerYPositionReg}) : $signed(_GEN_640
+  wire [39:0] _GEN_653 = 3'h1 == stateReg ? $signed({{8{playerYPositionReg[31]}},playerYPositionReg}) : $signed(_GEN_631
     ); // @[\\src\\main\\scala\\PlayerController.scala 131:20 69:35]
-  wire  _GEN_670 = 3'h0 == stateReg ? sprite0Visible : _GEN_650; // @[\\src\\main\\scala\\PlayerController.scala 131:20 96:31]
-  wire [39:0] _GEN_680 = 3'h0 == stateReg ? $signed({{8{playerXPositionReg[31]}},playerXPositionReg}) : $signed(_GEN_661
+  wire  _GEN_661 = 3'h0 == stateReg ? sprite0Visible : _GEN_641; // @[\\src\\main\\scala\\PlayerController.scala 131:20 96:31]
+  wire [39:0] _GEN_671 = 3'h0 == stateReg ? $signed({{8{playerXPositionReg[31]}},playerXPositionReg}) : $signed(_GEN_652
     ); // @[\\src\\main\\scala\\PlayerController.scala 131:20 68:35]
-  wire [39:0] _GEN_681 = 3'h0 == stateReg ? $signed({{8{playerYPositionReg[31]}},playerYPositionReg}) : $signed(_GEN_662
+  wire [39:0] _GEN_672 = 3'h0 == stateReg ? $signed({{8{playerYPositionReg[31]}},playerYPositionReg}) : $signed(_GEN_653
     ); // @[\\src\\main\\scala\\PlayerController.scala 131:20 69:35]
-  wire [39:0] _GEN_629 = reset ? $signed(40'sh2400000) : $signed(_GEN_680); // @[\\src\\main\\scala\\PlayerController.scala 68:{35,35}]
-  wire [39:0] _GEN_638 = reset ? $signed(40'sha00000) : $signed(_GEN_681); // @[\\src\\main\\scala\\PlayerController.scala 69:{35,35}]
+  wire [39:0] _GEN_629 = reset ? $signed(40'sh2400000) : $signed(_GEN_671); // @[\\src\\main\\scala\\PlayerController.scala 68:{35,35}]
+  wire [39:0] _GEN_638 = reset ? $signed(40'sha00000) : $signed(_GEN_672); // @[\\src\\main\\scala\\PlayerController.scala 69:{35,35}]
   PositionToAddress posToAddress ( // @[\\src\\main\\scala\\PlayerController.scala 100:28]
     .io_posX(posToAddress_io_posX),
     .io_posY(posToAddress_io_posY),
@@ -5730,12 +5723,12 @@ module PlayerController(
   assign posToAddress_io_posY = _posToAddress_io_posY_T_1[9:0]; // @[\\src\\main\\scala\\PlayerController.scala 102:24]
   assign addressToPosition_io_address = {{5'd0}, _addressToPosition_io_address_T_8}; // @[\\src\\main\\scala\\PlayerController.scala 109:32]
   always @(posedge clock) begin
-    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 54:31]
-      checkPointCntReg <= 4'h0; // @[\\src\\main\\scala\\PlayerController.scala 54:31]
+    if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 54:33]
+      checkPointCntReg <= 4'h0; // @[\\src\\main\\scala\\PlayerController.scala 54:33]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
       if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
         if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
-          checkPointCntReg <= _GEN_632;
+          checkPointCntReg <= _GEN_622;
         end
       end
     end
@@ -5750,9 +5743,9 @@ module PlayerController(
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
       stateReg <= 3'h2; // @[\\src\\main\\scala\\PlayerController.scala 240:16]
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
-      stateReg <= 3'h5; // @[\\src\\main\\scala\\PlayerController.scala 248:16]
+      stateReg <= 3'h3; // @[\\src\\main\\scala\\PlayerController.scala 250:16]
     end else begin
-      stateReg <= _GEN_631;
+      stateReg <= _GEN_624;
     end
     playerXPositionReg <= _GEN_629[31:0]; // @[\\src\\main\\scala\\PlayerController.scala 68:{35,35}]
     playerYPositionReg <= _GEN_638[31:0]; // @[\\src\\main\\scala\\PlayerController.scala 69:{35,35}]
@@ -5766,7 +5759,7 @@ module PlayerController(
           sprite0SpeedReg <= _GEN_6;
         end
       end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
-        sprite0SpeedReg <= _GEN_636;
+        sprite0SpeedReg <= _GEN_627;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 71:32]
@@ -5779,7 +5772,7 @@ module PlayerController(
           sprite0AngleReg <= _GEN_8;
         end
       end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
-        sprite0AngleReg <= _GEN_637;
+        sprite0AngleReg <= _GEN_628;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 73:23]
@@ -5842,7 +5835,7 @@ module PlayerController(
         end
       end
     end
-    sprite0Visible <= reset | _GEN_670; // @[\\src\\main\\scala\\PlayerController.scala 96:{31,31}]
+    sprite0Visible <= reset | _GEN_661; // @[\\src\\main\\scala\\PlayerController.scala 96:{31,31}]
     if (reset) begin // @[\\src\\main\\scala\\PlayerController.scala 97:31]
       sprite1Visible <= 1'h0; // @[\\src\\main\\scala\\PlayerController.scala 97:31]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
@@ -5869,8 +5862,8 @@ module PlayerController(
       tilemapRomTileAddrReg <= 11'h0; // @[\\src\\main\\scala\\PlayerController.scala 104:38]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
       if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
-        if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
-          tilemapRomTileAddrReg <= _GEN_630;
+        if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\PlayerController.scala 131:20]
+          tilemapRomTileAddrReg <= posToAddress_io_address; // @[\\src\\main\\scala\\PlayerController.scala 248:29]
         end
       end
     end
