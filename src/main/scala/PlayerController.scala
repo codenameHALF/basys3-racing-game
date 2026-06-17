@@ -55,16 +55,6 @@ val checkPointCntReg = RegInit(0.U(4.W))
 val lapCntReg = RegInit(0.U(4.W))
 val currentTrack = checkPointData(0.U)
 
-val PlayerRespawnCoordinates = VecInit(
-VecInit(160.S(16.W), 512.S(16.W), 544.S(16.W), 800.S(16.W), 1112.S(16.W), 512.S(16.W)),
-VecInit(604.S(16.W), 605.S(16.W), 502.S(16.W), 542.S(16.W), 714.S(16.W), 715.S(16.W)),
-VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
-VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
-VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
-VecInit(3.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W), 8.S(16.W)),
-VecInit(3.S(16.W), 2.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W)))
-
-
 
 //////////////////////////////////////////////
 // Player logic:
@@ -115,6 +105,11 @@ VecInit(3.S(16.W), 2.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W)))
 
   val addressToPosition = Module(new AddressToPosition)
   addressToPosition.io.address := 0.U(16.W) 
+  addressToPosition.io.address := MuxLookup(checkPointCntReg, 0.U)(Seq(
+  1.U -> currentTrack(1.U)(10, 0),
+  2.U -> currentTrack(3.U)(10, 0),
+  3.U -> currentTrack(5.U)(10, 0)
+))
 
   io.playerXPosition := (playerXPositionReg >> 16).asUInt
   io.playerYPosition := (playerYPositionReg >> 16).asUInt
@@ -258,9 +253,6 @@ VecInit(3.S(16.W), 2.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W)))
         stateReg := computePos2
     }
     is(computePos2){
-      // Loads the indexes of the next checkpoint the player needs to get to.
-
-
       // Gets the tile addresses of the current checkpoint
       val tile1Idx = checkPointCntReg * 2.U
       val tile2Idx = (checkPointCntReg * 2.U) + 1.U
@@ -288,23 +280,20 @@ VecInit(3.S(16.W), 2.S(16.W), 6.S(16.W), 9.S(16.W), 8.S(16.W), 8.S(16.W)))
           sprite0AngleReg := (128.U(8.W)) 
         }
         when(checkPointCntReg === 1.U){
-          addressToPosition.io.address := currentTrack(1.U)
-          playerXPositionReg := ((addressToPosition.io.posX << 16).asSInt)
-          playerYPositionReg := ((addressToPosition.io.posY << 16).asSInt)
+          playerXPositionReg := (((addressToPosition.io.posX - 16.U) << 16).asSInt)
+          playerYPositionReg := (((addressToPosition.io.posY - 16.U) << 16).asSInt)
           sprite0SpeedReg := (0.S(32.W))
           sprite0AngleReg := (64.U(8.W)) 
         }
         when(checkPointCntReg === 2.U){
-          addressToPosition.io.address := currentTrack(3.U)
-          playerXPositionReg := ((addressToPosition.io.posX << 16).asSInt)
-          playerYPositionReg := ((addressToPosition.io.posY << 16).asSInt)
+          playerXPositionReg := (((addressToPosition.io.posX - 16.U) << 16).asSInt)
+          playerYPositionReg := (((addressToPosition.io.posY - 16.U) << 16).asSInt)
           sprite0SpeedReg := (0.S(32.W))
           sprite0AngleReg := (0.U(8.W)) 
         }
         when(checkPointCntReg === 3.U){
-          addressToPosition.io.address := currentTrack(5.U)
-          playerXPositionReg := ((addressToPosition.io.posX << 16).asSInt)
-          playerYPositionReg := ((addressToPosition.io.posY << 16).asSInt)
+          playerXPositionReg := (((addressToPosition.io.posX - 16.U) << 16).asSInt)
+          playerYPositionReg := (((addressToPosition.io.posY - 16.U) << 16).asSInt)
           sprite0SpeedReg := (0.S(32.W))
           sprite0AngleReg := (192.U(8.W)) 
         }

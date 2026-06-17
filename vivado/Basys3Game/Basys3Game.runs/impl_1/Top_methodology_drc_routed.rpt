@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-| Date         : Tue Jun 16 15:02:12 2026
+| Date         : Wed Jun 17 10:51:43 2026
 | Host         : DESKTOP-0FACVVU running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Top_methodology_drc_routed.rpt -pb Top_methodology_drc_routed.pb -rpx Top_methodology_drc_routed.rpx
 | Design       : Top
@@ -23,12 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max checks: <unlimited>
-             Checks found: 31
+             Checks found: 25
 +-----------+----------+--------------------------------------------+--------+
 | Rule      | Severity | Description                                | Checks |
 +-----------+----------+--------------------------------------------+--------+
 | SYNTH-6   | Warning  | Timing of a RAM block might be sub-optimal | 2      |
-| TIMING-16 | Warning  | Large setup violation                      | 6      |
 | TIMING-18 | Warning  | Missing input or output delay              | 23     |
 +-----------+----------+--------------------------------------------+--------+
 
@@ -42,36 +41,6 @@ Related violations: <none>
 SYNTH-6#2 Warning
 Timing of a RAM block might be sub-optimal  
 The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
-Related violations: <none>
-
-TIMING-16#1 Warning
-Large setup violation  
-There is a large setup violation of -1.856 ns between gameTop/gameLogic/raceManager/playerController/checkPointCntReg_reg[3]/C (clocked by sys_clk_pin) and gameTop/gameLogic/raceManager/playerController/playerXPositionReg_reg[24]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#2 Warning
-Large setup violation  
-There is a large setup violation of -1.972 ns between gameTop/gameLogic/raceManager/playerController/checkPointCntReg_reg[3]/C (clocked by sys_clk_pin) and gameTop/gameLogic/raceManager/playerController/playerXPositionReg_reg[23]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#3 Warning
-Large setup violation  
-There is a large setup violation of -1.984 ns between gameTop/gameLogic/raceManager/playerController/checkPointCntReg_reg[3]/C (clocked by sys_clk_pin) and gameTop/gameLogic/raceManager/playerController/playerXPositionReg_reg[22]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#4 Warning
-Large setup violation  
-There is a large setup violation of -1.999 ns between gameTop/gameLogic/raceManager/playerController/checkPointCntReg_reg[3]/C (clocked by sys_clk_pin) and gameTop/gameLogic/raceManager/playerController/playerXPositionReg_reg[25]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#5 Warning
-Large setup violation  
-There is a large setup violation of -2.013 ns between gameTop/gameLogic/raceManager/playerController/checkPointCntReg_reg[3]/C (clocked by sys_clk_pin) and gameTop/gameLogic/raceManager/playerController/playerXPositionReg_reg[26]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#6 Warning
-Large setup violation  
-There is a large setup violation of -2.049 ns between gameTop/gameLogic/raceManager/playerController/checkPointCntReg_reg[3]/C (clocked by sys_clk_pin) and gameTop/gameLogic/raceManager/playerController/playerXPositionReg_reg[21]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-18#1 Warning

@@ -10,8 +10,8 @@ class AddressToPosition extends Module {
   })
     val addressY = io.address * 1639.U
     val y_tile = addressY >> 16
-    val x_tile = io.address - (y_tile * 40.U)
-    io.posY := addressY >> 11
+    val x_tile     = io.address - ((y_tile << 5) + (y_tile << 3))
+    io.posY := y_tile << 5
     io.posX := x_tile << 5 
 
 }
