@@ -70,7 +70,7 @@ val idle :: computeRace :: done :: Nil = Enum(3)
 val raceManagerStateReg = RegInit(idle)
 
 val playerController = Module(new PlayerController())
-val ai = Module(new AI(BackTileNumber, SpriteNumber, 1))
+val ai = Module(new AI(BackTileNumber, SpriteNumber, 2))
 ai.io.newFrame := io.newFrame
 ai.io.enable := io.enable
 // HUMAN car
@@ -101,8 +101,8 @@ for (i <- 0 until 3) {
   io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
 }
 
-// AI sprites: 3,4,5
-for (i <- 0 until 3) {
+// AI sprites: 3,4,5,6
+for (i <- 0 until 4) {
   io.spriteVisible(i + 3)        := ai.io.spriteVisible(i)
   io.spriteXPosition(i + 3)      := ai.io.spriteXPosition(i)
   io.spriteYPosition(i + 3)      := ai.io.spriteYPosition(i)

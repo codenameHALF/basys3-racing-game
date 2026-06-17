@@ -19,13 +19,13 @@ class AITilemapRom(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) e
 
   val tilemapMemoryDataRead = Wire(Vec(TilemapNumber, UInt(7.W)))
 
-  for (i <- 0 until TilemapNumber) {
-    tilemapMemories(i).io.enable := true.B
-    tilemapMemories(i).io.dataWrite := 0.U
-    tilemapMemories(i).io.writeEnable := false.B
-    tilemapMemories(i).io.address := io.tileAddress
-    tilemapMemoryDataRead(i) := RegNext(tilemapMemories(i).io.dataRead)
-  }
+ for (i <- 0 until TilemapNumber) {
+  tilemapMemories(i).io.enable := true.B
+  tilemapMemories(i).io.dataWrite := 0.U
+  tilemapMemories(i).io.writeEnable := false.B
+  tilemapMemories(i).io.address := io.tileAddress
+  tilemapMemoryDataRead(i) := tilemapMemories(i).io.dataRead
+}
 
   val collisionTable = VecInit(Seq(
         true.B, // backtile_init_0
@@ -94,6 +94,6 @@ class AITilemapRom(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) e
         false.B  // backtile_init_63
   ))
 
-  io.tileData := tilemapMemoryDataRead(io.tilemapIdx)
-  io.collisionData := RegNext(collisionTable(tilemapMemoryDataRead(io.tilemapIdx)))
+io.tileData := tilemapMemoryDataRead(io.tilemapIdx)
+io.collisionData := collisionTable(tilemapMemoryDataRead(io.tilemapIdx))
 }
