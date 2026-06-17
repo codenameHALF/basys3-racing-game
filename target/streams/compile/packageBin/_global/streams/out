@@ -1,5 +1,9 @@
 [0m[[0m[0mdebug[0m] [0m[0mPackaging C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\basys3-racing-game_2.13-0.1.0-SNAPSHOT.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AddressToPosition$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\AddressToPosition$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AddressToPosition.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\AddressToPosition.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\GameTop$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GameTop.class[0m

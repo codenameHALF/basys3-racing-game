@@ -57,8 +57,10 @@ io.spriteVisible := Seq.fill(SpriteNumber)(false.B)
 io.spriteFlipHorizontal := Seq.fill(SpriteNumber)(false.B)
 io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
 
-io.viewBoxX := 0.U
-io.viewBoxY := 0.U
+  val viewBoxXReg = RegInit(0.U(10.W))
+  val viewBoxYReg = RegInit(0.U(9.W))
+io.viewBoxX := viewBoxXReg
+io.viewBoxY := viewBoxYReg
 
 io.backBufferWriteData := 0.U
 io.backBufferWriteAddress := 0.U
@@ -121,7 +123,29 @@ for (i <- 0 until 4) {
     }
 
     is (computeRace) {
-        raceManagerStateReg := done
+      val tempViewBoxX = (playerController.io.playerXPosition + 16.U)
+      val tempViewBoxY = (playerController.io.playerYPosition + 16.U)
+
+      viewBoxXReg := tempViewBoxX - 320.U
+      viewBoxYReg := tempViewBoxY - 240.U
+
+      when(tempViewBoxX < 320.U) {
+        viewBoxXReg := 0.U
+      }
+
+      when(tempViewBoxY < 240.U) {
+        viewBoxYReg := 0.U
+      }
+
+      when(tempViewBoxX > (640 + 320).U) {
+        viewBoxXReg := 640.U
+      }
+
+      when(tempViewBoxY > (480 + 240).U) {
+        viewBoxYReg := 480.U
+      }
+
+      raceManagerStateReg := done
     }
 
     is (done) {

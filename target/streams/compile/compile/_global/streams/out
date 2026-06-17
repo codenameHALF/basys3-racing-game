@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\src\main\scala\TilemapRom.scala:29:9: not found: value trumapMemoryDataRead[0m
-[0m[[0m[31merror[0m] [0m[0m        trumapMemoryDataRead(i) := RegNext(tilemapMemories(i).io.dataRead)[0m
-[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\src\main\scala\PlayerController.scala:116:38: not found: type AddressToPosition[0m
+[0m[[0m[31merror[0m] [0m[0m  val addressToPosition = Module(new AddressToPosition)[0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
