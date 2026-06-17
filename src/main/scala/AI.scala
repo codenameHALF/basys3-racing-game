@@ -47,7 +47,7 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) extends Mod
   val rightSensorXReg = RegInit(0.S(32.W))
   val rightSensorYReg = RegInit(0.S(32.W))
 
-  val sensorDist = (96.S << 16).asSInt
+  val sensorDist = (72.S << 16).asSInt
   val sensorAngle = 32.U(8.W)
 
   def resetAI(): Unit = {
