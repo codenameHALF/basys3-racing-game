@@ -91,14 +91,11 @@ io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
 playerController.io.tilemapRomTileData := io.tilemapRomTileData
 playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
 
-io.viewBoxX := playerController.io.viewBoxX
-io.viewBoxY := playerController.io.viewBoxY
-
 // Player sprites: 0,1,2
 for (i <- 0 until 3) {
   io.spriteVisible(i)        := playerController.io.spriteVisible(i)
-  io.spriteXPosition(i)      := playerController.io.spriteXPosition(i)
-  io.spriteYPosition(i)      := playerController.io.spriteYPosition(i)
+  io.spriteXPosition(i)      := (playerController.io.playerXPosition - viewBoxXReg).asSInt
+  io.spriteYPosition(i)      := (playerController.io.playerYPosition - viewBoxYReg).asSInt
   io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
   io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
 }
@@ -106,8 +103,8 @@ for (i <- 0 until 3) {
 // AI sprites: 3,4,5,6
 for (i <- 0 until 4) {
   io.spriteVisible(i + 3)        := ai.io.spriteVisible(i)
-  io.spriteXPosition(i + 3)      := ai.io.spriteXPosition(i)
-  io.spriteYPosition(i + 3)      := ai.io.spriteYPosition(i)
+  io.spriteXPosition(i + 3)      := (ai.io.spriteXPosition(i).asUInt - viewBoxXReg).asSInt
+  io.spriteYPosition(i + 3)      := (ai.io.spriteYPosition(i).asUInt - viewBoxYReg).asSInt
   io.spriteFlipHorizontal(i + 3) := ai.io.spriteFlipHorizontal(i)
   io.spriteFlipVertical(i + 3)   := ai.io.spriteFlipVertical(i)
 }

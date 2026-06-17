@@ -75,25 +75,48 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) extends Mod
   val aiTileData = aiTilemap.io.tileData
 val aiTileIsRoad = !aiTilemap.io.collisionData
 
-  // Sprite 0 = AI car
-  io.spriteVisible(0) := true.B
-  io.spriteXPosition(0) := (xReg >> 16).asSInt
-  io.spriteYPosition(0) := (yReg >> 16).asSInt
+  // AI car sprites: 0=horizontal, 1=diagonal, 2=vertical
+  val aiX = (xReg >> 16).asSInt
+  val aiY = (yReg >> 16).asSInt
+  for (i <- 0 until 3) {
+    io.spriteXPosition(i) := aiX
+    io.spriteYPosition(i) := aiY
+  }
 
-// show middle sensor only when it reads road
-io.spriteVisible(1) := roadMidReg
-io.spriteXPosition(1) := (midSensorXReg >> 16).asSInt
-io.spriteYPosition(1) := (midSensorYReg >> 16).asSInt
+  // Direction → sprite selection
+  // AI uses yReg - sin(angle), so angle 0=right, 64=up, 128=left, 192=down
+  when((angleReg >= 241.U && angleReg <= 255.U) || angleReg <= 16.U) {
+    // Right
+    io.spriteVisible(0) := true.B
+    io.spriteFlipHorizontal(0) := true.B
+  }.elsewhen(angleReg >= 17.U && angleReg <= 48.U) {
+    // Diagonal up-right
+    io.spriteVisible(1) := true.B
+    io.spriteFlipHorizontal(1) := true.B
+  }.elsewhen(angleReg >= 49.U && angleReg <= 80.U) {
+    // Up
+    io.spriteVisible(2) := true.B
+  }.elsewhen(angleReg >= 81.U && angleReg <= 112.U) {
+    // Diagonal up-left
+    io.spriteVisible(1) := true.B
+  }.elsewhen(angleReg >= 113.U && angleReg <= 144.U) {
+    // Left
+    io.spriteVisible(0) := true.B
+  }.elsewhen(angleReg >= 145.U && angleReg <= 176.U) {
+    // Diagonal down-left
+    io.spriteVisible(1) := true.B
+    io.spriteFlipVertical(1) := true.B
+  }.elsewhen(angleReg >= 177.U && angleReg <= 208.U) {
+    // Down
+    io.spriteVisible(2) := true.B
+    io.spriteFlipVertical(2) := true.B
+  }.elsewhen(angleReg >= 209.U && angleReg <= 240.U) {
+    // Diagonal down-right
+    io.spriteVisible(1) := true.B
+    io.spriteFlipHorizontal(1) := true.B
+    io.spriteFlipVertical(1) := true.B
+  }
 
-// show right sensor only when it reads road
-io.spriteVisible(2) := roadRightReg
-io.spriteXPosition(2) := (rightSensorXReg >> 16).asSInt
-io.spriteYPosition(2) := (rightSensorYReg >> 16).asSInt
-
-// show left sensor only when it reads road
-io.spriteVisible(3) := roadLeftReg
-io.spriteXPosition(3) := (leftSensorXReg >> 16).asSInt
-io.spriteYPosition(3) := (leftSensorYReg >> 16).asSInt
 
   switch(stateReg) {
     is(idle) {
@@ -196,9 +219,9 @@ io.spriteYPosition(3) := (leftSensorYReg >> 16).asSInt
       when(roadMidReg) {
         nextAngle := angleReg
       }.elsewhen(roadLeftReg && !roadRightReg) {
-        nextAngle := angleReg + 1.U
+        nextAngle := angleReg + 2.U
       }.elsewhen(roadRightReg && !roadLeftReg) {
-        nextAngle := angleReg - 1.U
+        nextAngle := angleReg - 2.U
       }.otherwise {
         nextAngle := angleReg
       }
@@ -208,9 +231,9 @@ io.spriteYPosition(3) := (leftSensorYReg >> 16).asSInt
 
       when(
         (nextX < (0.S << 16).asSInt) ||
-        (nextX > (640.S << 16).asSInt) ||
+        (nextX > (1280.S << 16).asSInt) ||
         (nextY < (0.S << 16).asSInt) ||
-        (nextY > (480.S << 16).asSInt)
+        (nextY > (960.S << 16).asSInt)
       ) {
         resetAI()
       }.otherwise {
