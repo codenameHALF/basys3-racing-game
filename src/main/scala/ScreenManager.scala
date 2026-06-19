@@ -90,7 +90,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
   /////////////////////////////////////////////////////////////////
 
   //State enums
-  val startup :: loadMenu :: transTrackSelect :: transTrackSelectStepDone :: loadTrack :: race :: idle :: done :: Nil = Enum(8)
+  val startup :: loadMenu :: transTrackSelect :: transTrackSelectStepDone :: updateTrackSelect :: loadTrack :: race :: idle :: done :: Nil = Enum(9)
   val titleScreen :: trackSelectScreen :: Nil = Enum(2)
 
   // Viewport setup
@@ -105,13 +105,12 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
   
   // Screen loader and tilemap rom
   val tilemapRom = Module(new TilemapRom(BackTileNumber, SpriteNumber, TilemapNumber))
-  val screenLoader = Module(new ScreenLoader())
+  val screenLoader = Module(new ScreenLoader(BackTileNumber, SpriteNumber, TilemapNumber))
 
   tilemapRom.io.tilemapIdx := 0.U(4.W)
   tilemapRom.io.tileAddress := screenLoader.io.tileAddress
   screenLoader.io.load := false.B
   screenLoader.io.tileData := tilemapRom.io.tileData
-
 
   // Race manager
   val raceManager = Module(new RaceManager(SpriteNumber, BackTileNumber))
@@ -131,6 +130,15 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
   io.backBufferWriteData := screenLoader.io.backBufferWriteData
   io.backBufferWriteAddress := screenLoader.io.backBufferWriteAddress
   io.backBufferWriteEnable := screenLoader.io.backBufferWriteEnable
+
+  // Menu printer
+  val selectedTrackReg = RegInit(1.U(4.W))
+  val menuPrinter = Module(new MenuPrinter(BackTileNumber, SpriteNumber))
+  menuPrinter.io.load := false.B
+  menuPrinter.io.track := selectedTrackReg
+
+  val btnLPressed = RegInit(false.B)
+  val btnRPressed = RegInit(false.B)
   
 
   //ScreenManager state machine
@@ -174,10 +182,21 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
       }
     }
 
+    is(updateTrackSelect) {
+      menuPrinter.io.load := true.B
+      io.backBufferWriteData := menuPrinter.io.backBufferWriteData
+      io.backBufferWriteAddress := menuPrinter.io.backBufferWriteAddress
+      io.backBufferWriteEnable := menuPrinter.io.backBufferWriteEnable
+
+      when(menuPrinter.io.done) {
+        screenManagerStateReg := done
+      }
+    }
+
     //Load the selected track background
     is(loadTrack) {
       screenLoader.io.load := true.B
-      tilemapRom.io.tilemapIdx := 1.U(4.W)
+      tilemapRom.io.tilemapIdx := selectedTrackReg
 
       // When the background is loaded go to race state
       when(screenLoader.io.done) {
@@ -203,7 +222,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
       io.frameUpdateDone := raceManager.io.frameUpdateDone
       
       // Give control of TilemapRom
-      tilemapRom.io.tilemapIdx := 1.U(4.W)
+      tilemapRom.io.tilemapIdx := selectedTrackReg
       tilemapRom.io.tileAddress := raceManager.io.tilemapRomTileAddress
       raceManager.io.tilemapRomTileData := tilemapRom.io.tileData
       raceManager.io.tilemapRomCollisionData := tilemapRom.io.collisionData
@@ -214,19 +233,49 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
 
     // Wait for user input on menu screens
     is(idle) {
-      when(io.btnC) {
-        when(currentScreenReg === titleScreen) {
-          screenManagerStateReg := transTrackSelect
-        }
-        when(currentScreenReg === trackSelectScreen) {
-          screenManagerStateReg := loadTrack
-          viewBoxXReg := 0.U;
-          viewBoxYReg := 0.U;
-        }
-      }
-
       when(io.newFrame) {
         screenManagerStateReg := done
+
+        when(io.btnC) {
+          when(currentScreenReg === titleScreen) {
+            screenManagerStateReg := transTrackSelect
+          }
+          when(currentScreenReg === trackSelectScreen) {
+            screenManagerStateReg := loadTrack
+            viewBoxXReg := 0.U;
+            viewBoxYReg := 0.U;
+          }
+        }
+
+        when(io.btnR && btnRPressed === false.B) {
+          btnRPressed := true.B
+          when(currentScreenReg === trackSelectScreen) {
+            selectedTrackReg := selectedTrackReg + 1.U
+            when(selectedTrackReg === (TilemapNumber - 1).U) {
+              selectedTrackReg := 1.U
+            }
+            screenManagerStateReg := updateTrackSelect
+          }
+        }
+
+        when(io.btnL && btnLPressed === false.B) {
+          btnLPressed := true.B
+          when(currentScreenReg === trackSelectScreen) {
+            selectedTrackReg := selectedTrackReg - 1.U
+            when(selectedTrackReg === 1.U) {
+              selectedTrackReg := 7.U
+            }
+            screenManagerStateReg := updateTrackSelect
+          }
+        }
+
+        when(~io.btnR) {
+          btnRPressed := false.B
+        }
+
+        when(~io.btnL) {
+          btnLPressed := false.B
+        }
       }
     }
 

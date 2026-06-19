@@ -3,3 +3,23 @@
     <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="25514" HostCore="6" HostMemory="7529968">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="59212" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="75630" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="91830" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="103133" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>

@@ -3,17 +3,18 @@ import chisel3.util._
 
 // Unit for accessing tilemap and collision data
 class TilemapRom(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) extends Module {
-    val io = IO(new Bundle {
-        val tileAddress = Input(UInt(log2Up(1200).W))
-        val tileData = Output(UInt(log2Up(BackTileNumber).W))
-        val tilemapIdx = Input(UInt(log2Up(TilemapNumber).W))
-        val collisionData = Output(Bool())
-    })
-
-    val addrWidth = log2Up(1200)
+    val screenSize = 1200
+    val addrWidth = log2Up(screenSize)
     val tileWidth = log2Up(BackTileNumber)
     val spriteWidth = log2Up(SpriteNumber)
     val tilemapWidth = log2Up(TilemapNumber)
+
+    val io = IO(new Bundle {
+        val tileAddress = Input(UInt(addrWidth.W))
+        val tileData = Output(UInt(tileWidth.W))
+        val tilemapIdx = Input(UInt(tilemapWidth.W))
+        val collisionData = Output(Bool())
+    })
 
     val tilemapMemories = for (i <- 0 until TilemapNumber) yield {
         val tilemapMemory = Module(new Memory(tileWidth, addrWidth, "memory_init/tilemap_init_" + i.toString + ".mem"))
@@ -28,7 +29,7 @@ class TilemapRom(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) ext
         tilemapMemories(i).io.address := io.tileAddress
         tilemapMemoryDataRead(i) := RegNext(tilemapMemories(i).io.dataRead)
     }
-     val collisionTable = VecInit(Seq(
+    val collisionTable = VecInit(Seq(
         true.B, // backtile_init_0
         true.B, // backtile_init_1
         true.B, // backtile_init_2

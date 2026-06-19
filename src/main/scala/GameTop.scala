@@ -40,7 +40,7 @@ class GameTop extends Module {
 
   val SPRITE_NUMBER = 16
   val BACK_TILE_NUMBER = 64
-  val TILEMAP_NUMBER = 2
+  val TILEMAP_NUMBER = 8
   val graphicEngineVGA = Module(new GraphicEngineVGA(SPRITE_NUMBER, BACK_TILE_NUMBER))
 
   //Uncomment one of the following lines to use the module related to the learning tasks

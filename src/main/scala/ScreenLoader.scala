@@ -1,10 +1,12 @@
 import chisel3._
 import chisel3.util._
 
-class ScreenLoader()  extends Module {
-    val addrWidth = 11
-    val tileWidth = 6
+class ScreenLoader(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int)  extends Module {
     val screenSize = 1200
+    val addrWidth = log2Up(screenSize)
+    val tileWidth = log2Up(BackTileNumber)
+    val spriteWidth = log2Up(SpriteNumber)
+    val tilemapWidth = log2Up(TilemapNumber)
 
     val io = IO(new Bundle {
         val load = Input(Bool())

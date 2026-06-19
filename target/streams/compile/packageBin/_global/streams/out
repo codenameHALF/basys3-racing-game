@@ -1,71 +1,83 @@
-[0m[[0m[0mdebug[0m] [0m[0mPackaging C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\basys3-racing-game_2.13-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/basys3-racing-game_2.13-0.1.0-SNAPSHOT.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	AddressToPosition$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\AddressToPosition$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	AddressToPosition.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\AddressToPosition.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\GameTop$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GameTop.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\GameTop.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\GraphicEngineVGA$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\GraphicEngineVGA.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\Memory$$anon$3.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Memory.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\Memory.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\MultiHotPriortyReductionTree$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\MultiHotPriortyReductionTree.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayerController$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\PlayerController$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PlayerController.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\PlayerController.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\PositionToAddress$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\PositionToAddress.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RaceManager$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RaceManager$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RaceManager.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RaceManager.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RamInitSpWf$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RamInitSpWf.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.v[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RamInitSpWf.v[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RamSpWf$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RamSpWf.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.v[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RamSpWf.v[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RegPipeline$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\RegPipeline.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\ScreenLoader$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\ScreenLoader.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Memory.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ScreenManager.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\ScreenManager.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\TilemapRom$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\TilemapRom.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Top$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\Top$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Top$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\Top$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Top$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\Top$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScreenManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceScoreboardPrinter$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RaceScoreboardPrinter$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RegPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Memory$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RaceManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MenuPrinter$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/MenuPrinter$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AddressToPosition.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/AddressToPosition.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GraphicEngineVGA$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScreenManager$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BCDCounter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/BCDCounter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/PositionToAddress$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Top.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\Mikkel\Documents\DTU\02113 digital systems design\Racing-game\basys3-racing-game\target\scala-2.13\classes\Top.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamInitSpWf$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/TilemapRom$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PositionToAddress.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/PositionToAddress.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamSpWf$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RaceManager.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.v[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamSpWf.v[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RegPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RegPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	BCDCounter$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/BCDCounter$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GameTop.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/MultiHotPriortyReductionTree.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.v[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamInitSpWf.v[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MultiHotPriortyReductionTree$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/MultiHotPriortyReductionTree$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScreenLoader$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TilemapRom.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/TilemapRom.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GraphicEngineVGA.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GraphicEngineVGA.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/PlayerController$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamInitSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GameTop$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	RaceScoreboardPrinter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RaceScoreboardPrinter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PlayerController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/PlayerController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScreenLoader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScreenLoader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	MenuPrinter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/MenuPrinter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AddressToPosition$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/AddressToPosition$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Top$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Top$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

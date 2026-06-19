@@ -63,17 +63,20 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.viewBoxY := viewBoxYReg
 
   //Setting the background buffer outputs to zero
-  io.backBufferWriteData := 0.U
-  io.backBufferWriteAddress := 0.U
-  io.backBufferWriteEnable := false.B
+  val backBufferWriteDataReg = RegInit(0.U(log2Up(BackTileNumber).W))  
+  val backBufferWriteAddressReg = RegInit(0.U(11.W))
+  val backBufferWriteEnableReg = RegInit(false.B)
+  io.backBufferWriteData := backBufferWriteDataReg
+  io.backBufferWriteAddress := backBufferWriteAddressReg
+  io.backBufferWriteEnable := backBufferWriteEnableReg
 
   //Setting frame done to zero
   io.frameUpdateDone := false.B
 
-  // State enums
-  val idle :: computeRace :: done :: Nil = Enum(3)
-  val raceManagerStateReg = RegInit(idle)
+  //Race states
+  val raceStarted = RegInit(false.B)
 
+  //Player controller initialization
   val playerController = Module(new PlayerController())
   io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
   playerController.io.tilemapRomTileData := io.tilemapRomTileData
@@ -84,7 +87,7 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   playerController.io.btnC := io.btnC
   playerController.io.btnR := io.btnR
   playerController.io.newFrame := io.newFrame
-  playerController.io.enable := io.enable
+  playerController.io.enable := raceStarted
 
   val playerScreenXPosition = Reg(SInt(11.W))
   val playerScreenYPosition = Reg(SInt(10.W))
@@ -99,6 +102,19 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
   }
 
+  //Race scoreboard printer initialization
+  val frameCounter = Module(new BCDCounter())
+  val screenAnimationCounter = RegInit(0.U(16.W))
+  val scoreboardScreen = RegInit(0.U)
+  frameCounter.io.inc := false.B
+  val raceScoreboardPrinter = Module(new RaceScoreboardPrinter(BackTileNumber, SpriteNumber))
+  raceScoreboardPrinter.io.load := false.B
+  raceScoreboardPrinter.io.time := frameCounter.io.data
+  raceScoreboardPrinter.io.screen := scoreboardScreen
+  // State enums
+  val idle :: computeRace :: updateScoreboard :: done :: Nil = Enum(4)
+  val raceManagerStateReg = RegInit(idle)
+
 
   switch(raceManagerStateReg) {
     is (idle) {
@@ -110,6 +126,8 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     }
 
     is (computeRace) {
+      frameCounter.io.inc := true.B
+
       val tempViewBoxX = (playerController.io.playerXPosition + 16.U)
       val tempViewBoxY = (playerController.io.playerYPosition + 16.U)
 
@@ -132,7 +150,35 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
         viewBoxYReg := 480.U
       }
 
-      raceManagerStateReg := done
+      when(screenAnimationCounter < 400.U) {
+        screenAnimationCounter := screenAnimationCounter + 1.U
+      }
+
+      raceManagerStateReg := updateScoreboard
+    }
+
+    is (updateScoreboard) {
+      when(screenAnimationCounter < 100.U) {
+        scoreboardScreen := 0.U
+      }.elsewhen(screenAnimationCounter < 200.U) {
+        scoreboardScreen := 1.U
+      }.elsewhen(screenAnimationCounter < 300.U) {
+        scoreboardScreen := 2.U
+      }.elsewhen(screenAnimationCounter < 400.U) {
+        scoreboardScreen := 3.U
+      }.otherwise {
+        scoreboardScreen := 4.U
+        raceStarted := true.B
+      }
+
+      raceScoreboardPrinter.io.load := true.B
+      backBufferWriteDataReg := raceScoreboardPrinter.io.backBufferWriteData
+      backBufferWriteAddressReg := raceScoreboardPrinter.io.backBufferWriteAddress
+      backBufferWriteEnableReg := raceScoreboardPrinter.io.backBufferWriteEnable
+
+      when(raceScoreboardPrinter.io.done) {
+        raceManagerStateReg := done
+      }
     }
 
     is (done) {
