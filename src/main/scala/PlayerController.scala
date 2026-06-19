@@ -23,7 +23,7 @@ class PlayerController extends Module {
         val newFrame = Input(Bool())
         val frameUpdateDone = Output(Bool())
 
-        //val lapCnt = Output(UInt(4.W))
+        val lapCnt = Output(UInt(4.W))
 
         val enable = Input(Bool())
         val raceMapIndex = Input(UInt(4.W))
@@ -53,9 +53,9 @@ class PlayerController extends Module {
   ))
   // Checkpoint Counter
   val checkPointCntReg = RegInit(0.U(4.W))
-  val lapCntReg = RegInit(0.U(4.W))
+  val lapCntReg = RegInit(1.U(4.W))
   val currentTrack = checkPointData(io.raceMapIndex - 1.U)
-  //io.lapCnt := lapCntReg 
+  io.lapCnt := lapCntReg 
 
 
 //////////////////////////////////////////////

@@ -115,6 +115,7 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   val scoreboardScreen = RegInit(0.U)
   frameCounter.io.inc := false.B
   val raceScoreboardPrinter = Module(new RaceScoreboardPrinter(BackTileNumber, SpriteNumber))
+  raceScoreboardPrinter.io.lapCnt := playerController.io.lapCnt
   raceScoreboardPrinter.io.load := false.B
   raceScoreboardPrinter.io.time := frameCounter.io.data
   raceScoreboardPrinter.io.screen := scoreboardScreen
