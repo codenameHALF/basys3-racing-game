@@ -1,18 +1,2 @@
 .vscode/
 .metals/
-
-# Vivado generated files (DO NOT TRACK)
-vivado/**/*.runs/
-vivado/**/*.cache/
-vivado/**/*.hw/
-vivado/**/*.ip_user_files/
-vivado/**/*.sim/
-vivado/**/*.xpr.*
-vivado/**/*.jou
-vivado/**/*.log
-vivado/**/*.pb
-vivado/**/*.rpt
-vivado/**/*.dcp
-vivado/**/xsim.dir/
-vivado/**/webtalk*
-vivado/**/vivado_pid*.str

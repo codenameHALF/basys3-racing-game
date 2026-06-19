@@ -1,0 +1,1225 @@
+
+*** Running vivado
+    with args -log Top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Fri Jun 19 09:00:42 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source Top.tcl -notrace
+Command: synth_design -top Top -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 24927
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2116.445 ; gain = 231.035 ; free physical = 194 ; free virtual = 3417
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Top' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:8023]
+INFO: [Synth 8-6157] synthesizing module 'GameTop' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:7600]
+INFO: [Synth 8-6157] synthesizing module 'GraphicEngineVGA' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:2202]
+INFO: [Synth 8-6157] synthesizing module 'Memory' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_0.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_0.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'Memory_1' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:27]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized0' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_1.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_1.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized0' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_1' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:27]
+INFO: [Synth 8-6157] synthesizing module 'Memory_2' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:53]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized1' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_2.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_2.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized1' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_2' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:53]
+INFO: [Synth 8-6157] synthesizing module 'Memory_3' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:79]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized2' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_3.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_3.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized2' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_3' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:79]
+INFO: [Synth 8-6157] synthesizing module 'Memory_4' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:105]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized3' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_4.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_4.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized3' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_4' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:105]
+INFO: [Synth 8-6157] synthesizing module 'Memory_5' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:131]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized4' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_5.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_5.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized4' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_5' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:131]
+INFO: [Synth 8-6157] synthesizing module 'Memory_6' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:157]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized5' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_6.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_6.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized5' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_6' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:157]
+INFO: [Synth 8-6157] synthesizing module 'Memory_7' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:183]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized6' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_7.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_7.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized6' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_7' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:183]
+INFO: [Synth 8-6157] synthesizing module 'Memory_8' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:209]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized7' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_8.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_8.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized7' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_8' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:209]
+INFO: [Synth 8-6157] synthesizing module 'Memory_9' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:235]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized8' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_9.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_9.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized8' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_9' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:235]
+INFO: [Synth 8-6157] synthesizing module 'Memory_10' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:261]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized9' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_10.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_10.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized9' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_10' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:261]
+INFO: [Synth 8-6157] synthesizing module 'Memory_11' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:287]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized10' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_11.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_11.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized10' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_11' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:287]
+INFO: [Synth 8-6157] synthesizing module 'Memory_12' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:313]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized11' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_12.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_12.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized11' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_12' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:313]
+INFO: [Synth 8-6157] synthesizing module 'Memory_13' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:339]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized12' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_13.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_13.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized12' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_13' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:339]
+INFO: [Synth 8-6157] synthesizing module 'Memory_14' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:365]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized13' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_14.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_14.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized13' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_14' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:365]
+INFO: [Synth 8-6157] synthesizing module 'Memory_15' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:391]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized14' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_15.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_15.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized14' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_15' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:391]
+INFO: [Synth 8-6157] synthesizing module 'Memory_16' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:417]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized15' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_16.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_16.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized15' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_16' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:417]
+INFO: [Synth 8-6157] synthesizing module 'Memory_17' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:443]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized16' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_17.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_17.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized16' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_17' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:443]
+INFO: [Synth 8-6157] synthesizing module 'Memory_18' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:469]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized17' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_18.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_18.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized17' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_18' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:469]
+INFO: [Synth 8-6157] synthesizing module 'Memory_19' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:495]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized18' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_19.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_19.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized18' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_19' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:495]
+INFO: [Synth 8-6157] synthesizing module 'Memory_20' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:521]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized19' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_20.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_20.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized19' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_20' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:521]
+INFO: [Synth 8-6157] synthesizing module 'Memory_21' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:547]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized20' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_21.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_21.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized20' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_21' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:547]
+INFO: [Synth 8-6157] synthesizing module 'Memory_22' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:573]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized21' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_22.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_22.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized21' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_22' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:573]
+INFO: [Synth 8-6157] synthesizing module 'Memory_23' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:599]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized22' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_23.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_23.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized22' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_23' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:599]
+INFO: [Synth 8-6157] synthesizing module 'Memory_24' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:625]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized23' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_24.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_24.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized23' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_24' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:625]
+INFO: [Synth 8-6157] synthesizing module 'Memory_25' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:651]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized24' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_25.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_25.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized24' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_25' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:651]
+INFO: [Synth 8-6157] synthesizing module 'Memory_26' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:677]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized25' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_26.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_26.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized25' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_26' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:677]
+INFO: [Synth 8-6157] synthesizing module 'Memory_27' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:703]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized26' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_27.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_27.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized26' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_27' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:703]
+INFO: [Synth 8-6157] synthesizing module 'Memory_28' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:729]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized27' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_28.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_28.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized27' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_28' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:729]
+INFO: [Synth 8-6157] synthesizing module 'Memory_29' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:755]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized28' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_29.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_29.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized28' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_29' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:755]
+INFO: [Synth 8-6157] synthesizing module 'Memory_30' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:781]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized29' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_30.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_30.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized29' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_30' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:781]
+INFO: [Synth 8-6157] synthesizing module 'Memory_31' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:807]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized30' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_31.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_31.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized30' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_31' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:807]
+INFO: [Synth 8-6157] synthesizing module 'Memory_32' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:833]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized31' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_32.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_32.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized31' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_32' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:833]
+INFO: [Synth 8-6157] synthesizing module 'Memory_33' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:859]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized32' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_33.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_33.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized32' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_33' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:859]
+INFO: [Synth 8-6157] synthesizing module 'Memory_34' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:885]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized33' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_34.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_34.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized33' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_34' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:885]
+INFO: [Synth 8-6157] synthesizing module 'Memory_35' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:911]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized34' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_35.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_35.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized34' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_35' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:911]
+INFO: [Synth 8-6157] synthesizing module 'Memory_36' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:937]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized35' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_36.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_36.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized35' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_36' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:937]
+INFO: [Synth 8-6157] synthesizing module 'Memory_37' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:963]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized36' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_37.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_37.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized36' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_37' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:963]
+INFO: [Synth 8-6157] synthesizing module 'Memory_38' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:989]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized37' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_38.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_38.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized37' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_38' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:989]
+INFO: [Synth 8-6157] synthesizing module 'Memory_39' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1015]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized38' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_39.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_39.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized38' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_39' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1015]
+INFO: [Synth 8-6157] synthesizing module 'Memory_40' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1041]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized39' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_40.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_40.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized39' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_40' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1041]
+INFO: [Synth 8-6157] synthesizing module 'Memory_41' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1067]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized40' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_41.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_41.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized40' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_41' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1067]
+INFO: [Synth 8-6157] synthesizing module 'Memory_42' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1093]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized41' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_42.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_42.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized41' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_42' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1093]
+INFO: [Synth 8-6157] synthesizing module 'Memory_43' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1119]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized42' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_43.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_43.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized42' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_43' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1119]
+INFO: [Synth 8-6157] synthesizing module 'Memory_44' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1145]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized43' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_44.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_44.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized43' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_44' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1145]
+INFO: [Synth 8-6157] synthesizing module 'Memory_45' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1171]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized44' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_45.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_45.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized44' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_45' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1171]
+INFO: [Synth 8-6157] synthesizing module 'Memory_46' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1197]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized45' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_46.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_46.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized45' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_46' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1197]
+INFO: [Synth 8-6157] synthesizing module 'Memory_47' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1223]
+INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf__parameterized46' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_47.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_47.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized46' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_47' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1223]
+INFO: [Synth 8-6157] synthesizing module 'Memory_48' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1249]
+INFO: [Common 17-14] Message 'Synth 8-6157' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_48.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_48.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized47' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_48' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1249]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_49.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_49.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'RamInitSpWf__parameterized48' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'Memory_49' (0#1) [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:1275]
+INFO: [Common 17-14] Message 'Synth 8-6155' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_50.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_50.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_51.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_51.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_52.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_52.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_53.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_53.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_54.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_54.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_55.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_55.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_56.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_56.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_57.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_57.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_58.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_58.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_59.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_59.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_60.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_60.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_61.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_61.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_62.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_62.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backtile_init_63.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backtile_init_63.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/backbuffer_init.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/backbuffer_init.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_0.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_0.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_1.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_1.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_2.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_2.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_3.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_3.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_4.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_4.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_5.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_5.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_6.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_6.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_7.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_7.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_8.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_8.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_9.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_9.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_10.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_10.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_11.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_11.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_12.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_12.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_13.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_13.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_14.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_14.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+	Parameter DATA_WIDTH bound to: 7 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/sprite_init_15.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_15.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_0.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_0.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_1.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_1.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_2.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_2.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_3.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_3.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_4.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_4.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_5.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_5.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_6.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_6.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+	Parameter DATA_WIDTH bound to: 6 - type: integer 
+	Parameter LOAD_FILE bound to: memory_init/tilemap_init_7.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'memory_init/tilemap_init_7.mem' is read successfully [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/RamInitSpWf.v:34]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3788]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4087]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3790]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4096]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3792]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4105]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3794]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_7_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4114]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3796]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_8_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4123]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3798]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_9_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4132]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3800]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_10_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4141]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3802]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_11_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4150]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3804]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_12_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4159]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3806]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_13_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4168]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3808]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_14_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4177]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:3810]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:4186]
+WARNING: [Synth 8-3917] design Top has port io_led_0 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_1 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_2 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_3 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_4 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_5 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_6 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_7 driven by constant 0
+WARNING: [Synth 8-7129] Port io_time_0[7] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_time_0[6] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_time_1[7] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_time_1[6] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_time_2[7] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_time_2[6] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_time_3[7] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_time_3[6] in module RaceScoreboardPrinter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_0 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_1 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_2 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_3 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_4 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2280.383 ; gain = 394.973 ; free physical = 120 ; free virtual = 3279
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2280.383 ; gain = 394.973 ; free physical = 120 ; free virtual = 3279
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2280.383 ; gain = 394.973 ; free physical = 120 ; free virtual = 3279
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2280.383 ; gain = 0.000 ; free physical = 119 ; free virtual = 3279
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc]
+Finished Parsing XDC File [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.srcs/constrs_1/imports/code/GameBasys3.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2384.848 ; gain = 0.000 ; free physical = 138 ; free virtual = 3267
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+lscpu: bad usage
+Try 'lscpu --help' for more information.
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2384.883 ; gain = 0.000 ; free physical = 138 ; free virtual = 3267
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2384.883 ; gain = 499.473 ; free physical = 144 ; free virtual = 3274
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2392.852 ; gain = 507.441 ; free physical = 144 ; free virtual = 3274
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2392.852 ; gain = 507.441 ; free physical = 144 ; free virtual = 3274
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'PlayerController'
+INFO: [Synth 8-802] inferred FSM for state register 'raceManagerStateReg_reg' in module 'RaceManager'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE0 |                              000 |                              000
+                 iSTATE1 |                              110 |                              001
+                 iSTATE2 |                              101 |                              010
+                 iSTATE3 |                              100 |                              011
+                 iSTATE4 |                              011 |                              101
+                 iSTATE5 |                              001 |                              100
+                  iSTATE |                              010 |                              110
+*
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stateReg_reg' using encoding 'sequential' in module 'PlayerController'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                             0001 |                               00
+                 iSTATE0 |                             1000 |                               01
+                 iSTATE1 |                             0010 |                               10
+                 iSTATE2 |                             0100 |                               11
+*
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'raceManagerStateReg_reg' using encoding 'one-hot' in module 'RaceManager'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2392.852 ; gain = 507.441 ; free physical = 156 ; free virtual = 3289
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 2     
+	   3 Input   12 Bit       Adders := 3     
+	   2 Input   12 Bit       Adders := 2     
+	   3 Input   11 Bit       Adders := 4     
+	   2 Input   11 Bit       Adders := 7     
+	   2 Input   10 Bit       Adders := 6     
+	   3 Input   10 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 5     
+	   2 Input    6 Bit       Adders := 5     
+	   2 Input    5 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 2     
+	   2 Input    2 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 2     
+	               16 Bit    Registers := 2     
+	               11 Bit    Registers := 12    
+	               10 Bit    Registers := 9     
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 5     
+	                7 Bit    Registers := 144   
+	                6 Bit    Registers := 42    
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 6     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 144   
++---Multipliers : 
+	              16x32  Multipliers := 2     
++---RAMs : 
+	              12K Bit	(2048 X 6 bit)          RAMs := 11    
+	               7K Bit	(1024 X 7 bit)          RAMs := 80    
++---Muxes : 
+	   3 Input   32 Bit        Muxes := 1     
+	   7 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 5     
+	  64 Input   16 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 10    
+	   8 Input   11 Bit        Muxes := 5     
+	   2 Input   10 Bit        Muxes := 9     
+	   8 Input   10 Bit        Muxes := 4     
+	   2 Input    9 Bit        Muxes := 5     
+	   3 Input    9 Bit        Muxes := 2     
+	   8 Input    9 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 3     
+	   2 Input    6 Bit        Muxes := 25    
+	   4 Input    6 Bit        Muxes := 2     
+	   7 Input    6 Bit        Muxes := 1     
+	   6 Input    6 Bit        Muxes := 1     
+	  12 Input    6 Bit        Muxes := 5     
+	  11 Input    6 Bit        Muxes := 1     
+	   3 Input    6 Bit        Muxes := 1     
+	   8 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 16    
+	   3 Input    5 Bit        Muxes := 4     
+	   4 Input    4 Bit        Muxes := 3     
+	   2 Input    4 Bit        Muxes := 14    
+	   7 Input    4 Bit        Muxes := 1     
+	   8 Input    4 Bit        Muxes := 1     
+	   3 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 8     
+	   4 Input    3 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 1     
+	   6 Input    3 Bit        Muxes := 1     
+	   8 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 5     
+	   2 Input    1 Bit        Muxes := 90    
+	   4 Input    1 Bit        Muxes := 5     
+	  10 Input    1 Bit        Muxes := 1     
+	   8 Input    1 Bit        Muxes := 2     
+	   3 Input    1 Bit        Muxes := 3     
+	   5 Input    1 Bit        Muxes := 1     
+	   7 Input    1 Bit        Muxes := 10    
+	   6 Input    1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP _playerYPositionReg_T, operation Mode is: A2*B.
+DSP Report: register _playerYPositionReg_T is absorbed into DSP _playerYPositionReg_T.
+DSP Report: operator _playerYPositionReg_T is absorbed into DSP _playerYPositionReg_T.
+DSP Report: operator _playerYPositionReg_T is absorbed into DSP _playerYPositionReg_T.
+DSP Report: Generating DSP _playerYPositionReg_T, operation Mode is: (PCIN>>17)+A*B2.
+DSP Report: register sprite0SpeedReg_reg is absorbed into DSP _playerYPositionReg_T.
+DSP Report: operator _playerYPositionReg_T is absorbed into DSP _playerYPositionReg_T.
+DSP Report: operator _playerYPositionReg_T is absorbed into DSP _playerYPositionReg_T.
+DSP Report: Generating DSP _playerXPositionReg_T, operation Mode is: A2*B.
+DSP Report: register _playerXPositionReg_T is absorbed into DSP _playerXPositionReg_T.
+DSP Report: operator _playerXPositionReg_T is absorbed into DSP _playerXPositionReg_T.
+DSP Report: operator _playerXPositionReg_T is absorbed into DSP _playerXPositionReg_T.
+DSP Report: Generating DSP _playerXPositionReg_T, operation Mode is: (PCIN>>17)+A*B2.
+DSP Report: register sprite0SpeedReg_reg is absorbed into DSP _playerXPositionReg_T.
+DSP Report: operator _playerXPositionReg_T is absorbed into DSP _playerXPositionReg_T.
+DSP Report: operator _playerXPositionReg_T is absorbed into DSP _playerXPositionReg_T.
+WARNING: [Synth 8-3917] design Top has port io_led_0 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_1 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_2 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_3 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_4 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_5 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_6 driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_led_7 driven by constant 0
+WARNING: [Synth 8-7129] Port io_sw_0 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_1 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_2 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_3 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_4 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
+WARNING: [Synth 8-7257] Removed RAM (gameTop/graphicEngineVGA/backTileMemories_36/ramsSpWf/RAM_reg) due to inactive write enable.
+WARNING: [Synth 8-6014] Unused sequential element gameTop/graphicEngineVGA/backTileMemories_36/ramsSpWf/RAM_reg was removed. 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 2392.852 ; gain = 507.441 ; free physical = 148 ; free virtual = 3231
+---------------------------------------------------------------------------------
+ Sort Area is  _playerXPositionReg_T_0 : 0 0 : 2777 5335 : Used 1 time 0
+ Sort Area is  _playerXPositionReg_T_0 : 0 1 : 2558 5335 : Used 1 time 0
+ Sort Area is  _playerYPositionReg_T_3 : 0 0 : 2777 5335 : Used 1 time 0
+ Sort Area is  _playerYPositionReg_T_3 : 0 1 : 2558 5335 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------------------------+------------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                   | RTL Object                                                       | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------------------------+------------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|RamInitSpWf:                  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized0:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized1:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized2:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized3:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized4:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized5:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized6:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized7:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized8:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized9:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized10: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized11: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized12: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized13: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized14: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized15: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized16: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized17: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized18: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized19: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized20: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized21: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized22: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized23: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized24: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized13: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized26: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized27: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized28: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized29: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized30: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized31: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized32: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized33: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized34: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized36: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized37: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized38: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized39: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized40: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized41: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized42: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized43: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized44: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized45: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized46: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized47: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized48: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized49: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized50: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized51: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized52: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized53: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized55: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized56: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized57: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized58: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized59: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized60: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized61: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized62: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|Top                           | gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized63: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized64: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized65: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized66: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized67: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized68: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized69: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized70: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized71: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized72: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized73: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized74: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized75: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized81: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized82: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized83: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized84: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized85: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized86: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized87: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|Top                           | gameTop/graphicEngineVGA/backBufferMemory/ramsSpWf/RAM_reg       | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
++------------------------------+------------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++-----------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|PlayerController | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|PlayerController | (PCIN>>17)+A*B2 | 16     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|PlayerController | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|PlayerController | (PCIN>>17)+A*B2 | 16     | 15     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
++-----------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 2506.852 ; gain = 621.441 ; free physical = 121 ; free virtual = 3142
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 2584.883 ; gain = 699.473 ; free physical = 144 ; free virtual = 3078
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------------------------+------------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                   | RTL Object                                                       | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------------------------+------------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|RamInitSpWf:                  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized0:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized1:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized2:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized3:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized4:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized5:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized6:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized7:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized8:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized9:  | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized10: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized11: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized12: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized13: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized14: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized15: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized16: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized17: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized18: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized19: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized20: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized21: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized22: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized23: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized24: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized13: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized26: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized27: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized28: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized29: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized30: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized31: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized32: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized33: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized34: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized36: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized37: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized38: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized39: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized40: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized41: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized42: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized43: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized44: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized45: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized46: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized47: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized48: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized49: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized50: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized51: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized52: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized53: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized54: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized55: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized56: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized57: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized58: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized59: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized60: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized61: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized62: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|Top                           | gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized63: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized64: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized65: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized66: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized67: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized68: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized69: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized70: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized71: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized72: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized73: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized74: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized75: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized76: | RAM_reg                                                          | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized81: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized82: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized83: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized84: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized85: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized86: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized87: | RAM_reg                                                          | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|Top                           | gameTop/graphicEngineVGA/backBufferMemory/ramsSpWf/RAM_reg       | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
++------------------------------+------------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_14/ramsSpWf/RAM_reg' (RAMB18E1_14) to 'gameTop/graphicEngineVGA/backTileMemories_26/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_12/ramsSpWf/RAM_reg' (RAMB18E1_76) to 'gameTop/graphicEngineVGA/spriteMemories_13/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_13/ramsSpWf/RAM_reg' (RAMB18E1_76) to 'gameTop/graphicEngineVGA/spriteMemories_14/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_14/ramsSpWf/RAM_reg' (RAMB18E1_76) to 'gameTop/graphicEngineVGA/spriteMemories_15/ramsSpWf/RAM_reg'
+INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferRestoreMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 2592.891 ; gain = 707.480 ; free physical = 119 ; free virtual = 3053
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2724.703 ; gain = 839.293 ; free physical = 130 ; free virtual = 2956
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2724.703 ; gain = 839.293 ; free physical = 130 ; free virtual = 2956
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2724.703 ; gain = 839.293 ; free physical = 130 ; free virtual = 2956
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2724.703 ; gain = 839.293 ; free physical = 130 ; free virtual = 2956
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2730.641 ; gain = 845.230 ; free physical = 119 ; free virtual = 2945
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2730.641 ; gain = 845.230 ; free physical = 119 ; free virtual = 2945
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------+-------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name | RTL Name                                              | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------+-------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Top         | gameTop/graphicEngineVGA/REG_reg                      | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|Top         | gameTop/graphicEngineVGA/pixelColourVGA_pipeReg_0_reg | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|Top         | gameTop/graphicEngineVGA/io_Hsync_pipeReg_0_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|Top         | gameTop/graphicEngineVGA/io_Vsync_pipeReg_0_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
++------------+-------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++-----------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping   | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|PlayerController | A'*B          | 17     | 18     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|PlayerController | PCIN>>17+A*B' | 30     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|PlayerController | A'*B          | 17     | 18     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
+|PlayerController | PCIN>>17+A*B' | 30     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 0    | 
++-----------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |   121|
+|3     |DSP48E1  |     4|
+|5     |LUT1     |    51|
+|6     |LUT2     |   342|
+|7     |LUT3     |    99|
+|8     |LUT4     |   122|
+|9     |LUT5     |   255|
+|10    |LUT6     |   465|
+|11    |MUXF7    |    99|
+|12    |MUXF8    |    42|
+|13    |RAMB18E1 |    86|
+|99    |SRL16E   |     4|
+|100   |FDRE     |   587|
+|101   |FDSE     |    27|
+|102   |IBUF     |     7|
+|103   |OBUF     |    25|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2730.641 ; gain = 845.230 ; free physical = 119 ; free virtual = 2945
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 19 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 2730.641 ; gain = 740.730 ; free physical = 119 ; free virtual = 2945
+Synthesis Optimization Complete : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2730.648 ; gain = 845.230 ; free physical = 119 ; free virtual = 2945
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2730.648 ; gain = 0.000 ; free physical = 273 ; free virtual = 3099
+INFO: [Netlist 29-17] Analyzing 352 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2786.668 ; gain = 0.000 ; free physical = 263 ; free virtual = 3096
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+lscpu: bad usage
+Try 'lscpu --help' for more information.
+Synth Design complete | Checksum: ee47ada
+INFO: [Common 17-83] Releasing license: Synthesis
+316 Infos, 67 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:56 ; elapsed = 00:00:54 . Memory (MB): peak = 2786.703 ; gain = 1253.266 ; free physical = 263 ; free virtual = 3096
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2009.149; main = 1921.465; forked = 274.587
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3548.746; main = 2786.672; forked = 963.859
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2810.680 ; gain = 0.000 ; free physical = 263 ; free virtual = 3096
+INFO: [Common 17-1381] The checkpoint '/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Jun 19 09:01:41 2026...
