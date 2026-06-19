@@ -44,6 +44,9 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     val tilemapRomTileAddress = Output(UInt(11.W))
     val tilemapRomTileData = Input(UInt(6.W))
     val tilemapRomCollisionData = Input(Bool())
+
+    // Track Index
+    val selectedTrackIndex = Input(UInt(4.W))
   })
 
   // Disable all leds
@@ -88,6 +91,10 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   playerController.io.btnR := io.btnR
   playerController.io.newFrame := io.newFrame
   playerController.io.enable := raceStarted
+  
+  // Track/Map index 
+  playerController.io.raceMapIndex := io.selectedTrackIndex
+
 
   val playerScreenXPosition = Reg(SInt(11.W))
   val playerScreenYPosition = Reg(SInt(10.W))

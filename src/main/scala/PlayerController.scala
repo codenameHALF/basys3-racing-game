@@ -26,7 +26,7 @@ class PlayerController extends Module {
         //val lapCnt = Output(UInt(4.W))
 
         val enable = Input(Bool())
-        //val raceMapIndex = Input(UInt(8.W))
+        val raceMapIndex = Input(UInt(4.W))
     })
 
 
@@ -42,18 +42,19 @@ class PlayerController extends Module {
   io.frameUpdateDone := false.B
 
   // Checkpoint tile address data
-  val checkPointData = VecInit(
-  VecInit(644.U(16.W), 645.U(16.W), 977.U(16.W), 1017.U(16.W), 674.U(16.W), 675.U(16.W)),
-  VecInit(970.U(16.W), 1010.U(16.W), 947.U(16.W), 987.U(16.W), 474.U(16.W), 475.U(16.W)),
-  VecInit(604.U(16.W), 605.U(16.W), 502.U(16.W), 542.U(16.W), 714.U(16.W), 715.U(16.W)),
-  VecInit(608.U(16.W), 609.U(16.W), 899.U(16.W), 939.U(16.W), 508.U(16.W), 509.U(16.W)),
-  VecInit(967.U(16.W), 1007.U(16.W), 976.U(16.W), 1016.U(16.W), 992.U(16.W), 1032.U(16.W)),
-  VecInit(969.U(16.W), 1009.U(16.W), 344.U(16.W), 384.U(16.W), 987.U(16.W), 1027.U(16.W)),
-  VecInit(844.U(16.W), 885.U(16.W), 340.U(16.W), 380.U(16.W), 874.U(16.W), 875.U(16.W)))
+  val checkPointData = VecInit(Seq(
+    VecInit(644.U(16.W), 645.U(16.W), 977.U(16.W), 1017.U(16.W), 674.U(16.W), 675.U(16.W)),
+    VecInit(970.U(16.W), 1010.U(16.W), 947.U(16.W), 987.U(16.W), 474.U(16.W), 475.U(16.W)),
+    VecInit(604.U(16.W), 605.U(16.W), 502.U(16.W), 542.U(16.W), 714.U(16.W), 715.U(16.W)),
+    VecInit(608.U(16.W), 609.U(16.W), 1063.U(16.W), 1103.U(16.W), 508.U(16.W), 509.U(16.W)),
+    VecInit(967.U(16.W), 1007.U(16.W), 976.U(16.W), 1016.U(16.W), 992.U(16.W), 1032.U(16.W)),
+    VecInit(969.U(16.W), 1009.U(16.W), 344.U(16.W), 384.U(16.W), 987.U(16.W), 1027.U(16.W)),
+    VecInit(844.U(16.W), 885.U(16.W), 340.U(16.W), 380.U(16.W), 874.U(16.W), 875.U(16.W))
+  ))
   // Checkpoint Counter
   val checkPointCntReg = RegInit(0.U(4.W))
   val lapCntReg = RegInit(0.U(4.W))
-  val currentTrack = checkPointData(0.U)
+  val currentTrack = checkPointData(io.raceMapIndex - 1.U)
   //io.lapCnt := lapCntReg 
 
 

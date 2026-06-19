@@ -40,9 +40,12 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
     val backBufferWriteAddress = Output(UInt(11.W))
     val backBufferWriteEnable = Output(Bool())
 
+
+
     //Status
     val newFrame = Input(Bool())
     val frameUpdateDone = Output(Bool())
+
   })
 
   // Setting all led outputs to zero
@@ -133,6 +136,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
 
   // Menu printer
   val selectedTrackReg = RegInit(1.U(4.W))
+  raceManager.io.selectedTrackIndex := selectedTrackReg
   val menuPrinter = Module(new MenuPrinter(BackTileNumber, SpriteNumber))
   menuPrinter.io.load := false.B
   menuPrinter.io.track := selectedTrackReg
