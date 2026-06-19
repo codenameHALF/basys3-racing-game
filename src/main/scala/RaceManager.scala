@@ -72,9 +72,15 @@ val idle :: computeRace :: done :: Nil = Enum(3)
 val raceManagerStateReg = RegInit(idle)
 
 val playerController = Module(new PlayerController())
-val ai = Module(new AI(BackTileNumber, SpriteNumber, 2))
-ai.io.newFrame := io.newFrame
-ai.io.enable := io.enable
+val ai  = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 90000, initX = 608, initY = 128))
+val ai2 = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 60000, initX = 640, initY = 160))
+val ai3 = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 130000, initX = 672, initY = 128))
+ai.io.newFrame  := io.newFrame
+ai.io.enable    := io.enable
+ai2.io.newFrame := io.newFrame
+ai2.io.enable   := io.enable
+ai3.io.newFrame := io.newFrame
+ai3.io.enable   := io.enable
 // HUMAN car
 playerController.io.btnU := io.btnU
 playerController.io.btnL := io.btnL
@@ -100,13 +106,31 @@ for (i <- 0 until 3) {
   io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
 }
 
-// AI sprites: 3,4,5,6
-for (i <- 0 until 4) {
+// AI sprites: 3,4,5
+for (i <- 0 until 3) {
   io.spriteVisible(i + 3)        := ai.io.spriteVisible(i)
   io.spriteXPosition(i + 3)      := (ai.io.spriteXPosition(i).asUInt - viewBoxXReg).asSInt
   io.spriteYPosition(i + 3)      := (ai.io.spriteYPosition(i).asUInt - viewBoxYReg).asSInt
   io.spriteFlipHorizontal(i + 3) := ai.io.spriteFlipHorizontal(i)
   io.spriteFlipVertical(i + 3)   := ai.io.spriteFlipVertical(i)
+}
+
+// AI2 sprites: 6,7,8
+for (i <- 0 until 3) {
+  io.spriteVisible(i + 6)        := ai2.io.spriteVisible(i)
+  io.spriteXPosition(i + 6)      := (ai2.io.spriteXPosition(i).asUInt - viewBoxXReg).asSInt
+  io.spriteYPosition(i + 6)      := (ai2.io.spriteYPosition(i).asUInt - viewBoxYReg).asSInt
+  io.spriteFlipHorizontal(i + 6) := ai2.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i + 6)   := ai2.io.spriteFlipVertical(i)
+}
+
+// AI3 sprites: 9,10,11
+for (i <- 0 until 3) {
+  io.spriteVisible(i + 9)        := ai3.io.spriteVisible(i)
+  io.spriteXPosition(i + 9)      := (ai3.io.spriteXPosition(i).asUInt - viewBoxXReg).asSInt
+  io.spriteYPosition(i + 9)      := (ai3.io.spriteYPosition(i).asUInt - viewBoxYReg).asSInt
+  io.spriteFlipHorizontal(i + 9) := ai3.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i + 9)   := ai3.io.spriteFlipVertical(i)
 }
 
 

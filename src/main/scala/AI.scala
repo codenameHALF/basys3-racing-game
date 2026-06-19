@@ -1,7 +1,8 @@
 import chisel3._
 import chisel3.util._
 
-class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) extends Module {
+class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int,
+         initSpeed: Int = 90000, initX: Int = 540, initY: Int = 160) extends Module {
   val io = IO(new Bundle {
     val spriteXPosition = Output(Vec(4, SInt(11.W)))
     val spriteYPosition = Output(Vec(4, SInt(10.W)))
@@ -24,13 +25,13 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int) extends Mod
   val idle :: setMid :: waitMid :: waitMid2 :: waitMid3 :: readMid ::setLeft :: waitLeft :: waitLeft2 :: waitLeft3 :: readLeft ::setRight :: waitRight :: waitRight2 :: waitRight3 :: readRight ::drive :: done :: Nil = Enum(18)
   val stateReg = RegInit(idle)
 
-  val startX = 540.S
-  val startY = 160.S
+  val startX = initX.S
+  val startY = initY.S
   val startAngle = 128.U(8.W)
 
   val xReg = RegInit((startX << 16).asSInt)
   val yReg = RegInit((startY << 16).asSInt)
-  val speedReg = RegInit(90000.S(32.W))
+  val speedReg = RegInit(initSpeed.S(32.W))
   val angleReg = RegInit(startAngle)
 
   val roadMidReg = RegInit(true.B)
