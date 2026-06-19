@@ -41,26 +41,27 @@ class PlayerController extends Module {
   //Setting frame done to zero
   io.frameUpdateDone := false.B
 
-// Checkpoint tile address data
-val checkPointData = VecInit(
-VecInit(644.U(16.W), 645.U(16.W), 977.U(16.W), 1017.U(16.W), 674.U(16.W), 675.U(16.W)),
-VecInit(604.U(16.W), 605.U(16.W), 502.U(16.W), 542.U(16.W), 714.U(16.W), 715.U(16.W)),
-VecInit(3.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
-VecInit(3.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
-VecInit(3.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
-VecInit(3.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W), 8.U(16.W)),
-VecInit(3.U(16.W), 2.U(16.W), 6.U(16.W), 9.U(16.W), 8.U(16.W), 8.U(16.W)))
-// Checkpoint Counter
-val checkPointCntReg = RegInit(0.U(4.W))
-val lapCntReg = RegInit(0.U(4.W))
-val currentTrack = checkPointData(0.U)
+  // Checkpoint tile address data
+  val checkPointData = VecInit(
+  VecInit(644.U(16.W), 645.U(16.W), 977.U(16.W), 1017.U(16.W), 674.U(16.W), 675.U(16.W)),
+  VecInit(970.U(16.W), 1010.U(16.W), 947.U(16.W), 987.U(16.W), 474.U(16.W), 475.U(16.W)),
+  VecInit(604.U(16.W), 605.U(16.W), 502.U(16.W), 542.U(16.W), 714.U(16.W), 715.U(16.W)),
+  VecInit(608.U(16.W), 609.U(16.W), 899.U(16.W), 939.U(16.W), 508.U(16.W), 509.U(16.W)),
+  VecInit(967.U(16.W), 1007.U(16.W), 976.U(16.W), 1016.U(16.W), 992.U(16.W), 1032.U(16.W)),
+  VecInit(969.U(16.W), 1009.U(16.W), 344.U(16.W), 384.U(16.W), 987.U(16.W), 1027.U(16.W)),
+  VecInit(844.U(16.W), 885.U(16.W), 340.U(16.W), 380.U(16.W), 874.U(16.W), 875.U(16.W)))
+  // Checkpoint Counter
+  val checkPointCntReg = RegInit(0.U(4.W))
+  val lapCntReg = RegInit(0.U(4.W))
+  val currentTrack = checkPointData(0.U)
+  //io.lapCnt := lapCntReg 
 
 
 //////////////////////////////////////////////
 // Player logic:
 /////////////////////////////////////////////
 
-  val idle :: inputHandling :: computePos1 :: computePos2 :: collision :: collisionWait :: done :: Nil = Enum(7)
+  val idle :: inputHandling :: computePos :: computeCheckPoint :: collision :: done :: Nil = Enum(6)
   val stateReg = RegInit(idle)
 
   // Position, Hastighed, Vinkel (Q16 format)
@@ -236,23 +237,20 @@ val currentTrack = checkPointData(0.U)
       cosReg := cos_lut(sprite0AngleReg)
       sinReg := sin_lut(sprite0AngleReg)
 
-      stateReg := computePos1
+      stateReg := computePos
 
     }
 
-    is(computePos1){
+    is(computePos){
       playerXPositionReg := playerXPositionReg + ((sprite0SpeedReg * cosReg) >> 8)
       playerYPositionReg := playerYPositionReg + ((sprite0SpeedReg * sinReg) >> 8)
+      
+      tilemapRomTileAddrReg := posToAddress.io.address
 
-      stateReg := collisionWait
-
+      stateReg := computeCheckPoint
     }
-    is(collisionWait){
-        tilemapRomTileAddrReg := posToAddress.io.address
 
-        stateReg := computePos2
-    }
-    is(computePos2){
+    is(computeCheckPoint){
       // Gets the tile addresses of the current checkpoint
       val tile1Idx = checkPointCntReg * 2.U
       val tile2Idx = (checkPointCntReg * 2.U) + 1.U
