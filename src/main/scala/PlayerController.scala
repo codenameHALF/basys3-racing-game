@@ -65,7 +65,7 @@ class PlayerController extends Module {
   val idle :: inputHandling :: computePos :: computeCheckPoint :: collision :: done :: Nil = Enum(6)
   val stateReg = RegInit(idle)
 
-  // Position, Hastighed, Vinkel (Q16 format)
+  // Position, Hastighed, Vinkel
   val playerXPositionReg = RegInit((576 << 16).S(32.W))
   val playerYPositionReg = RegInit((160 << 16).S(32.W))
   val sprite0SpeedReg = RegInit(0.S(32.W))
