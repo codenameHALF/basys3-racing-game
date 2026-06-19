@@ -62,15 +62,21 @@ io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
 io.viewBoxX := viewBoxXReg
 io.viewBoxY := viewBoxYReg
 
-io.backBufferWriteData := 0.U
-io.backBufferWriteAddress := 0.U
-io.backBufferWriteEnable := false.B
+  val backBufferWriteDataReg = RegInit(0.U(log2Up(BackTileNumber).W))  
+  val backBufferWriteAddressReg = RegInit(0.U(11.W))
+  val backBufferWriteEnableReg = RegInit(false.B)
+io.backBufferWriteData := backBufferWriteDataReg
+io.backBufferWriteAddress := backBufferWriteAddressReg
+io.backBufferWriteEnable := backBufferWriteEnableReg
 
 io.frameUpdateDone := false.B
 
+  //Race states
+  val raceStarted = RegInit(false.B)
 val idle :: computeRace :: done :: Nil = Enum(3)
 val raceManagerStateReg = RegInit(idle)
 
+  //Player controller initialization
 val playerController = Module(new PlayerController())
 val ai  = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 90000, initX = 608, initY = 128))
 val ai2 = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 60000, initX = 640, initY = 160))
@@ -89,7 +95,7 @@ playerController.io.btnR := io.btnR
 playerController.io.btnC := io.btnC
 
 playerController.io.newFrame := io.newFrame
-playerController.io.enable := io.enable
+playerController.io.enable := raceStarted
 
 // WARNING: one ROM port only, so for now give it to player
 io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
@@ -133,6 +139,19 @@ for (i <- 0 until 3) {
   io.spriteFlipVertical(i + 9)   := ai3.io.spriteFlipVertical(i)
 }
 
+  //Race scoreboard printer initialization
+  val frameCounter = Module(new BCDCounter())
+  val screenAnimationCounter = RegInit(0.U(16.W))
+  val scoreboardScreen = RegInit(0.U)
+  frameCounter.io.inc := false.B
+  val raceScoreboardPrinter = Module(new RaceScoreboardPrinter(BackTileNumber, SpriteNumber))
+  raceScoreboardPrinter.io.load := false.B
+  raceScoreboardPrinter.io.time := frameCounter.io.data
+  raceScoreboardPrinter.io.screen := scoreboardScreen
+  // State enums
+  val idle :: computeRace :: updateScoreboard :: done :: Nil = Enum(4)
+  val raceManagerStateReg = RegInit(idle)
+
 
   switch(raceManagerStateReg) {
     is (idle) {
@@ -144,6 +163,8 @@ for (i <- 0 until 3) {
     }
 
     is (computeRace) {
+      frameCounter.io.inc := true.B
+
       val tempViewBoxX = (playerController.io.playerXPosition + 16.U)
       val tempViewBoxY = (playerController.io.playerYPosition + 16.U)
 
@@ -166,7 +187,35 @@ for (i <- 0 until 3) {
         viewBoxYReg := 480.U
       }
 
-      raceManagerStateReg := done
+      when(screenAnimationCounter < 400.U) {
+        screenAnimationCounter := screenAnimationCounter + 1.U
+      }
+
+      raceManagerStateReg := updateScoreboard
+    }
+
+    is (updateScoreboard) {
+      when(screenAnimationCounter < 100.U) {
+        scoreboardScreen := 0.U
+      }.elsewhen(screenAnimationCounter < 200.U) {
+        scoreboardScreen := 1.U
+      }.elsewhen(screenAnimationCounter < 300.U) {
+        scoreboardScreen := 2.U
+      }.elsewhen(screenAnimationCounter < 400.U) {
+        scoreboardScreen := 3.U
+      }.otherwise {
+        scoreboardScreen := 4.U
+        raceStarted := true.B
+      }
+
+      raceScoreboardPrinter.io.load := true.B
+      backBufferWriteDataReg := raceScoreboardPrinter.io.backBufferWriteData
+      backBufferWriteAddressReg := raceScoreboardPrinter.io.backBufferWriteAddress
+      backBufferWriteEnableReg := raceScoreboardPrinter.io.backBufferWriteEnable
+
+      when(raceScoreboardPrinter.io.done) {
+        raceManagerStateReg := done
+      }
     }
 
     is (done) {

@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-| Date         : Wed Jun 17 10:51:02 2026
-| Host         : DESKTOP-0FACVVU running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
+| Date         : Fri Jun 19 09:57:29 2026
+| Host         : halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA running 64-bit Linux Mint 22.3
 | Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
 | Design       : Top
 | Device       : xc7a35t
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    27 |
-|    Minimum number of control sets                        |    27 |
+| Total control sets                                       |    36 |
+|    Minimum number of control sets                        |    36 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    83 |
+| Unused register locations in slices containing registers |   100 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,14 +39,14 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    27 |
+| Total control sets |    36 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     3 |
+| >= 4 to < 6        |     7 |
 | >= 6 to < 8        |     4 |
-| >= 8 to < 10       |     1 |
+| >= 8 to < 10       |     6 |
 | >= 10 to < 12      |     4 |
-| >= 12 to < 14      |     4 |
-| >= 14 to < 16      |     1 |
+| >= 12 to < 14      |     3 |
+| >= 14 to < 16      |     2 |
 | >= 16              |    10 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
@@ -58,48 +58,57 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             154 |           66 |
+| No           | No                    | No                     |             176 |           73 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |             116 |           44 |
+| No           | Yes                   | No                     |             109 |           46 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             271 |           94 |
+| Yes          | Yes                   | No                     |             343 |          123 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+------------------+----------------------------------------------------------------------------------+--------------------------------------------------------------------------------+------------------+----------------+--------------+
-|   Clock Signal   |                                   Enable Signal                                  |                                Set/Reset Signal                                | Slice Load Count | Bel Load Count | Bels / Slice |
-+------------------+----------------------------------------------------------------------------------+--------------------------------------------------------------------------------+------------------+----------------+--------------+
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/checkPointCntReg                  | gameTop/gameLogic/raceManager/playerController/RSTD                            |                2 |              4 |         2.00 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/FSM_onehot_raceManagerStateReg_reg_n_0_[1]         | gameTop/gameLogic/raceManager/playerController/SR[0]                           |                1 |              5 |         5.00 |
-|  clock_IBUF_BUFG | gameTop/debounceSampleEn                                                         | gameTop/gameTop_reset                                                          |                4 |              5 |         1.25 |
-|  clock_IBUF_BUFG |                                                                                  | gameTop/graphicEngineVGA/p_0_in                                                |                2 |              6 |         3.00 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/p_1_in__0[0]                      | gameTop/gameLogic/raceManager/playerController/sprite0AngleReg[5]_i_1_n_0      |                3 |              6 |         2.00 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/FSM_onehot_raceManagerStateReg_reg_n_0_[1]         | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |                3 |              6 |         2.00 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/viewBoxXReg[9]_i_2__0_n_0                                      | gameTop/gameLogic/viewBoxXReg[9]_i_1__0_n_0                                    |                1 |              6 |         6.00 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/FSM_onehot_raceManagerStateReg_reg_n_0_[1]         | gameTop/gameLogic/raceManager/playerController/playerXPositionReg_reg[16]_0[0] |                3 |              8 |         2.67 |
-|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/CounterYReg[9]_i_1_n_0                                  | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |                6 |             10 |         1.67 |
-|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/CounterXReg[9]_i_1_n_0                                  | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |                3 |             10 |         3.33 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/tilemapRomTileAddrReg[10]_i_1_n_0 | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |                3 |             11 |         3.67 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/screenLoader/E[0]                                              | gameTop/gameLogic/screenLoader/address[10]_i_1_n_0                             |                4 |             11 |         2.75 |
-|  clock_IBUF_BUFG |                                                                                  | gameTop/gameLogic/FSM_sequential_screenManagerStateReg_reg[1]_0                |                4 |             12 |         3.00 |
-|  clock_IBUF_BUFG |                                                                                  | gameTop/graphicEngineVGA/io_vgaRed_REG[3]_i_1_n_0                              |                4 |             12 |         3.00 |
-|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/_T_7                                                    | gameTop/graphicEngineVGA/backMemoryCopyCounter[0]_i_1_n_0                      |                3 |             12 |         4.00 |
-|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/restoreEnabled                                          | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |                3 |             12 |         4.00 |
-|  clock_IBUF_BUFG |                                                                                  | gameTop/gameTop_reset                                                          |                7 |             15 |         2.14 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/FSM_sequential_stateReg_reg[1]_0  | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |               10 |             16 |         1.60 |
-|  clock_IBUF_BUFG |                                                                                  | gameTop/debounceCounter[0]_i_1_n_0                                             |                6 |             21 |         3.50 |
-|  clock_IBUF_BUFG |                                                                                  | gameTop/graphicEngineVGA/frameClockCount[0]_i_1_n_0                            |                6 |             21 |         3.50 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[25]_i_2_n_0    | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[25]_i_1_n_0  |               10 |             21 |         2.10 |
-|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                  | gameTop/gameTop_reset                                                          |                6 |             22 |         3.67 |
-|  clock_IBUF_BUFG |                                                                                  | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |               15 |             29 |         1.93 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/_playerYPositionReg_T_i_1_n_0     | gameTop/gameLogic/raceManager/playerController/_playerYPositionReg_T_i_2_n_0   |                8 |             30 |         3.75 |
-|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[25]_i_2_n_0    | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[15]_i_1_n_0  |                7 |             32 |         4.57 |
-|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/graphicEngineVGA_io_newFrame                            | gameTop/graphicEngineVGA/graphicEngineVGA_reset                                |               14 |             44 |         3.14 |
-|  clock_IBUF_BUFG |                                                                                  |                                                                                |               66 |            158 |         2.39 |
-+------------------+----------------------------------------------------------------------------------+--------------------------------------------------------------------------------+------------------+----------------+--------------+
++------------------+----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|   Clock Signal   |                                   Enable Signal                                  |                                     Set/Reset Signal                                    | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------+----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  clock_IBUF_BUFG | gameTop/gameLogic/screenLoader/E[0]                                              | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                2 |              4 |         2.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/checkPointCntReg                  | gameTop/gameLogic/raceManager/playerController/RSTD                                     |                2 |              4 |         2.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/selectedTrackReg                                               | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                1 |              4 |         4.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/raceScoreboardPrinter/E[0]                         | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                1 |              4 |         4.00 |
+|  clock_IBUF_BUFG | gameTop/debounceSampleEn                                                         | gameTop/gameTop_reset                                                                   |                4 |              5 |         1.25 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/raceScoreboardPrinter/xIdx[4]_i_2_n_0              | gameTop/gameLogic/raceManager/raceScoreboardPrinter/xIdx[4]_i_1_n_0                     |                2 |              5 |         2.50 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/Q[2]                                               | gameTop/gameLogic/raceManager/playerController/FSM_onehot_raceManagerStateReg_reg[3][0] |                2 |              5 |         2.50 |
+|  clock_IBUF_BUFG |                                                                                  | gameTop/graphicEngineVGA/backBufferMemory/ramsSpWf/SR[0]                                |                4 |              6 |         1.50 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/Q[2]                                               | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |              6 |         2.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/p_1_in__0[0]                      | gameTop/gameLogic/raceManager/playerController/sprite0AngleReg[5]_i_1_n_0               |                3 |              6 |         2.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/viewBoxXReg                                                    | gameTop/gameLogic/viewBoxXReg[9]_i_1__0_n_0                                             |                2 |              6 |         3.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/frameCounter/E[0]                                  | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |              8 |         2.67 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/frameCounter/digits_3_0                            | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |              8 |         2.67 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/frameCounter/digits_2                              | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |              8 |         2.67 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/frameCounter/digits_1                              | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |              8 |         2.67 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/Q[2]                                               | gameTop/gameLogic/raceManager/playerController/SR[0]                                    |                2 |              8 |         4.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/screenAnimationCounter[8]_i_1_n_0                  | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                4 |              9 |         2.25 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/CounterYReg[9]_i_1_n_0                                  | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |             10 |         3.33 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/CounterXReg[9]_i_1_n_0                                  | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |             10 |         3.33 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/tilemapRomTileAddrReg[10]_i_1_n_0 | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                5 |             11 |         2.20 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/screenLoader/screenLoader_io_backBufferWriteEnable             | gameTop/gameLogic/screenLoader/address[10]_i_1_n_0                                      |                3 |             11 |         3.67 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/restoreEnabled                                          | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                3 |             12 |         4.00 |
+|  clock_IBUF_BUFG |                                                                                  | gameTop/graphicEngineVGA/io_vgaRed_REG[3]_i_1_n_0                                       |                4 |             12 |         3.00 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/_T_7                                                    | gameTop/graphicEngineVGA/clear                                                          |                3 |             12 |         4.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/raceScoreboardPrinter/backBufferWriteEnableReg     | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                9 |             14 |         1.56 |
+|  clock_IBUF_BUFG |                                                                                  | gameTop/gameTop_reset                                                                   |                6 |             15 |         2.50 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/sinReg[15]_i_1_n_0                | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |                8 |             16 |         2.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[25]_i_2_n_0    | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[25]_i_1_n_0           |                9 |             21 |         2.33 |
+|  clock_IBUF_BUFG |                                                                                  | gameTop/debounceCounter[0]_i_1_n_0                                                      |                6 |             21 |         3.50 |
+|  clock_IBUF_BUFG |                                                                                  | gameTop/graphicEngineVGA/frameClockCount[0]_i_1_n_0                                     |                6 |             21 |         3.50 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1   | gameTop/gameTop_reset                                                                   |                6 |             22 |         3.67 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/_playerYPositionReg_T_i_1_n_0     | gameTop/gameLogic/raceManager/playerController/_playerYPositionReg_T_i_2_n_0            |                8 |             30 |         3.75 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[25]_i_2_n_0    | gameTop/gameLogic/raceManager/playerController/playerYPositionReg[15]_i_1_n_0           |                8 |             32 |         4.00 |
+|  clock_IBUF_BUFG |                                                                                  | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |               20 |             34 |         1.70 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/graphicEngineVGA_io_newFrame                            | gameTop/gameLogic/raceManager/playerController/resetReleaseCounter_reg_11_sn_1          |               15 |             44 |         2.93 |
+|  clock_IBUF_BUFG |                                                                                  |                                                                                         |               73 |            180 |         2.47 |
++------------------+----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+------------------+----------------+--------------+
 
 
