@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Fri Jun 19 09:55:28 2026
-# Process ID         : 102217
+# Start of session at: Fri Jun 19 15:39:33 2026
+# Process ID         : 341671
 # Current directory  : /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1
 # Command line       : vivado -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
 # Log file           : /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.vds
@@ -13,12 +13,12 @@
 # Platform           : Linuxmint
 # Operating System   : Linux Mint 22.3
 # Processor Detail   : AMD Ryzen 5 4500U with Radeon Graphics
-# CPU Frequency      : 1442.455 MHz
+# CPU Frequency      : 3992.649 MHz
 # CPU Physical cores : 6
 # CPU Logical cores  : 6
 # Host memory        : 7710 MB
 # Swap memory        : 2147 MB
 # Total Virtual      : 9858 MB
-# Available Virtual  : 2777 MB
+# Available Virtual  : 3385 MB
 #-----------------------------------------------------------
 source Top.tcl -notrace

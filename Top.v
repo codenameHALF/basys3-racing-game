@@ -6223,58 +6223,73 @@ module BCDCounter(
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
   reg [31:0] _RAND_3;
+  reg [31:0] _RAND_4;
 `endif // RANDOMIZE_REG_INIT
   reg [7:0] digits_0; // @[src/main/scala/BCDCounter.scala 10:25]
   reg [7:0] digits_1; // @[src/main/scala/BCDCounter.scala 10:25]
   reg [7:0] digits_2; // @[src/main/scala/BCDCounter.scala 10:25]
   reg [7:0] digits_3; // @[src/main/scala/BCDCounter.scala 10:25]
-  wire [7:0] _digits_3_T_1 = digits_3 + 8'h1; // @[src/main/scala/BCDCounter.scala 22:48]
-  wire [7:0] _GEN_0 = digits_3 == 8'h9 ? 8'h0 : _digits_3_T_1; // @[src/main/scala/BCDCounter.scala 19:45 20:35 22:35]
-  wire [7:0] _digits_2_T_1 = digits_2 + 8'h1; // @[src/main/scala/BCDCounter.scala 25:44]
-  wire [7:0] _GEN_1 = digits_2 == 8'h9 ? 8'h0 : _digits_2_T_1; // @[src/main/scala/BCDCounter.scala 17:41 18:31 25:31]
-  wire [7:0] _GEN_2 = digits_2 == 8'h9 ? _GEN_0 : digits_3; // @[src/main/scala/BCDCounter.scala 10:25 17:41]
-  wire [7:0] _digits_1_T_1 = digits_1 + 8'h1; // @[src/main/scala/BCDCounter.scala 28:40]
-  wire [7:0] _digits_0_T_1 = digits_0 + 8'h1; // @[src/main/scala/BCDCounter.scala 31:36]
-  assign io_data_0 = digits_0; // @[src/main/scala/BCDCounter.scala 35:13]
-  assign io_data_1 = digits_1; // @[src/main/scala/BCDCounter.scala 35:13]
-  assign io_data_2 = digits_2; // @[src/main/scala/BCDCounter.scala 35:13]
-  assign io_data_3 = digits_3; // @[src/main/scala/BCDCounter.scala 35:13]
+  reg [7:0] digits_4; // @[src/main/scala/BCDCounter.scala 10:25]
+  wire [7:0] _digits_4_T_1 = digits_4 + 8'h1; // @[src/main/scala/BCDCounter.scala 24:52]
+  wire [7:0] _GEN_0 = digits_4 == 8'h9 ? 8'h0 : _digits_4_T_1; // @[src/main/scala/BCDCounter.scala 21:49 22:39 24:39]
+  wire [7:0] _digits_3_T_1 = digits_3 + 8'h1; // @[src/main/scala/BCDCounter.scala 27:48]
+  wire [7:0] _GEN_1 = digits_3 == 8'h9 ? 8'h0 : _digits_3_T_1; // @[src/main/scala/BCDCounter.scala 19:45 20:35 27:35]
+  wire [7:0] _GEN_2 = digits_3 == 8'h9 ? _GEN_0 : digits_4; // @[src/main/scala/BCDCounter.scala 10:25 19:45]
+  wire [7:0] _digits_2_T_1 = digits_2 + 8'h1; // @[src/main/scala/BCDCounter.scala 30:44]
+  wire [7:0] _GEN_3 = digits_2 == 8'h9 ? 8'h0 : _digits_2_T_1; // @[src/main/scala/BCDCounter.scala 17:41 18:31 30:31]
+  wire [7:0] _GEN_4 = digits_2 == 8'h9 ? _GEN_1 : digits_3; // @[src/main/scala/BCDCounter.scala 10:25 17:41]
+  wire [7:0] _GEN_5 = digits_2 == 8'h9 ? _GEN_2 : digits_4; // @[src/main/scala/BCDCounter.scala 10:25 17:41]
+  wire [7:0] _digits_1_T_1 = digits_1 + 8'h1; // @[src/main/scala/BCDCounter.scala 33:40]
+  wire [7:0] _digits_0_T_1 = digits_0 + 8'h1; // @[src/main/scala/BCDCounter.scala 36:36]
+  assign io_data_0 = digits_1; // @[src/main/scala/BCDCounter.scala 40:16]
+  assign io_data_1 = digits_2; // @[src/main/scala/BCDCounter.scala 41:16]
+  assign io_data_2 = digits_3; // @[src/main/scala/BCDCounter.scala 42:16]
+  assign io_data_3 = digits_4; // @[src/main/scala/BCDCounter.scala 43:16]
   always @(posedge clock) begin
     if (reset) begin // @[src/main/scala/BCDCounter.scala 10:25]
       digits_0 <= 8'h0; // @[src/main/scala/BCDCounter.scala 10:25]
     end else if (io_inc) begin // @[src/main/scala/BCDCounter.scala 12:18]
-      if (digits_0 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 13:33]
+      if (digits_0 == 8'h3c) begin // @[src/main/scala/BCDCounter.scala 13:34]
         digits_0 <= 8'h0; // @[src/main/scala/BCDCounter.scala 14:23]
       end else begin
-        digits_0 <= _digits_0_T_1; // @[src/main/scala/BCDCounter.scala 31:23]
+        digits_0 <= _digits_0_T_1; // @[src/main/scala/BCDCounter.scala 36:23]
       end
     end
     if (reset) begin // @[src/main/scala/BCDCounter.scala 10:25]
       digits_1 <= 8'h0; // @[src/main/scala/BCDCounter.scala 10:25]
     end else if (io_inc) begin // @[src/main/scala/BCDCounter.scala 12:18]
-      if (digits_0 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 13:33]
+      if (digits_0 == 8'h3c) begin // @[src/main/scala/BCDCounter.scala 13:34]
         if (digits_1 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 15:37]
           digits_1 <= 8'h0; // @[src/main/scala/BCDCounter.scala 16:27]
         end else begin
-          digits_1 <= _digits_1_T_1; // @[src/main/scala/BCDCounter.scala 28:27]
+          digits_1 <= _digits_1_T_1; // @[src/main/scala/BCDCounter.scala 33:27]
         end
       end
     end
     if (reset) begin // @[src/main/scala/BCDCounter.scala 10:25]
       digits_2 <= 8'h0; // @[src/main/scala/BCDCounter.scala 10:25]
     end else if (io_inc) begin // @[src/main/scala/BCDCounter.scala 12:18]
-      if (digits_0 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 13:33]
+      if (digits_0 == 8'h3c) begin // @[src/main/scala/BCDCounter.scala 13:34]
         if (digits_1 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 15:37]
-          digits_2 <= _GEN_1;
+          digits_2 <= _GEN_3;
         end
       end
     end
     if (reset) begin // @[src/main/scala/BCDCounter.scala 10:25]
       digits_3 <= 8'h0; // @[src/main/scala/BCDCounter.scala 10:25]
     end else if (io_inc) begin // @[src/main/scala/BCDCounter.scala 12:18]
-      if (digits_0 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 13:33]
+      if (digits_0 == 8'h3c) begin // @[src/main/scala/BCDCounter.scala 13:34]
         if (digits_1 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 15:37]
-          digits_3 <= _GEN_2;
+          digits_3 <= _GEN_4;
+        end
+      end
+    end
+    if (reset) begin // @[src/main/scala/BCDCounter.scala 10:25]
+      digits_4 <= 8'h0; // @[src/main/scala/BCDCounter.scala 10:25]
+    end else if (io_inc) begin // @[src/main/scala/BCDCounter.scala 12:18]
+      if (digits_0 == 8'h3c) begin // @[src/main/scala/BCDCounter.scala 13:34]
+        if (digits_1 == 8'h9) begin // @[src/main/scala/BCDCounter.scala 15:37]
+          digits_4 <= _GEN_5;
         end
       end
     end
@@ -6323,6 +6338,8 @@ initial begin
   digits_2 = _RAND_2[7:0];
   _RAND_3 = {1{`RANDOM}};
   digits_3 = _RAND_3[7:0];
+  _RAND_4 = {1{`RANDOM}};
+  digits_4 = _RAND_4[7:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -6668,6 +6685,7 @@ module RaceManager(
   wire  _GEN_14 = screenAnimationCounter < 16'h64 ? raceStarted : _GEN_12; // @[src/main/scala/RaceManager.scala 161:44 77:28]
   wire [1:0] _GEN_15 = raceScoreboardPrinter_io_done ? 2'h3 : raceManagerStateReg; // @[src/main/scala/RaceManager.scala 179:43 180:29 116:36]
   wire [1:0] _GEN_17 = 2'h3 == raceManagerStateReg ? 2'h0 : raceManagerStateReg; // @[src/main/scala/RaceManager.scala 119:31 186:29 116:36]
+  wire  _GEN_26 = 2'h1 == raceManagerStateReg & raceStarted; // @[src/main/scala/RaceManager.scala 109:23 119:31 129:27]
   wire [10:0] _GEN_27 = 2'h1 == raceManagerStateReg ? _GEN_4 : {{1'd0}, viewBoxXReg}; // @[src/main/scala/RaceManager.scala 119:31 60:28]
   wire [9:0] _GEN_28 = 2'h1 == raceManagerStateReg ? _GEN_5 : {{1'd0}, viewBoxYReg}; // @[src/main/scala/RaceManager.scala 119:31 61:28]
   wire  _GEN_33 = 2'h1 == raceManagerStateReg ? 1'h0 : 2'h2 == raceManagerStateReg; // @[src/main/scala/RaceManager.scala 119:31 111:33]
@@ -6749,7 +6767,7 @@ module RaceManager(
   assign playerController_io_enable = raceStarted; // @[src/main/scala/RaceManager.scala 90:30]
   assign frameCounter_clock = clock;
   assign frameCounter_reset = reset;
-  assign frameCounter_io_inc = 2'h0 == raceManagerStateReg ? 1'h0 : 2'h1 == raceManagerStateReg; // @[src/main/scala/RaceManager.scala 109:23 119:31]
+  assign frameCounter_io_inc = 2'h0 == raceManagerStateReg ? 1'h0 : _GEN_26; // @[src/main/scala/RaceManager.scala 109:23 119:31]
   assign raceScoreboardPrinter_clock = clock;
   assign raceScoreboardPrinter_reset = reset;
   assign raceScoreboardPrinter_io_load = 2'h0 == raceManagerStateReg ? 1'h0 : _GEN_33; // @[src/main/scala/RaceManager.scala 119:31 111:33]
@@ -6922,11 +6940,11 @@ module MenuPrinter(
   wire [10:0] _backBufferAddress_T_1 = 6'h28 * yIdx; // @[src/main/scala/MenuPrinter.scala 160:61]
   wire [11:0] _GEN_157 = {{1'd0}, _backBufferAddress_T_1}; // @[src/main/scala/MenuPrinter.scala 160:47]
   wire [12:0] backBufferAddress = _backBufferAddress_T + _GEN_157; // @[src/main/scala/MenuPrinter.scala 160:47]
-  wire [6:0] trackTextAddress = xIdx - 6'h15; // @[src/main/scala/MenuPrinter.scala 163:33]
+  wire [6:0] trackTextAddress = xIdx - 6'h17; // @[src/main/scala/MenuPrinter.scala 163:33]
   wire [6:0] difficultyTextAddress = xIdx - 6'h21; // @[src/main/scala/MenuPrinter.scala 164:38]
   reg  running; // @[src/main/scala/MenuPrinter.scala 166:26]
   reg  done; // @[src/main/scala/MenuPrinter.scala 167:23]
-  wire  _T = yIdx == 5'ha; // @[src/main/scala/MenuPrinter.scala 171:15]
+  wire  _T = yIdx == 5'h7; // @[src/main/scala/MenuPrinter.scala 171:15]
   wire  _T_1 = io_track == 4'h1; // @[src/main/scala/MenuPrinter.scala 172:23]
   wire [7:0] _GEN_1 = 4'h1 == trackTextAddress[3:0] ? 8'h14 : 8'h12; // @[src/main/scala/MenuPrinter.scala 173:{36,36}]
   wire [7:0] _GEN_2 = 4'h2 == trackTextAddress[3:0] ? 8'hf : _GEN_1; // @[src/main/scala/MenuPrinter.scala 173:{36,36}]
@@ -7045,39 +7063,41 @@ module MenuPrinter(
   wire [7:0] _GEN_136 = _T_2 ? _GEN_107 : _GEN_135; // @[src/main/scala/MenuPrinter.scala 190:38 191:36]
   wire [7:0] _GEN_137 = _T_1 ? _GEN_107 : _GEN_136; // @[src/main/scala/MenuPrinter.scala 188:32 189:36]
   wire [7:0] _GEN_138 = yIdx == 5'hd ? _GEN_137 : 8'h0; // @[src/main/scala/MenuPrinter.scala 169:28 187:43]
-  wire [7:0] _GEN_139 = yIdx == 5'ha ? _GEN_103 : _GEN_138; // @[src/main/scala/MenuPrinter.scala 171:32]
+  wire [7:0] _GEN_139 = yIdx == 5'h7 ? _GEN_103 : _GEN_138; // @[src/main/scala/MenuPrinter.scala 171:32]
   wire  _T_14 = ~running; // @[src/main/scala/MenuPrinter.scala 208:21]
   wire  _GEN_140 = io_load & ~running | running; // @[src/main/scala/MenuPrinter.scala 208:31 209:17 166:26]
-  wire [5:0] _GEN_141 = io_load & ~running ? 6'h15 : xIdx; // @[src/main/scala/MenuPrinter.scala 208:31 210:14 158:23]
-  wire [4:0] _GEN_142 = io_load & ~running ? 5'ha : yIdx; // @[src/main/scala/MenuPrinter.scala 208:31 211:14 159:23]
+  wire [5:0] _GEN_141 = io_load & ~running ? 6'h17 : xIdx; // @[src/main/scala/MenuPrinter.scala 208:31 210:14 158:23]
+  wire [4:0] _GEN_142 = io_load & ~running ? 5'h7 : yIdx; // @[src/main/scala/MenuPrinter.scala 208:31 211:14 159:23]
   wire  _GEN_143 = _T_14 ? 1'h0 : done; // @[src/main/scala/MenuPrinter.scala 214:20 215:14 167:23]
+  wire  _T_17 = xIdx < 6'h24; // @[src/main/scala/MenuPrinter.scala 221:19]
   wire [5:0] _xIdx_T_1 = xIdx + 6'h1; // @[src/main/scala/MenuPrinter.scala 222:26]
-  wire [5:0] _GEN_144 = xIdx < 6'h24 & _T_7 ? _xIdx_T_1 : _GEN_141; // @[src/main/scala/MenuPrinter.scala 226:77 227:18]
-  wire  _GEN_150 = xIdx == 6'h24 & _T_7 | _GEN_143; // @[src/main/scala/MenuPrinter.scala 230:73 232:18]
+  wire  _T_20 = xIdx == 6'h24; // @[src/main/scala/MenuPrinter.scala 223:25]
+  wire [5:0] _GEN_144 = _T_17 & _T_7 ? _xIdx_T_1 : _GEN_141; // @[src/main/scala/MenuPrinter.scala 226:77 227:18]
+  wire  _GEN_150 = _T_20 & _T_7 | _GEN_143; // @[src/main/scala/MenuPrinter.scala 230:73 232:18]
   assign io_done = done; // @[src/main/scala/MenuPrinter.scala 168:13]
   assign io_backBufferWriteData = _GEN_139[5:0];
   assign io_backBufferWriteAddress = backBufferAddress[10:0]; // @[src/main/scala/MenuPrinter.scala 205:31]
   assign io_backBufferWriteEnable = running; // @[src/main/scala/MenuPrinter.scala 218:19 206:30 219:34]
   always @(posedge clock) begin
     if (reset) begin // @[src/main/scala/MenuPrinter.scala 158:23]
-      xIdx <= 6'h15; // @[src/main/scala/MenuPrinter.scala 158:23]
+      xIdx <= 6'h17; // @[src/main/scala/MenuPrinter.scala 158:23]
     end else if (running) begin // @[src/main/scala/MenuPrinter.scala 218:19]
-      if (xIdx < 6'h22 & _T) begin // @[src/main/scala/MenuPrinter.scala 221:61]
+      if (xIdx < 6'h24 & _T) begin // @[src/main/scala/MenuPrinter.scala 221:61]
         xIdx <= _xIdx_T_1; // @[src/main/scala/MenuPrinter.scala 222:18]
-      end else if (xIdx == 6'h22 & _T) begin // @[src/main/scala/MenuPrinter.scala 223:69]
+      end else if (xIdx == 6'h24 & _T) begin // @[src/main/scala/MenuPrinter.scala 223:69]
         xIdx <= 6'h21; // @[src/main/scala/MenuPrinter.scala 224:18]
       end else begin
         xIdx <= _GEN_144;
       end
     end else if (io_load & ~running) begin // @[src/main/scala/MenuPrinter.scala 208:31]
-      xIdx <= 6'h15; // @[src/main/scala/MenuPrinter.scala 210:14]
+      xIdx <= 6'h17; // @[src/main/scala/MenuPrinter.scala 210:14]
     end
     if (reset) begin // @[src/main/scala/MenuPrinter.scala 159:23]
-      yIdx <= 5'ha; // @[src/main/scala/MenuPrinter.scala 159:23]
+      yIdx <= 5'h7; // @[src/main/scala/MenuPrinter.scala 159:23]
     end else if (running) begin // @[src/main/scala/MenuPrinter.scala 218:19]
-      if (xIdx < 6'h22 & _T) begin // @[src/main/scala/MenuPrinter.scala 221:61]
+      if (xIdx < 6'h24 & _T) begin // @[src/main/scala/MenuPrinter.scala 221:61]
         yIdx <= _GEN_142;
-      end else if (xIdx == 6'h22 & _T) begin // @[src/main/scala/MenuPrinter.scala 223:69]
+      end else if (xIdx == 6'h24 & _T) begin // @[src/main/scala/MenuPrinter.scala 223:69]
         yIdx <= 5'hd; // @[src/main/scala/MenuPrinter.scala 225:18]
       end else begin
         yIdx <= _GEN_142;
@@ -7088,7 +7108,7 @@ module MenuPrinter(
     if (reset) begin // @[src/main/scala/MenuPrinter.scala 166:26]
       running <= 1'h0; // @[src/main/scala/MenuPrinter.scala 166:26]
     end else if (running) begin // @[src/main/scala/MenuPrinter.scala 218:19]
-      if (xIdx == 6'h24 & _T_7) begin // @[src/main/scala/MenuPrinter.scala 230:73]
+      if (_T_20 & _T_7) begin // @[src/main/scala/MenuPrinter.scala 230:73]
         running <= 1'h0; // @[src/main/scala/MenuPrinter.scala 231:21]
       end else begin
         running <= _GEN_140;
