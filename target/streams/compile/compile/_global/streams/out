@@ -1,4 +1,25 @@
-[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScreenManager.scala:108:46: no arguments allowed for nullary constructor ScreenLoader: (): ScreenLoader[0m
-[0m[[0m[31merror[0m] [0m[0m  val screenLoader = Module(new ScreenLoader(BackTileNumber, SpriteNumber, TilemapNumber))[0m
-[0m[[0m[31merror[0m] [0m[0m                                             ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:146:40: not found: value difficultyXIdxMin[0m
+[0m[[0m[31merror[0m] [0m[0m    val timeTextAddress = 3.U + xIdx - difficultyXIdxMin.U(6.W)[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:169:25: not found: value difficultyYIdx[0m
+[0m[[0m[31merror[0m] [0m[0m    }.elsewhen(yIdx === difficultyYIdx.U) {[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:192:21: not found: value difficultyXIdxMin[0m
+[0m[[0m[31merror[0m] [0m[0m            xIdx := difficultyXIdxMin.U[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:193:21: not found: value difficultyYIdx[0m
+[0m[[0m[31merror[0m] [0m[0m            yIdx := difficultyYIdx.U[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:194:27: not found: value difficultyXIdxMax[0m
+[0m[[0m[31merror[0m] [0m[0m        }.elsewhen(xIdx < difficultyXIdxMax.U && yIdx === difficultyYIdx.U) {[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:194:59: not found: value difficultyYIdx[0m
+[0m[[0m[31merror[0m] [0m[0m        }.elsewhen(xIdx < difficultyXIdxMax.U && yIdx === difficultyYIdx.U) {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:198:23: not found: value difficultyXIdxMax[0m
+[0m[[0m[31merror[0m] [0m[0m        when(xIdx === difficultyXIdxMax.U && yIdx === difficultyYIdx.U) {[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScoreboardPrinter.scala:198:55: not found: value difficultyYIdx[0m
+[0m[[0m[31merror[0m] [0m[0m        when(xIdx === difficultyXIdxMax.U && yIdx === difficultyYIdx.U) {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m8 errors found[0m

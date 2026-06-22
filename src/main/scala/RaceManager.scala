@@ -39,6 +39,7 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
     //Control flags from ScreenManager
     val enable = Input(Bool())
+    val finished = Output(Bool())
 
     //Tilemap rom connections
     val tilemapRomTileAddress = Output(UInt(11.W))
@@ -78,6 +79,8 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
   //Race states
   val raceStarted = RegInit(false.B)
+  val raceFinished = RegInit(false.B)
+  io.finished := raceFinished
 
   //Player controller initialization
   val playerController = Module(new PlayerController())
@@ -130,6 +133,9 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
             when(io.newFrame) {
                 raceManagerStateReg := computeRace
             }
+        }.otherwise {
+          raceStarted := false.B
+          raceFinished := false.B
         }
     }
 
@@ -186,6 +192,11 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
       when(raceScoreboardPrinter.io.done) {
         raceManagerStateReg := done
+      }
+
+      when(playerController.io.lapCnt === 4.U) {
+        raceFinished := true.B
+        raceStarted := false.B
       }
     }
 

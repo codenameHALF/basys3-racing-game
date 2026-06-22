@@ -93,8 +93,8 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
   /////////////////////////////////////////////////////////////////
 
   //State enums
-  val startup :: loadMenu :: transTrackSelect :: transTrackSelectStepDone :: updateTrackSelect :: loadTrack :: race :: idle :: done :: Nil = Enum(9)
-  val titleScreen :: trackSelectScreen :: Nil = Enum(2)
+  val startup :: loadMenu :: transTrackSelect :: transTrackSelectStepDone :: updateTrackSelect :: loadTrack :: race :: updateScoreboard :: idle :: done :: Nil = Enum(10)
+  val titleScreen :: trackSelectScreen :: scoreboard :: Nil = Enum(3)
 
   // Viewport setup
   val viewBoxXReg = RegInit(0.U(10.W))
@@ -141,6 +141,13 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
   menuPrinter.io.load := false.B
   menuPrinter.io.track := selectedTrackReg
 
+  // Scoreboard printer
+  val scoreboardPrinter = Module(new ScoreboardPrinter(BackTileNumber, SpriteNumber))
+  scoreboardPrinter.io.load := false.B
+  scoreboardPrinter.io.track := selectedTrackReg
+  scoreboardPrinter.io.time := VecInit(Seq(0.U, 0.U, 0.U, 0.U))
+
+  val btnCPressed = RegInit(false.B)
   val btnLPressed = RegInit(false.B)
   val btnRPressed = RegInit(false.B)
   
@@ -150,6 +157,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
     //Initial state
     is(startup) {
       when(io.newFrame) {
+        currentScreenReg := titleScreen
         screenManagerStateReg := loadMenu
       }
     }
@@ -163,7 +171,14 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
       when(screenLoader.io.done) {
         io.frameUpdateDone := true.B
         screenManagerStateReg := idle
-        currentScreenReg := titleScreen
+      }
+
+      when(currentScreenReg === titleScreen) {
+        viewBoxXReg := 0.U
+        viewBoxYReg := 0.U
+      }.elsewhen(currentScreenReg === scoreboard) {
+        viewBoxXReg := 0.U
+        viewBoxYReg := 480.U
       }
     }
 
@@ -209,6 +224,17 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
       }
     }
 
+    is(updateScoreboard) {
+      scoreboardPrinter.io.load := true.B
+      io.backBufferWriteData := scoreboardPrinter.io.backBufferWriteData
+      io.backBufferWriteAddress := scoreboardPrinter.io.backBufferWriteAddress
+      io.backBufferWriteEnable := scoreboardPrinter.io.backBufferWriteEnable
+
+      when(scoreboardPrinter.io.done) {
+        screenManagerStateReg := done
+      }
+    }
+
     //RaceManager takes over all logic control
     is(race) {      
       // Leave control of all IO to RaceManager
@@ -233,6 +259,11 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
 
       // Activate RaceManager
       raceManager.io.enable := true.B
+
+      when(raceManager.io.finished) {
+        screenManagerStateReg := loadMenu
+        currentScreenReg := scoreboard
+      }
     }
 
     // Wait for user input on menu screens
@@ -240,14 +271,22 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
       when(io.newFrame) {
         screenManagerStateReg := done
 
-        when(io.btnC) {
+        when(currentScreenReg === scoreboard) {
+          currentScreenReg := updateScoreboard
+        }
+
+        when(io.btnC && btnCPressed === false.B) {
+          btnCPressed := true.B
           when(currentScreenReg === titleScreen) {
             screenManagerStateReg := transTrackSelect
           }
           when(currentScreenReg === trackSelectScreen) {
             screenManagerStateReg := loadTrack
+          }
+          when(currentScreenReg === scoreboard) {
             viewBoxXReg := 0.U;
             viewBoxYReg := 0.U;
+            currentScreenReg := titleScreen
           }
         }
 
@@ -271,6 +310,10 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
             }
             screenManagerStateReg := updateTrackSelect
           }
+        }
+
+        when(~io.btnC) {
+          btnCPressed := false.B
         }
 
         when(~io.btnR) {
