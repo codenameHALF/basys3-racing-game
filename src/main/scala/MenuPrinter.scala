@@ -148,9 +148,9 @@ class MenuPrinter(BackTileNumber: Int, SpriteNumber: Int) extends Module {
     hardText(2)  := ('R'-65).U
     hardText(3)  := ('D'-65).U
 
-    val trackXIdxMin = 21
-    val trackXIdxMax = 34
-    val trackYIdx = 10
+    val trackXIdxMin = 23
+    val trackXIdxMax = 36
+    val trackYIdx = 7
     val difficultyXIdxMin = 33
     val difficultyXIdxMax = 36
     val difficultyYIdx = 13

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date             : Fri Jun 19 09:57:57 2026
+| Date             : Fri Jun 19 15:42:01 2026
 | Host             : halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA running 64-bit Linux Mint 22.3
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
@@ -52,15 +52,15 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.005 |        3 |       --- |             --- |
-| Slice Logic             |    <0.001 |     2544 |       --- |             --- |
-|   LUT as Logic          |    <0.001 |     1194 |     20800 |            5.74 |
+| Clocks                  |     0.006 |        3 |       --- |             --- |
+| Slice Logic             |    <0.001 |     2597 |       --- |             --- |
+|   LUT as Logic          |    <0.001 |     1226 |     20800 |            5.89 |
 |   CARRY4                |    <0.001 |      127 |      8150 |            1.56 |
-|   Register              |    <0.001 |      628 |     41600 |            1.51 |
-|   F7/F8 Muxes           |    <0.001 |      116 |     32600 |            0.36 |
+|   Register              |    <0.001 |      636 |     41600 |            1.53 |
+|   F7/F8 Muxes           |    <0.001 |      117 |     32600 |            0.36 |
 |   Others                |     0.000 |      202 |       --- |             --- |
 |   LUT as Shift Register |     0.000 |        4 |      9600 |            0.04 |
-| Signals                 |    <0.001 |     2299 |       --- |             --- |
+| Signals                 |    <0.001 |     2343 |       --- |             --- |
 | Block RAM               |     0.075 |       43 |        50 |           86.00 |
 | DSPs                    |    <0.001 |        5 |        90 |            5.56 |
 | I/O                     |    <0.001 |       32 |       106 |           30.19 |
@@ -145,9 +145,9 @@ Table of Contents
 | Name                         | Power (W) |
 +------------------------------+-----------+
 | Top                          |     0.084 |
-|   gameTop                    |     0.083 |
+|   gameTop                    |     0.084 |
 |     gameLogic                |     0.012 |
-|       raceManager            |     0.004 |
+|       raceManager            |     0.005 |
 |       tilemapRom             |     0.007 |
 |     graphicEngineVGA         |     0.071 |
 |       backBufferShadowMemory |     0.001 |

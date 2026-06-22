@@ -45,6 +45,9 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     val tilemapRomTileAddress = Output(UInt(11.W))
     val tilemapRomTileData = Input(UInt(6.W))
     val tilemapRomCollisionData = Input(Bool())
+
+    // Track Index
+    val selectedTrackIndex = Input(UInt(4.W))
   })
 
   // Disable all leds
@@ -98,6 +101,10 @@ playerController.io.btnC := io.btnC
 
 playerController.io.newFrame := io.newFrame
 playerController.io.enable := raceStarted
+  
+  // Track/Map index 
+  playerController.io.raceMapIndex := io.selectedTrackIndex
+
 
 // WARNING: one ROM port only, so for now give it to player
 io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
@@ -147,6 +154,7 @@ for (i <- 0 until 3) {
   val scoreboardScreen = RegInit(0.U)
   frameCounter.io.inc := false.B
   val raceScoreboardPrinter = Module(new RaceScoreboardPrinter(BackTileNumber, SpriteNumber))
+  raceScoreboardPrinter.io.lapCnt := playerController.io.lapCnt
   raceScoreboardPrinter.io.load := false.B
   raceScoreboardPrinter.io.time := frameCounter.io.data
   raceScoreboardPrinter.io.screen := scoreboardScreen
@@ -165,7 +173,7 @@ for (i <- 0 until 3) {
     }
 
     is (computeRace) {
-      frameCounter.io.inc := true.B
+      frameCounter.io.inc := raceStarted
 
       val tempViewBoxX = (playerController.io.playerXPosition + 16.U)
       val tempViewBoxY = (playerController.io.playerYPosition + 16.U)

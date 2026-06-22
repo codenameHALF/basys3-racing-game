@@ -17,6 +17,8 @@ class RaceScoreboardPrinter(BackTileNumber: Int, SpriteNumber: Int) extends Modu
         val backBufferWriteData = Output(UInt(tileWidth.W))
         val backBufferWriteAddress = Output(UInt(addrWidth.W))
         val backBufferWriteEnable = Output(Bool())
+
+        val lapCnt = Input(UInt(4.W))
     })
 
     val titleText = Wire(Vec(18, UInt(8.W)))
@@ -104,7 +106,7 @@ class RaceScoreboardPrinter(BackTileNumber: Int, SpriteNumber: Int) extends Modu
     raceText(1)  := ('A'-65).U
     raceText(2)  := ('P'-65).U
     raceText(3)  := (' '+4 ).U
-    raceText(4)  := ('1'-22).U
+    raceText(4)  := io.lapCnt + 26.U 
     raceText(5)  := (' '+4 ).U
     raceText(6)  := (' '+4 ).U
     raceText(7)  := (' '+4 ).U
