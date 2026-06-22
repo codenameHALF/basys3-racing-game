@@ -39,6 +39,7 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
     //Control flags from ScreenManager
     val enable = Input(Bool())
+    val tilemapIdx = Input(UInt(4.W))
 
     //Tilemap rom connections
     val tilemapRomTileAddress = Output(UInt(11.W))
@@ -73,20 +74,21 @@ io.frameUpdateDone := false.B
 
   //Race states
   val raceStarted = RegInit(false.B)
-val idle :: computeRace :: done :: Nil = Enum(3)
-val raceManagerStateReg = RegInit(idle)
 
   //Player controller initialization
 val playerController = Module(new PlayerController())
-val ai  = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 90000, initX = 608, initY = 128))
-val ai2 = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 60000, initX = 640, initY = 160))
-val ai3 = Module(new AI(BackTileNumber, SpriteNumber, 2, initSpeed = 130000, initX = 672, initY = 128))
-ai.io.newFrame  := io.newFrame
-ai.io.enable    := io.enable
-ai2.io.newFrame := io.newFrame
-ai2.io.enable   := io.enable
-ai3.io.newFrame := io.newFrame
-ai3.io.enable   := io.enable
+val ai  = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 90000, initX = 608, initY = 128))
+val ai2 = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 60000, initX = 640, initY = 160))
+val ai3 = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 130000, initX = 672, initY = 128))
+ai.io.newFrame    := io.newFrame
+ai.io.enable      := raceStarted
+ai.io.tilemapIdx  := io.tilemapIdx(2, 0)
+ai2.io.newFrame   := io.newFrame
+ai2.io.enable     := raceStarted
+ai2.io.tilemapIdx := io.tilemapIdx(2, 0)
+ai3.io.newFrame   := io.newFrame
+ai3.io.enable     := raceStarted
+ai3.io.tilemapIdx := io.tilemapIdx(2, 0)
 // HUMAN car
 playerController.io.btnU := io.btnU
 playerController.io.btnL := io.btnL

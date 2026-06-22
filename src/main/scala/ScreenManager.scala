@@ -133,6 +133,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
 
   // Menu printer
   val selectedTrackReg = RegInit(1.U(4.W))
+  raceManager.io.tilemapIdx := selectedTrackReg
   val menuPrinter = Module(new MenuPrinter(BackTileNumber, SpriteNumber))
   menuPrinter.io.load := false.B
   menuPrinter.io.track := selectedTrackReg

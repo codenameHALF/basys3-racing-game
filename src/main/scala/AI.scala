@@ -13,6 +13,7 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int,
     val newFrame = Input(Bool())
     val frameUpdateDone = Output(Bool())
     val enable = Input(Bool())
+    val tilemapIdx = Input(UInt(log2Up(TilemapNumber).W))
   })
 
   io.spriteXPosition := Seq.fill(4)(0.S)
@@ -23,6 +24,17 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int,
   io.frameUpdateDone := false.B
 
   val idle :: setMid :: waitMid :: waitMid2 :: waitMid3 :: readMid ::setLeft :: waitLeft :: waitLeft2 :: waitLeft3 :: readLeft ::setRight :: waitRight :: waitRight2 :: waitRight3 :: readRight ::drive :: done :: Nil = Enum(18)
+  // Extra states for 90-degree sensors (manual UInt constants, same width as Enum values)
+  val setHardLeft    = 18.U(5.W)
+  val waitHardLeft   = 19.U(5.W)
+  val waitHardLeft2  = 20.U(5.W)
+  val waitHardLeft3  = 21.U(5.W)
+  val readHardLeft   = 22.U(5.W)
+  val setHardRight   = 23.U(5.W)
+  val waitHardRight  = 24.U(5.W)
+  val waitHardRight2 = 25.U(5.W)
+  val waitHardRight3 = 26.U(5.W)
+  val readHardRight  = 27.U(5.W)
   val stateReg = RegInit(idle)
 
   val startX = initX.S
@@ -34,9 +46,13 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int,
   val speedReg = RegInit(initSpeed.S(32.W))
   val angleReg = RegInit(startAngle)
 
-  val roadMidReg = RegInit(true.B)
-  val roadLeftReg = RegInit(false.B)
-  val roadRightReg = RegInit(false.B)
+  val roadMidReg       = RegInit(true.B)
+  val roadLeftReg      = RegInit(false.B)
+  val roadRightReg     = RegInit(false.B)
+  val roadHardLeftReg  = RegInit(false.B)
+  val roadHardRightReg = RegInit(false.B)
+  val stuckCounter     = RegInit(0.U(8.W))
+  val lastTurnLeft     = RegInit(true.B)
 
   val sensorXReg = RegInit(0.S(32.W))
   val sensorYReg = RegInit(0.S(32.W))
@@ -48,8 +64,9 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int,
   val rightSensorXReg = RegInit(0.S(32.W))
   val rightSensorYReg = RegInit(0.S(32.W))
 
-  val sensorDist = (72.S << 16).asSInt
-  val sensorAngle = 32.U(8.W)
+  val sensorDist     = (80.S << 16).asSInt
+  val hardSensorDist = (80.S << 16).asSInt  // 90-degree sensors, same distance as forward sensors
+  val sensorAngle    = 32.U(8.W)            // 45 degrees in 256-step notation
 
   def resetAI(): Unit = {
     xReg := (startX << 16).asSInt
@@ -71,7 +88,7 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int,
 
   val aiTilemap = Module(new AITilemapRom(BackTileNumber, SpriteNumber, TilemapNumber))
   aiTilemap.io.tileAddress := posToAddress.io.address
-  aiTilemap.io.tilemapIdx := 1.U
+  aiTilemap.io.tilemapIdx := io.tilemapIdx
 
   val aiTileData = aiTilemap.io.tileData
 val aiTileIsRoad = !aiTilemap.io.collisionData
@@ -210,6 +227,36 @@ val aiTileIsRoad = !aiTilemap.io.collisionData
 
     is(readRight) {
       roadRightReg := aiTileIsRoad
+      stateReg := setHardLeft
+    }
+
+    // 90-degree left sensor (perpendicular to heading)
+    is(setHardLeft) {
+      val hardLeftAngle = (angleReg + 64.U)(7, 0)
+      sensorXReg := xReg + ((hardSensorDist * cosLut(hardLeftAngle)) >> 8)
+      sensorYReg := yReg - ((hardSensorDist * sinLut(hardLeftAngle)) >> 8)
+      stateReg := waitHardLeft
+    }
+    is(waitHardLeft)  { stateReg := waitHardLeft2 }
+    is(waitHardLeft2) { stateReg := waitHardLeft3 }
+    is(waitHardLeft3) { stateReg := readHardLeft }
+    is(readHardLeft) {
+      roadHardLeftReg := aiTileIsRoad
+      stateReg := setHardRight
+    }
+
+    // 90-degree right sensor (perpendicular to heading)
+    is(setHardRight) {
+      val hardRightAngle = (angleReg + 192.U)(7, 0)
+      sensorXReg := xReg + ((hardSensorDist * cosLut(hardRightAngle)) >> 8)
+      sensorYReg := yReg - ((hardSensorDist * sinLut(hardRightAngle)) >> 8)
+      stateReg := waitHardRight
+    }
+    is(waitHardRight)  { stateReg := waitHardRight2 }
+    is(waitHardRight2) { stateReg := waitHardRight3 }
+    is(waitHardRight3) { stateReg := readHardRight }
+    is(readHardRight) {
+      roadHardRightReg := aiTileIsRoad
       stateReg := drive
     }
 
@@ -219,12 +266,42 @@ val aiTileIsRoad = !aiTilemap.io.collisionData
 
       when(roadMidReg) {
         nextAngle := angleReg
+        stuckCounter := 0.U
       }.elsewhen(roadLeftReg && !roadRightReg) {
-        nextAngle := angleReg + 2.U
+        nextAngle := angleReg + 3.U
+        lastTurnLeft := true.B
+        stuckCounter := 0.U
       }.elsewhen(roadRightReg && !roadLeftReg) {
-        nextAngle := angleReg - 2.U
+        nextAngle := angleReg - 3.U
+        lastTurnLeft := false.B
+        stuckCounter := 0.U
+      }.elsewhen(roadHardLeftReg && !roadHardRightReg) {
+        nextAngle := angleReg + 6.U
+        lastTurnLeft := true.B
+        stuckCounter := 0.U
+      }.elsewhen(roadHardRightReg && !roadHardLeftReg) {
+        nextAngle := angleReg - 6.U
+        lastTurnLeft := false.B
+        stuckCounter := 0.U
+      }.elsewhen(roadLeftReg && roadRightReg) {
+        // Both diagonal sensors see road but mid doesn't — junction or close parallel roads.
+        // Use a slow nudge instead of full spin to prevent U-turns.
+        when(stuckCounter < 255.U) { stuckCounter := stuckCounter + 1.U }
+        when(lastTurnLeft) { nextAngle := angleReg + 2.U }
+        .otherwise         { nextAngle := angleReg - 2.U }
+      }.elsewhen(roadHardLeftReg && roadHardRightReg) {
+        // Both 90-degree sensors see road but nothing ahead — road goes sideways only.
+        // Slow nudge to avoid U-turning.
+        when(stuckCounter < 255.U) { stuckCounter := stuckCounter + 1.U }
+        when(lastTurnLeft) { nextAngle := angleReg + 2.U }
+        .otherwise         { nextAngle := angleReg - 2.U }
       }.otherwise {
-        nextAngle := angleReg
+        // No road detected at all — spin in last known direction.
+        // After ~32 frames with no road found, flip direction to break out of a wrong U-turn.
+        when(stuckCounter < 255.U) { stuckCounter := stuckCounter + 1.U }
+        when(stuckCounter === 32.U) { lastTurnLeft := !lastTurnLeft }
+        when(lastTurnLeft) { nextAngle := angleReg + 4.U }
+        .otherwise         { nextAngle := angleReg - 4.U }
       }
 
       val nextX = xReg + ((speedReg * cosLut(nextAngle)) >> 8)
