@@ -13,7 +13,7 @@ set rt::rc [catch {
     set rt::cmdEcho 0
     rt::set_parameter writeXmsg true
     rt::set_parameter enableParallelHelperSpawn true
-    set ::env(RT_TMP) "./.Xil/Vivado-2956-halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA/realtime/tmp"
+    set ::env(RT_TMP) "./.Xil/Vivado-62507-halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA/realtime/tmp"
     if { [ info exists ::env(RT_TMP) ] } {
       file mkdir $::env(RT_TMP)
     }
@@ -45,7 +45,7 @@ set rt::rc [catch {
       rt::filesetChecksum
     }
     rt::set_parameter usePostFindUniquification true
-    set rt::SDCFileList ./.Xil/Vivado-2956-halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA/realtime/Top_synth.xdc
+    set rt::SDCFileList ./.Xil/Vivado-62507-halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA/realtime/Top_synth.xdc
     rt::sdcChecksum
     set rt::top Top
     rt::set_parameter enableIncremental true
@@ -66,7 +66,7 @@ set rt::rc [catch {
     rt::set_parameter webTalkPath {/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.cache/wt}
     rt::set_parameter synthDebugLog false
     rt::set_parameter printModuleName false
-    rt::set_parameter enableSplitFlowPath "./.Xil/Vivado-2956-halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA/"
+    rt::set_parameter enableSplitFlowPath "./.Xil/Vivado-62507-halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA/"
     set ok_to_delete_rt_tmp true 
     if { [rt::get_parameter parallelDebug] } { 
        set ok_to_delete_rt_tmp false 

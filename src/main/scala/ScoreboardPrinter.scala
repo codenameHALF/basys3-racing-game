@@ -143,7 +143,7 @@ class ScoreboardPrinter(BackTileNumber: Int, SpriteNumber: Int) extends Module {
     val backBufferAddress = 0.U(11.W) +& xIdx +& (40.U(6.W) * yIdx)
 
     val trackTextAddress = xIdx -& trackXIdxMin.U(6.W)
-    val timeTextAddress = 3.U + xIdx - timeXIdxMin.U(6.W)
+    val timeTextAddress = (3.U +& xIdx) -& timeXIdxMin.U(6.W)
     
     val running = RegInit(false.B)
     val done = RegInit(false.B)

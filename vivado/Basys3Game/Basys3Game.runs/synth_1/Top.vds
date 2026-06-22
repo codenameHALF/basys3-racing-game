@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Mon Jun 22 10:57:41 2026
-# Process ID         : 2956
+# Start of session at: Mon Jun 22 12:13:27 2026
+# Process ID         : 62507
 # Current directory  : /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1
 # Command line       : vivado -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
 # Log file           : /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.vds
@@ -13,13 +13,13 @@
 # Platform           : Linuxmint
 # Operating System   : Linux Mint 22.3
 # Processor Detail   : AMD Ryzen 5 4500U with Radeon Graphics
-# CPU Frequency      : 3792.061 MHz
+# CPU Frequency      : 1501.933 MHz
 # CPU Physical cores : 6
 # CPU Logical cores  : 6
 # Host memory        : 7710 MB
 # Swap memory        : 2147 MB
 # Total Virtual      : 9858 MB
-# Available Virtual  : 7435 MB
+# Available Virtual  : 4933 MB
 #-----------------------------------------------------------
 source Top.tcl -notrace
 Command: synth_design -top Top -part xc7a35tcpg236-1
@@ -29,9 +29,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 3085
+INFO: [Synth 8-7075] Helper process launched with PID 62676
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2116.383 ; gain = 228.973 ; free physical = 1659 ; free virtual = 6023
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2116.414 ; gain = 231.004 ; free physical = 134 ; free virtual = 3457
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Top' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:8630]
 INFO: [Synth 8-6157] synthesizing module 'GameTop' [/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/Top.v:8207]
@@ -643,18 +643,18 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2298.320 ; gain = 410.910 ; free physical = 1479 ; free virtual = 5851
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2290.352 ; gain = 404.941 ; free physical = 142 ; free virtual = 3329
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2307.227 ; gain = 419.816 ; free physical = 1480 ; free virtual = 5852
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2299.258 ; gain = 413.848 ; free physical = 149 ; free virtual = 3337
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2307.227 ; gain = 419.816 ; free physical = 1480 ; free virtual = 5852
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2299.258 ; gain = 413.848 ; free physical = 149 ; free virtual = 3337
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2307.227 ; gain = 0.000 ; free physical = 1480 ; free virtual = 5852
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2299.258 ; gain = 0.000 ; free physical = 149 ; free virtual = 3337
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -665,26 +665,26 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2406.996 ; gain = 0.000 ; free physical = 1462 ; free virtual = 5850
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2396.027 ; gain = 0.000 ; free physical = 147 ; free virtual = 3334
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2407.031 ; gain = 0.000 ; free physical = 1461 ; free virtual = 5850
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2396.062 ; gain = 0.000 ; free physical = 146 ; free virtual = 3333
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2407.031 ; gain = 519.621 ; free physical = 1475 ; free virtual = 5864
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2396.062 ; gain = 510.652 ; free physical = 131 ; free virtual = 3223
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2415.000 ; gain = 527.590 ; free physical = 1475 ; free virtual = 5864
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2404.031 ; gain = 518.621 ; free physical = 131 ; free virtual = 3223
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2415.000 ; gain = 527.590 ; free physical = 1475 ; free virtual = 5864
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2404.031 ; gain = 518.621 ; free physical = 131 ; free virtual = 3223
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'PlayerController'
 INFO: [Synth 8-802] inferred FSM for state register 'raceManagerStateReg_reg' in module 'RaceManager'
@@ -711,53 +711,53 @@ INFO: [Synth 8-3354] encoded FSM with state register 'stateReg_reg' using encodi
 *
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'raceManagerStateReg_reg' using encoding 'one-hot' in module 'RaceManager'
-0: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7USignal14printBacktraceEi+0x50) [0x75e4b2543dd0]
-1: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN4USys5abortEPKcj+0x66) [0x75e4b24030a6]
-2: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen23replaceOutputMergeNodesEP6DFNodeS1_+0x791) [0x75e4b1a4b4d1]
-3: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen13recodeOutEdgeEP5DFPinR9DStgGraphR8UHashMapI7UStringP9DStgStateS5_5UEKeyIS5_EE+0x1f0) [0x75e4b1a4bb00]
-4: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen17regenerateNewFlowEv+0xce1) [0x75e4b1a528e1]
-5: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen10regenerateEbb+0x49) [0x75e4b1a53219]
-6: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen8generateEb+0x21) [0x75e4b1a45f11]
-7: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN4GFsmC1E8NRealModP7DFGraphb+0x58) [0x75e4b2090488]
-8: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod17createNonModGraphEP6DFNodeb+0x1331) [0x75e4b1f85231]
-9: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod11createGraphEP6DFNodeb+0x1be) [0x75e4b1f8639e]
-10: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod12connectGraphEP6DFNode+0xa7) [0x75e4b1f9acc7]
-11: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod15connectInputPinEP9SPinArrayP5DFPin+0x36c) [0x75e4b1f9998c]
-12: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod11connectNetsEv+0x1b5) [0x75e4b1f9b685]
-13: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynModC2E4NDes8NRealModP7DFGraphPK10ElabPdInstbP11NClkGtParambbbP6DFNodebP8UHashMapIP5DFPinP9SPinArraySD_5UEKeyISD_EE+0x353) [0x75e4b1f93f63]
-14: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod26createHierarchicalInstanceEP6DFNode+0xb8) [0x75e4b1f81048]
-15: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod17handleModuleGraphEP6DFNodeP7DFGraphb+0x21) [0x75e4b1f82a91]
-16: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod15createInstancesEv+0x4a3) [0x75e4b1f8a823]
-17: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynModC2E4NDes8NRealModP7DFGraphPK10ElabPdInstbP11NClkGtParambbbP6DFNodebP8UHashMapIP5DFPinP9SPinArraySD_5UEKeyISD_EE+0x34b) [0x75e4b1f93f5b]
-18: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod26createHierarchicalInstanceEP6DFNode+0xb8) [0x75e4b1f81048]
-19: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod17handleModuleGraphEP6DFNodeP7DFGraphb+0x21) [0x75e4b1f82a91]
-20: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod15createInstancesEv+0x4a3) [0x75e4b1f8a823]
-21: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod10regenerateEb+0x1e) [0x75e4b1f93bce]
-22: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN4GSyn8generateE8NRealModb+0x1f8) [0x75e4b1af8ba8]
-23: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN8NRealMod10regenerateEb+0x2c) [0x75e4b1af8e9c]
-24: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb22generateNetlistFromDFGE8NRealModb+0x73c) [0x75e4b0ace50c]
-25: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb14optimizeAndMapEv+0x632) [0x75e4b0acf322]
-26: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb26processParallelDFGOptPass2Ev+0x8dd) [0x75e4b0b3fe5d]
-27: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb3mapEv+0x36) [0x75e4b0a9a3f6]
-28: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(+0x20c2f26) [0x75e4b18c2f26]
-29: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(+0x1f48bd2) [0x75e4b1748bd2]
-30: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x75e4cb084497]
-31: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x482bd7) [0x75e4c1e82bd7]
-32: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x75e4cb084497]
-33: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x482bd7) [0x75e4c1e82bd7]
-34: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x75e4cb084497]
-35: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(+0x45309) [0x75e4cb086309]
-36: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(Tcl_FSEvalFileEx+0x1f8) [0x75e4cb13bae8]
-37: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x49e7fd) [0x75e4c1e9e7fd]
-38: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(+0x940b8a) [0x75e4ce940b8a]
-39: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x75e4cb084497]
-40: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x482b34) [0x75e4c1e82b34]
-41: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x75e4cb084497]
-42: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(+0x45309) [0x75e4cb086309]
-43: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclSubstTokens+0x4a9) [0x75e4cb14ed59]
-44: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(+0x45153) [0x75e4cb086153]
-45: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(Tcl_FSEvalFileEx+0x1f8) [0x75e4cb13bae8]
-46: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x49e7fd) [0x75e4c1e9e7fd]
-47: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(+0x940b8a) [0x75e4ce940b8a]
-48: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x75e4cb084497]
-49: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(_ZN3hdi8tcltasks12task_manager11eval_in_tclEP10Tcl_InterpP7Tcl_ObjPKcb+0xc07) [0x75e4ce9424a7]
+0: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7USignal14printBacktraceEi+0x50) [0x775be3343dd0]
+1: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN4USys5abortEPKcj+0x66) [0x775be32030a6]
+2: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen23replaceOutputMergeNodesEP6DFNodeS1_+0x791) [0x775be284b4d1]
+3: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen13recodeOutEdgeEP5DFPinR9DStgGraphR8UHashMapI7UStringP9DStgStateS5_5UEKeyIS5_EE+0x1f0) [0x775be284bb00]
+4: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen17regenerateNewFlowEv+0xce1) [0x775be28528e1]
+5: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen10regenerateEbb+0x49) [0x775be2853219]
+6: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7GFsmGen8generateEb+0x21) [0x775be2845f11]
+7: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN4GFsmC1E8NRealModP7DFGraphb+0x58) [0x775be2e90488]
+8: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod17createNonModGraphEP6DFNodeb+0x1331) [0x775be2d85231]
+9: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod11createGraphEP6DFNodeb+0x1be) [0x775be2d8639e]
+10: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod12connectGraphEP6DFNode+0xa7) [0x775be2d9acc7]
+11: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod15connectInputPinEP9SPinArrayP5DFPin+0x36c) [0x775be2d9998c]
+12: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod11connectNetsEv+0x1b5) [0x775be2d9b685]
+13: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynModC2E4NDes8NRealModP7DFGraphPK10ElabPdInstbP11NClkGtParambbbP6DFNodebP8UHashMapIP5DFPinP9SPinArraySD_5UEKeyISD_EE+0x353) [0x775be2d93f63]
+14: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod26createHierarchicalInstanceEP6DFNode+0xb8) [0x775be2d81048]
+15: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod17handleModuleGraphEP6DFNodeP7DFGraphb+0x21) [0x775be2d82a91]
+16: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod15createInstancesEv+0x4a3) [0x775be2d8a823]
+17: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynModC2E4NDes8NRealModP7DFGraphPK10ElabPdInstbP11NClkGtParambbbP6DFNodebP8UHashMapIP5DFPinP9SPinArraySD_5UEKeyISD_EE+0x34b) [0x775be2d93f5b]
+18: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod26createHierarchicalInstanceEP6DFNode+0xb8) [0x775be2d81048]
+19: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod17handleModuleGraphEP6DFNodeP7DFGraphb+0x21) [0x775be2d82a91]
+20: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod15createInstancesEv+0x4a3) [0x775be2d8a823]
+21: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HSynMod10regenerateEb+0x1e) [0x775be2d93bce]
+22: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN4GSyn8generateE8NRealModb+0x1f8) [0x775be28f8ba8]
+23: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN8NRealMod10regenerateEb+0x2c) [0x775be28f8e9c]
+24: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb22generateNetlistFromDFGE8NRealModb+0x73c) [0x775be18ce50c]
+25: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb14optimizeAndMapEv+0x632) [0x775be18cf322]
+26: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb26processParallelDFGOptPass2Ev+0x8dd) [0x775be193fe5d]
+27: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(_ZN7HARTNDb3mapEv+0x36) [0x775be189a3f6]
+28: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(+0x20c2f26) [0x775be26c2f26]
+29: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_synth.so(+0x1f48bd2) [0x775be2548bd2]
+30: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x775bfbe84497]
+31: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x482bd7) [0x775bf2c82bd7]
+32: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x775bfbe84497]
+33: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x482bd7) [0x775bf2c82bd7]
+34: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x775bfbe84497]
+35: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(+0x45309) [0x775bfbe86309]
+36: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(Tcl_FSEvalFileEx+0x1f8) [0x775bfbf3bae8]
+37: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x49e7fd) [0x775bf2c9e7fd]
+38: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(+0x940b8a) [0x775bff740b8a]
+39: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x775bfbe84497]
+40: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x482b34) [0x775bf2c82b34]
+41: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x775bfbe84497]
+42: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(+0x45309) [0x775bfbe86309]
+43: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclSubstTokens+0x4a9) [0x775bfbf4ed59]
+44: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(+0x45153) [0x775bfbe86153]
+45: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(Tcl_FSEvalFileEx+0x1f8) [0x775bfbf3bae8]
+46: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_commontasks.so(+0x49e7fd) [0x775bf2c9e7fd]
+47: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(+0x940b8a) [0x775bff740b8a]
+48: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libtcl8.6.so(TclNRRunCallbacks+0x47) [0x775bfbe84497]
+49: /home/halfdan/Installations/Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(_ZN3hdi8tcltasks12task_manager11eval_in_tclEP10Tcl_InterpP7Tcl_ObjPKcb+0xc07) [0x775bff7424a7]

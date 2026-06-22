@@ -145,7 +145,10 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
   val scoreboardPrinter = Module(new ScoreboardPrinter(BackTileNumber, SpriteNumber))
   scoreboardPrinter.io.load := false.B
   scoreboardPrinter.io.track := selectedTrackReg
-  scoreboardPrinter.io.time := VecInit(Seq(0.U, 0.U, 0.U, 0.U))
+  scoreboardPrinter.io.time(3) := 0.U
+  scoreboardPrinter.io.time(2) := 0.U
+  scoreboardPrinter.io.time(1) := 0.U
+  scoreboardPrinter.io.time(0) := 0.U
 
   val btnCPressed = RegInit(false.B)
   val btnLPressed = RegInit(false.B)
