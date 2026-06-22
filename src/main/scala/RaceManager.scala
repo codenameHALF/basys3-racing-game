@@ -126,7 +126,7 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     }
 
     is (computeRace) {
-      frameCounter.io.inc := true.B
+      frameCounter.io.inc := raceStarted
 
       val tempViewBoxX = (playerController.io.playerXPosition + 16.U)
       val tempViewBoxY = (playerController.io.playerYPosition + 16.U)
