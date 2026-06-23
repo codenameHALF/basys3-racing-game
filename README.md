@@ -33,7 +33,7 @@ Follow these two steps to compile the game logic and program the hardware using 
 #### Moving the car:
 - **BTNU**: Moves the car forwards
 - **BTND**: Breaks and reverses the car
-##### Menu Controls:
+#### Menu Controls:
 - **BTNC** Confirm selection / Continue
 - **BTNL**: Scroll left
 - **BTNR**: Scroll right
