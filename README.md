@@ -24,3 +24,24 @@ Follow these two steps to compile the game logic and program the hardware using 
 8. Click **Open Target** , then **Auto Connect**.
 9. Right-click your FPGA device in the Hardware window and select **Program Device**.
 
+## 3. How to play
+
+### Controls
+Turning the car:
+- **BTNL**: turns left
+- **BTNR**: turns right
+Moving the car:
+- **BTNU**: Moves the car forwards
+- **BTND**: Breaks and reverses the car
+Menu Controls:
+- **BTNC** Confirm selection / Continue
+- **BTNL**: Scroll left
+- **BTNR**: Scroll right
+
+### Gameplay
+* Race against "Ai" opponents.
+* Race to get the best time.
+* Crashing the car relocates the car to the last reached checkpoint.
+
+
+  
