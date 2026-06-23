@@ -27,13 +27,13 @@ Follow these two steps to compile the game logic and program the hardware using 
 ## 3. How to play
 
 ### Controls
-Turning the car:
+#### Turning the car:
 - **BTNL**: turns left
 - **BTNR**: turns right
-Moving the car:
+#### Moving the car:
 - **BTNU**: Moves the car forwards
 - **BTND**: Breaks and reverses the car
-Menu Controls:
+##### Menu Controls:
 - **BTNC** Confirm selection / Continue
 - **BTNL**: Scroll left
 - **BTNR**: Scroll right
