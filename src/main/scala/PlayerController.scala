@@ -65,7 +65,6 @@ class PlayerController extends Module {
   val idle :: inputHandling :: computePos :: computeCheckPoint :: collision :: done :: Nil = Enum(6)
   val stateReg = RegInit(idle)
 
-  // Position, Hastighed, Vinkel
   val playerXPositionReg = RegInit((576 << 16).S(32.W))
   val playerYPositionReg = RegInit((160 << 16).S(32.W))
   val sprite0SpeedReg = RegInit(0.S(32.W))
@@ -81,7 +80,7 @@ class PlayerController extends Module {
   val turnSpeed = 1.U(8.W)
   val friction = 400.S(32.W)
 
-  // LUTs for vinkler
+  // LUTs for angles
   val cos_lut = VecInit(Seq.tabulate(256)(i => (Math.cos(i * 2.0 * Math.PI / 256.0) * 256.0).toInt.S(16.W)))
   val sin_lut = VecInit(Seq.tabulate(256)(i => (Math.sin(i * 2.0 * Math.PI / 256.0) * 256.0).toInt.S(16.W)))
   
