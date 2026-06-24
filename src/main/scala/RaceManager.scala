@@ -53,28 +53,26 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.led := Seq.fill(8)(false.B)
 
   //Setting all sprite control outputs to zero
-  io.spriteXPosition := Seq.fill(SpriteNumber)(0.S)
-  io.spriteYPosition := Seq.fill(SpriteNumber)(0.S)
-  io.spriteVisible := Seq.fill(SpriteNumber)(false.B)
-  io.spriteFlipHorizontal := Seq.fill(SpriteNumber)(false.B)
-  io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
+// defaults
+io.spriteXPosition := Seq.fill(SpriteNumber)(0.S)
+io.spriteYPosition := Seq.fill(SpriteNumber)(0.S)
+io.spriteVisible := Seq.fill(SpriteNumber)(false.B)
+io.spriteFlipHorizontal := Seq.fill(SpriteNumber)(false.B)
+io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
 
-  //Setting the viewbox control outputs to zero
   val viewBoxXReg = RegInit(0.U(10.W))
   val viewBoxYReg = RegInit(0.U(9.W))
-  io.viewBoxX := viewBoxXReg
-  io.viewBoxY := viewBoxYReg
+io.viewBoxX := viewBoxXReg
+io.viewBoxY := viewBoxYReg
 
-  //Setting the background buffer outputs to zero
   val backBufferWriteDataReg = RegInit(0.U(log2Up(BackTileNumber).W))  
   val backBufferWriteAddressReg = RegInit(0.U(11.W))
   val backBufferWriteEnableReg = RegInit(false.B)
-  io.backBufferWriteData := backBufferWriteDataReg
-  io.backBufferWriteAddress := backBufferWriteAddressReg
-  io.backBufferWriteEnable := backBufferWriteEnableReg
+io.backBufferWriteData := backBufferWriteDataReg
+io.backBufferWriteAddress := backBufferWriteAddressReg
+io.backBufferWriteEnable := backBufferWriteEnableReg
 
-  //Setting frame done to zero
-  io.frameUpdateDone := false.B
+io.frameUpdateDone := false.B
 
   //Race states
   val raceStarted = RegInit(false.B)
@@ -82,34 +80,74 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.finished := raceFinished
 
   //Player controller initialization
-  val playerController = Module(new PlayerController())
-  io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
-  playerController.io.tilemapRomTileData := io.tilemapRomTileData
-  playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
-  playerController.io.btnU := io.btnU
-  playerController.io.btnL := io.btnL
-  playerController.io.btnD := io.btnD
-  playerController.io.btnC := io.btnC
-  playerController.io.btnR := io.btnR
-  playerController.io.newFrame := io.newFrame
-  playerController.io.enable := raceStarted
+val playerController = Module(new PlayerController())
+val ai  = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 90000, initX = 608, initY = 128))
+val ai2 = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 60000, initX = 640, initY = 160))
+val ai3 = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 130000, initX = 672, initY = 128))
+ai.io.newFrame    := io.newFrame
+ai.io.enable      := raceStarted
+ai.io.tilemapIdx  := io.tilemapIdx(2, 0)
+ai2.io.newFrame   := io.newFrame
+ai2.io.enable     := raceStarted
+ai2.io.tilemapIdx := io.tilemapIdx(2, 0)
+ai3.io.newFrame   := io.newFrame
+ai3.io.enable     := raceStarted
+ai3.io.tilemapIdx := io.tilemapIdx(2, 0)
+// HUMAN car
+playerController.io.btnU := io.btnU
+playerController.io.btnL := io.btnL
+playerController.io.btnD := io.btnD
+playerController.io.btnR := io.btnR
+playerController.io.btnC := io.btnC
+
+playerController.io.newFrame := io.newFrame
+playerController.io.enable := raceStarted
   
   // Track/Map index 
   playerController.io.raceMapIndex := io.selectedTrackIndex
 
 
-  val playerScreenXPosition = Reg(SInt(11.W))
-  val playerScreenYPosition = Reg(SInt(10.W))
-  playerScreenXPosition := (playerController.io.playerXPosition - viewBoxXReg).asSInt
-  playerScreenYPosition := (playerController.io.playerYPosition - viewBoxYReg).asSInt
+// WARNING: one ROM port only, so for now give it to player
+io.tilemapRomTileAddress := playerController.io.tilemapRomTileAddress
 
-  for (i <- 0 until 3) {
-    io.spriteVisible(i)        := playerController.io.spriteVisible(i)
-    io.spriteXPosition(i)      := playerScreenXPosition
-    io.spriteYPosition(i)      := playerScreenYPosition
-    io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
-    io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
-  }
+playerController.io.tilemapRomTileData := io.tilemapRomTileData
+playerController.io.tilemapRomCollisionData := io.tilemapRomCollisionData
+
+// Player sprites: 0,1,2
+for (i <- 0 until 3) {
+  io.spriteVisible(i)        := playerController.io.spriteVisible(i)
+  io.spriteXPosition(i)      := (playerController.io.playerXPosition - viewBoxXReg).asSInt
+  io.spriteYPosition(i)      := (playerController.io.playerYPosition - viewBoxYReg).asSInt
+  io.spriteFlipHorizontal(i) := playerController.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i)   := playerController.io.spriteFlipVertical(i)
+}
+
+// AI sprites: 3,4,5
+for (i <- 0 until 3) {
+  io.spriteVisible(i + 3)        := ai.io.spriteVisible(i)
+  io.spriteXPosition(i + 3)      := (ai.io.spriteXPosition(i).asUInt - viewBoxXReg).asSInt
+  io.spriteYPosition(i + 3)      := (ai.io.spriteYPosition(i).asUInt - viewBoxYReg).asSInt
+  io.spriteFlipHorizontal(i + 3) := ai.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i + 3)   := ai.io.spriteFlipVertical(i)
+}
+
+// AI2 sprites: 6,7,8
+for (i <- 0 until 3) {
+  io.spriteVisible(i + 6)        := ai2.io.spriteVisible(i)
+  io.spriteXPosition(i + 6)      := (ai2.io.spriteXPosition(i).asUInt - viewBoxXReg).asSInt
+  io.spriteYPosition(i + 6)      := (ai2.io.spriteYPosition(i).asUInt - viewBoxYReg).asSInt
+  io.spriteFlipHorizontal(i + 6) := ai2.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i + 6)   := ai2.io.spriteFlipVertical(i)
+}
+
+// AI3 sprites: 9,10,11
+for (i <- 0 until 3) {
+  io.spriteVisible(i + 9)        := ai3.io.spriteVisible(i)
+  io.spriteXPosition(i + 9)      := (ai3.io.spriteXPosition(i).asUInt - viewBoxXReg).asSInt
+  io.spriteYPosition(i + 9)      := (ai3.io.spriteYPosition(i).asUInt - viewBoxYReg).asSInt
+  io.spriteFlipHorizontal(i + 9) := ai3.io.spriteFlipHorizontal(i)
+  io.spriteFlipVertical(i + 9)   := ai3.io.spriteFlipVertical(i)
+}
 
   //Race scoreboard printer initialization
   val bcdCounter = Module(new BCDCounter())
@@ -208,5 +246,6 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
         io.frameUpdateDone := true.B
         raceManagerStateReg := idle
     }
+    
   }
 }
