@@ -3,25 +3,25 @@
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.6564102564102564
+    "index":0.6530612244897959
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_64",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64",
-    "index":0.6615384615384615
+    "index":0.6581632653061225
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf_1",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.6666666666666666
+    "index":0.6632653061224489
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_65",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64",
-    "index":0.6717948717948717
+    "index":0.6683673469387755
   },
   {
     "class":"firrtl.EmitCircuitAnnotation",

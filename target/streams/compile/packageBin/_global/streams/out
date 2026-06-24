@@ -10,6 +10,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RegPipeline$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Memory$$anon$3.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/Memory$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScoreboardPrinter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScoreboardPrinter.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RaceManager$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RaceManager$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	MenuPrinter$$anon$1.class[0m
@@ -66,6 +68,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/PlayerController$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RamInitSpWf.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/RamInitSpWf.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ScoreboardPrinter$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/ScoreboardPrinter$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	GameTop$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/target/scala-2.13/classes/GameTop$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	RaceScoreboardPrinter.class[0m

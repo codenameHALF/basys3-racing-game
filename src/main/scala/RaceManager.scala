@@ -36,9 +36,9 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     //Status
     val newFrame = Input(Bool())
     val frameUpdateDone = Output(Bool())
-
-    //Control flags from ScreenManager
     val enable = Input(Bool())
+    val finished = Output(Bool())
+    val time = Output(Vec(4, UInt(8.W)))
 
     //Tilemap rom connections
     val tilemapRomTileAddress = Output(UInt(11.W))
@@ -78,6 +78,8 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
   //Race states
   val raceStarted = RegInit(false.B)
+  val raceFinished = RegInit(false.B)
+  io.finished := raceFinished
 
   //Player controller initialization
   val playerController = Module(new PlayerController())
@@ -110,14 +112,16 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   }
 
   //Race scoreboard printer initialization
-  val frameCounter = Module(new BCDCounter())
+  val bcdCounter = Module(new BCDCounter())
   val screenAnimationCounter = RegInit(0.U(16.W))
   val scoreboardScreen = RegInit(0.U)
-  frameCounter.io.inc := false.B
+  bcdCounter.io.inc := false.B
+  bcdCounter.io.reset := false.B
+  io.time := bcdCounter.io.data
   val raceScoreboardPrinter = Module(new RaceScoreboardPrinter(BackTileNumber, SpriteNumber))
   raceScoreboardPrinter.io.lapCnt := playerController.io.lapCnt
   raceScoreboardPrinter.io.load := false.B
-  raceScoreboardPrinter.io.time := frameCounter.io.data
+  raceScoreboardPrinter.io.time := bcdCounter.io.data
   raceScoreboardPrinter.io.screen := scoreboardScreen
   // State enums
   val idle :: computeRace :: updateScoreboard :: done :: Nil = Enum(4)
@@ -130,11 +134,17 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
             when(io.newFrame) {
                 raceManagerStateReg := computeRace
             }
+        }.otherwise {
+          raceStarted := false.B
+          raceFinished := false.B
+          bcdCounter.io.reset := true.B
+          screenAnimationCounter := 0.U
+          scoreboardScreen := 0.U
         }
     }
 
     is (computeRace) {
-      frameCounter.io.inc := raceStarted
+      bcdCounter.io.inc := raceStarted
 
       val tempViewBoxX = (playerController.io.playerXPosition + 16.U)
       val tempViewBoxY = (playerController.io.playerYPosition + 16.U)
@@ -186,6 +196,11 @@ class RaceManager(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
       when(raceScoreboardPrinter.io.done) {
         raceManagerStateReg := done
+      }
+
+      when(playerController.io.lapCnt === 4.U) {
+        raceFinished := true.B
+        raceStarted := false.B
       }
     }
 

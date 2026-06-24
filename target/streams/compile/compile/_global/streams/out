@@ -1,4 +1,13 @@
-[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/ScreenManager.scala:108:46: no arguments allowed for nullary constructor ScreenLoader: (): ScreenLoader[0m
-[0m[[0m[31merror[0m] [0m[0m  val screenLoader = Module(new ScreenLoader(BackTileNumber, SpriteNumber, TilemapNumber))[0m
-[0m[[0m[31merror[0m] [0m[0m                                             ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/PlayerController.scala:139:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        playerXPositionReg = (576 << 16).S[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/PlayerController.scala:140:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        playerYPositionReg = (160 << 16).S[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/PlayerController.scala:141:25: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        sprite0SpeedReg = 0.S[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/halfdan/Universitet/02113 Digital Systems Design Project/basys3-racing-game/src/main/scala/PlayerController.scala:142:25: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        sprite0AngleReg = 128.U[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
