@@ -145,10 +145,8 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
   val scoreboardPrinter = Module(new ScoreboardPrinter(BackTileNumber, SpriteNumber))
   scoreboardPrinter.io.load := false.B
   scoreboardPrinter.io.track := selectedTrackReg
-  scoreboardPrinter.io.time(3) := 0.U
-  scoreboardPrinter.io.time(2) := 0.U
-  scoreboardPrinter.io.time(1) := 0.U
-  scoreboardPrinter.io.time(0) := 0.U
+  val finishTimeReg = RegInit(VecInit(Seq(0.U(8.W), 0.U(8.W), 0.U(8.W), 0.U(8.W))))
+  scoreboardPrinter.io.time := finishTimeReg
 
   val btnCPressed = RegInit(false.B)
   val btnLPressed = RegInit(false.B)
@@ -173,7 +171,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
       //When loading is finished go to IDLE
       when(screenLoader.io.done) {
         io.frameUpdateDone := true.B
-        screenManagerStateReg := idle
+        screenManagerStateReg := updateScoreboard
       }
 
       when(currentScreenReg === titleScreen) {
@@ -266,6 +264,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
       when(raceManager.io.finished) {
         screenManagerStateReg := loadMenu
         currentScreenReg := scoreboard
+        finishTimeReg := raceManager.io.time
       }
     }
 
@@ -273,10 +272,6 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
     is(idle) {
       when(io.newFrame) {
         screenManagerStateReg := done
-
-        when(currentScreenReg === scoreboard) {
-          currentScreenReg := updateScoreboard
-        }
 
         when(io.btnC && btnCPressed === false.B) {
           btnCPressed := true.B
@@ -290,6 +285,7 @@ class ScreenManager(SpriteNumber: Int, BackTileNumber: Int, TilemapNumber: Int) 
             viewBoxXReg := 0.U;
             viewBoxYReg := 0.U;
             currentScreenReg := titleScreen
+            selectedTrackReg := 1.U
           }
         }
 

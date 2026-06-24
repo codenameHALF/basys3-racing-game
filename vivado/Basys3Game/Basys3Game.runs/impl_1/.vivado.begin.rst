@@ -3,3 +3,43 @@
     <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="47556" HostCore="6" HostMemory="7529968">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="78401" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="96155" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="127553" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="141821" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="159033" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="174168" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="188455" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="halfdan" Host="halfdan-VivoBook-ASUSLaptop-X421IAY-R438IA" Pid="201336" HostCore="6" HostMemory="7529968">
+    </Process>
+</ProcessHandle>

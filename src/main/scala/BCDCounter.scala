@@ -5,9 +5,13 @@ class BCDCounter() extends Module {
     val io = IO(new Bundle {
         val inc = Input(Bool())
         val data = Output(Vec(4, UInt(8.W)))
+        val reset = Input(Bool())
     })
 
     val digits = RegInit(VecInit(Seq.fill(5)(0.U(8.W))))
+    when(io.reset) {
+        digits := VecInit(Seq.fill(5)(0.U(8.W)))
+    }
 
     when(io.inc) {
         when(digits(0) === 60.U) {

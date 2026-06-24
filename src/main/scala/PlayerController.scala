@@ -135,6 +135,14 @@ class PlayerController extends Module {
         when(io.newFrame){
           stateReg := inputHandling
         } 
+      }.otherwise{
+        playerXPositionReg := (576 << 16).S
+        playerYPositionReg := (160 << 16).S
+        sprite0SpeedReg := 0.S
+        sprite0AngleReg := 128.U
+
+        lapCntReg := 1.U
+        checkPointCntReg := 0.U
       }
     }
     is(inputHandling) {
