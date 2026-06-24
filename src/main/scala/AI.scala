@@ -64,8 +64,8 @@ class AI(BackTileNumber: Int, SpriteNumber: Int, TilemapNumber: Int,
   val rightSensorXReg = RegInit(0.S(32.W))
   val rightSensorYReg = RegInit(0.S(32.W))
 
-  val sensorDist     = (80.S << 16).asSInt
-  val hardSensorDist = (80.S << 16).asSInt  // 90-degree sensors, same distance as forward sensors
+  val sensorDist     = (48.S << 16).asSInt
+  val hardSensorDist = (80.S << 16).asSInt  // 90-degree sensors reach the wide U-turn section
   val sensorAngle    = 32.U(8.W)            // 45 degrees in 256-step notation
 
   def resetAI(): Unit = {
@@ -284,22 +284,22 @@ val aiTileIsRoad = !aiTilemap.io.collisionData
         lastTurnLeft := false.B
         stuckCounter := 0.U
       }.elsewhen(roadLeftReg && roadRightReg) {
-        // Both diagonal sensors see road but mid doesn't — junction or close parallel roads.
-        // Use a slow nudge instead of full spin to prevent U-turns.
+        // Both diagonal sensors see road but mid doesn't — hairpin or parallel roads.
+        // Alternate direction every 20 frames so the car keeps trying until one works.
         when(stuckCounter < 255.U) { stuckCounter := stuckCounter + 1.U }
-        when(lastTurnLeft) { nextAngle := angleReg + 2.U }
-        .otherwise         { nextAngle := angleReg - 2.U }
+        when(stuckCounter === 20.U) { lastTurnLeft := !lastTurnLeft; stuckCounter := 0.U }
+        when(lastTurnLeft) { nextAngle := angleReg + 3.U }
+        .otherwise         { nextAngle := angleReg - 3.U }
       }.elsewhen(roadHardLeftReg && roadHardRightReg) {
-        // Both 90-degree sensors see road but nothing ahead — road goes sideways only.
-        // Slow nudge to avoid U-turning.
+        // Both 90-degree sensors see road — road goes sideways only.
         when(stuckCounter < 255.U) { stuckCounter := stuckCounter + 1.U }
-        when(lastTurnLeft) { nextAngle := angleReg + 2.U }
-        .otherwise         { nextAngle := angleReg - 2.U }
+        when(stuckCounter === 20.U) { lastTurnLeft := !lastTurnLeft; stuckCounter := 0.U }
+        when(lastTurnLeft) { nextAngle := angleReg + 3.U }
+        .otherwise         { nextAngle := angleReg - 3.U }
       }.otherwise {
-        // No road detected at all — spin in last known direction.
-        // After ~32 frames with no road found, flip direction to break out of a wrong U-turn.
+        // No road detected at all — alternate direction every 20 frames.
         when(stuckCounter < 255.U) { stuckCounter := stuckCounter + 1.U }
-        when(stuckCounter === 32.U) { lastTurnLeft := !lastTurnLeft }
+        when(stuckCounter === 20.U) { lastTurnLeft := !lastTurnLeft; stuckCounter := 0.U }
         when(lastTurnLeft) { nextAngle := angleReg + 4.U }
         .otherwise         { nextAngle := angleReg - 4.U }
       }
