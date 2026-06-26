@@ -86,13 +86,13 @@ val ai2 = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 60000, init
 val ai3 = Module(new AI(BackTileNumber, SpriteNumber, 8, initSpeed = 130000, initX = 672, initY = 128))
 ai.io.newFrame    := io.newFrame
 ai.io.enable      := raceStarted
-ai.io.tilemapIdx  := io.tilemapIdx(2, 0)
+ai.io.tilemapIdx  := io.selectedTrackIndex(2, 0)
 ai2.io.newFrame   := io.newFrame
 ai2.io.enable     := raceStarted
-ai2.io.tilemapIdx := io.tilemapIdx(2, 0)
+ai2.io.tilemapIdx := io.selectedTrackIndex(2, 0)
 ai3.io.newFrame   := io.newFrame
 ai3.io.enable     := raceStarted
-ai3.io.tilemapIdx := io.tilemapIdx(2, 0)
+ai3.io.tilemapIdx := io.selectedTrackIndex(2, 0)
 // HUMAN car
 playerController.io.btnU := io.btnU
 playerController.io.btnL := io.btnL
